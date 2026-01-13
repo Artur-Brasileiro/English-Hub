@@ -492,3 +492,52 @@ export const SPEAKING_DATA = {
     { display: 'Spotify', valid: ['spotify'] }
   ]
 };
+
+// --- NOVO JOGO: VOCABULARY BUILDER (30 Palavras por Dia) ---
+export const VOCABULARY_DATA = [
+  {
+    id: 1,
+    title: "Dia 1: Finanças & Tech",
+    words: [
+      { id: 1, en: "Asset", pt: ["ativo", "bem", "bens"] },
+      { id: 2, en: "Liability", pt: ["passivo", "dívida", "obrigação"] },
+      { id: 3, en: "Receipt", pt: ["recibo", "comprovante"] },
+      { id: 4, en: "Income", pt: ["renda", "rendimento", "receita"] },
+      { id: 5, en: "Expense", pt: ["despesa", "gasto", "custo"] },
+      { id: 6, en: "Profit", pt: ["lucro"] },
+      { id: 7, en: "Revenue", pt: ["receita", "faturamento"] },
+      { id: 8, en: "Interest", pt: ["juros", "interesse"] },
+      { id: 9, en: "Debt", pt: ["dívida", "débito"] },
+      { id: 10, en: "Loan", pt: ["empréstimo"] },
+      { id: 11, en: "Tax", pt: ["imposto", "taxa"] },
+      { id: 12, en: "Fee", pt: ["taxa", "tarifa", "honorário"] },
+      { id: 13, en: "Wallet", pt: ["carteira"] },
+      { id: 14, en: "Balance", pt: ["saldo", "equilíbrio"] },
+      { id: 15, en: "Savings", pt: ["poupança", "economias"] },
+      { id: 16, en: "Database", pt: ["banco de dados", "base de dados"] },
+      { id: 17, en: "Cache", pt: ["cache", "memória cache"] },
+      { id: 18, en: "Bug", pt: ["erro", "falha", "bug", "defeito"] },
+      { id: 19, en: "Feature", pt: ["funcionalidade", "recurso", "característica"] },
+      { id: 20, en: "Deployment", pt: ["implantação", "deploy", "lançamento"] },
+      { id: 21, en: "Framework", pt: ["estrutura", "arcabouço", "framework"] },
+      { id: 22, en: "Loop", pt: ["laço", "repetição", "ciclo", "loop"] },
+      { id: 23, en: "Query", pt: ["consulta", "query", "pesquisa"] },
+      { id: 24, en: "Array", pt: ["matriz", "vetor", "lista", "array"] },
+      { id: 25, en: "String", pt: ["texto", "cadeia de caracteres", "string"] },
+      { id: 26, en: "Debug", pt: ["depurar", "corrigir", "debugar"] },
+      { id: 27, en: "Cloud", pt: ["nuvem"] },
+      { id: 28, en: "Backend", pt: ["backend", "servidor", "parte de trás"] },
+      { id: 29, en: "Frontend", pt: ["frontend", "interface", "parte da frente"] },
+      { id: 30, en: "Request", pt: ["requisição", "pedido", "solicitação"] }
+    ]
+  },
+  {
+    id: 2,
+    title: "Dia 2: Engenharia Geral",
+    words: [
+      { id: 1, en: "Hardware", pt: ["equipamento", "hardware", "peça física"] },
+      { id: 2, en: "Software", pt: ["programa", "software", "sistema"] },
+      // ... Adicione o resto depois
+    ]
+  }
+];

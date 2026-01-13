@@ -6,22 +6,33 @@ import {
   Search,
   ChevronRight,
   GraduationCap,
-  Languages
+  Languages,
+  BookOpen // Ícone novo para o vocabulário
 } from 'lucide-react';
 
-// Importando os componentes separados
+// Importando os componentes
 import PhrasalVerbsGame from './components/PhrasalVerbsGame';
 import IrregularVerbsGame from './components/IrregularVerbsGame';
-import TranslationGame from './components/TranslationGame';
+import TranslationGame from './components/TranslationGame'; // SEU JOGO ANTIGO MANTIDO
 import SpeakingGame from './components/SpeakingGame';
+import VocabularyGame from './components/VocabularyGame'; // NOVO IMPORT
 
 const App = () => {
   const [activeGame, setActiveGame] = useState(null); 
   const [activeCategory, setActiveCategory] = useState('Todos');
   const [searchTerm, setSearchTerm] = useState('');
 
-  // Configuração dos Cards do Menu
   const games = [
+    {
+      id: 'vocabulary', // ID DO NOVO JOGO
+      title: "Daily Vocabulary",
+      description: "30 palavras novas por dia para expandir seu vocabulário.",
+      category: "Vocabulário",
+      difficulty: "Essencial",
+      icon: <BookOpen className="w-6 h-6" />,
+      color: "bg-gray-600",
+      isReady: true
+    },
     {
       id: 'phrasal',
       title: "Phrasal Verbs Master",
@@ -56,7 +67,7 @@ const App = () => {
       id: 'speaking',
       title: "Pronunciation Lab",
       description: "Treine sua fala com o Alfabeto, Números e Ordinais.",
-      category: "Speaking", // ALTERADO AQUI
+      category: "Speaking",
       difficulty: "Iniciante",
       icon: <Mic2 className="w-6 h-6" />, 
       color: "bg-rose-500",
@@ -64,7 +75,6 @@ const App = () => {
     }
   ];
 
-  // Adicionei 'Speaking' na lista para criar o botão de filtro
   const categories = ['Todos', 'Vocabulário', 'Gramática', 'Writing & Speaking', 'Speaking'];
 
   const filteredGames = games.filter(game => {
@@ -73,7 +83,11 @@ const App = () => {
     return matchesCategory && matchesSearch;
   });
 
-  // Renderização Condicional Limpa
+  // Renderização Condicional
+  if (activeGame === 'vocabulary') {
+    return <VocabularyGame onBack={() => setActiveGame(null)} />;
+  }
+
   if (activeGame === 'phrasal') {
     return <PhrasalVerbsGame onBack={() => setActiveGame(null)} />;
   }
@@ -90,7 +104,7 @@ const App = () => {
     return <SpeakingGame onBack={() => setActiveGame(null)} />;
   }
 
-  // Renderização do Menu (Hub)
+  // Renderização do Menu (Hub) - MANTIDA IGUAL
   return (
     <div className="min-h-screen bg-slate-50 text-slate-900 font-sans">
       <nav className="bg-white border-b border-slate-200 px-4 py-4 shadow-sm sticky top-0 z-10">
@@ -157,11 +171,6 @@ const App = () => {
                   <div className="bg-white/20 p-5 rounded-2xl backdrop-blur-sm group-hover:scale-110 transition-transform duration-300">
                     {game.icon}
                   </div>
-                  {!game.isReady && (
-                    <div className="absolute top-3 right-3 bg-black/30 px-2 py-1 rounded text-[10px] font-bold uppercase backdrop-blur-md">
-                      Em breve
-                    </div>
-                  )}
                 </div>
                 
                 <div className="p-6 grow flex flex-col">
