@@ -1,127 +1,754 @@
 // --- DADOS DOS PHRASAL VERBS ---
 export const PHRASAL_VERBS_DATA = [
   // FASE 1 (1-10) - Fundamentais e Continuidade
-  // Foco: Verbos essenciais para manter conversas e ações básicas.
-  { id: 1, verb: "Go on", meaning: "Continuar / Acontecer", example: "Please go on with your story." },
-  { id: 2, verb: "Give up", meaning: "Desistir / Parar de fazer algo", example: "Don't give up on your dreams." },
-  { id: 3, verb: "Look for", meaning: "Procurar", example: "I am looking for my keys." },
-  { id: 4, verb: "Find out", meaning: "Descobrir", example: "I found out the truth yesterday." },
-  { id: 5, verb: "Run out of", meaning: "Ficar sem (esgotar)", example: "We ran out of milk." },
-  { id: 6, verb: "Carry on", meaning: "Continuar fazendo algo", example: "Carry on working while I'm gone." },
-  { id: 7, verb: "Hold on", meaning: "Aguardar um momento", example: "Hold on a second, please." },
-  { id: 8, verb: "Watch out", meaning: "Ter cuidado / Prestar atenção", example: "Watch out! There's a car coming." },
-  { id: 9, verb: "Figure out", meaning: "Compreender / Encontrar solução", example: "I can't figure out how to fix this." },
-  { id: 10, verb: "Keep on", meaning: "Continuar (insistentemente)", example: "He kept on talking during the movie." },
+  { 
+    id: 1, 
+    verb: "Go on", 
+    definitions: [
+      { meaning: "Continuar", example: "Please go on with your story." },
+      { meaning: "Acontecer", example: "I don't know what is going on here." }
+    ]
+  },
+  { 
+    id: 2, 
+    verb: "Give up", 
+    definitions: [
+      { meaning: "Desistir", example: "Don't give up on your dreams." },
+      { meaning: "Parar de fazer algo", example: "I finally gave up smoking last year." }
+    ]
+  },
+  { 
+    id: 3, 
+    verb: "Look for", 
+    definitions: [
+      { meaning: "Procurar", example: "I am looking for my keys." }
+    ]
+  },
+  { 
+    id: 4, 
+    verb: "Find out", 
+    definitions: [
+      { meaning: "Descobrir", example: "I found out the truth yesterday." }
+    ]
+  },
+  { 
+    id: 5, 
+    verb: "Run out of", 
+    definitions: [
+      { meaning: "Ficar sem", example: "We ran out of milk this morning." }
+    ]
+  },
+  { 
+    id: 6, 
+    verb: "Carry on", 
+    definitions: [
+      { meaning: "Continuar fazendo algo", example: "Carry on working while I'm gone." }
+    ]
+  },
+  { 
+    id: 7, 
+    verb: "Hold on", 
+    definitions: [
+      { meaning: "Aguardar um momento", example: "Hold on a second, please." },
+      { meaning: "Segurar firme", example: "Hold on tight to the railing!" }
+    ]
+  },
+  { 
+    id: 8, 
+    verb: "Watch out", 
+    definitions: [
+      { meaning: "Ter cuidado", example: "Watch out! There's a car coming." },
+      { meaning: "Prestar atenção", example: "You need to watch out for pickpockets here." }
+    ]
+  },
+  { 
+    id: 9, 
+    verb: "Figure out", 
+    definitions: [
+      { meaning: "Compreender", example: "I can't figure out why he did that." },
+      { meaning: "Encontrar solução", example: "We need to figure out a way to fix this." }
+    ]
+  },
+  { 
+    id: 10, 
+    verb: "Keep on", 
+    definitions: [
+      { meaning: "Continuar", example: "He kept on talking during the movie." }
+    ]
+  },
 
   // FASE 2 (11-20) - Problemas, Soluções e Imprevistos
-  // Foco: Lidar com situações que dão errado ou precisam de resolução.
-  { id: 11, verb: "Break down", meaning: "Parar de funcionar / Desabar emocionalmente", example: "My car broke down on the highway." },
-  { id: 12, verb: "Call off", meaning: "Cancelar", example: "The meeting was called off." },
-  { id: 13, verb: "Put off", meaning: "Adiar", example: "We had to put off the trip." },
-  { id: 14, verb: "Work out", meaning: "Exercitar-se / Resolver / Dar certo", example: "Things will work out in the end." },
-  { id: 15, verb: "Blow up", meaning: "Explodir / Ficar com raiva", example: "The car blew up after the crash." },
-  { id: 16, verb: "Close down", meaning: "Fechar definitivamente (negócio)", example: "The factory closed down last year." },
-  { id: 17, verb: "Chip in", meaning: "Contribuir (dinheiro/ajuda)", example: "We all chipped in to buy him a gift." },
-  { id: 18, verb: "Break in", meaning: "Invadir (propriedade) / Interromper", example: "Thieves broke in while we were away." },
-  { id: 19, verb: "Calm down", meaning: "Acalmar-se", example: "You need to calm down before speaking." },
-  { id: 20, verb: "Turn up", meaning: "Chegar / Aparecer / Aumentar volume", example: "He turned up late to the party." },
+  { 
+    id: 11, 
+    verb: "Break down", 
+    definitions: [
+      { meaning: "Parar de funcionar", example: "My car broke down on the highway." },
+      { meaning: "Desabar emocionalmente", example: "She broke down in tears after the news." }
+    ]
+  },
+  { 
+    id: 12, 
+    verb: "Call off", 
+    definitions: [
+      { meaning: "Cancelar", example: "The meeting was called off due to rain." }
+    ]
+  },
+  { 
+    id: 13, 
+    verb: "Put off", 
+    definitions: [
+      { meaning: "Adiar", example: "We had to put off the trip until next month." }
+    ]
+  },
+  { 
+    id: 14, 
+    verb: "Work out", 
+    definitions: [
+      { meaning: "Exercitar-se", example: "I work out at the gym three times a week." },
+      { meaning: "Resolver", example: "We need to work out a solution." },
+      { meaning: "Dar certo", example: "Don't worry, things will work out in the end." }
+    ]
+  },
+  {
+    id: 15,
+    verb: "Blow up",
+    definitions: [
+      { meaning: "Explodir (literalmente) / Explodir de raiva (perder a paciência)", example: "He blew up at me for being late." }
+    ]
+  },
+  { 
+    id: 16, 
+    verb: "Close down", 
+    definitions: [
+      { meaning: "Fechar definitivamente", example: "The factory closed down last year." }
+    ]
+  },
+  { 
+    id: 17, 
+    verb: "Chip in", 
+    definitions: [
+      { meaning: "Contribuir", example: "We all chipped in to buy him a gift." }
+    ]
+  },
+  { 
+    id: 18, 
+    verb: "Break in", 
+    definitions: [
+      { meaning: "Invadir", example: "Thieves broke in while we were away." },
+      { meaning: "Interromper", example: "Sorry to break in on your conversation." }
+    ]
+  },
+  { 
+    id: 19, 
+    verb: "Calm down", 
+    definitions: [
+      { meaning: "Acalmar-se", example: "You need to calm down before speaking." }
+    ]
+  },
+  { 
+    id: 20, 
+    verb: "Turn up", 
+    definitions: [
+      { meaning: "Chegar", example: "He turned up late to the party." },
+      { meaning: "Aumentar volume", example: "Can you turn up the radio?" }
+    ]
+  },
 
   // FASE 3 (21-30) - Social, Cuidado e Lazer
-  // Foco: Interações com pessoas e momentos de descanso.
-  { id: 21, verb: "Get along", meaning: "Ter um bom relacionamento", example: "I get along well with my neighbors." },
-  { id: 22, verb: "Hang out", meaning: "Passar tempo (lazer)", example: "We used to hang out at the park." },
-  { id: 23, verb: "Look after", meaning: "Cuidar de alguém/algo", example: "Can you look after my dog?" },
-  { id: 24, verb: "Catch up", meaning: "Alcançar / Colocar o papo em dia", example: "Let's meet for coffee to catch up." },
-  { id: 25, verb: "Bring up", meaning: "Mencionar um assunto / Criar (filhos)", example: "Don't bring up that topic again." },
-  { id: 26, verb: "Back up", meaning: "Apoiar / Fazer cópia de segurança", example: "Can you back me up in the meeting?" },
-  { id: 27, verb: "Drop off", meaning: "Deixar alguém/algo / Adormecer", example: "I can drop you off at the station." },
-  { id: 28, verb: "Get away", meaning: "Escapar / Sair de férias", example: "The robbers managed to get away." },
-  { id: 29, verb: "Check in", meaning: "Registrar entrada (hotel/voo)", example: "We checked in at the hotel at 2 PM." },
-  { id: 30, verb: "Pass out", meaning: "Desmaiar", example: "It was so hot that he passed out." },
+  { 
+    id: 21, 
+    verb: "Get along", 
+    definitions: [
+      { meaning: "Ter um bom relacionamento", example: "I get along well with my neighbors." }
+    ]
+  },
+  { 
+    id: 22, 
+    verb: "Hang out", 
+    definitions: [
+      { meaning: "Passar tempo", example: "We used to hang out at the park." }
+    ]
+  },
+  { 
+    id: 23, 
+    verb: "Look after", 
+    definitions: [
+      { meaning: "Cuidar de alguém", example: "Can you look after my dog?" }
+    ]
+  },
+  { 
+    id: 24, 
+    verb: "Catch up", 
+    definitions: [
+      { meaning: "Alcançar", example: "Go ahead, I'll catch up with you later." },
+      { meaning: "Colocar o papo em dia", example: "Let's meet for coffee to catch up." }
+    ]
+  },
+  { 
+    id: 25, 
+    verb: "Bring up", 
+    definitions: [
+      { meaning: "Mencionar um assunto", example: "Don't bring up that topic again." },
+      { meaning: "Criar filhos", example: "She brought up three children alone." }
+    ]
+  },
+  { 
+    id: 26, 
+    verb: "Back up", 
+    definitions: [
+      { meaning: "Apoiar", example: "Can you back me up in the meeting?" },
+      { meaning: "Fazer cópia de segurança", example: "Remember to back up your files." }
+    ]
+  },
+  { 
+    id: 27, 
+    verb: "Drop off", 
+    definitions: [
+      { meaning: "Deixar alguém", example: "I can drop you off at the station." },
+      { meaning: "Adormecer", example: "I dropped off during the movie." }
+    ]
+  },
+  { 
+    id: 28, 
+    verb: "Get away", 
+    definitions: [
+      { meaning: "Escapar", example: "The robbers managed to get away." },
+      { meaning: "Sair de férias", example: "We need to get away for a few days." }
+    ]
+  },
+  { 
+    id: 29, 
+    verb: "Check in", 
+    definitions: [
+      { meaning: "Registrar entrada", example: "We checked in at the hotel at 2 PM." }
+    ]
+  },
+  { 
+    id: 30, 
+    verb: "Pass out", 
+    definitions: [
+      { meaning: "Desmaiar", example: "It was so hot that he passed out." },
+      { meaning: "Distribuir", example: "The teacher passed out the exams." }
+    ]
+  },
 
   // FASE 4 (31-40) - Rotina e Ações Básicas
-  { id: 31, verb: "Wake up", meaning: "Acordar", example: "I wake up at 7 AM every day." },
-  { id: 32, verb: "Get up", meaning: "Levantar-se (da cama)", example: "He gets up as soon as the alarm rings." },
-  { id: 33, verb: "Put on", meaning: "Vestir / Colocar (roupa/acessório)", example: "Put on your coat, it's cold outside." },
-  { id: 34, verb: "Take off", meaning: "Tirar (roupa) / Decolar (avião)", example: "Please take off your shoes inside." },
-  { id: 35, verb: "Turn on", meaning: "Ligar (eletrônicos)", example: "Can you turn on the TV?" },
-  { id: 36, verb: "Turn off", meaning: "Desligar", example: "Don't forget to turn off the lights." },
-  { id: 37, verb: "Eat out", meaning: "Comer fora (restaurante)", example: "We love to eat out on Fridays." },
-  { id: 38, verb: "Look forward to", meaning: "Esperar ansiosamente por algo", example: "I look forward to seeing you again." },
-  { id: 39, verb: "Cut down on", meaning: "Reduzir o consumo de algo", example: "I need to cut down on sugar." },
-  { id: 40, verb: "Dress up", meaning: "Vestir-se formalmente / Fantasiar-se", example: "We need to dress up for the wedding." },
+  { 
+    id: 31, 
+    verb: "Wake up", 
+    definitions: [
+      { meaning: "Acordar", example: "I wake up at 7 AM every day." }
+    ]
+  },
+  { 
+    id: 32, 
+    verb: "Get up", 
+    definitions: [
+      { meaning: "Levantar-se", example: "He gets up as soon as the alarm rings." }
+    ]
+  },
+  { 
+    id: 33, 
+    verb: "Put on", 
+    definitions: [
+      { meaning: "Vestir", example: "Put on your coat, it's cold outside." },
+      { meaning: "Ganhar peso", example: "He has put on some weight." }
+    ]
+  },
+  { 
+    id: 34, 
+    verb: "Take off", 
+    definitions: [
+      { meaning: "Tirar roupa", example: "Please take off your shoes inside." },
+      { meaning: "Decolar", example: "The plane took off on time." }
+    ]
+  },
+  { 
+    id: 35, 
+    verb: "Turn on", 
+    definitions: [
+      { meaning: "Ligar", example: "Can you turn on the TV?" }
+    ]
+  },
+  { 
+    id: 36, 
+    verb: "Turn off", 
+    definitions: [
+      { meaning: "Desligar", example: "Don't forget to turn off the lights." }
+    ]
+  },
+  { 
+    id: 37, 
+    verb: "Eat out", 
+    definitions: [
+      { meaning: "Comer fora", example: "We love to eat out on Fridays." }
+    ]
+  },
+  { 
+    id: 38, 
+    verb: "Look forward to", 
+    definitions: [
+      { meaning: "Esperar ansiosamente", example: "I look forward to seeing you again." }
+    ]
+  },
+  { 
+    id: 39, 
+    verb: "Cut down on", 
+    definitions: [
+      { meaning: "Reduzir o consumo", example: "I need to cut down on sugar." }
+    ]
+  },
+  { 
+    id: 40, 
+    verb: "Dress up", 
+    definitions: [
+      { meaning: "Vestir-se formalmente", example: "We need to dress up for the wedding." },
+      { meaning: "Fantasiar-se", example: "Kids love to dress up as superheroes." }
+    ]
+  },
 
   // FASE 5 (41-50) - Relacionamentos e Emoções
-  { id: 41, verb: "Ask out", meaning: "Convidar para sair (encontro)", example: "He finally asked her out for dinner." },
-  { id: 42, verb: "Break up", meaning: "Terminar um relacionamento", example: "They broke up after two years together." },
-  { id: 43, verb: "Cheer up", meaning: "Animar-se / Animar alguém", example: "Cheer up! Things will get better." },
-  { id: 44, verb: "Let down", meaning: "Decepcionar alguém", example: "I promised to help, I won't let you down." },
-  { id: 45, verb: "Make up", meaning: "Fazer as pazes / Inventar (história)", example: "They argued but made up quickly." },
-  { id: 46, verb: "Pick on", meaning: "Implicar / Praticar bullying", example: "Stop picking on your little brother." },
-  { id: 47, verb: "Put up with", meaning: "Tolerar / Aguentar", example: "I can't put up with this noise anymore." },
-  { id: 48, verb: "Run into", meaning: "Encontrar por acaso", example: "I ran into an old friend at the mall." },
-  { id: 49, verb: "Split up", meaning: "Separar-se (grupo ou casal)", example: "Let's split up to find the clues." },
-  { id: 50, verb: "Grow up", meaning: "Crescer / Tornar-se adulto", example: "I grew up in a small town." },
-
+  { 
+    id: 41, 
+    verb: "Ask out", 
+    definitions: [
+      { meaning: "Convidar para sair", example: "He finally asked her out for dinner." }
+    ]
+  },
+  { 
+    id: 42, 
+    verb: "Break up", 
+    definitions: [
+      { meaning: "Terminar relacionamento", example: "They broke up after two years together." }
+    ]
+  },
+  { 
+    id: 43, 
+    verb: "Cheer up", 
+    definitions: [
+      { meaning: "Animar-se", example: "Cheer up! Things will get better." }
+    ]
+  },
+  { 
+    id: 44, 
+    verb: "Let down", 
+    definitions: [
+      { meaning: "Decepcionar", example: "I promised to help, I won't let you down." }
+    ]
+  },
+  { 
+    id: 45, 
+    verb: "Make up", 
+    definitions: [
+      { meaning: "Fazer as pazes", example: "They argued but made up quickly." },
+      { meaning: "Inventar", example: "He made up the whole story." }
+    ]
+  },
+  { 
+    id: 46, 
+    verb: "Pick on", 
+    definitions: [
+      { meaning: "Implicar", example: "Stop picking on your little brother." }
+    ]
+  },
+  { 
+    id: 47, 
+    verb: "Put up with", 
+    definitions: [
+      { meaning: "Tolerar", example: "I can't put up with this noise anymore." }
+    ]
+  },
+  { 
+    id: 48, 
+    verb: "Run into", 
+    definitions: [
+      { meaning: "Encontrar por acaso", example: "I ran into an old friend at the mall." },
+      { meaning: "Colidir", example: "The car ran into a tree." }
+    ]
+  },
+  { 
+    id: 49, 
+    verb: "Split up", 
+    definitions: [
+      { meaning: "Separar-se", example: "The group split up to find the clues." }
+    ]
+  },
+  { 
+    id: 50, 
+    verb: "Grow up", 
+    definitions: [
+      { meaning: "Crescer", example: "I grew up in a small town." }
+    ]
+  },
+  
   // FASE 6 (51-60) - Trabalho e Estudos
-  { id: 51, verb: "Burn out", meaning: "Esgotar-se (por excesso de trabalho)", example: "If you work too much, you will burn out." },
-  { id: 52, verb: "Fill out", meaning: "Preencher (formulário)", example: "Please fill out this application form." },
-  { id: 53, verb: "Hand in", meaning: "Entregar (trabalho/tarefa)", example: "Submit your homework by handing it in tomorrow." },
-  { id: 54, verb: "Lay off", meaning: "Demitir (corte de custos)", example: "The company had to lay off 50 employees." },
-  { id: 55, verb: "Take over", meaning: "Assumir o controle", example: "She will take over the project next week." },
-  { id: 56, verb: "Set up", meaning: "Configurar / Estabelecer", example: "I need to set up my new computer." },
-  { id: 57, verb: "Slack off", meaning: "Fazer corpo mole / Preguiçar", example: "Stop slacking off and get back to work." },
-  { id: 58, verb: "Think over", meaning: "Refletir / Pensar bem a respeito", example: "I need some time to think it over." },
-  { id: 59, verb: "Write down", meaning: "Anotar", example: "Write down the address so you don't forget." },
-  { id: 60, verb: "Catch on", meaning: "Entender / Tornar-se popular", example: "It took him a while to catch on to the joke." },
+  {
+    id: 51,
+    verb: "Burn out",
+    definitions: [
+      { meaning: "Esgotar-se", example: "If you work too much, you will burn out." }
+    ]
+  },
+  {
+    id: 52,
+    verb: "Fill out",
+    definitions: [
+      { meaning: "Preencher", example: "Please fill out this application form." }
+    ]
+  },
+  {
+    id: 53,
+    verb: "Hand in",
+    definitions: [
+      { meaning: "Entregar", example: "Submit your homework by handing it in tomorrow." }
+    ]
+  },
+  {
+    id: 54,
+    verb: "Lay off",
+    definitions: [
+      { meaning: "Demitir", example: "The company had to lay off 50 employees." }
+    ]
+  },
+  {
+    id: 55,
+    verb: "Take over",
+    definitions: [
+      { meaning: "Assumir o controle", example: "She will take over the project next week." }
+    ]
+  },
+  {
+    id: 56,
+    verb: "Set up",
+    definitions: [
+      { meaning: "Configurar", example: "I need to set up my new computer." },
+      { meaning: "Estabelecer", example: "They set up a new branch in the city." }
+    ]
+  },
+  {
+    id: 57,
+    verb: "Slack off",
+    definitions: [
+      { meaning: "Fazer corpo mole", example: "Stop slacking off and get back to work." }
+    ]
+  },
+  {
+    id: 58,
+    verb: "Think over",
+    definitions: [
+      { meaning: "Refletir", example: "I need some time to think it over." }
+    ]
+  },
+  {
+    id: 59,
+    verb: "Write down",
+    definitions: [
+      { meaning: "Anotar", example: "Write down the address so you don't forget." }
+    ]
+  },
+  {
+    id: 60,
+    verb: "Catch on",
+    definitions: [
+      { meaning: "Entender", example: "It took him a while to catch on to the joke." },
+      { meaning: "Tornar-se popular", example: "This new fashion style is catching on fast." }
+    ]
+  },
 
   // FASE 7 (61-70) - Movimento e Viagem
-  { id: 61, verb: "Check out", meaning: "Fazer checkout / Dar uma olhada", example: "We must check out of the hotel by 11 AM." },
-  { id: 62, verb: "Get in", meaning: "Entrar (carro/táxi)", example: "Get in the car, let's go!" },
-  { id: 63, verb: "Get out", meaning: "Sair (carro/táxi/lugar)", example: "Get out of here immediately!" },
-  { id: 64, verb: "Get on", meaning: "Subir/Entrar (ônibus, trem, avião)", example: "I got on the wrong bus." },
-  { id: 65, verb: "Get off", meaning: "Descer (ônibus, trem, avião)", example: "We get off at the next station." },
-  { id: 66, verb: "Go away", meaning: "Ir embora", example: "Please go away and leave me alone." },
-  { id: 67, verb: "Pull over", meaning: "Encostar o veículo", example: "The police asked him to pull over." },
-  { id: 68, verb: "See off", meaning: "Despedir-se de alguém (na partida)", example: "I went to the airport to see him off." },
-  { id: 69, verb: "Speed up", meaning: "Acelerar", example: "You need to speed up to pass that truck." },
-  { id: 70, verb: "Slow down", meaning: "Desacelerar", example: "Slow down! You're driving too fast." },
+  {
+    id: 61,
+    verb: "Check out",
+    definitions: [
+      { meaning: "Fazer checkout", example: "We must check out of the hotel by 11 AM." },
+      { meaning: "Dar uma olhada", example: "Check out this new car!" }
+    ]
+  },
+  {
+    id: 62,
+    verb: "Get in",
+    definitions: [
+      { meaning: "Entrar", example: "Get in the car, let's go!" },
+      { meaning: "Chegar em casa", example: "What time did you get in last night?" }
+    ]
+  },
+  {
+    id: 63,
+    verb: "Get out",
+    definitions: [
+      { meaning: "Sair", example: "Get out of here immediately!" }
+    ]
+  },
+  {
+    id: 64,
+    verb: "Get on",
+    definitions: [
+      { meaning: "Subir/Entrar (em veículo)", example: "I got on the wrong bus." },
+      { meaning: "Se dar bem / Progredir", example: "He is getting on well in his new job." }
+    ]
+  },
+  {
+    id: 65,
+    verb: "Get off",
+    definitions: [
+      { meaning: "Descer", example: "We get off at the next station." }
+    ]
+  },
+  {
+    id: 66,
+    verb: "Go away",
+    definitions: [
+      { meaning: "Ir embora", example: "Please go away and leave me alone." }
+    ]
+  },
+  {
+    id: 67,
+    verb: "Pull over",
+    definitions: [
+      { meaning: "Encostar o veículo", example: "The police asked him to pull over." }
+    ]
+  },
+  {
+    id: 68,
+    verb: "See off",
+    definitions: [
+      { meaning: "Acompanhar na despedida (ex.: ver alguém partir no aeroporto)", example: "I went to the airport to see him off." }
+    ]
+  },
+  {
+    id: 69,
+    verb: "Speed up",
+    definitions: [
+      { meaning: "Acelerar", example: "You need to speed up to pass that truck." }
+    ]
+  },
+  {
+    id: 70,
+    verb: "Slow down",
+    definitions: [
+      { meaning: "Desacelerar", example: "Slow down! You're driving too fast." }
+    ]
+  },
 
   // FASE 8 (71-80) - Comunicação e Ideias
-  { id: 71, verb: "Call back", meaning: "Retornar a ligação", example: "I'm busy now, can I call you back?" },
-  { id: 72, verb: "Come up with", meaning: "Propor / Ter uma ideia", example: "He came up with a brilliant plan." },
-  { id: 73, verb: "Cut off", meaning: "Interromper / Cortar fornecimento", example: "They cut off our electricity." },
-  { id: 74, verb: "Get across", meaning: "Fazer-se entender / Comunicar", example: "He tried to get his point across." },
-  { id: 75, verb: "Look back", meaning: "Olhar para trás (passado)", example: "When I look back, I have no regrets." },
-  { id: 76, verb: "Point out", meaning: "Salientar / Apontar", example: "She pointed out the mistakes in my report." },
-  { id: 77, verb: "Read up on", meaning: "Pesquisar / Ler sobre algo", example: "I need to read up on this subject." },
-  { id: 78, verb: "Speak up", meaning: "Falar mais alto", example: "Could you speak up? I can't hear you." },
-  { id: 79, verb: "Talk over", meaning: "Discutir algo detalhadamente", example: "We need to talk over our future plans." },
-  { id: 80, verb: "Turn down", meaning: "Recusar / Abaixar volume", example: "She turned down the job offer." },
+  {
+    id: 71,
+    verb: "Call back",
+    definitions: [
+      { meaning: "Retornar a ligação", example: "I'm busy now, can I call you back?" }
+    ]
+  },
+  {
+    id: 72,
+    verb: "Come up with",
+    definitions: [
+      { meaning: "Propor", example: "He came up with a brilliant plan." }
+    ]
+  },
+  {
+    id: 73,
+    verb: "Cut off",
+    definitions: [
+      { meaning: "Interromper", example: "Don't cut me off while I'm speaking." },
+      { meaning: "Cortar fornecimento", example: "They cut off our electricity." }
+    ]
+  },
+  {
+    id: 74,
+    verb: "Get across",
+    definitions: [
+      { meaning: "Fazer-se entender", example: "He tried to get his point across." }
+    ]
+  },
+  {
+    id: 75,
+    verb: "Look back",
+    definitions: [
+      { meaning: "Olhar para trás", example: "When I look back, I have no regrets." }
+    ]
+  },
+  {
+    id: 76,
+    verb: "Point out",
+    definitions: [
+      { meaning: "Salientar", example: "She pointed out the mistakes in my report." }
+    ]
+  },
+  {
+    id: 77,
+    verb: "Read up on",
+    definitions: [
+      { meaning: "Pesquisar", example: "I need to read up on this subject." }
+    ]
+  },
+  {
+    id: 78,
+    verb: "Speak up",
+    definitions: [
+      { meaning: "Falar mais alto", example: "Could you speak up? I can't hear you." }
+    ]
+  },
+  {
+    id: 79,
+    verb: "Talk over",
+    definitions: [
+      { meaning: "Discutir detalhadamente", example: "We need to talk over our future plans." }
+    ]
+  },
+  {
+    id: 80,
+    verb: "Turn down",
+    definitions: [
+      { meaning: "Recusar", example: "She turned down the job offer." },
+      { meaning: "Abaixar volume", example: "Please turn down the music." }
+    ]
+  },
 
   // FASE 9 (81-90) - Problemas e Conflitos
-  { id: 81, verb: "Fall apart", meaning: "Desmoronar (coisas ou emocional)", example: "The old chair fell apart when I sat on it." },
-  { id: 82, verb: "Get away with", meaning: "Sair impune", example: "He broke the vase and got away with it." },
-  { id: 83, verb: "Hold back", meaning: "Segurar / Conter (emoção)", example: "She couldn't hold back the tears." },
-  { id: 84, verb: "Mess up", meaning: "Estragar tudo / Cometer erro", example: "I messed up the presentation." },
-  { id: 85, verb: "Pay back", meaning: "Pagar de volta / Vingar-se", example: "I will pay you back as soon as possible." },
-  { id: 86, verb: "Rip off", meaning: "Cobrar caro demais (roubar)", example: "That tourist shop rips people off." },
-  { id: 87, verb: "Run over", meaning: "Atropelar", example: "Be careful not to run over the cat." },
-  { id: 88, verb: "Stand up for", meaning: "Defender (algo ou alguém)", example: "You must stand up for your rights." },
-  { id: 89, verb: "Tell off", meaning: "Dar uma bronca", example: "The teacher told him off for being late." },
-  { id: 90, verb: "Use up", meaning: "Gastar tudo / Esgotar", example: "We have used up all the paper." },
+  {
+    id: 81,
+    verb: "Fall apart",
+    definitions: [
+      { meaning: "Desmoronar", example: "The old chair fell apart when I sat on it." }
+    ]
+  },
+  {
+    id: 82,
+    verb: "Get away with",
+    definitions: [
+      { meaning: "Sair impune", example: "He broke the vase and got away with it." }
+    ]
+  },
+  {
+    id: 83,
+    verb: "Hold back",
+    definitions: [
+      { meaning: "Conter / Impedir (ex.: controlar multidão)", example: "The police held back the crowd." },
+      { meaning: "Reprimir / Conter emoção", example: "She couldn't hold back the tears." }
+    ]
+  },
+  {
+    id: 84,
+    verb: "Mess up",
+    definitions: [
+      { meaning: "Estragar tudo", example: "I messed up the presentation." }
+    ]
+  },
+  {
+    id: 85,
+    verb: "Pay back",
+    definitions: [
+      { meaning: "Pagar de volta", example: "I will pay you back as soon as possible." },
+      { meaning: "Vingar-se", example: "He paid him back for the insult." }
+    ]
+  },
+  {
+    id: 86,
+    verb: "Rip off",
+    definitions: [
+      { meaning: "Enganar / Cobrar muito caro (passar a perna)", example: "That tourist shop rips people off." }
+    ]
+  },
+  {
+    id: 87,
+    verb: "Run over",
+    definitions: [
+      { meaning: "Atropelar", example: "Be careful not to run over the cat." }
+    ]
+  },
+  {
+    id: 88,
+    verb: "Stand up for",
+    definitions: [
+      { meaning: "Defender", example: "You must stand up for your rights." }
+    ]
+  },
+  {
+    id: 89,
+    verb: "Tell off",
+    definitions: [
+      { meaning: "Dar uma bronca", example: "The teacher told him off for being late." }
+    ]
+  },
+  {
+    id: 90,
+    verb: "Use up",
+    definitions: [
+      { meaning: "Gastar tudo", example: "We have used up all the paper." }
+    ]
+  },
 
   // FASE 10 (91-100) - Variados e Idiomáticos
-  { id: 91, verb: "Do over", meaning: "Fazer novamente", example: "This report is bad, you have to do it over." },
-  { id: 92, verb: "Drop out", meaning: "Larg (estudos/competição)", example: "He dropped out of college to start a business." },
-  { id: 93, verb: "End up", meaning: "Acabar (em algum lugar/situação)", example: "We ended up eating pizza at home." },
-  { id: 94, verb: "Fall behind", meaning: "Ficar para trás", example: "Study hard so you don't fall behind." },
-  { id: 95, verb: "Go over", meaning: "Revisar / Analisar", example: "Let's go over the details one more time." },
-  { id: 96, verb: "Keep up with", meaning: "Acompanhar o ritmo", example: "It's hard to keep up with technology." },
-  { id: 97, verb: "Look up to", meaning: "Admirar / Respeitar", example: "I have always looked up to my father." },
-  { id: 98, verb: "Pass away", meaning: "Falecer (eufemismo para morrer)", example: "His grandfather passed away last night." },
-  { id: 99, verb: "Show off", meaning: "Exibir-se", example: "Stop showing off your new car." },
-  { id: 100, verb: "Throw away", meaning: "Jogar fora", example: "Don't throw away these old photos." }
+  {
+    id: 91,
+    verb: "Do over",
+    definitions: [
+      { meaning: "Fazer novamente", example: "This report is bad, you have to do it over." }
+    ]
+  },
+  {
+    id: 92,
+    verb: "Drop out",
+    definitions: [
+      { meaning: "Abandonar (os estudos) / Largar", example: "He dropped out of college to start a business." }
+    ]
+  },
+  {
+    id: 93,
+    verb: "End up",
+    definitions: [
+      { meaning: "Acabar", example: "We ended up eating pizza at home." }
+    ]
+  },
+  {
+    id: 94,
+    verb: "Fall behind",
+    definitions: [
+      { meaning: "Ficar para trás", example: "Study hard so you don't fall behind." }
+    ]
+  },
+  {
+    id: 95,
+    verb: "Go over",
+    definitions: [
+      { meaning: "Revisar", example: "Let's go over the details one more time." }
+    ]
+  },
+  {
+    id: 96,
+    verb: "Keep up with",
+    definitions: [
+      { meaning: "Acompanhar o ritmo", example: "It's hard to keep up with technology." }
+    ]
+  },
+  {
+    id: 97,
+    verb: "Look up to",
+    definitions: [
+      { meaning: "Admirar", example: "I have always looked up to my father." }
+    ]
+  },
+  {
+    id: 98,
+    verb: "Pass away",
+    definitions: [
+      { meaning: "Falecer", example: "His grandfather passed away last night." }
+    ]
+  },
+  {
+    id: 99,
+    verb: "Show off",
+    definitions: [
+      { meaning: "Exibir-se", example: "Stop showing off your new car." }
+    ]
+  },
+  {
+    id: 100,
+    verb: "Throw away",
+    definitions: [
+      { meaning: "Jogar fora", example: "Don't throw away these old photos." }
+    ]
+  }
 ];
 
 // --- DADOS DOS VERBOS IRREGULARES ---

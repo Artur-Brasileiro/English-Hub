@@ -1,96 +1,152 @@
-import React, { useState, useMemo } from 'react';
-import { Gamepad2, ToggleLeft, ToggleRight, Layers, ArrowLeft, ChevronRight, RefreshCw, CheckCircle, XCircle } from 'lucide-react';
+import React, { useState, useEffect, useRef } from 'react';
+import { Gamepad2, ToggleLeft, ToggleRight, Layers, ArrowLeft, RefreshCw, CheckCircle, XCircle, ArrowRight as ArrowRightIcon } from 'lucide-react';
 import { IRREGULAR_VERBS_DATA } from '../data/gameData';
 
 const ITEMS_PER_PHASE = 10;
 
 const IrregularVerbsGame = ({ onBack }) => {
-  const [gameState, setGameState] = useState('config'); // config, playing, result
+  const [gameState, setGameState] = useState('config');
   const [activePhase, setActivePhase] = useState(1);
-  const [selectedModes, setSelectedModes] = useState({ presente: false, passado: true, participio: true });
+  
+  // ALTERAÇÃO 1: "presente" agora começa como true
+  const [selectedModes, setSelectedModes] = useState({ presente: true, passado: true, participio: true });
+  
   const [score, setScore] = useState(0);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
-  const [shuffledQuestions, setShuffledQuestions] = useState([]);
-  const [selectedAnswer, setSelectedAnswer] = useState(null);
-  const [isCorrect, setIsCorrect] = useState(null);
-
-  const totalPhases = Math.floor(IRREGULAR_VERBS_DATA.length / ITEMS_PER_PHASE);
-
-  // Auxiliar para gerar string de resposta baseada nos modos
-  const getAnswerString = (item, modes) => {
-    let parts = [];
-    if (modes.presente) parts.push(item.presente);
-    if (modes.passado) parts.push(item.passado);
-    if (modes.participio) parts.push(item.particípio);
-    return parts.join(' / ');
-  };
+  const [phaseQuestions, setPhaseQuestions] = useState([]);
+  const [userAnswers, setUserAnswers] = useState({ presente: '', passado: '', participio: '' });
+  const [feedback, setFeedback] = useState(null);
+  
+  const firstInputRef = useRef(null);
+  const totalPhases = Math.ceil(IRREGULAR_VERBS_DATA.length / ITEMS_PER_PHASE);
 
   const toggleMode = (mode) => {
     setSelectedModes(prev => ({...prev, [mode]: !prev[mode]}));
   };
 
   const startGame = (phaseNumber) => {
-    // Validação: Pelo menos um modo deve estar selecionado
     if (!selectedModes.presente && !selectedModes.passado && !selectedModes.participio) {
       alert("Selecione pelo menos um tempo verbal para treinar!");
       return;
     }
-
     setActivePhase(phaseNumber);
     const startIndex = (phaseNumber - 1) * ITEMS_PER_PHASE;
     const endIndex = startIndex + ITEMS_PER_PHASE;
-    const phaseQuestions = IRREGULAR_VERBS_DATA.slice(startIndex, endIndex);
-    const shuffled = [...phaseQuestions].sort(() => 0.5 - Math.random());
+    const originalQuestions = IRREGULAR_VERBS_DATA.slice(startIndex, endIndex);
+    const shuffledQuestions = [...originalQuestions].sort(() => 0.5 - Math.random());
     
-    setShuffledQuestions(shuffled);
+    setPhaseQuestions(shuffledQuestions);
     setCurrentQuestionIndex(0);
     setScore(0);
+    initializeInputs(); 
     setGameState('playing');
-    resetTurn();
   };
 
-  const resetTurn = () => {
-    setSelectedAnswer(null);
-    setIsCorrect(null);
+  const initializeInputs = () => {
+    setUserAnswers({ presente: '', passado: '', participio: '' });
+    setFeedback(null);
   };
 
-  const currentOptions = useMemo(() => {
-    if (shuffledQuestions.length === 0) return [];
-    
-    const currentItem = shuffledQuestions[currentQuestionIndex];
-    const correctAnswer = getAnswerString(currentItem, selectedModes);
-    
-    // Distratores: Pegar outros verbos e formatar na MESMA configuração de modos
-    const distractors = IRREGULAR_VERBS_DATA
-      .filter(item => item.id !== currentItem.id)
-      .sort(() => 0.5 - Math.random())
-      .slice(0, 3)
-      .map(item => getAnswerString(item, selectedModes));
-    
-    return [...distractors, correctAnswer].sort(() => 0.5 - Math.random());
-  }, [currentQuestionIndex, shuffledQuestions, selectedModes]);
+  useEffect(() => {
+    if (gameState === 'playing' && !feedback && firstInputRef.current) {
+      setTimeout(() => {
+        firstInputRef.current?.focus();
+      }, 50);
+    }
+  }, [currentQuestionIndex, gameState, feedback]);
 
-  const handleAnswer = (answer) => {
-    if (selectedAnswer) return; 
-    const currentItem = shuffledQuestions[currentQuestionIndex];
-    const correctStr = getAnswerString(currentItem, selectedModes);
-    
-    const correct = answer === correctStr;
-    setSelectedAnswer(answer);
-    setIsCorrect(correct);
-    if (correct) setScore(s => s + 1);
+  const handleInputChange = (field, value) => {
+    setUserAnswers(prev => ({ ...prev, [field]: value }));
   };
 
-  const nextQuestion = () => {
-    if (currentQuestionIndex < shuffledQuestions.length - 1) {
+  const checkAnswer = (e) => {
+    e.preventDefault();
+    if (feedback) return;
+
+    setFeedback('checked');
+
+    const currentVerb = phaseQuestions[currentQuestionIndex];
+    let pointsGained = 0;
+
+    if (selectedModes.presente) {
+      if (userAnswers.presente.trim().toLowerCase() === currentVerb.presente.toLowerCase()) pointsGained++;
+    }
+    if (selectedModes.passado) {
+      if (userAnswers.passado.trim().toLowerCase() === currentVerb.passado.toLowerCase()) pointsGained++;
+    }
+    if (selectedModes.participio) {
+      if (userAnswers.participio.trim().toLowerCase() === currentVerb.particípio.toLowerCase()) pointsGained++;
+    }
+
+    setScore(prev => prev + pointsGained);
+  };
+
+  const nextQuestion = (e) => {
+    if (e) e.preventDefault(); 
+    
+    if (currentQuestionIndex < phaseQuestions.length - 1) {
+      initializeInputs(); 
       setCurrentQuestionIndex(prev => prev + 1);
-      resetTurn();
     } else {
       setGameState('result');
     }
   };
 
-  // TELA DE CONFIGURAÇÃO (FASES + MODOS)
+  const getInputStatus = (modeKey, correctValue) => {
+    if (!feedback) return 'neutral';
+    const userValue = userAnswers[modeKey].trim().toLowerCase();
+    
+    if (!userValue) return 'empty';
+    if (userValue === correctValue.toLowerCase()) return 'correct';
+    return 'wrong';
+  };
+
+  const renderInputField = (modeKey, label, correctValue, isFirst) => {
+    const status = getInputStatus(modeKey, correctValue);
+    let borderClass = "border-slate-200 focus:border-orange-500 focus:ring-4 focus:ring-orange-50";
+    let icon = null;
+
+    if (feedback) {
+      if (status === 'correct') {
+        borderClass = "border-green-500 bg-green-50 text-green-700";
+        icon = <CheckCircle className="absolute right-4 top-1/2 -translate-y-1/2 w-5 h-5 text-green-500" />;
+      } 
+      // ALTERAÇÃO 2: Se for 'wrong' OU 'empty', aplica o estilo de erro vermelho
+      else if (status === 'wrong' || status === 'empty') {
+        borderClass = "border-red-300 bg-red-50 text-red-700";
+        icon = <XCircle className="absolute right-4 top-1/2 -translate-y-1/2 w-5 h-5 text-red-400" />;
+      }
+    }
+
+    return (
+      <div key={`${modeKey}-${currentQuestionIndex}`} className="relative mb-4 animate-fadeIn">
+        <label className="block text-xs font-bold text-slate-400 uppercase tracking-wider mb-1 ml-1">
+          {label}
+        </label>
+        <div className="relative">
+          <input
+            ref={isFirst ? firstInputRef : null}
+            type="text"
+            value={userAnswers[modeKey]}
+            onChange={(e) => handleInputChange(modeKey, e.target.value)}
+            disabled={!!feedback}
+            className={`w-full pl-4 pr-10 py-3 rounded-xl border-2 outline-none font-semibold text-lg transition-all ${borderClass}`}
+            placeholder={`Digite o ${label.toLowerCase()}...`}
+            autoComplete="off"
+          />
+          {icon}
+        </div>
+        
+        {/* ALTERAÇÃO 2 (Continuação): Mostra a resposta correta também se o status for 'empty' */}
+        {feedback && (status === 'wrong' || status === 'empty') && (
+           <div className="text-xs text-red-500 font-bold mt-1 ml-1">
+             Resposta: {correctValue}
+           </div>
+        )}
+      </div>
+    );
+  };
+
   if (gameState === 'config') {
     return (
       <div className="flex flex-col h-full py-8 px-4 animate-fadeIn max-w-4xl mx-auto">
@@ -100,12 +156,10 @@ const IrregularVerbsGame = ({ onBack }) => {
           </div>
           <h2 className="text-3xl font-bold text-slate-800 mb-2">Irregular Verbs Challenge</h2>
           <p className="text-slate-600 max-w-lg mx-auto mb-6">
-            Configure seu treino. Escolha os tempos verbais que deseja testar e selecione a fase.
+            Configure seu treino. Digite as formas verbais corretas para vencer.
           </p>
-
-          {/* Configuração de Modos */}
           <div className="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm max-w-lg mx-auto mb-8">
-            <h3 className="text-sm font-bold text-slate-400 uppercase tracking-widest mb-4">Tempos Verbais</h3>
+            <h3 className="text-sm font-bold text-slate-400 uppercase tracking-widest mb-4">Quais formas treinar?</h3>
             <div className="flex flex-wrap justify-center gap-4">
               {['presente', 'passado', 'participio'].map((mode) => (
                 <button
@@ -127,8 +181,6 @@ const IrregularVerbsGame = ({ onBack }) => {
             )}
           </div>
         </div>
-
-        {/* Grid de Fases */}
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mb-8">
           {totalPhases > 0 ? (
             Array.from({ length: totalPhases }).map((_, idx) => {
@@ -149,11 +201,8 @@ const IrregularVerbsGame = ({ onBack }) => {
                   </div>
                   <h3 className="text-xl font-bold text-slate-800 mb-1">Fase {phaseNum}</h3>
                   <p className="text-sm text-slate-500">
-                    Verbos {((phaseNum - 1) * ITEMS_PER_PHASE) + 1} a {phaseNum * ITEMS_PER_PHASE}
+                    Verbos {((phaseNum - 1) * ITEMS_PER_PHASE) + 1} - {phaseNum * ITEMS_PER_PHASE}
                   </p>
-                  <div className="mt-4 flex items-center text-orange-600 text-sm font-bold opacity-0 group-hover:opacity-100 transition-opacity">
-                    Iniciar <ChevronRight className="w-4 h-4 ml-1" />
-                  </div>
                 </button>
               );
             })
@@ -161,7 +210,6 @@ const IrregularVerbsGame = ({ onBack }) => {
             <div className="col-span-full text-center py-10 text-slate-400">Adicione mais verbos!</div>
           )}
         </div>
-
         <div className="text-center">
           <button onClick={onBack} className="text-slate-400 hover:text-slate-600 text-sm font-medium flex items-center justify-center gap-2 mx-auto">
             <ArrowLeft className="w-4 h-4" /> Voltar ao Hub
@@ -171,97 +219,78 @@ const IrregularVerbsGame = ({ onBack }) => {
     );
   }
 
-  // TELA DE RESULTADO
   if (gameState === 'result') {
+    const activeModesCount = Object.values(selectedModes).filter(Boolean).length;
+    const maxScore = phaseQuestions.length * activeModesCount;
     return (
-      <div className="flex flex-col items-center justify-center h-full py-12 px-4 animate-fadeIn">
-        <h2 className="text-4xl font-bold text-slate-800 mb-2">Treino Concluído!</h2>
-        <div className="text-6xl font-black text-orange-500 mb-4">{score}/{shuffledQuestions.length}</div>
-        <p className="text-slate-600 mb-8 text-center max-w-xs">
-          {score === shuffledQuestions.length ? 'Excelente! Gramática afiada.' : 
-           'Continue praticando os verbos irregulares.'}
-        </p>
-        <div className="flex gap-4">
-          <button onClick={() => setGameState('config')} className="border-2 border-slate-200 text-slate-600 px-6 py-2 rounded-full font-bold hover:bg-slate-50 transition-colors">Alterar Config</button>
-          <button onClick={() => startGame(activePhase)} className="bg-orange-500 text-white px-6 py-2 rounded-full font-bold hover:bg-orange-600 transition-colors flex items-center gap-2"><RefreshCw className="w-4 h-4" /> Repetir</button>
+      <div className="flex flex-col items-center justify-center min-h-[60vh] py-12 px-4 animate-fadeIn">
+        <div className="bg-white p-10 rounded-3xl shadow-xl border border-slate-100 max-w-md w-full text-center">
+          <h2 className="text-3xl font-bold text-slate-800 mb-2">Treino Concluído!</h2>
+          <div className="text-5xl font-black text-orange-500 mb-2">{score} <span className="text-2xl text-slate-300">/ {maxScore}</span></div>
+          <p className="text-slate-500 mb-8 font-medium">Você concluiu a Fase {activePhase}</p>
+          
+          <div className="flex gap-4 flex-col">
+             <button onClick={() => startGame(activePhase)} className="bg-orange-500 text-white px-6 py-3.5 rounded-xl font-bold hover:bg-orange-600 transition-colors flex items-center justify-center gap-2 shadow-lg shadow-orange-200">
+               <RefreshCw className="w-5 h-5" /> Repetir Fase
+             </button>
+             <button onClick={() => setGameState('config')} className="bg-slate-50 text-slate-600 px-6 py-3.5 rounded-xl font-bold hover:bg-slate-100 transition-colors border border-slate-200">
+               Alterar Configurações
+             </button>
+          </div>
         </div>
       </div>
     );
   }
 
-  // TELA DO JOGO (QUIZ)
-  const currentItem = shuffledQuestions[currentQuestionIndex];
-  // Formatar o título da pergunta baseado nos modos selecionados
-  const questionTitle = [
-    selectedModes.presente && 'Presente',
-    selectedModes.passado && 'Passado',
-    selectedModes.participio && 'Particípio'
-  ].filter(Boolean).join(' + ');
+  const currentVerb = phaseQuestions[currentQuestionIndex];
 
   return (
-    <div className="max-w-2xl mx-auto py-8 px-4">
-      <div className="flex justify-between items-center mb-8">
-        <button onClick={() => setGameState('config')} className="text-slate-400 hover:text-slate-600"><ArrowLeft className="w-6 h-6" /></button>
-        <span className="text-slate-400 text-sm font-bold uppercase tracking-widest">Fase {activePhase} • {currentQuestionIndex + 1}/{shuffledQuestions.length}</span>
-        <div className="w-6"></div>
+    <div className="max-w-xl mx-auto py-6 px-4 flex flex-col min-h-screen md:min-h-[80vh]">
+      <div className="flex justify-between items-center mb-6">
+        <button onClick={() => setGameState('config')} className="text-slate-400 hover:text-slate-600">
+          <ArrowLeft className="w-6 h-6" />
+        </button>
+        <div className="text-right">
+          <span className="text-xs font-bold text-orange-600 bg-orange-50 px-2 py-0.5 rounded-full mb-1 inline-block">Fase {activePhase}</span>
+          <span className="block text-slate-400 text-xs font-bold tracking-widest">{currentQuestionIndex + 1} / {phaseQuestions.length}</span>
+        </div>
       </div>
 
-      <div className="bg-white rounded-3xl shadow-xl border border-slate-100 overflow-hidden mb-6">
-        <div className="bg-orange-500 p-8 text-center min-h-40 flex flex-col items-center justify-center">
-          <span className="text-orange-100 uppercase tracking-widest text-xs font-bold mb-3">Qual é o {questionTitle} de:</span>
-          <h2 className="text-3xl md:text-4xl font-extrabold text-white leading-tight max-w-lg mx-auto capitalize">
-            "{currentItem.pt}"
-          </h2>
+      <div className="bg-white rounded-3xl shadow-xl border border-slate-100 overflow-hidden flex flex-col animate-fade-in-up">
+        
+        <div className="bg-orange-500 p-8 text-center relative overflow-hidden">
+           <div className="absolute top-0 left-0 w-full h-full opacity-10 bg-[radial-gradient(ellipse_at_top,var(--tw-gradient-stops))] from-white via-transparent to-transparent"></div>
+           <span className="relative z-10 text-orange-100 uppercase tracking-widest text-xs font-bold mb-2 block">Verbo em Português</span>
+           <h2 className="relative z-10 text-4xl font-black text-white capitalize">{currentVerb.pt}</h2>
         </div>
 
-        <div className="p-6 grid gap-3">
-          {currentOptions.map((option, idx) => {
-            let btnStyle = "bg-slate-50 border-2 border-slate-200 text-slate-700 hover:border-orange-300 hover:bg-orange-50";
-            if (selectedAnswer) {
-              const correctStr = getAnswerString(currentItem, selectedModes);
-              if (option === correctStr) btnStyle = "bg-green-100 border-2 border-green-500 text-green-800";
-              else if (option === selectedAnswer) btnStyle = "bg-red-100 border-2 border-red-500 text-red-800";
-              else btnStyle = "bg-slate-50 border-2 border-slate-100 text-slate-400 opacity-50";
-            }
-            return (
+        <div className="p-8">
+          <form onSubmit={checkAnswer}>
+            
+            {selectedModes.presente && renderInputField('presente', 'Presente', currentVerb.presente, true)}
+            {selectedModes.passado && renderInputField('passado', 'Passado', currentVerb.passado, !selectedModes.presente)}
+            {selectedModes.participio && renderInputField('participio', 'Particípio', currentVerb.particípio, !selectedModes.presente && !selectedModes.passado)}
+
+            {!feedback ? (
               <button 
-                key={idx} 
-                onClick={() => handleAnswer(option)} 
-                disabled={selectedAnswer !== null} 
-                className={`w-full text-left p-4 rounded-xl font-semibold transition-all duration-200 ${btnStyle}`}
+                key="btn-verificar"
+                type="submit" 
+                className="w-full mt-4 bg-slate-800 text-white py-4 rounded-xl font-bold text-lg hover:bg-slate-900 transition-all shadow-lg hover:shadow-xl transform active:scale-95"
               >
-                {option}
+                Verificar
               </button>
-            );
-          })}
+            ) : (
+              <button 
+                key="btn-proximo"
+                type="button"
+                onClick={nextQuestion} 
+                className="w-full mt-4 bg-orange-500 text-white py-4 rounded-xl font-bold text-lg hover:bg-orange-600 transition-all shadow-lg flex items-center justify-center gap-2"
+              >
+                {currentQuestionIndex < phaseQuestions.length - 1 ? 'Próximo Verbo' : 'Ver Resultado'} <ArrowRightIcon className="w-5 h-5" />
+              </button>
+            )}
+          </form>
         </div>
-
-        {selectedAnswer && (
-          <div className="bg-slate-50 p-6 border-t border-slate-100 animate-fadeIn">
-            <div className={`flex items-center gap-2 font-bold mb-2 ${isCorrect ? 'text-green-600' : 'text-red-500'}`}>
-              {isCorrect ? <CheckCircle className="w-5 h-5"/> : <XCircle className="w-5 h-5"/>}
-              {isCorrect ? 'Correto!' : 'Ops!'}
-            </div>
-            {/* Feedback com a tabela completa */}
-            <div className="grid grid-cols-3 gap-2 text-xs text-center mb-4 bg-white p-3 rounded-lg border border-slate-200">
-               <div>
-                 <span className="block text-slate-400 font-bold mb-1">Presente</span>
-                 <span className="text-slate-800 font-bold">{currentItem.presente}</span>
-               </div>
-               <div className="border-l border-slate-100">
-                 <span className="block text-slate-400 font-bold mb-1">Passado</span>
-                 <span className="text-slate-800 font-bold">{currentItem.passado}</span>
-               </div>
-               <div className="border-l border-slate-100">
-                 <span className="block text-slate-400 font-bold mb-1">Particípio</span>
-                 <span className="text-slate-800 font-bold">{currentItem.particípio}</span>
-               </div>
-            </div>
-            <button onClick={nextQuestion} className="w-full bg-slate-800 text-white py-3 rounded-xl font-bold hover:bg-slate-900 transition-colors">
-              {currentQuestionIndex < shuffledQuestions.length - 1 ? 'Próxima Palavra' : 'Ver Resultado'}
-            </button>
-          </div>
-        )}
       </div>
     </div>
   );

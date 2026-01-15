@@ -34,16 +34,6 @@ const App = () => {
       isReady: true
     },
     {
-      id: 'phrasal',
-      title: "Phrasal Verbs Master",
-      description: "Aprenda e memorize os verbos compostos mais usados em fases organizadas.",
-      category: "Vocabulário",
-      difficulty: "Intermediário",
-      icon: <BrainCircuit className="w-6 h-6" />,
-      color: "bg-indigo-600",
-      isReady: true
-    },
-    {
       id: 'irregular',
       title: "Irregular Verbs",
       description: "Domine as 3 formas dos verbos irregulares: Infinitive, Past e Participle.",
@@ -51,6 +41,16 @@ const App = () => {
       difficulty: "Essencial",
       icon: <Gamepad2 className="w-6 h-6" />,
       color: "bg-orange-500",
+      isReady: true
+    },
+    {
+      id: 'phrasal',
+      title: "Phrasal Verbs Master",
+      description: "Aprenda e memorize os verbos compostos mais usados em fases organizadas.",
+      category: "Vocabulário",
+      difficulty: "Intermediário",
+      icon: <BrainCircuit className="w-6 h-6" />,
+      color: "bg-indigo-600",
       isReady: true
     },
     {
