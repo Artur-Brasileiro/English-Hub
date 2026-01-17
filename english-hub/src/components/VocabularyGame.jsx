@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo, useRef } from 'react'; // MUDANÇA: Importei useRef
 import { VOCABULARY_DATA } from '../data/gameData';
 import { 
   ArrowRight, 
@@ -7,27 +7,38 @@ import {
   Trophy, 
   ArrowLeft, 
   BookOpen, 
-  Star,
-  PlayCircle,
-  LayoutGrid
+  PlayCircle
 } from 'lucide-react';
 
+const WORDS_PER_LEVEL = 30;
+
 const VocabularyGame = ({ onBack }) => {
-  // Estados de navegação interna
-  const [view, setView] = useState('menu'); // 'menu' | 'game' | 'result'
+  const [view, setView] = useState('menu');
   
   // Estados do Jogo
   const [currentLevelId, setCurrentLevelId] = useState(1);
   const [currentWordIndex, setCurrentWordIndex] = useState(0);
   const [userInput, setUserInput] = useState('');
-  const [feedback, setFeedback] = useState(null); // 'correct', 'wrong', null
+  const [feedback, setFeedback] = useState(null); 
   const [stats, setStats] = useState({ correct: 0, wrong: 0 });
   
-  // Pega os dados do nível selecionado
-  const currentLevel = VOCABULARY_DATA.find(l => l.id === currentLevelId) || VOCABULARY_DATA[0];
-  const currentWord = currentLevel.words[currentWordIndex];
+  // MUDANÇA: Estado para controlar visualmente o placeholder
+  const [isFocused, setIsFocused] = useState(false);
+  
+  // MUDANÇA: Ref para manipular o input se necessário
+  const inputRef = useRef(null);
 
-  // --- FUNÇÕES DE NAVEGAÇÃO ---
+  const totalLevels = Math.ceil(VOCABULARY_DATA.length / WORDS_PER_LEVEL);
+
+  const currentLevelWords = useMemo(() => {
+    const startIndex = (currentLevelId - 1) * WORDS_PER_LEVEL;
+    const endIndex = startIndex + WORDS_PER_LEVEL;
+    return VOCABULARY_DATA.slice(startIndex, endIndex);
+  }, [currentLevelId]);
+
+  const currentWord = currentLevelWords[currentWordIndex];
+
+  // --- FUNÇÕES ---
 
   const enterLevel = (levelId) => {
     setCurrentLevelId(levelId);
@@ -35,7 +46,9 @@ const VocabularyGame = ({ onBack }) => {
     setStats({ correct: 0, wrong: 0 });
     setFeedback(null);
     setUserInput('');
+    setIsFocused(false); // MUDANÇA: Reseta o foco visual
     setView('game');
+    window.scrollTo(0, 0);
   };
 
   const returnToMenu = () => {
@@ -45,7 +58,9 @@ const VocabularyGame = ({ onBack }) => {
   const nextWord = () => {
     setUserInput('');
     setFeedback(null);
-    if (currentWordIndex + 1 < currentLevel.words.length) {
+    setIsFocused(false); // MUDANÇA IMPORTANTE: Garante que o placeholder volte a aparecer
+    
+    if (currentWordIndex + 1 < currentLevelWords.length) {
       setCurrentWordIndex(prev => prev + 1);
     } else {
       setView('result');
@@ -55,8 +70,9 @@ const VocabularyGame = ({ onBack }) => {
   const checkAnswer = (e) => {
     e.preventDefault();
     if (feedback) return;
+    if (!currentWord) return;
 
-    const possibleAnswers = currentWord.pt.map(a => a.toLowerCase().trim());
+    const possibleAnswers = currentWord.pt ? currentWord.pt.map(a => a.toLowerCase().trim()) : [];
     const userAnswer = userInput.toLowerCase().trim();
 
     if (possibleAnswers.includes(userAnswer)) {
@@ -68,86 +84,60 @@ const VocabularyGame = ({ onBack }) => {
     }
   };
 
-  // --- TELAS DO COMPONENTE ---
+  // --- RENDERIZAÇÃO ---
 
-  // 1. TELA DE SELEÇÃO DE NÍVEIS (MENU)
   if (view === 'menu') {
+    const levelsArray = Array.from({ length: totalLevels }, (_, i) => i + 1);
+
     return (
       <div className="min-h-screen bg-slate-50 py-12 px-4 animate-fade-in">
         <div className="max-w-6xl mx-auto">
-          
-          {/* Header Centralizado */}
-          <div className="text-center mb-12">
+          <div className="text-center mb-8">
             <div className="bg-blue-100 p-4 rounded-full inline-flex mb-4 text-blue-600 shadow-sm">
                <BookOpen className="w-10 h-10 md:w-12 md:h-12" />
             </div>
-            
             <h1 className="text-3xl md:text-4xl font-extrabold text-slate-800 mb-3">
                Vocabulary Builder
             </h1>
-            
-            <p className="text-slate-600 text-lg max-w-2xl mx-auto">
-               Expanda seu vocabulário técnico e geral com desafios diários de 30 palavras.
+            <p className="text-slate-600 text-lg max-w-2xl mx-auto mb-6">
+               Expanda seu vocabulário. {VOCABULARY_DATA.length} palavras divididas em {totalLevels} níveis.
             </p>
+            <button 
+              onClick={onBack} 
+              className="bg-white border border-slate-300 text-slate-600 hover:bg-slate-100 hover:text-slate-800 px-6 py-2 rounded-full font-bold text-sm transition-all shadow-sm flex items-center justify-center gap-2 mx-auto"
+            >
+               <ArrowLeft className="w-4 h-4" /> Voltar ao Hub Principal
+            </button>
           </div>
-
-          {/* Grid de Níveis */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
-            {VOCABULARY_DATA.map((level) => (
+          <hr className="border-slate-200 mb-8" />
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 mb-16">
+            {levelsArray.map((levelId) => (
               <div 
-                key={level.id}
-                onClick={() => enterLevel(level.id)}
-                className="group bg-white rounded-2xl border border-slate-200 p-6 hover:shadow-xl hover:border-blue-300 transition-all duration-300 cursor-pointer relative overflow-hidden"
+                key={levelId}
+                onClick={() => enterLevel(levelId)}
+                className="group bg-white rounded-xl border border-slate-200 p-5 hover:shadow-lg hover:border-blue-300 transition-all duration-300 cursor-pointer relative overflow-hidden"
               >
-                {/* Efeito de hover no fundo */}
-                <div className="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
-                  <LayoutGrid className="w-24 h-24 text-blue-600" />
-                </div>
-
-                <div className="relative z-10">
-                  <div className="flex justify-between items-start mb-4">
-                    <span className="bg-blue-100 text-blue-700 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">
-                      Nível {level.id}
+                <div className="relative z-10 flex justify-between items-center">
+                  <div>
+                    <span className="bg-blue-50 text-blue-700 text-xs font-bold px-2 py-1 rounded mb-2 inline-block uppercase tracking-wider">
+                      Nível {levelId}
                     </span>
-                    <Star className="w-5 h-5 text-slate-300 group-hover:text-yellow-400 transition-colors" />
+                    <p className="text-slate-500 text-xs font-medium">
+                      Palavras {((levelId - 1) * WORDS_PER_LEVEL) + 1} - {Math.min(levelId * WORDS_PER_LEVEL, VOCABULARY_DATA.length)}
+                    </p>
                   </div>
-                  
-                  <h3 className="text-xl font-bold text-slate-800 mb-2 group-hover:text-blue-600 transition-colors">
-                    {level.title}
-                  </h3>
-                  
-                  <p className="text-slate-500 text-sm mb-6">
-                    {level.words.length} palavras essenciais
-                  </p>
-
-                  <div className="flex items-center gap-2 text-sm font-bold text-blue-600 group-hover:translate-x-2 transition-transform">
-                    Iniciar Desafio <ArrowRight className="w-4 h-4" />
+                  <div className="w-10 h-10 rounded-full bg-slate-100 flex items-center justify-center group-hover:bg-blue-600 group-hover:text-white transition-colors">
+                    <PlayCircle className="w-5 h-5" />
                   </div>
                 </div>
               </div>
             ))}
-
-            {/* Card de "Em Breve" */}
-            <div className="bg-slate-50 rounded-2xl border-2 border-dashed border-slate-200 p-6 flex flex-col justify-center items-center text-center opacity-70 hover:opacity-100 transition-opacity">
-              <div className="bg-slate-200 p-3 rounded-full mb-3">
-                <LayoutGrid className="w-6 h-6 text-slate-400" />
-              </div>
-              <h3 className="text-base font-bold text-slate-500">Próximos Dias</h3>
-              <p className="text-xs text-slate-400 mt-1">Novas listas em breve...</p>
-            </div>
           </div>
-
-          {/* Botão de Voltar ao Hub (AGORA NO FINAL) */}
-          <button onClick={onBack} className="text-slate-400 hover:text-slate-600 text-sm font-medium flex items-center justify-center gap-2 mx-auto transition-colors">
-             <ArrowLeft className="w-4 h-4" /> Voltar ao Hub
-          </button>
-
         </div>
       </div>
     );
   }
 
-  // 2. TELA DE RESULTADO
   if (view === 'result') {
     return (
       <div className="min-h-screen bg-slate-50 flex items-center justify-center p-4 animate-fade-in">
@@ -155,10 +145,8 @@ const VocabularyGame = ({ onBack }) => {
           <div className="w-24 h-24 bg-yellow-100 text-yellow-500 rounded-full flex items-center justify-center mx-auto mb-6 shadow-sm">
             <Trophy className="w-12 h-12" />
           </div>
-          
-          <h2 className="text-3xl font-bold text-slate-800 mb-2">Desafio Concluído!</h2>
-          <p className="text-slate-500 mb-8">Você finalizou o <strong>{currentLevel.title}</strong></p>
-          
+          <h2 className="text-3xl font-bold text-slate-800 mb-2">Nível {currentLevelId} Concluído!</h2>
+          <p className="text-slate-500 mb-8">Você praticou {currentLevelWords.length} palavras.</p>
           <div className="grid grid-cols-2 gap-4 mb-8">
             <div className="bg-green-50 p-4 rounded-2xl border border-green-100">
               <p className="text-4xl font-black text-green-600">{stats.correct}</p>
@@ -169,19 +157,26 @@ const VocabularyGame = ({ onBack }) => {
               <p className="text-xs font-bold text-red-800 uppercase tracking-wider">Erros</p>
             </div>
           </div>
-
           <div className="flex flex-col gap-3">
+            {currentLevelId < totalLevels && (
+              <button 
+                onClick={() => enterLevel(currentLevelId + 1)}
+                className="w-full py-3.5 bg-blue-600 text-white font-bold rounded-xl hover:bg-blue-700 transition-colors shadow-lg shadow-blue-200 flex items-center justify-center gap-2"
+              >
+                Próximo Nível <ArrowRight className="w-4 h-4" />
+              </button>
+            )}
             <button 
               onClick={() => enterLevel(currentLevelId)}
-              className="w-full py-3.5 bg-blue-600 text-white font-bold rounded-xl hover:bg-blue-700 transition-colors shadow-lg shadow-blue-200"
+              className="w-full py-3.5 bg-white border-2 border-slate-100 text-slate-600 font-bold rounded-xl hover:border-slate-300 transition-colors"
             >
-              Jogar Novamente
+              Repetir Nível
             </button>
             <button 
               onClick={returnToMenu}
-              className="w-full py-3.5 bg-slate-100 text-slate-600 font-bold rounded-xl hover:bg-slate-200 transition-colors"
+              className="text-slate-400 hover:text-slate-600 text-sm font-medium mt-2"
             >
-              Escolher Outro Nível
+              Voltar ao Menu de Níveis
             </button>
           </div>
         </div>
@@ -189,24 +184,21 @@ const VocabularyGame = ({ onBack }) => {
     );
   }
 
-  // 3. TELA DO JOGO (PLAYING)
-  const progressPercentage = ((currentWordIndex) / currentLevel.words.length) * 100;
+  const progressPercentage = ((currentWordIndex) / currentLevelWords.length) * 100;
 
   return (
     <div className="min-h-screen bg-slate-50 p-4 font-sans text-slate-800 flex flex-col items-center">
       <div className="w-full max-w-2xl">
-        {/* Header do Jogo */}
         <div className="flex items-center justify-between mb-8 pt-4">
             <button onClick={returnToMenu} className="flex items-center gap-2 text-slate-400 hover:text-slate-600 font-bold transition-colors text-sm uppercase tracking-wide">
-                <ArrowLeft className="w-4 h-4" /> Sair
+                <ArrowLeft className="w-4 h-4" /> Menu
             </button>
             <span className="text-slate-400 font-bold text-sm uppercase tracking-wide">
-              {currentLevel.title}
+              Nível {currentLevelId}
             </span>
         </div>
 
         <div className="bg-white rounded-3xl shadow-xl border border-slate-100 overflow-hidden relative">
-          {/* Barra de Progresso */}
           <div className="w-full bg-slate-100 h-2">
             <div 
               className="bg-blue-600 h-2 transition-all duration-500 ease-out" 
@@ -216,28 +208,35 @@ const VocabularyGame = ({ onBack }) => {
 
           <div className="p-8 md:p-12 text-center">
             <span className="inline-flex items-center gap-1 px-3 py-1 bg-blue-50 text-blue-600 text-xs font-bold uppercase tracking-widest rounded-full mb-8">
-              <PlayCircle className="w-3 h-3" /> Palavra {currentWordIndex + 1} / {currentLevel.words.length}
+              <PlayCircle className="w-3 h-3" /> Palavra {currentWordIndex + 1} / {currentLevelWords.length}
             </span>
 
             <div className="mb-10">
-              <h1 className="text-4xl md:text-5xl font-black text-slate-800 tracking-tight mb-2">
-                {currentWord.en}
+              <h1 className="text-4xl md:text-5xl font-black text-slate-800 tracking-tight mb-2 wrap-break-word">
+                {currentWord?.en}
               </h1>
               <p className="text-slate-400 text-sm font-medium italic">Como se diz isso em português?</p>
             </div>
 
             <form onSubmit={checkAnswer} className="max-w-md mx-auto relative mb-8">
               <input
+                ref={inputRef} // MUDANÇA: Referência conectada
                 type="text"
                 value={userInput}
                 onChange={(e) => setUserInput(e.target.value)}
-                placeholder="Digite a tradução..."
+                
+                // MUDANÇA: Lógica de Foco limpa
+                onFocus={() => setIsFocused(true)}
+                onBlur={() => setIsFocused(false)}
+                placeholder={isFocused ? "" : "Digite a tradução..."}
+                
+                // MUDANÇA: Removido autoFocus
                 className={`w-full p-4 text-center text-xl font-medium border-2 rounded-xl outline-none transition-all shadow-sm
                   ${feedback === 'correct' ? 'border-green-500 bg-green-50 text-green-700' : 
                     feedback === 'wrong' ? 'border-red-500 bg-red-50 text-red-700' : 
                     'border-slate-200 focus:border-blue-500 focus:shadow-md'}`}
+                
                 disabled={feedback !== null}
-                autoFocus
               />
               {!feedback && userInput.trim() && (
                   <button type="submit" className="absolute right-3 top-1/2 -translate-y-1/2 p-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors shadow-md">
@@ -246,7 +245,6 @@ const VocabularyGame = ({ onBack }) => {
               )}
             </form>
 
-            {/* Área de Feedback */}
             {feedback && (
               <div className="animate-fade-in-up">
                 {feedback === 'correct' ? (
@@ -263,9 +261,11 @@ const VocabularyGame = ({ onBack }) => {
                        <span className="font-bold">Ops!</span>
                     </div>
                     <p className="text-slate-600 text-sm">
-                      A resposta era: <strong className="text-slate-900 text-lg block mt-1">{currentWord.pt[0]}</strong>
+                      A resposta era: <strong className="text-slate-900 text-lg block mt-1">{currentWord?.pt?.[0]}</strong>
                     </p>
-                    <p className="text-slate-400 text-xs mt-2">(Aceita também: {currentWord.pt.slice(1).join(", ")})</p>
+                    <p className="text-slate-400 text-xs mt-2">
+                        {currentWord?.pt?.length > 1 ? `(Aceita também: ${currentWord.pt.slice(1).join(", ")})` : ''}
+                    </p>
                   </div>
                 )}
 
@@ -274,7 +274,7 @@ const VocabularyGame = ({ onBack }) => {
                   className={`w-full md:w-auto px-8 py-3 rounded-xl font-bold text-white shadow-lg transition transform hover:scale-105 active:scale-95 flex items-center justify-center gap-2 mx-auto
                     ${feedback === 'correct' ? 'bg-green-600 hover:bg-green-700 shadow-green-200' : 'bg-slate-800 hover:bg-slate-900 shadow-slate-300'}`}
                 >
-                  {currentWordIndex + 1 === currentLevel.words.length ? 'Ver Resultado' : 'Próxima Palavra'} <ArrowRight className="w-5 h-5" />
+                  {currentWordIndex + 1 === currentLevelWords.length ? 'Ver Resultado' : 'Próxima Palavra'} <ArrowRight className="w-5 h-5" />
                 </button>
               </div>
             )}

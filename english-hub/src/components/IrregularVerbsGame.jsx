@@ -125,14 +125,17 @@ const IrregularVerbsGame = ({ onBack }) => {
         </label>
         <div className="relative">
           <input
-            ref={isFirst ? firstInputRef : null}
             type="text"
-            value={userAnswers[modeKey]}
-            onChange={(e) => handleInputChange(modeKey, e.target.value)}
-            disabled={!!feedback}
-            className={`w-full pl-4 pr-10 py-3 rounded-xl border-2 outline-none font-semibold text-lg transition-all ${borderClass}`}
-            placeholder={`Digite o ${label.toLowerCase()}...`}
-            autoComplete="off"
+            value={userInput}
+            onChange={(e) => setUserInput(e.target.value)}
+            placeholder="Digite a tradução..."
+            // MUDANÇA AQUI: Adicionei 'focus:placeholder-transparent' para sumir com o texto quando focar
+            className={`w-full p-4 text-center text-xl font-medium border-2 rounded-xl outline-none transition-all shadow-sm focus:placeholder-transparent
+              ${feedback === 'correct' ? 'border-green-500 bg-green-50 text-green-700' : 
+                feedback === 'wrong' ? 'border-red-500 bg-red-50 text-red-700' : 
+                'border-slate-200 focus:border-blue-500 focus:shadow-md'}`}
+            disabled={feedback !== null}
+            autoFocus
           />
           {icon}
         </div>
@@ -211,8 +214,11 @@ const IrregularVerbsGame = ({ onBack }) => {
           )}
         </div>
         <div className="text-center">
-          <button onClick={onBack} className="text-slate-400 hover:text-slate-600 text-sm font-medium flex items-center justify-center gap-2 mx-auto">
-            <ArrowLeft className="w-4 h-4" /> Voltar ao Hub
+          <button 
+            onClick={onBack} 
+            className="bg-white border border-slate-300 text-slate-600 hover:bg-slate-100 hover:text-slate-800 px-6 py-2 rounded-full font-bold text-sm transition-all shadow-sm flex items-center justify-center gap-2 mx-auto"
+          >
+              <ArrowLeft className="w-4 h-4" /> Voltar ao Hub Principal
           </button>
         </div>
       </div>

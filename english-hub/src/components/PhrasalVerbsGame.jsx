@@ -153,8 +153,11 @@ const PhrasalVerbsGame = ({ onBack }) => {
         </div>
 
         <div className="text-center mt-auto">
-          <button onClick={onBack} className="text-slate-400 hover:text-slate-600 text-sm font-bold flex items-center justify-center gap-2 mx-auto transition-colors px-6 py-3 rounded-full hover:bg-slate-100">
-            <ArrowLeft className="w-4 h-4" /> Voltar ao Hub
+          <button 
+            onClick={onBack} 
+            className="bg-white border border-slate-300 text-slate-600 hover:bg-slate-100 hover:text-slate-800 px-6 py-2 rounded-full font-bold text-sm transition-all shadow-sm flex items-center justify-center gap-2 mx-auto"
+          >
+              <ArrowLeft className="w-4 h-4" /> Voltar ao Hub Principal
           </button>
         </div>
       </div>

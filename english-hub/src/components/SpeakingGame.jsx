@@ -178,8 +178,11 @@ const SpeakingGame = ({ onBack }) => {
           ))}
         </div>
         
-        <button onClick={onBack} className="mt-12 text-slate-400 hover:text-slate-600 font-bold flex items-center gap-2 px-6 py-3">
-          <ArrowLeft className="w-5 h-5" /> Voltar ao Hub
+        <button 
+          onClick={onBack} 
+          className="bg-white border border-slate-300 text-slate-600 hover:bg-slate-100 hover:text-slate-800 px-6 py-2 rounded-full font-bold text-sm transition-all shadow-sm flex items-center justify-center gap-2 mx-auto"
+        >
+            <ArrowLeft className="w-4 h-4" /> Voltar ao Hub Principal
         </button>
       </div>
     );

@@ -174,10 +174,10 @@ const TranslationGame = ({ onBack }) => {
           {/* BOTÃO CORRIGIDO: mx-auto centraliza o botão na página */}
           <button 
             onClick={onBack} 
-            className="flex items-center justify-center gap-2 text-slate-400 hover:text-slate-600 font-bold px-6 py-2 text-sm transition-colors mx-auto"
+            className="bg-white border border-slate-300 text-slate-600 hover:bg-slate-100 hover:text-slate-800 px-6 py-2 rounded-full font-bold text-sm transition-all shadow-sm flex items-center justify-center gap-2 mx-auto"
           >
-             <ArrowLeft className="w-5 h-5" /> Voltar ao Hub
-           </button>
+              <ArrowLeft className="w-4 h-4" /> Voltar ao Hub Principal
+          </button>
         </div>
       </div>
     );
