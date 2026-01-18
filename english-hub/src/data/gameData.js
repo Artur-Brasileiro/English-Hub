@@ -1014,7 +1014,36 @@ export const TRANSLATION_DATA = [
   { id: 122, pt: "Nós teremos pago a dívida.", en: "We will have paid the debt." },
   { id: 123, pt: "Ele terá encontrado um emprego.", en: "He will have found a job." },
   { id: 124, pt: "Eu terei acordado antes de você.", en: "I will have woken up before you." },
-  { id: 125, pt: "A neve terá derretido.", en: "The snow will have melted." }
+  { id: 125, pt: "A neve terá derretido.", en: "The snow will have melted." },
+
+  // --- TIPO 6: COMUNICAÇÃO DO DIA A DIA (Concessivas, Condicionais, Temporais, Contraste, etc.) ---
+  { id: 126, pt: "Mesmo que eu não vá, eu quero que você aproveite.", en: "Even if I don't go, I want you to enjoy it.", tags: ["concessive", "desire"] },
+  { id: 127, pt: "Eu aprendi muito com ela, mas ela não é minha professora mais.", en: "I learned a lot from her, but she is not my teacher anymore.", tags: ["contrast", "past"] },
+  { id: 128, pt: "Enquanto ele não sair, eu não consigo ajudar.", en: "While he doesn't leave, I can't help.", tags: ["temporal", "negative"] },
+  { id: 129, pt: "Se não tivesse chovido, eu até iria.", en: "If it hadn't rained, I would have gone.", tags: ["conditional", "past"] },
+  { id: 130, pt: "Embora eu esteja cansado, ainda preciso terminar isso.", en: "Although I am tired, I still need to finish this.", tags: ["concessive"] },
+  { id: 131, pt: "Se você puder, me avise mais tarde.", en: "If you can, let me know later.", tags: ["conditional", "request"] },
+  { id: 132, pt: "Quando eu terminar, eu te ligo.", en: "When I finish, I'll call you.", tags: ["temporal", "future"] },
+  { id: 133, pt: "Eu queria ajudar, mas não tinha tempo.", en: "I wanted to help, but I didn't have time.", tags: ["contrast", "past"] },
+  { id: 134, pt: "Assim que ele chegar, a gente começa.", en: "As soon as he arrives, we start.", tags: ["temporal"] },
+  { id: 135, pt: "Mesmo se ela tentar, não vai dar certo.", en: "Even if she tries, it won't work.", tags: ["concessive"] },
+  { id: 136, pt: "Eu não fui porque estava doente.", en: "I didn't go because I was sick.", tags: ["cause", "past"] },
+  { id: 137, pt: "Já que você terminou, pode descansar.", en: "Since you finished, you can rest.", tags: ["cause"] },
+  { id: 138, pt: "Eu estudei bastante, então passei.", en: "I studied a lot, so I passed.", tags: ["result", "past"] },
+  { id: 139, pt: "Ela falou baixo para ninguém ouvir.", en: ["She spoke quietly so that no one would hear.", "She spoke quietly so nobody would hear."], tags: ["purpose"] },
+  { id: 140, pt: "Eu saí cedo para evitar trânsito.", en: ["I left early in order to avoid traffic.", "I left early to avoid traffic.", "I left early to avoid the traffic."], tags: ["purpose", "past"] },
+  { id: 141, pt: "Ele é tão educado quanto o irmão.", en: "He is as polite as his brother.", tags: ["comparison"] },
+  { id: 142, pt: "Ela corre mais rápido do que eu.", en: "She runs faster than me.", tags: ["comparison"] },
+  { id: 143, pt: "Eu queria que chovesse menos.", en: "I wish it rained less.", tags: ["desire"] },
+  { id: 144, pt: "Tomara que você consiga.", en: "I hope you can make it.", tags: ["desire"] },
+  { id: 145, pt: "Eu tenho que sair agora.", en: "I have to leave now.", tags: ["obligation"] },
+  { id: 146, pt: "Nós precisamos terminar hoje.", en: "We need to finish today.", tags: ["obligation"] },
+  { id: 147, pt: "Você deveria descansar mais.", en: "You should rest more.", tags: ["advice"] },
+  { id: 148, pt: "Se eu fosse você, eu falaria com ela.", en: "If I were you, I would talk to her.", tags: ["advice", "conditional"] },
+  { id: 149, pt: "Que tal pedir ajuda?", en: ["Why don't you ask for help?", "How about asking for help?"], tags: ["suggestion"] },
+  { id: 150, pt: "Vamos sair mais cedo?", en: "Shall we leave earlier?", tags: ["suggestion"] },
+  { id: 151, pt: "Talvez ele chegue tarde.", en: "Maybe he arrives late.", tags: ["possibility"] },
+  { id: 152, pt: "Pode ser que eu me atrase.", en: ["I might be late.", "I may be late."], tags: ["possibility"] }
 ];
 
 // --- DADOS DO JOGO DE SPEAKING (SEQUENCIAL & COMPLETO) ---

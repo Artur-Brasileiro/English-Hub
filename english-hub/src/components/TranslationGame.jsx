@@ -16,6 +16,26 @@ const TranslationGame = ({ onBack }) => {
   const [answerStatus, setAnswerStatus] = useState(null); 
   const [isListening, setIsListening] = useState(false);
 
+  const tagMeta = {
+    conditional: { label: 'Condicionais', color: 'bg-amber-500', desc: 'If I had...', example: 'If it rained...' },
+    concessive: { label: 'Concessivas', color: 'bg-teal-600', desc: 'Even if...', example: 'Even if I go...' },
+    temporal: { label: 'Temporais', color: 'bg-cyan-600', desc: 'While/When...', example: 'While he...' },
+    contrast: { label: 'Contraste', color: 'bg-rose-500', desc: '..., but ...', example: 'I wanted, but...' },
+    cause: { label: 'Causa', color: 'bg-lime-600', desc: 'Because/As', example: 'Because I...' },
+    purpose: { label: 'Finalidade', color: 'bg-emerald-600', desc: 'So that/In order to', example: 'So that...' },
+    result: { label: 'Resultado', color: 'bg-blue-600', desc: 'So/Therefore', example: 'So we...' },
+    comparison: { label: 'Comparação', color: 'bg-violet-600', desc: 'As...as', example: 'As good as...' },
+    desire: { label: 'Desejo', color: 'bg-fuchsia-500', desc: 'I wish/hope', example: 'I wish...' },
+    obligation: { label: 'Obrigação', color: 'bg-orange-600', desc: 'Have to/Must', example: 'I have to...' },
+    advice: { label: 'Conselho', color: 'bg-sky-600', desc: 'Should/Ought to', example: 'You should...' },
+    suggestion: { label: 'Sugestão', color: 'bg-indigo-600', desc: 'Why don’t we...?', example: 'Why don’t we...' },
+    possibility: { label: 'Possibilidade', color: 'bg-slate-600', desc: 'Maybe/It might', example: 'It might...' }
+  };
+
+  const tagModes = Object.keys(tagMeta);
+
+  const getPrimaryTag = (tags = []) => tags.find((tag) => tagModes.includes(tag));
+
   // --- LÓGICA DE DETECÇÃO GRAMATICAL AVANÇADA ---
   const getGrammarType = (englishSentence) => {
     const lower = englishSentence.toLowerCase();
@@ -47,7 +67,9 @@ const TranslationGame = ({ onBack }) => {
     
     let dataToUse = TRANSLATION_DATA;
     
-    if (mode !== 'mix') {
+    if (tagModes.includes(mode)) {
+      dataToUse = TRANSLATION_DATA.filter(item => item.tags && item.tags.includes(mode));
+    } else if (mode !== 'mix') {
       dataToUse = TRANSLATION_DATA.filter(item => getGrammarType(item.en) === mode);
     }
 
@@ -73,6 +95,7 @@ const TranslationGame = ({ onBack }) => {
   const normalizeText = (text) => {
     return text.toLowerCase()
       .replace(/[.,!?;:]/g, '') 
+      .replace(/[’']/g, '')
       .replace(/\s+/g, ' ')
       .trim();
   };
@@ -80,9 +103,10 @@ const TranslationGame = ({ onBack }) => {
   const checkAnswer = () => {
     const currentItem = shuffledQuestions[currentQuestionIndex];
     const normalizedUser = normalizeText(userAnswer);
-    const normalizedCorrect = normalizeText(currentItem.en);
+    const acceptedAnswers = Array.isArray(currentItem.en) ? currentItem.en : [currentItem.en];
+    const normalizedAccepted = acceptedAnswers.map((answer) => normalizeText(answer));
 
-    const isCorrect = normalizedUser === normalizedCorrect;
+    const isCorrect = normalizedAccepted.includes(normalizedUser);
     
     setAnswerStatus(isCorrect ? 'correct' : 'incorrect');
     if (isCorrect) setScore(s => s + 1);
@@ -131,6 +155,20 @@ const TranslationGame = ({ onBack }) => {
   if (gameState === 'start') {
     // Lista completa de modos
     const modes = [
+      { id: 'conditional', label: tagMeta.conditional.label, sub: 'If/Se', icon: Layers, color: tagMeta.conditional.color, desc: tagMeta.conditional.desc },
+      { id: 'concessive', label: tagMeta.concessive.label, sub: 'Even/Embora', icon: Layers, color: tagMeta.concessive.color, desc: tagMeta.concessive.desc },
+      { id: 'temporal', label: tagMeta.temporal.label, sub: 'While/When', icon: Layers, color: tagMeta.temporal.color, desc: tagMeta.temporal.desc },
+      { id: 'contrast', label: tagMeta.contrast.label, sub: 'Mas/Porém', icon: Layers, color: tagMeta.contrast.color, desc: tagMeta.contrast.desc },
+      { id: 'cause', label: tagMeta.cause.label, sub: 'Porque', icon: Layers, color: tagMeta.cause.color, desc: tagMeta.cause.desc },
+      { id: 'purpose', label: tagMeta.purpose.label, sub: 'Para que', icon: Layers, color: tagMeta.purpose.color, desc: tagMeta.purpose.desc },
+      { id: 'result', label: tagMeta.result.label, sub: 'Então', icon: Layers, color: tagMeta.result.color, desc: tagMeta.result.desc },
+      { id: 'comparison', label: tagMeta.comparison.label, sub: 'Igual a', icon: Layers, color: tagMeta.comparison.color, desc: tagMeta.comparison.desc },
+      { id: 'desire', label: tagMeta.desire.label, sub: 'Quero/Espero', icon: Layers, color: tagMeta.desire.color, desc: tagMeta.desire.desc },
+      { id: 'obligation', label: tagMeta.obligation.label, sub: 'Tenho que', icon: Layers, color: tagMeta.obligation.color, desc: tagMeta.obligation.desc },
+      { id: 'advice', label: tagMeta.advice.label, sub: 'Deveria', icon: Layers, color: tagMeta.advice.color, desc: tagMeta.advice.desc },
+      { id: 'suggestion', label: tagMeta.suggestion.label, sub: 'Que tal', icon: Layers, color: tagMeta.suggestion.color, desc: tagMeta.suggestion.desc },
+      { id: 'possibility', label: tagMeta.possibility.label, sub: 'Talvez', icon: Layers, color: tagMeta.possibility.color, desc: tagMeta.possibility.desc },
+
       { id: 'present_perfect', label: 'Present Perfect', sub: 'Simple', icon: CheckCircle, color: 'bg-blue-500', desc: 'I have eaten' },
       { id: 'present_perfect_continuous', label: 'Present Perfect', sub: 'Continuous', icon: Activity, color: 'bg-blue-600', desc: 'I have been eating' },
       
@@ -150,7 +188,7 @@ const TranslationGame = ({ onBack }) => {
             <Languages className="w-12 h-12" />
           </div>
           <h2 className="text-3xl font-bold text-slate-800 mb-2">Translation Master</h2>
-          <p className="text-slate-600 mb-8">Domine todas as formas dos Tempos Perfeitos.</p>
+          <p className="text-slate-600 mb-8">Treine tempos perfeitos e frases do dia a dia por tipo.</p>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 max-w-4xl mx-auto mb-8">
             {modes.map((mode) => (
@@ -201,13 +239,32 @@ const TranslationGame = ({ onBack }) => {
   }
 
   const currentItem = shuffledQuestions[currentQuestionIndex];
-  const questionType = currentMode === 'mix' ? getGrammarType(currentItem.en) : currentMode;
+  const primaryTag = getPrimaryTag(currentItem.tags);
+  const questionType = currentMode === 'mix' && !primaryTag ? getGrammarType(currentItem.en) : currentMode;
   
   // Cores dinâmicas para o cartão
   let headerColorClass = 'bg-emerald-500';
   let typeLabel = 'Traduza';
 
+  if (primaryTag && currentMode === 'mix') {
+    headerColorClass = tagMeta[primaryTag]?.color ?? headerColorClass;
+    typeLabel = tagMeta[primaryTag]?.label ?? typeLabel;
+  }
+
   switch (questionType) {
+    case 'conditional': headerColorClass = tagMeta.conditional.color; typeLabel = tagMeta.conditional.label; break;
+    case 'concessive': headerColorClass = tagMeta.concessive.color; typeLabel = tagMeta.concessive.label; break;
+    case 'temporal': headerColorClass = tagMeta.temporal.color; typeLabel = tagMeta.temporal.label; break;
+    case 'contrast': headerColorClass = tagMeta.contrast.color; typeLabel = tagMeta.contrast.label; break;
+    case 'cause': headerColorClass = tagMeta.cause.color; typeLabel = tagMeta.cause.label; break;
+    case 'purpose': headerColorClass = tagMeta.purpose.color; typeLabel = tagMeta.purpose.label; break;
+    case 'result': headerColorClass = tagMeta.result.color; typeLabel = tagMeta.result.label; break;
+    case 'comparison': headerColorClass = tagMeta.comparison.color; typeLabel = tagMeta.comparison.label; break;
+    case 'desire': headerColorClass = tagMeta.desire.color; typeLabel = tagMeta.desire.label; break;
+    case 'obligation': headerColorClass = tagMeta.obligation.color; typeLabel = tagMeta.obligation.label; break;
+    case 'advice': headerColorClass = tagMeta.advice.color; typeLabel = tagMeta.advice.label; break;
+    case 'suggestion': headerColorClass = tagMeta.suggestion.color; typeLabel = tagMeta.suggestion.label; break;
+    case 'possibility': headerColorClass = tagMeta.possibility.color; typeLabel = tagMeta.possibility.label; break;
     case 'present_perfect': headerColorClass = 'bg-blue-500'; typeLabel = 'Present Perfect Simple'; break;
     case 'present_perfect_continuous': headerColorClass = 'bg-blue-700'; typeLabel = 'Present Perfect Continuous'; break;
     case 'past_perfect': headerColorClass = 'bg-purple-500'; typeLabel = 'Past Perfect Simple'; break;
@@ -282,7 +339,15 @@ const TranslationGame = ({ onBack }) => {
                  {answerStatus === 'incorrect' && (
                     <div className="mb-4 bg-red-50 p-4 rounded-xl border border-red-100">
                       <span className="block text-red-400 text-xs font-bold uppercase tracking-wider mb-1">Resposta Correta:</span>
-                      <p className="text-red-700 font-bold text-lg">"{currentItem.en}"</p>
+                      {Array.isArray(currentItem.en) ? (
+                        <ul className="text-red-700 font-bold text-lg space-y-1">
+                          {currentItem.en.map((answer) => (
+                            <li key={answer}>"{answer}"</li>
+                          ))}
+                        </ul>
+                      ) : (
+                        <p className="text-red-700 font-bold text-lg">"{currentItem.en}"</p>
+                      )}
                     </div>
                  )}
                  <button onClick={nextQuestion} className={`w-full text-white py-4 rounded-xl font-bold text-lg transition-colors shadow-lg ${answerStatus === 'correct' ? 'bg-emerald-500' : 'bg-slate-800'}`}>
