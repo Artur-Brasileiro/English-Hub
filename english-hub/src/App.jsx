@@ -56,7 +56,7 @@ const App = () => {
     {
       id: 'translation',
       title: "Translation Challenge",
-      description: "Traduza frases com Present Perfect usando digitação ou voz (Speaking).",
+      escription: "Traduza frases do dia a dia e tempos perfeitos com digitação ou voz (Speaking).",
       category: "Writing & Speaking",
       difficulty: "Avançado",
       icon: <Languages className="w-6 h-6" />,
