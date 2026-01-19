@@ -7,27 +7,27 @@ import {
   ChevronRight,
   GraduationCap,
   Languages,
-  BookOpen // Ícone novo para o vocabulário
+  BookOpen
 } from 'lucide-react';
 
 // Importando os componentes
 import PhrasalVerbsGame from './components/PhrasalVerbsGame';
 import IrregularVerbsGame from './components/IrregularVerbsGame';
-import TranslationGame from './components/TranslationGame'; // SEU JOGO ANTIGO MANTIDO
+import TranslationGame from './components/TranslationGame';
 import SpeakingGame from './components/SpeakingGame';
-import VocabularyGame from './components/VocabularyGame'; // NOVO IMPORT
+import VocabularyGame from './components/VocabularyGame';
 
 const App = () => {
   const [activeGame, setActiveGame] = useState(null); 
-  const [activeCategory, setActiveCategory] = useState('Todos');
+  const [activeCategory, setActiveCategory] = useState('All');
   const [searchTerm, setSearchTerm] = useState('');
 
   const games = [
     {
-      id: 'vocabulary', // ID DO NOVO JOGO
+      id: 'vocabulary',
       title: "Daily Vocabulary",
       description: "30 palavras novas por dia para expandir seu vocabulário.",
-      category: "Vocabulário",
+      category: "Vocabulary",
       difficulty: "Essencial",
       icon: <BookOpen className="w-6 h-6" />,
       color: "bg-gray-600",
@@ -37,7 +37,7 @@ const App = () => {
       id: 'irregular',
       title: "Irregular Verbs",
       description: "Domine as 3 formas dos verbos irregulares: Infinitive, Past e Participle.",
-      category: "Gramática",
+      category: "Grammar",
       difficulty: "Essencial",
       icon: <Gamepad2 className="w-6 h-6" />,
       color: "bg-orange-500",
@@ -47,7 +47,7 @@ const App = () => {
       id: 'phrasal',
       title: "Phrasal Verbs Master",
       description: "Aprenda e memorize os verbos compostos mais usados em fases organizadas.",
-      category: "Vocabulário",
+      category: "Vocabulary",
       difficulty: "Intermediário",
       icon: <BrainCircuit className="w-6 h-6" />,
       color: "bg-indigo-600",
@@ -56,7 +56,7 @@ const App = () => {
     {
       id: 'translation',
       title: "Translation Challenge",
-      escription: "Traduza frases do dia a dia e tempos perfeitos com digitação ou voz (Speaking).",
+      description: "Traduza frases do dia a dia e tempos perfeitos com digitação ou voz.",
       category: "Writing & Speaking",
       difficulty: "Avançado",
       icon: <Languages className="w-6 h-6" />,
@@ -75,10 +75,10 @@ const App = () => {
     }
   ];
 
-  const categories = ['Todos', 'Vocabulário', 'Gramática', 'Writing & Speaking', 'Speaking'];
+  const categories = ['All', 'Vocabulary', 'Grammar', 'Writing & Speaking', 'Speaking'];
 
   const filteredGames = games.filter(game => {
-    const matchesCategory = activeCategory === 'Todos' || game.category === activeCategory;
+    const matchesCategory = activeCategory === 'All' || game.category === activeCategory;
     const matchesSearch = game.title.toLowerCase().includes(searchTerm.toLowerCase());
     return matchesCategory && matchesSearch;
   });
@@ -104,7 +104,7 @@ const App = () => {
     return <SpeakingGame onBack={() => setActiveGame(null)} />;
   }
 
-  // Renderização do Menu (Hub) - MANTIDA IGUAL
+  // Renderização do Menu (Hub)
   return (
     <div className="min-h-screen bg-slate-50 text-slate-900 font-sans">
       <nav className="bg-white border-b border-slate-200 px-4 py-4 shadow-sm sticky top-0 z-10">

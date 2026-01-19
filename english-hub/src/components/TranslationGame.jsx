@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { 
   Languages, RefreshCw, ArrowLeft, CheckCircle, XCircle, Mic, 
-  Clock, Activity, History, Layers, FastForward, PlayCircle
+  Clock, History, Layers, FastForward, 
+  GitBranch, Shield, ArrowLeftRight, Flame, Target, Scale, Heart, Lock, Lightbulb, Sparkles, HelpCircle, Skull
 } from 'lucide-react';
 import { TRANSLATION_DATA } from '../data/gameData';
 
@@ -17,28 +18,59 @@ const TranslationGame = ({ onBack }) => {
   const [isListening, setIsListening] = useState(false);
 
   const tagMeta = {
-    conditional: { label: 'Condicionais', color: 'bg-amber-500', desc: 'If I had...', example: 'If it rained...' },
-    concessive: { label: 'Concessivas', color: 'bg-teal-600', desc: 'Even if...', example: 'Even if I go...' },
-    temporal: { label: 'Temporais', color: 'bg-cyan-600', desc: 'While/When...', example: 'While he...' },
-    contrast: { label: 'Contraste', color: 'bg-rose-500', desc: '..., but ...', example: 'I wanted, but...' },
-    cause: { label: 'Causa', color: 'bg-lime-600', desc: 'Because/As', example: 'Because I...' },
-    purpose: { label: 'Finalidade', color: 'bg-emerald-600', desc: 'So that/In order to', example: 'So that...' },
-    result: { label: 'Resultado', color: 'bg-blue-600', desc: 'So/Therefore', example: 'So we...' },
-    comparison: { label: 'Comparação', color: 'bg-violet-600', desc: 'As...as', example: 'As good as...' },
-    desire: { label: 'Desejo', color: 'bg-fuchsia-500', desc: 'I wish/hope', example: 'I wish...' },
-    obligation: { label: 'Obrigação', color: 'bg-orange-600', desc: 'Have to/Must', example: 'I have to...' },
-    advice: { label: 'Conselho', color: 'bg-sky-600', desc: 'Should/Ought to', example: 'You should...' },
-    suggestion: { label: 'Sugestão', color: 'bg-indigo-600', desc: 'Why don’t we...?', example: 'Why don’t we...' },
-    possibility: { label: 'Possibilidade', color: 'bg-slate-600', desc: 'Maybe/It might', example: 'It might...' }
+    conditional: { label: 'Condicionais', sub: 'If/Se', color: 'bg-amber-500', desc: 'If I had...', example: 'If it rained...', icon: GitBranch },
+    concessive: { label: 'Concessivas', sub: 'Even/Embora', color: 'bg-teal-600', desc: 'Even if...', example: 'Even if I go...', icon: Shield },
+    temporal: { label: 'Temporais', sub: 'While/When', color: 'bg-cyan-600', desc: 'While/When...', example: 'While he...', icon: Clock },
+    contrast: { label: 'Contraste', sub: 'Mas/Porém', color: 'bg-rose-500', desc: '..., but ...', example: 'I wanted, but...', icon: ArrowLeftRight },
+    cause: { label: 'Causa', sub: 'Porque', color: 'bg-lime-600', desc: 'Because/As', example: 'Because I...', icon: Flame },
+    purpose: { label: 'Finalidade', sub: 'Para que', color: 'bg-emerald-600', desc: 'So that/In order to', example: 'So that...', icon: Target },
+    result: { label: 'Resultado', sub: 'Então', color: 'bg-blue-600', desc: 'So/Therefore', example: 'So we...', icon: CheckCircle },
+    comparison: { label: 'Comparação', sub: 'Igual a', color: 'bg-violet-600', desc: 'As...as', example: 'As good as...', icon: Scale },
+    desire: { label: 'Desejo', sub: 'Quero/Espero', color: 'bg-fuchsia-500', desc: 'I wish/hope', example: 'I wish...', icon: Heart },
+    obligation: { label: 'Obrigação', sub: 'Tenho que', color: 'bg-orange-600', desc: 'Have to/Must', example: 'I have to...', icon: Lock },
+    advice: { label: 'Conselho', sub: 'Deveria', color: 'bg-sky-600', desc: 'Should/Ought to', example: 'You should...', icon: Lightbulb },
+    suggestion: { label: 'Sugestão', sub: 'Que tal', color: 'bg-indigo-600', desc: 'Why don’t we...?', example: 'Why don’t we...', icon: Sparkles },
+    possibility: { label: 'Possibilidade', sub: 'Talvez', color: 'bg-slate-600', desc: 'Maybe/It might', example: 'It might...', icon: HelpCircle }
   };
 
   const tagModes = Object.keys(tagMeta);
+  const tagModeList = Object.entries(tagMeta).map(([id, meta]) => ({
+    id,
+    label: meta.label,
+    sub: meta.sub,
+    icon: meta.icon || Layers,
+    color: meta.color,
+    desc: meta.desc
+  }));
+
+  const grammarMeta = {
+    present_perfect: { label: 'Present Perfect', color: 'bg-blue-500' },
+    present_perfect_continuous: { label: 'Present Perfect Continuous', color: 'bg-blue-700' },
+    past_perfect: { label: 'Past Perfect', color: 'bg-purple-500' },
+    past_perfect_continuous: { label: 'Past Perfect Continuous', color: 'bg-purple-700' },
+    future_perfect: { label: 'Future Perfect', color: 'bg-orange-500' },
+    future_perfect_continuous: { label: 'Future Perfect Continuous', color: 'bg-orange-700' },
+    questions: { label: 'Perguntas', color: 'bg-cyan-600' }
+  };
+
+  const grammarModeList = [
+    { id: 'present_perfect', label: 'Present Perfect', sub: 'Simple + Continuous', icon: CheckCircle, color: grammarMeta.present_perfect.color, desc: 'I have eaten / been eating' },
+    { id: 'past_perfect', label: 'Past Perfect', sub: 'Simple + Continuous', icon: History, color: grammarMeta.past_perfect.color, desc: 'I had eaten / been eating' },
+    { id: 'future_perfect', label: 'Future Perfect', sub: 'Simple', icon: FastForward, color: grammarMeta.future_perfect.color, desc: 'I will have eaten' },
+    { id: 'questions', label: 'Perguntas', sub: 'Todas em forma de pergunta', icon: HelpCircle, color: grammarMeta.questions.color, desc: 'Have you... ? / Why... ?' }
+  ];
+
+  const toArray = (value) => Array.isArray(value) ? value : [];
+  const taggedItems = toArray(TRANSLATION_DATA.tagged);
+  const allTranslationItems = Object.values(TRANSLATION_DATA).flatMap(toArray);
 
   const getPrimaryTag = (tags = []) => tags.find((tag) => tagModes.includes(tag));
 
   // --- LÓGICA DE DETECÇÃO GRAMATICAL AVANÇADA ---
   const getGrammarType = (englishSentence) => {
-    const lower = englishSentence.toLowerCase();
+    const sampleSentence = Array.isArray(englishSentence) ? englishSentence[0] : englishSentence;
+    if (!sampleSentence || typeof sampleSentence !== 'string') return 'present_perfect';
+    const lower = sampleSentence.toLowerCase();
     
     // A ORDEM IMPORTA! Verificamos do mais específico para o mais geral.
 
@@ -62,25 +94,31 @@ const TranslationGame = ({ onBack }) => {
     return 'present_perfect';
   };
 
+  const isQuestionSentence = (englishSentence) => {
+    const samples = Array.isArray(englishSentence) ? englishSentence : [englishSentence];
+    return samples.some((sample) => {
+      if (!sample || typeof sample !== 'string') return false;
+      const trimmed = sample.trim();
+      if (trimmed.endsWith('?')) return true;
+      return /^(what|where|when|why|how|who|which|have|has|had|will|do|does|did|is|are|was|were|can|could|would|should|may|might)\b/i.test(trimmed);
+    });
+  };
+
   const startGame = (mode) => {
     setCurrentMode(mode);
     
-    let dataToUse = TRANSLATION_DATA;
+    let dataToUse = allTranslationItems;
     
     if (tagModes.includes(mode)) {
-      dataToUse = TRANSLATION_DATA.filter(item => item.tags && item.tags.includes(mode));
+      dataToUse = taggedItems.filter(item => item.tags && item.tags.includes(mode));
     } else if (mode === 'present_perfect') {
-      dataToUse = TRANSLATION_DATA.filter(item => {
-        const grammarType = getGrammarType(item.en);
-        return grammarType === 'present_perfect' || grammarType === 'present_perfect_continuous';
-      });
+      dataToUse = toArray(TRANSLATION_DATA.present_perfect);
     } else if (mode === 'past_perfect') {
-      dataToUse = TRANSLATION_DATA.filter(item => {
-        const grammarType = getGrammarType(item.en);
-        return grammarType === 'past_perfect' || grammarType === 'past_perfect_continuous';
-      });
-    } else if (mode !== 'mix') {
-      dataToUse = TRANSLATION_DATA.filter(item => getGrammarType(item.en) === mode);
+      dataToUse = toArray(TRANSLATION_DATA.past_perfect);
+    } else if (mode === 'questions') {
+      dataToUse = allTranslationItems.filter(item => isQuestionSentence(item.en));
+    } else if (mode !== 'mix' && TRANSLATION_DATA[mode]) {
+      dataToUse = toArray(TRANSLATION_DATA[mode]);
     }
 
     if (dataToUse.length === 0) {
@@ -110,13 +148,131 @@ const TranslationGame = ({ onBack }) => {
       .trim();
   };
 
+  const contractionMap = {
+    "i'm": "i am",
+    "you're": "you are",
+    "he's": "he is",
+    "she's": "she is",
+    "it's": "it is",
+    "we're": "we are",
+    "they're": "they are",
+    "i've": "i have",
+    "you've": "you have",
+    "we've": "we have",
+    "they've": "they have",
+    "i'd": "i would",
+    "you'd": "you would",
+    "he'd": "he would",
+    "she'd": "she would",
+    "we'd": "we would",
+    "they'd": "they would",
+    "i'll": "i will",
+    "you'll": "you will",
+    "he'll": "he will",
+    "she'll": "she will",
+    "we'll": "we will",
+    "they'll": "they will",
+    "can't": "cannot",
+    "won't": "will not",
+    "don't": "do not",
+    "doesn't": "does not",
+    "didn't": "did not",
+    "isn't": "is not",
+    "aren't": "are not",
+    "wasn't": "was not",
+    "weren't": "were not",
+    "haven't": "have not",
+    "hasn't": "has not",
+    "hadn't": "had not",
+    "wouldn't": "would not",
+    "shouldn't": "should not",
+    "couldn't": "could not",
+    "let's": "let us",
+    "gonna": "going to",
+    "wanna": "want to"
+  };
+
+  const synonymMap = {
+    kids: "children",
+    kid: "child",
+    movie: "film",
+    films: "movies",
+    cellphone: "phone",
+    tv: "television"
+  };
+
+  const normalizeTokens = (text) => {
+    let working = text.toLowerCase();
+    Object.entries(contractionMap).forEach(([from, to]) => {
+      working = working.replace(new RegExp(`\\b${from}\\b`, 'g'), to);
+    });
+    working = normalizeText(working);
+    const tokens = working.split(' ').filter(Boolean);
+    return tokens
+      .filter((token) => !['a', 'an', 'the'].includes(token))
+      .map((token) => synonymMap[token] || token);
+  };
+
+  const levenshteinDistance = (a, b) => {
+    const aLen = a.length;
+    const bLen = b.length;
+    if (!aLen) return bLen;
+    if (!bLen) return aLen;
+    const matrix = Array.from({ length: aLen + 1 }, () => Array(bLen + 1).fill(0));
+    for (let i = 0; i <= aLen; i += 1) matrix[i][0] = i;
+    for (let j = 0; j <= bLen; j += 1) matrix[0][j] = j;
+    for (let i = 1; i <= aLen; i += 1) {
+      for (let j = 1; j <= bLen; j += 1) {
+        const cost = a[i - 1] === b[j - 1] ? 0 : 1;
+        matrix[i][j] = Math.min(
+          matrix[i - 1][j] + 1,
+          matrix[i][j - 1] + 1,
+          matrix[i - 1][j - 1] + cost
+        );
+      }
+    }
+    return matrix[aLen][bLen];
+  };
+
+  const stringSimilarity = (a, b) => {
+    if (!a || !b) return 0;
+    const distance = levenshteinDistance(a, b);
+    const maxLen = Math.max(a.length, b.length);
+    return maxLen === 0 ? 1 : 1 - distance / maxLen;
+  };
+
+  const tokenSimilarity = (aTokens, bTokens) => {
+    if (!aTokens.length || !bTokens.length) return 0;
+    const aSet = new Set(aTokens);
+    const bSet = new Set(bTokens);
+    const intersection = [...aSet].filter((token) => bSet.has(token)).length;
+    const union = new Set([...aSet, ...bSet]).size;
+    return union === 0 ? 0 : intersection / union;
+  };
+
+  const isFlexibleMatch = (user, accepted) => {
+    const normalizedUser = normalizeText(user);
+    const normalizedAccepted = normalizeText(accepted);
+    if (normalizedUser === normalizedAccepted) return true;
+
+    const userTokens = normalizeTokens(user);
+    const acceptedTokens = normalizeTokens(accepted);
+    const userJoined = userTokens.join(' ');
+    const acceptedJoined = acceptedTokens.join(' ');
+    if (userJoined === acceptedJoined) return true;
+
+    const similarityScore = Math.max(
+      stringSimilarity(userJoined, acceptedJoined),
+      tokenSimilarity(userTokens, acceptedTokens)
+    );
+
+    return similarityScore >= 0.85;
+  };
+
   const checkAnswer = () => {
     const currentItem = shuffledQuestions[currentQuestionIndex];
-    const normalizedUser = normalizeText(userAnswer);
     const acceptedAnswers = Array.isArray(currentItem.en) ? currentItem.en : [currentItem.en];
-    const normalizedAccepted = acceptedAnswers.map((answer) => normalizeText(answer));
-
-    const isCorrect = normalizedAccepted.includes(normalizedUser);
+    const isCorrect = acceptedAnswers.some((answer) => isFlexibleMatch(userAnswer, answer));
     
     setAnswerStatus(isCorrect ? 'correct' : 'incorrect');
     if (isCorrect) setScore(s => s + 1);
@@ -165,28 +321,10 @@ const TranslationGame = ({ onBack }) => {
   if (gameState === 'start') {
     // Lista completa de modos
     const modes = [
-       
-      { id: 'conditional', label: tagMeta.conditional.label, sub: 'If/Se', icon: Layers, color: tagMeta.conditional.color, desc: tagMeta.conditional.desc },
-      { id: 'concessive', label: tagMeta.concessive.label, sub: 'Even/Embora', icon: Layers, color: tagMeta.concessive.color, desc: tagMeta.concessive.desc },
-      { id: 'temporal', label: tagMeta.temporal.label, sub: 'While/When', icon: Layers, color: tagMeta.temporal.color, desc: tagMeta.temporal.desc },
-      { id: 'contrast', label: tagMeta.contrast.label, sub: 'Mas/Porém', icon: Layers, color: tagMeta.contrast.color, desc: tagMeta.contrast.desc },
-      { id: 'cause', label: tagMeta.cause.label, sub: 'Porque', icon: Layers, color: tagMeta.cause.color, desc: tagMeta.cause.desc },
-      { id: 'purpose', label: tagMeta.purpose.label, sub: 'Para que', icon: Layers, color: tagMeta.purpose.color, desc: tagMeta.purpose.desc },
-      { id: 'result', label: tagMeta.result.label, sub: 'Então', icon: Layers, color: tagMeta.result.color, desc: tagMeta.result.desc },
-      { id: 'comparison', label: tagMeta.comparison.label, sub: 'Igual a', icon: Layers, color: tagMeta.comparison.color, desc: tagMeta.comparison.desc },
-      { id: 'desire', label: tagMeta.desire.label, sub: 'Quero/Espero', icon: Layers, color: tagMeta.desire.color, desc: tagMeta.desire.desc },
-      { id: 'obligation', label: tagMeta.obligation.label, sub: 'Tenho que', icon: Layers, color: tagMeta.obligation.color, desc: tagMeta.obligation.desc },
-      { id: 'advice', label: tagMeta.advice.label, sub: 'Deveria', icon: Layers, color: tagMeta.advice.color, desc: tagMeta.advice.desc },
-      { id: 'suggestion', label: tagMeta.suggestion.label, sub: 'Que tal', icon: Layers, color: tagMeta.suggestion.color, desc: tagMeta.suggestion.desc },
-      { id: 'possibility', label: tagMeta.possibility.label, sub: 'Talvez', icon: Layers, color: tagMeta.possibility.color, desc: tagMeta.possibility.desc },
-
-      { id: 'present_perfect', label: 'Present Perfect', sub: 'Simple + Continuous', icon: CheckCircle, color: 'bg-blue-500', desc: 'I have eaten / been eating' },
-      { id: 'past_perfect', label: 'Past Perfect', sub: 'Simple + Continuous', icon: History, color: 'bg-purple-500', desc: 'I had eaten / been eating' },
-      
-      { id: 'future_perfect', label: 'Future Perfect', sub: 'Simple', icon: FastForward, color: 'bg-orange-500', desc: 'I will have eaten' },
-      // { id: 'future_perfect_continuous', label: 'Future Perfect', sub: 'Continuous', icon: Timer, color: 'bg-orange-600', desc: 'I will have been eating' },
-      
-      { id: 'mix', label: 'Desafio Total', sub: 'All Tenses', icon: Layers, color: 'bg-emerald-500', desc: 'Mistura tudo!' },
+      ...tagModeList,
+      ...grammarModeList,
+      // { id: 'future_perfect_continuous', label: 'Future Perfect', sub: 'Continuous', icon: Timer, color: grammarMeta.future_perfect_continuous.color, desc: 'I will have been eating' },
+      { id: 'mix', label: 'Desafio Total', sub: 'All Tenses', icon: Skull, color: 'bg-emerald-500', desc: 'Mistura tudo!' },
     ];
 
     return (
@@ -259,28 +397,10 @@ const TranslationGame = ({ onBack }) => {
     headerColorClass = tagMeta[primaryTag]?.color ?? headerColorClass;
     typeLabel = tagMeta[primaryTag]?.label ?? typeLabel;
   }
-
-  switch (questionType) {
-    case 'conditional': headerColorClass = tagMeta.conditional.color; typeLabel = tagMeta.conditional.label; break;
-    case 'concessive': headerColorClass = tagMeta.concessive.color; typeLabel = tagMeta.concessive.label; break;
-    case 'temporal': headerColorClass = tagMeta.temporal.color; typeLabel = tagMeta.temporal.label; break;
-    case 'contrast': headerColorClass = tagMeta.contrast.color; typeLabel = tagMeta.contrast.label; break;
-    case 'cause': headerColorClass = tagMeta.cause.color; typeLabel = tagMeta.cause.label; break;
-    case 'purpose': headerColorClass = tagMeta.purpose.color; typeLabel = tagMeta.purpose.label; break;
-    case 'result': headerColorClass = tagMeta.result.color; typeLabel = tagMeta.result.label; break;
-    case 'comparison': headerColorClass = tagMeta.comparison.color; typeLabel = tagMeta.comparison.label; break;
-    case 'desire': headerColorClass = tagMeta.desire.color; typeLabel = tagMeta.desire.label; break;
-    case 'obligation': headerColorClass = tagMeta.obligation.color; typeLabel = tagMeta.obligation.label; break;
-    case 'advice': headerColorClass = tagMeta.advice.color; typeLabel = tagMeta.advice.label; break;
-    case 'suggestion': headerColorClass = tagMeta.suggestion.color; typeLabel = tagMeta.suggestion.label; break;
-    case 'possibility': headerColorClass = tagMeta.possibility.color; typeLabel = tagMeta.possibility.label; break;
-    case 'present_perfect': headerColorClass = 'bg-blue-500'; typeLabel = 'Present Perfect'; break;
-    case 'present_perfect_continuous': headerColorClass = 'bg-blue-700'; typeLabel = 'Present Perfect Continuous'; break;
-    case 'past_perfect': headerColorClass = 'bg-purple-500'; typeLabel = 'Past Perfect'; break;
-    case 'past_perfect_continuous': headerColorClass = 'bg-purple-700'; typeLabel = 'Past Perfect Continuous'; break;
-    case 'future_perfect': headerColorClass = 'bg-orange-500'; typeLabel = 'Future Perfect'; break;
-    case 'future_perfect_continuous': headerColorClass = 'bg-orange-700'; typeLabel = 'Future Perfect Continuous'; break;
-    default: headerColorClass = 'bg-emerald-500';
+  const questionMeta = tagMeta[questionType] || grammarMeta[questionType];
+  if (questionMeta && !(primaryTag && currentMode === 'mix')) {
+    headerColorClass = questionMeta.color ?? headerColorClass;
+    typeLabel = questionMeta.label ?? typeLabel;
   }
 
   let inputBorderClass = "border-slate-300 focus:border-emerald-500";

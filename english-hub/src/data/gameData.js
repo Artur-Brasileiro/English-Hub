@@ -1,1155 +1,4 @@
-// --- DADOS DOS PHRASAL VERBS ---
-export const PHRASAL_VERBS_DATA = [
-  // FASE 1 (1-10) - Fundamentais e Continuidade
-  { 
-    id: 1, 
-    verb: "Go on", 
-    definitions: [
-      { meaning: "Continuar", example: "Please go on with your story." },
-      { meaning: "Acontecer", example: "I don't know what is going on here." }
-    ]
-  },
-  { 
-    id: 2, 
-    verb: "Give up", 
-    definitions: [
-      { meaning: "Desistir", example: "Don't give up on your dreams." },
-      { meaning: "Parar de fazer algo", example: "I finally gave up smoking last year." }
-    ]
-  },
-  { 
-    id: 3, 
-    verb: "Look for", 
-    definitions: [
-      { meaning: "Procurar", example: "I am looking for my keys." }
-    ]
-  },
-  { 
-    id: 4, 
-    verb: "Find out", 
-    definitions: [
-      { meaning: "Descobrir", example: "I found out the truth yesterday." }
-    ]
-  },
-  { 
-    id: 5, 
-    verb: "Run out of", 
-    definitions: [
-      { meaning: "Ficar sem", example: "We ran out of milk this morning." }
-    ]
-  },
-  { 
-    id: 6, 
-    verb: "Carry on", 
-    definitions: [
-      { meaning: "Continuar fazendo algo", example: "Carry on working while I'm gone." }
-    ]
-  },
-  { 
-    id: 7, 
-    verb: "Hold on", 
-    definitions: [
-      { meaning: "Aguardar um momento", example: "Hold on a second, please." },
-      { meaning: "Segurar firme", example: "Hold on tight to the railing!" }
-    ]
-  },
-  { 
-    id: 8, 
-    verb: "Watch out", 
-    definitions: [
-      { meaning: "Ter cuidado", example: "Watch out! There's a car coming." },
-      { meaning: "Prestar atenção", example: "You need to watch out for pickpockets here." }
-    ]
-  },
-  { 
-    id: 9, 
-    verb: "Figure out", 
-    definitions: [
-      { meaning: "Compreender", example: "I can't figure out why he did that." },
-      { meaning: "Encontrar solução", example: "We need to figure out a way to fix this." }
-    ]
-  },
-  { 
-    id: 10, 
-    verb: "Keep on", 
-    definitions: [
-      { meaning: "Continuar", example: "He kept on talking during the movie." }
-    ]
-  },
-
-  // FASE 2 (11-20) - Problemas, Soluções e Imprevistos
-  { 
-    id: 11, 
-    verb: "Break down", 
-    definitions: [
-      { meaning: "Parar de funcionar", example: "My car broke down on the highway." },
-      { meaning: "Desabar emocionalmente", example: "She broke down in tears after the news." }
-    ]
-  },
-  { 
-    id: 12, 
-    verb: "Call off", 
-    definitions: [
-      { meaning: "Cancelar", example: "The meeting was called off due to rain." }
-    ]
-  },
-  { 
-    id: 13, 
-    verb: "Put off", 
-    definitions: [
-      { meaning: "Adiar", example: "We had to put off the trip until next month." }
-    ]
-  },
-  { 
-    id: 14, 
-    verb: "Work out", 
-    definitions: [
-      { meaning: "Exercitar-se", example: "I work out at the gym three times a week." },
-      { meaning: "Resolver", example: "We need to work out a solution." },
-      { meaning: "Dar certo", example: "Don't worry, things will work out in the end." }
-    ]
-  },
-  {
-    id: 15,
-    verb: "Blow up",
-    definitions: [
-      { meaning: "Explodir (literalmente) / Explodir de raiva (perder a paciência)", example: "He blew up at me for being late." }
-    ]
-  },
-  { 
-    id: 16, 
-    verb: "Close down", 
-    definitions: [
-      { meaning: "Fechar definitivamente", example: "The factory closed down last year." }
-    ]
-  },
-  { 
-    id: 17, 
-    verb: "Chip in", 
-    definitions: [
-      { meaning: "Contribuir", example: "We all chipped in to buy him a gift." }
-    ]
-  },
-  { 
-    id: 18, 
-    verb: "Break in", 
-    definitions: [
-      { meaning: "Invadir", example: "Thieves broke in while we were away." },
-      { meaning: "Interromper", example: "Sorry to break in on your conversation." }
-    ]
-  },
-  { 
-    id: 19, 
-    verb: "Calm down", 
-    definitions: [
-      { meaning: "Acalmar-se", example: "You need to calm down before speaking." }
-    ]
-  },
-  { 
-    id: 20, 
-    verb: "Turn up", 
-    definitions: [
-      { meaning: "Chegar", example: "He turned up late to the party." },
-      { meaning: "Aumentar volume", example: "Can you turn up the radio?" }
-    ]
-  },
-
-  // FASE 3 (21-30) - Social, Cuidado e Lazer
-  { 
-    id: 21, 
-    verb: "Get along", 
-    definitions: [
-      { meaning: "Ter um bom relacionamento", example: "I get along well with my neighbors." }
-    ]
-  },
-  { 
-    id: 22, 
-    verb: "Hang out", 
-    definitions: [
-      { meaning: "Passar tempo", example: "We used to hang out at the park." }
-    ]
-  },
-  { 
-    id: 23, 
-    verb: "Look after", 
-    definitions: [
-      { meaning: "Cuidar de alguém", example: "Can you look after my dog?" }
-    ]
-  },
-  { 
-    id: 24, 
-    verb: "Catch up", 
-    definitions: [
-      { meaning: "Alcançar", example: "Go ahead, I'll catch up with you later." },
-      { meaning: "Colocar o papo em dia", example: "Let's meet for coffee to catch up." }
-    ]
-  },
-  { 
-    id: 25, 
-    verb: "Bring up", 
-    definitions: [
-      { meaning: "Mencionar um assunto", example: "Don't bring up that topic again." },
-      { meaning: "Criar filhos", example: "She brought up three children alone." }
-    ]
-  },
-  { 
-    id: 26, 
-    verb: "Back up", 
-    definitions: [
-      { meaning: "Apoiar", example: "Can you back me up in the meeting?" },
-      { meaning: "Fazer cópia de segurança", example: "Remember to back up your files." }
-    ]
-  },
-  { 
-    id: 27, 
-    verb: "Drop off", 
-    definitions: [
-      { meaning: "Deixar alguém", example: "I can drop you off at the station." },
-      { meaning: "Adormecer", example: "I dropped off during the movie." }
-    ]
-  },
-  { 
-    id: 28, 
-    verb: "Get away", 
-    definitions: [
-      { meaning: "Escapar", example: "The robbers managed to get away." },
-      { meaning: "Sair de férias", example: "We need to get away for a few days." }
-    ]
-  },
-  { 
-    id: 29, 
-    verb: "Check in", 
-    definitions: [
-      { meaning: "Registrar entrada", example: "We checked in at the hotel at 2 PM." }
-    ]
-  },
-  { 
-    id: 30, 
-    verb: "Pass out", 
-    definitions: [
-      { meaning: "Desmaiar", example: "It was so hot that he passed out." },
-      { meaning: "Distribuir", example: "The teacher passed out the exams." }
-    ]
-  },
-
-  // FASE 4 (31-40) - Rotina e Ações Básicas
-  { 
-    id: 31, 
-    verb: "Wake up", 
-    definitions: [
-      { meaning: "Acordar", example: "I wake up at 7 AM every day." }
-    ]
-  },
-  { 
-    id: 32, 
-    verb: "Get up", 
-    definitions: [
-      { meaning: "Levantar-se", example: "He gets up as soon as the alarm rings." }
-    ]
-  },
-  { 
-    id: 33, 
-    verb: "Put on", 
-    definitions: [
-      { meaning: "Vestir", example: "Put on your coat, it's cold outside." },
-      { meaning: "Ganhar peso", example: "He has put on some weight." }
-    ]
-  },
-  { 
-    id: 34, 
-    verb: "Take off", 
-    definitions: [
-      { meaning: "Tirar roupa", example: "Please take off your shoes inside." },
-      { meaning: "Decolar", example: "The plane took off on time." }
-    ]
-  },
-  { 
-    id: 35, 
-    verb: "Turn on", 
-    definitions: [
-      { meaning: "Ligar", example: "Can you turn on the TV?" }
-    ]
-  },
-  { 
-    id: 36, 
-    verb: "Turn off", 
-    definitions: [
-      { meaning: "Desligar", example: "Don't forget to turn off the lights." }
-    ]
-  },
-  { 
-    id: 37, 
-    verb: "Eat out", 
-    definitions: [
-      { meaning: "Comer fora", example: "We love to eat out on Fridays." }
-    ]
-  },
-  { 
-    id: 38, 
-    verb: "Look forward to", 
-    definitions: [
-      { meaning: "Esperar ansiosamente", example: "I look forward to seeing you again." }
-    ]
-  },
-  { 
-    id: 39, 
-    verb: "Cut down on", 
-    definitions: [
-      { meaning: "Reduzir o consumo", example: "I need to cut down on sugar." }
-    ]
-  },
-  { 
-    id: 40, 
-    verb: "Dress up", 
-    definitions: [
-      { meaning: "Vestir-se formalmente", example: "We need to dress up for the wedding." },
-      { meaning: "Fantasiar-se", example: "Kids love to dress up as superheroes." }
-    ]
-  },
-
-  // FASE 5 (41-50) - Relacionamentos e Emoções
-  { 
-    id: 41, 
-    verb: "Ask out", 
-    definitions: [
-      { meaning: "Convidar para sair", example: "He finally asked her out for dinner." }
-    ]
-  },
-  { 
-    id: 42, 
-    verb: "Break up", 
-    definitions: [
-      { meaning: "Terminar relacionamento", example: "They broke up after two years together." }
-    ]
-  },
-  { 
-    id: 43, 
-    verb: "Cheer up", 
-    definitions: [
-      { meaning: "Animar-se", example: "Cheer up! Things will get better." }
-    ]
-  },
-  { 
-    id: 44, 
-    verb: "Let down", 
-    definitions: [
-      { meaning: "Decepcionar", example: "I promised to help, I won't let you down." }
-    ]
-  },
-  { 
-    id: 45, 
-    verb: "Make up", 
-    definitions: [
-      { meaning: "Fazer as pazes", example: "They argued but made up quickly." },
-      { meaning: "Inventar", example: "He made up the whole story." }
-    ]
-  },
-  { 
-    id: 46, 
-    verb: "Pick on", 
-    definitions: [
-      { meaning: "Implicar", example: "Stop picking on your little brother." }
-    ]
-  },
-  { 
-    id: 47, 
-    verb: "Put up with", 
-    definitions: [
-      { meaning: "Tolerar", example: "I can't put up with this noise anymore." }
-    ]
-  },
-  { 
-    id: 48, 
-    verb: "Run into", 
-    definitions: [
-      { meaning: "Encontrar por acaso", example: "I ran into an old friend at the mall." },
-      { meaning: "Colidir", example: "The car ran into a tree." }
-    ]
-  },
-  { 
-    id: 49, 
-    verb: "Split up", 
-    definitions: [
-      { meaning: "Separar-se", example: "The group split up to find the clues." }
-    ]
-  },
-  { 
-    id: 50, 
-    verb: "Grow up", 
-    definitions: [
-      { meaning: "Crescer", example: "I grew up in a small town." }
-    ]
-  },
-  
-  // FASE 6 (51-60) - Trabalho e Estudos
-  {
-    id: 51,
-    verb: "Burn out",
-    definitions: [
-      { meaning: "Esgotar-se", example: "If you work too much, you will burn out." }
-    ]
-  },
-  {
-    id: 52,
-    verb: "Fill out",
-    definitions: [
-      { meaning: "Preencher", example: "Please fill out this application form." }
-    ]
-  },
-  {
-    id: 53,
-    verb: "Hand in",
-    definitions: [
-      { meaning: "Entregar", example: "Submit your homework by handing it in tomorrow." }
-    ]
-  },
-  {
-    id: 54,
-    verb: "Lay off",
-    definitions: [
-      { meaning: "Demitir", example: "The company had to lay off 50 employees." }
-    ]
-  },
-  {
-    id: 55,
-    verb: "Take over",
-    definitions: [
-      { meaning: "Assumir o controle", example: "She will take over the project next week." }
-    ]
-  },
-  {
-    id: 56,
-    verb: "Set up",
-    definitions: [
-      { meaning: "Configurar", example: "I need to set up my new computer." },
-      { meaning: "Estabelecer", example: "They set up a new branch in the city." }
-    ]
-  },
-  {
-    id: 57,
-    verb: "Slack off",
-    definitions: [
-      { meaning: "Fazer corpo mole", example: "Stop slacking off and get back to work." }
-    ]
-  },
-  {
-    id: 58,
-    verb: "Think over",
-    definitions: [
-      { meaning: "Refletir", example: "I need some time to think it over." }
-    ]
-  },
-  {
-    id: 59,
-    verb: "Write down",
-    definitions: [
-      { meaning: "Anotar", example: "Write down the address so you don't forget." }
-    ]
-  },
-  {
-    id: 60,
-    verb: "Catch on",
-    definitions: [
-      { meaning: "Entender", example: "It took him a while to catch on to the joke." },
-      { meaning: "Tornar-se popular", example: "This new fashion style is catching on fast." }
-    ]
-  },
-
-  // FASE 7 (61-70) - Movimento e Viagem
-  {
-    id: 61,
-    verb: "Check out",
-    definitions: [
-      { meaning: "Fazer checkout", example: "We must check out of the hotel by 11 AM." },
-      { meaning: "Dar uma olhada", example: "Check out this new car!" }
-    ]
-  },
-  {
-    id: 62,
-    verb: "Get in",
-    definitions: [
-      { meaning: "Entrar", example: "Get in the car, let's go!" },
-      { meaning: "Chegar em casa", example: "What time did you get in last night?" }
-    ]
-  },
-  {
-    id: 63,
-    verb: "Get out",
-    definitions: [
-      { meaning: "Sair", example: "Get out of here immediately!" }
-    ]
-  },
-  {
-    id: 64,
-    verb: "Get on",
-    definitions: [
-      { meaning: "Subir/Entrar (em veículo)", example: "I got on the wrong bus." },
-      { meaning: "Se dar bem / Progredir", example: "He is getting on well in his new job." }
-    ]
-  },
-  {
-    id: 65,
-    verb: "Get off",
-    definitions: [
-      { meaning: "Descer", example: "We get off at the next station." }
-    ]
-  },
-  {
-    id: 66,
-    verb: "Go away",
-    definitions: [
-      { meaning: "Ir embora", example: "Please go away and leave me alone." }
-    ]
-  },
-  {
-    id: 67,
-    verb: "Pull over",
-    definitions: [
-      { meaning: "Encostar o veículo", example: "The police asked him to pull over." }
-    ]
-  },
-  {
-    id: 68,
-    verb: "See off",
-    definitions: [
-      { meaning: "Acompanhar na despedida (ex.: ver alguém partir no aeroporto)", example: "I went to the airport to see him off." }
-    ]
-  },
-  {
-    id: 69,
-    verb: "Speed up",
-    definitions: [
-      { meaning: "Acelerar", example: "You need to speed up to pass that truck." }
-    ]
-  },
-  {
-    id: 70,
-    verb: "Slow down",
-    definitions: [
-      { meaning: "Desacelerar", example: "Slow down! You're driving too fast." }
-    ]
-  },
-
-  // FASE 8 (71-80) - Comunicação e Ideias
-  {
-    id: 71,
-    verb: "Call back",
-    definitions: [
-      { meaning: "Retornar a ligação", example: "I'm busy now, can I call you back?" }
-    ]
-  },
-  {
-    id: 72,
-    verb: "Come up with",
-    definitions: [
-      { meaning: "Propor", example: "He came up with a brilliant plan." }
-    ]
-  },
-  {
-    id: 73,
-    verb: "Cut off",
-    definitions: [
-      { meaning: "Interromper", example: "Don't cut me off while I'm speaking." },
-      { meaning: "Cortar fornecimento", example: "They cut off our electricity." }
-    ]
-  },
-  {
-    id: 74,
-    verb: "Get across",
-    definitions: [
-      { meaning: "Fazer-se entender", example: "He tried to get his point across." }
-    ]
-  },
-  {
-    id: 75,
-    verb: "Look back",
-    definitions: [
-      { meaning: "Olhar para trás", example: "When I look back, I have no regrets." }
-    ]
-  },
-  {
-    id: 76,
-    verb: "Point out",
-    definitions: [
-      { meaning: "Salientar", example: "She pointed out the mistakes in my report." }
-    ]
-  },
-  {
-    id: 77,
-    verb: "Read up on",
-    definitions: [
-      { meaning: "Pesquisar", example: "I need to read up on this subject." }
-    ]
-  },
-  {
-    id: 78,
-    verb: "Speak up",
-    definitions: [
-      { meaning: "Falar mais alto", example: "Could you speak up? I can't hear you." }
-    ]
-  },
-  {
-    id: 79,
-    verb: "Talk over",
-    definitions: [
-      { meaning: "Discutir detalhadamente", example: "We need to talk over our future plans." }
-    ]
-  },
-  {
-    id: 80,
-    verb: "Turn down",
-    definitions: [
-      { meaning: "Recusar", example: "She turned down the job offer." },
-      { meaning: "Abaixar volume", example: "Please turn down the music." }
-    ]
-  },
-
-  // FASE 9 (81-90) - Problemas e Conflitos
-  {
-    id: 81,
-    verb: "Fall apart",
-    definitions: [
-      { meaning: "Desmoronar", example: "The old chair fell apart when I sat on it." }
-    ]
-  },
-  {
-    id: 82,
-    verb: "Get away with",
-    definitions: [
-      { meaning: "Sair impune", example: "He broke the vase and got away with it." }
-    ]
-  },
-  {
-    id: 83,
-    verb: "Hold back",
-    definitions: [
-      { meaning: "Conter / Impedir (ex.: controlar multidão)", example: "The police held back the crowd." },
-      { meaning: "Reprimir / Conter emoção", example: "She couldn't hold back the tears." }
-    ]
-  },
-  {
-    id: 84,
-    verb: "Mess up",
-    definitions: [
-      { meaning: "Estragar tudo", example: "I messed up the presentation." }
-    ]
-  },
-  {
-    id: 85,
-    verb: "Pay back",
-    definitions: [
-      { meaning: "Pagar de volta", example: "I will pay you back as soon as possible." },
-      { meaning: "Vingar-se", example: "He paid him back for the insult." }
-    ]
-  },
-  {
-    id: 86,
-    verb: "Rip off",
-    definitions: [
-      { meaning: "Enganar / Cobrar muito caro (passar a perna)", example: "That tourist shop rips people off." }
-    ]
-  },
-  {
-    id: 87,
-    verb: "Run over",
-    definitions: [
-      { meaning: "Atropelar", example: "Be careful not to run over the cat." }
-    ]
-  },
-  {
-    id: 88,
-    verb: "Stand up for",
-    definitions: [
-      { meaning: "Defender", example: "You must stand up for your rights." }
-    ]
-  },
-  {
-    id: 89,
-    verb: "Tell off",
-    definitions: [
-      { meaning: "Dar uma bronca", example: "The teacher told him off for being late." }
-    ]
-  },
-  {
-    id: 90,
-    verb: "Use up",
-    definitions: [
-      { meaning: "Gastar tudo", example: "We have used up all the paper." }
-    ]
-  },
-
-  // FASE 10 (91-100) - Variados e Idiomáticos
-  {
-    id: 91,
-    verb: "Do over",
-    definitions: [
-      { meaning: "Fazer novamente", example: "This report is bad, you have to do it over." }
-    ]
-  },
-  {
-    id: 92,
-    verb: "Drop out",
-    definitions: [
-      { meaning: "Abandonar (os estudos) / Largar", example: "He dropped out of college to start a business." }
-    ]
-  },
-  {
-    id: 93,
-    verb: "End up",
-    definitions: [
-      { meaning: "Acabar", example: "We ended up eating pizza at home." }
-    ]
-  },
-  {
-    id: 94,
-    verb: "Fall behind",
-    definitions: [
-      { meaning: "Ficar para trás", example: "Study hard so you don't fall behind." }
-    ]
-  },
-  {
-    id: 95,
-    verb: "Go over",
-    definitions: [
-      { meaning: "Revisar", example: "Let's go over the details one more time." }
-    ]
-  },
-  {
-    id: 96,
-    verb: "Keep up with",
-    definitions: [
-      { meaning: "Acompanhar o ritmo", example: "It's hard to keep up with technology." }
-    ]
-  },
-  {
-    id: 97,
-    verb: "Look up to",
-    definitions: [
-      { meaning: "Admirar", example: "I have always looked up to my father." }
-    ]
-  },
-  {
-    id: 98,
-    verb: "Pass away",
-    definitions: [
-      { meaning: "Falecer", example: "His grandfather passed away last night." }
-    ]
-  },
-  {
-    id: 99,
-    verb: "Show off",
-    definitions: [
-      { meaning: "Exibir-se", example: "Stop showing off your new car." }
-    ]
-  },
-  {
-    id: 100,
-    verb: "Throw away",
-    definitions: [
-      { meaning: "Jogar fora", example: "Don't throw away these old photos." }
-    ]
-  }
-];
-
-// --- DADOS DOS VERBOS IRREGULARES ---
-export const IRREGULAR_VERBS_DATA = [
-  // FASE 1 (1-10) - Essenciais do Dia a Dia
-  { id: 1, pt: 'beber', presente: 'drink', passado: 'drank', particípio: 'drunk'},
-  { id: 2, pt: 'comer', presente: 'eat', passado: 'ate', particípio: 'eaten'},
-  { id: 3, pt: 'ir', presente: 'go', passado: 'went', particípio: 'gone'},
-  { id: 4, pt: 'ver', presente: 'see', passado: 'saw', particípio: 'seen'},
-  { id: 5, pt: 'escrever', presente: 'write', passado: 'wrote', particípio: 'written'},
-  { id: 6, pt: 'quebrar', presente: 'break', passado: 'broke', particípio: 'broken'},
-  { id: 7, pt: 'trazer', presente: 'bring', passado: 'brought', particípio: 'brought'},
-  { id: 8, pt: 'manter', presente: 'keep', passado: 'kept', particípio: 'kept' },
-  { id: 9, pt: 'significar', presente: 'mean', passado: 'meant', particípio: 'meant' },
-  { id: 10, pt: 'obter/conseguir', presente: 'get', passado: 'got', particípio: 'gotten' },
-
-  // FASE 2 (11-20) - Movimento e Ação
-  { id: 11, pt: 'correr', presente: 'run', passado: 'ran', particípio: 'run' },
-  { id: 12, pt: 'dizer', presente: 'say', passado: 'said', particípio: 'said' },
-  { id: 13, pt: 'falar', presente: 'speak', passado: 'spoke', particípio: 'spoken' },
-  { id: 14, pt: 'colocar', presente: 'put', passado: 'put', particípio: 'put' },
-  { id: 15, pt: 'pegar/levar', presente: 'take', passado: 'took', particípio: 'taken' },
-  { id: 16, pt: 'começar', presente: 'begin', passado: 'began', particípio: 'begun' },
-  { id: 17, pt: 'escolher', presente: 'choose', passado: 'chose', particípio: 'chosen' },
-  { id: 18, pt: 'vir', presente: 'come', passado: 'came', particípio: 'come' },
-  { id: 19, pt: 'fazer', presente: 'do', passado: 'did', particípio: 'done' },
-  { id: 20, pt: 'cair', presente: 'fall', passado: 'fell', particípio: 'fallen' },
-
-  // FASE 3 (21-30) - Cognição e Estado
-  { id: 21, pt: 'sentir', presente: 'feel', passado: 'felt', particípio: 'felt' },
-  { id: 22, pt: 'voar', presente: 'fly', passado: 'flew', particípio: 'flown' },
-  { id: 23, pt: 'esquecer', presente: 'forget', passado: 'forgot', particípio: 'forgotten' },
-  { id: 24, pt: 'dar', presente: 'give', passado: 'gave', particípio: 'given' },
-  { id: 25, pt: 'ouvir', presente: 'hear', passado: 'heard', particípio: 'heard' },
-  { id: 26, pt: 'saber', presente: 'know', passado: 'knew', particípio: 'known' },
-  { id: 27, pt: 'sair/deixar', presente: 'leave', passado: 'left', particípio: 'left' },
-  { id: 28, pt: 'perder', presente: 'lose', passado: 'lost', particípio: 'lost' },
-  { id: 29, pt: 'fazer (criar)', presente: 'make', passado: 'made', particípio: 'made' },
-  { id: 30, pt: 'conhecer/encontrar', presente: 'meet', passado: 'met', particípio: 'met' },
-
-  // FASE 4 (31-40) - Transações e Posse
-  { id: 31, pt: 'pagar', presente: 'pay', passado: 'paid', particípio: 'paid' },
-  { id: 32, pt: 'comprar', presente: 'buy', passado: 'bought', particípio: 'bought' },
-  { id: 33, pt: 'vender', presente: 'sell', passado: 'sold', particípio: 'sold' },
-  { id: 34, pt: 'enviar', presente: 'send', passado: 'sent', particípio: 'sent' },
-  { id: 35, pt: 'gastar', presente: 'spend', passado: 'spent', particípio: 'spent' },
-  { id: 36, pt: 'emprestar', presente: 'lend', passado: 'lent', particípio: 'lent' },
-  { id: 37, pt: 'custar', presente: 'cost', passado: 'cost', particípio: 'cost' },
-  { id: 38, pt: 'construir', presente: 'build', passado: 'built', particípio: 'built' },
-  { id: 39, pt: 'cortar', presente: 'cut', passado: 'cut', particípio: 'cut' },
-  { id: 40, pt: 'ter', presente: 'have', passado: 'had', particípio: 'had' },
-
-  // FASE 5 (41-50) - Sensoriais e Mentais
-  { id: 41, pt: 'ler', presente: 'read', passado: 'read', particípio: 'read' }, // Pronúncia muda (red)
-  { id: 42, pt: 'pensar', presente: 'think', passado: 'thought', particípio: 'thought' },
-  { id: 43, pt: 'entender', presente: 'understand', passado: 'understood', particípio: 'understood' },
-  { id: 44, pt: 'ensinar', presente: 'teach', passado: 'taught', particípio: 'taught' },
-  { id: 45, pt: 'contar (história)', presente: 'tell', passado: 'told', particípio: 'told' },
-  { id: 46, pt: 'dormir', presente: 'sleep', passado: 'slept', particípio: 'slept' },
-  { id: 47, pt: 'acordar', presente: 'wake', passado: 'woke', particípio: 'woken' },
-  { id: 48, pt: 'sonhar', presente: 'dream', passado: 'dreamt', particípio: 'dreamt' },
-  { id: 49, pt: 'vestir', presente: 'wear', passado: 'wore', particípio: 'worn' },
-  { id: 50, pt: 'cantar', presente: 'sing', passado: 'sang', particípio: 'sung' },
-
-  // FASE 6 (51-60) - Natureza e Mudança
-  { id: 51, pt: 'crescer', presente: 'grow', passado: 'grew', particípio: 'grown' },
-  { id: 52, pt: 'tornar-se', presente: 'become', passado: 'became', particípio: 'become' },
-  { id: 53, pt: 'morder', presente: 'bite', passado: 'bit', particípio: 'bitten' },
-  { id: 54, pt: 'soprar', presente: 'blow', passado: 'blew', particípio: 'blown' },
-  { id: 55, pt: 'congelar', presente: 'freeze', passado: 'froze', particípio: 'frozen' },
-  { id: 56, pt: 'brilhar', presente: 'shine', passado: 'shone', particípio: 'shone' },
-  { id: 57, pt: 'queimar', presente: 'burn', passado: 'burnt', particípio: 'burnt' },
-  { id: 58, pt: 'esconder', presente: 'hide', passado: 'hid', particípio: 'hidden' },
-  { id: 59, pt: 'segurar', presente: 'hold', passado: 'held', particípio: 'held' },
-  { id: 60, pt: 'alimentar', presente: 'feed', passado: 'fed', particípio: 'fed' },
-
-  // FASE 7 (61-70) - Ações Físicas Intensas
-  { id: 61, pt: 'pegar/agarrar', presente: 'catch', passado: 'caught', particípio: 'caught' },
-  { id: 62, pt: 'lutar', presente: 'fight', passado: 'fought', particípio: 'fought' },
-  { id: 63, pt: 'bater', presente: 'hit', passado: 'hit', particípio: 'hit' },
-  { id: 64, pt: 'machucar', presente: 'hurt', passado: 'hurt', particípio: 'hurt' },
-  { id: 65, pt: 'disparar/atirar', presente: 'shoot', passado: 'shot', particípio: 'shot' },
-  { id: 66, pt: 'lançar', presente: 'throw', passado: 'threw', particípio: 'thrown' },
-  { id: 67, pt: 'vencer', presente: 'win', passado: 'won', particípio: 'won' },
-  { id: 68, pt: 'roubar', presente: 'steal', passado: 'stole', particípio: 'stolen' },
-  { id: 69, pt: 'andar (veículo)', presente: 'ride', passado: 'rode', particípio: 'ridden' },
-  { id: 70, pt: 'nadar', presente: 'swim', passado: 'swam', particípio: 'swum' },
-
-  // FASE 8 (71-80) - Posição e Localização
-  { id: 71, pt: 'sentar', presente: 'sit', passado: 'sat', particípio: 'sat' },
-  { id: 72, pt: 'ficar de pé', presente: 'stand', passado: 'stood', particípio: 'stood' },
-  { id: 73, pt: 'deitar (posição)', presente: 'lie', passado: 'lay', particípio: 'lain' },
-  { id: 74, pt: 'colocar/pôr', presente: 'set', passado: 'set', particípio: 'set' },
-  { id: 75, pt: 'deixar/permitir', presente: 'let', passado: 'let', particípio: 'let' },
-  { id: 76, pt: 'liderar', presente: 'lead', passado: 'led', particípio: 'led' },
-  { id: 77, pt: 'encontrar/achar', presente: 'find', passado: 'found', particípio: 'found' },
-  { id: 78, pt: 'pendurar', presente: 'hang', passado: 'hung', particípio: 'hung' },
-  { id: 79, pt: 'fechar', presente: 'shut', passado: 'shut', particípio: 'shut' },
-  { id: 80, pt: 'tocar (som)', presente: 'ring', passado: 'rang', particípio: 'rung' },
-
-  // FASE 9 (81-90) - Criativos e Abstratos
-  { id: 81, pt: 'desenhar', presente: 'draw', passado: 'drew', particípio: 'drawn' },
-  { id: 82, pt: 'mostrar', presente: 'show', passado: 'showed', particípio: 'shown' },
-  { id: 83, pt: 'lidar', presente: 'deal', passado: 'dealt', particípio: 'dealt' },
-  { id: 84, pt: 'cavar', presente: 'dig', passado: 'dug', particípio: 'dug' },
-  { id: 85, pt: 'acender/iluminar', presente: 'light', passado: 'lit', particípio: 'lit' },
-  { id: 86, pt: 'provar', presente: 'prove', passado: 'proved', particípio: 'proven' },
-  { id: 87, pt: 'costurar', presente: 'sew', passado: 'sewed', particípio: 'sewn' },
-  { id: 88, pt: 'afundar', presente: 'sink', passado: 'sank', particípio: 'sunk' },
-  { id: 89, pt: 'espalhar', presente: 'spread', passado: 'spread', particípio: 'spread' },
-  { id: 90, pt: 'colar/grudar', presente: 'stick', passado: 'stuck', particípio: 'stuck' },
-
-  // FASE 10 (91-100) - Desafios Finais
-  { id: 91, pt: 'surgir', presente: 'arise', passado: 'arose', particípio: 'arisen' },
-  { id: 92, pt: 'suportar', presente: 'bear', passado: 'bore', particípio: 'born' },
-  { id: 93, pt: 'apostar', presente: 'bet', passado: 'bet', particípio: 'bet' },
-  { id: 94, pt: 'proibir', presente: 'forbid', passado: 'forbade', particípio: 'forbidden' },
-  { id: 95, pt: 'perdoar', presente: 'forgive', passado: 'forgave', particípio: 'forgiven' },
-  { id: 96, pt: 'sacudir', presente: 'shake', passado: 'shook', particípio: 'shaken' },
-  { id: 97, pt: 'deslizar', presente: 'slide', passado: 'slid', particípio: 'slid' },
-  { id: 98, pt: 'girar', presente: 'spin', passado: 'spun', particípio: 'spun' },
-  { id: 99, pt: 'rasgar', presente: 'tear', passado: 'tore', particípio: 'torn' },
-  { id: 100, pt: 'vestir/usar', presente: 'wear', passado: 'wore', particípio: 'worn' }
-];
-
-// --- DADOS DE TRADUÇÃO (MASTER OF TENSES) ---
-export const TRANSLATION_DATA = [
-  // --- TIPO 1: PRESENT PERFECT SIMPLE (Foco: Experiência / Resultado) ---
-  // Regex: have/has + particípio
-  { id: 1, pt: "Eu perdi minha carteira.", en: "I have lost my wallet." },
-  { id: 2, pt: "Ela ainda não chegou.", en: "She has not arrived yet." },
-  { id: 3, pt: "Nós já estivemos lá antes.", en: "We have been there before." },
-  { id: 4, pt: "Você já viu esse filme?", en: "Have you seen this movie?" },
-  { id: 5, pt: "Eles compraram um carro novo.", en: "They have bought a new car." },
-  { id: 6, pt: "Eu nunca comi sushi.", en: "I have never eaten sushi." },
-  { id: 7, pt: "Ele acabou de sair.", en: "He has just left." },
-  { id: 8, pt: "Nós perdemos nossas chaves.", en: "We have lost our keys." },
-  { id: 9, pt: "Ela morou aqui por dois anos.", en: "She has lived here for two years." },
-  { id: 10, pt: "Eu já terminei meu dever de casa.", en: "I have already finished my homework." },
-  { id: 11, pt: "Você já esteve no Brasil?", en: "Have you ever been to Brazil?" },
-  { id: 12, pt: "O trem ainda não partiu.", en: "The train has not left yet." },
-  { id: 13, pt: "Eu conheço ele desde 2010.", en: "I have known him since 2010." },
-  { id: 14, pt: "Ela quebrou a perna.", en: "She has broken her leg." },
-  { id: 15, pt: "Nós vendemos nossa casa.", en: "We have sold our house." },
-  { id: 16, pt: "Onde você esteve?", en: "Where have you been?" },
-  { id: 17, pt: "Eu cortei meu dedo.", en: "I have cut my finger." },
-  { id: 18, pt: "Eles não me contaram a verdade.", en: "They have not told me the truth." },
-  { id: 19, pt: "Ela esqueceu seu nome?", en: "Has she forgotten your name?" },
-  { id: 20, pt: "Eu li três livros essa semana.", en: "I have read three books this week." },
-  { id: 21, pt: "Nós bebemos muita água hoje.", en: "We have drunk a lot of water today." },
-  { id: 22, pt: "Você trancou a porta?", en: "Have you locked the door?" },
-  { id: 23, pt: "O tempo mudou de repente.", en: "The weather has changed suddenly." },
-  { id: 24, pt: "Eu sempre amei música.", en: "I have always loved music." },
-  { id: 25, pt: "Ela não fez a cama dela.", en: "She has not made her bed." },
-
-  // --- TIPO 2: PRESENT PERFECT CONTINUOUS (Foco: Duração / Continuidade) ---
-  // Regex: have/has + been + ing
-  { id: 26, pt: "Eu tenho trabalhado muito ultimamente.", en: "I have been working hard lately." },
-  { id: 27, pt: "Ela tem esperado por horas.", en: "She has been waiting for hours." },
-  { id: 28, pt: "O que você tem feito?", en: "What have you been doing?" },
-  { id: 29, pt: "Nós temos estudado inglês o dia todo.", en: "We have been studying English all day." },
-  { id: 30, pt: "Tem chovido desde ontem.", en: "It has been raining since yesterday." },
-  { id: 31, pt: "Eu tenho tentado te ligar.", en: "I have been trying to call you." },
-  { id: 32, pt: "Eles têm jogado futebol a tarde toda.", en: "They have been playing soccer all afternoon." },
-  { id: 33, pt: "Você tem dormido bem?", en: "Have you been sleeping well?" },
-  { id: 34, pt: "Ela tem aprendido a tocar piano.", en: "She has been learning to play the piano." },
-  { id: 35, pt: "Eu tenho pensado em você.", en: "I have been thinking about you." },
-  { id: 36, pt: "Nós temos morado aqui há dez anos.", en: "We have been living here for ten years." },
-  { id: 37, pt: "Por que você tem chorado?", en: "Why have you been crying?" },
-  { id: 38, pt: "Ele tem consertado o carro.", en: "He has been fixing the car." },
-  { id: 39, pt: "Eu não tenho me sentido bem.", en: "I have not been feeling well." },
-  { id: 40, pt: "Eles têm conversado por horas.", en: "They have been talking for hours." },
-  { id: 41, pt: "Você tem assistido TV demais.", en: "You have been watching too much TV." },
-  { id: 42, pt: "Ela tem corrido no parque?", en: "Has she been running in the park?" },
-  { id: 43, pt: "Eu tenho procurado minhas chaves.", en: "I have been looking for my keys." },
-  { id: 44, pt: "Nós temos economizado dinheiro.", en: "We have been saving money." },
-  { id: 45, pt: "O cachorro tem latido a noite toda.", en: "The dog has been barking all night." },
-  { id: 46, pt: "Eu tenho lido aquele livro.", en: "I have been reading that book." },
-  { id: 47, pt: "Eles têm viajado pela Europa.", en: "They have been traveling around Europe." },
-  { id: 48, pt: "Você tem comido saudável?", en: "Have you been eating healthy?" },
-  { id: 49, pt: "Ela tem ensinado nesta escola desde 2015.", en: "She has been teaching at this school since 2015." },
-  { id: 50, pt: "Eu tenho cozinhado o jantar.", en: "I have been cooking dinner." },
-
-  // --- TIPO 3: PAST PERFECT SIMPLE (Foco: Passado do Passado) ---
-  // Regex: had + particípio (sem been+ing)
-  { id: 51, pt: "Quando cheguei, ela já tinha saído.", en: "When I arrived, she had already left." },
-  { id: 52, pt: "Eu nunca tinha visto aquilo antes.", en: "I had never seen that before." },
-  { id: 53, pt: "Eles tinham acabado de terminar o jantar.", en: "They had just finished dinner." },
-  { id: 54, pt: "O filme já tinha começado?", en: "Had the movie already started?" },
-  { id: 55, pt: "Eu perdi a chave que ele tinha me dado.", en: "I lost the key he had given me." },
-  { id: 56, pt: "Ela disse que não tinha estudado.", en: "She said she had not studied." },
-  { id: 57, pt: "Nós ficamos felizes porque tínhamos vencido.", en: "We were happy because we had won." },
-  { id: 58, pt: "Ele tinha esquecido seu passaporte.", en: "He had forgotten his passport." },
-  { id: 59, pt: "Você já tinha estado lá antes?", en: "Had you been there before?" },
-  { id: 60, pt: "A chuva tinha parado quando saímos.", en: "The rain had stopped when we went out." },
-  { id: 61, pt: "Eu percebi que tinha cometido um erro.", en: "I realized I had made a mistake." },
-  { id: 62, pt: "Ela estava cansada porque tinha trabalhado muito.", en: "She was tired because she had worked hard." },
-  { id: 63, pt: "Eles não tinham comido nada o dia todo.", en: "They had not eaten anything all day." },
-  { id: 64, pt: "Eu pensei que você tinha ligado.", en: "I thought you had called." },
-  { id: 65, pt: "A casa estava quieta, as crianças tinham dormido.", en: "The house was quiet, the children had slept." },
-  { id: 66, pt: "Ele me disse que tinha comprado um carro.", en: "He told me he had bought a car." },
-  { id: 67, pt: "Eu não sabia quem tinha enviado a carta.", en: "I did not know who had sent the letter." },
-  { id: 68, pt: "Ela tinha vivido em Londres antes de mudar.", en: "She had lived in London before moving." },
-  { id: 69, pt: "Nós tínhamos reservado uma mesa.", en: "We had reserved a table." },
-  { id: 70, pt: "O ladrão já tinha escapado.", en: "The thief had already escaped." },
-  { id: 71, pt: "Você tinha terminado o relatório?", en: "Had you finished the report?" },
-  { id: 72, pt: "Eu nunca tinha conhecido alguém tão famoso.", en: "I had never met someone so famous." },
-  { id: 73, pt: "O avião já tinha decolado.", en: "The plane had already taken off." },
-  { id: 74, pt: "Ela sentiu que já tinha visto ele.", en: "She felt she had seen him before." },
-  { id: 75, pt: "Eles tinham vendido tudo.", en: "They had sold everything." },
-
-  // --- TIPO 4: PAST PERFECT CONTINUOUS (Foco: Duração no Passado) ---
-  // Regex: had + been + ing
-  { id: 76, pt: "Eu estava esperando há uma hora quando ele chegou.", en: "I had been waiting for an hour when he arrived." },
-  { id: 77, pt: "Ela estava chorando antes de você entrar?", en: "Had she been crying before you came in?" },
-  { id: 78, pt: "Nós estávamos andando o dia todo.", en: "We had been walking all day." },
-  { id: 79, pt: "Ele estava bebendo?", en: "Had he been drinking?" },
-  { id: 80, pt: "A estrada estava molhada porque tinha estado chovendo.", en: "The road was wet because it had been raining." },
-  { id: 81, pt: "Eu estava trabalhando naquela empresa há anos.", en: "I had been working at that company for years." },
-  { id: 82, pt: "Eles estavam tentando consertar o computador.", en: "They had been trying to fix the computer." },
-  { id: 83, pt: "Ela estava dormindo mal ultimamente.", en: "She had been sleeping badly lately." },
-  { id: 84, pt: "O que você estava fazendo antes disso?", en: "What had you been doing before that?" },
-  { id: 85, pt: "Nós estávamos viajando por três meses.", en: "We had been traveling for three months." },
-  { id: 86, pt: "Ele estava correndo, por isso estava suado.", en: "He had been running, that's why he was sweaty." },
-  { id: 87, pt: "Eu estava estudando espanhol antes de ir para a Espanha.", en: "I had been studying Spanish before going to Spain." },
-  { id: 88, pt: "Eles não estavam prestando atenção.", en: "They had not been paying attention." },
-  { id: 89, pt: "Você estava esperando muito tempo?", en: "Had you been waiting long?" },
-  { id: 90, pt: "Ela estava ensinando lá desde 1990.", en: "She had been teaching there since 1990." },
-  { id: 91, pt: "O motor estava quente, ele estava dirigindo.", en: "The engine was hot, he had been driving." },
-  { id: 92, pt: "Nós estávamos procurando a casa certa.", en: "We had been looking for the right house." },
-  { id: 93, pt: "Eu estava sonhando com isso.", en: "I had been dreaming about this." },
-  { id: 94, pt: "Eles estavam discutindo antes da festa.", en: "They had been arguing before the party." },
-  { id: 95, pt: "Ela estava cozinhando o dia inteiro.", en: "She had been cooking all day." },
-  { id: 96, pt: "Eu não estava me sentindo bem naquela semana.", en: "I had not been feeling well that week." },
-  { id: 97, pt: "O cachorro estava latindo há horas.", en: "The dog had been barking for hours." },
-  { id: 98, pt: "Eles estavam jogando tênis quando choveu.", en: "They had been playing tennis when it rained." },
-  { id: 99, pt: "Eu estava lendo até dormir.", en: "I had been reading until I fell asleep." },
-  { id: 100, pt: "Você estava assistindo TV?", en: "Had you been watching TV?" },
-
-  // --- TIPO 5: FUTURE PERFECT SIMPLE (Foco: Conclusão no Futuro) ---
-  // Regex: will + have (sem been+ing)
-  { id: 101, pt: "Eu terei terminado até amanhã.", en: "I will have finished by tomorrow." },
-  { id: 102, pt: "Ela terá saído quando você chegar.", en: "She will have left by the time you arrive." },
-  { id: 103, pt: "Nós teremos feito o trabalho até as 5.", en: "We will have done the work by 5." },
-  { id: 104, pt: "Eles terão chegado em casa?", en: "Will they have arrived home?" },
-  { id: 105, pt: "Eu não terei esquecido isso.", en: "I will not have forgotten this." },
-  { id: 106, pt: "O filme já terá terminado.", en: "The movie will have already finished." },
-  { id: 107, pt: "Você terá lido o livro até a aula?", en: "Will you have read the book by class?" },
-  { id: 108, pt: "Ela terá se formado no ano que vem.", en: "She will have graduated next year." },
-  { id: 109, pt: "Nós teremos vivido aqui por dez anos em breve.", en: "We will have lived here for ten years soon." },
-  { id: 110, pt: "Ele terá consertado o carro até sexta?", en: "Will he have fixed the car by Friday?" },
-  { id: 111, pt: "Eu terei economizado dinheiro suficiente.", en: "I will have saved enough money." },
-  { id: 112, pt: "Tudo terá mudado até lá.", en: "Everything will have changed by then." },
-  { id: 113, pt: "Ela terá preparado o jantar.", en: "She will have cooked dinner." },
-  { id: 114, pt: "Nós não teremos ido ainda.", en: "We will not have gone yet." },
-  { id: 115, pt: "O sol terá se posto.", en: "The sun will have set." },
-  { id: 116, pt: "Eu terei escrito o relatório.", en: "I will have written the report." },
-  { id: 117, pt: "Eles terão construído a ponte.", en: "They will have built the bridge." },
-  { id: 118, pt: "Você terá limpado seu quarto?", en: "Will you have cleaned your room?" },
-  { id: 119, pt: "Ela terá aprendido inglês.", en: "She will have learned English." },
-  { id: 120, pt: "Eu terei visto tudo.", en: "I will have seen everything." },
-  { id: 121, pt: "O avião terá pousado.", en: "The plane will have landed." },
-  { id: 122, pt: "Nós teremos pago a dívida.", en: "We will have paid the debt." },
-  { id: 123, pt: "Ele terá encontrado um emprego.", en: "He will have found a job." },
-  { id: 124, pt: "Eu terei acordado antes de você.", en: "I will have woken up before you." },
-  { id: 125, pt: "A neve terá derretido.", en: "The snow will have melted." },
-
-  // --- TIPO 6: COMUNICAÇÃO DO DIA A DIA (Concessivas, Condicionais, Temporais, Contraste, etc.) ---
-  { id: 126, pt: "Mesmo que eu não vá, eu quero que você aproveite.", en: "Even if I don't go, I want you to enjoy it.", tags: ["concessive", "desire"] },
-  { id: 127, pt: "Eu aprendi muito com ela, mas ela não é minha professora mais.", en: "I learned a lot from her, but she is not my teacher anymore.", tags: ["contrast", "past"] },
-  { id: 128, pt: "Enquanto ele não sair, eu não consigo ajudar.", en: "While he doesn't leave, I can't help.", tags: ["temporal", "negative"] },
-  { id: 129, pt: "Se não tivesse chovido, eu até iria.", en: "If it hadn't rained, I would have gone.", tags: ["conditional", "past"] },
-  { id: 130, pt: "Embora eu esteja cansado, ainda preciso terminar isso.", en: "Although I am tired, I still need to finish this.", tags: ["concessive"] },
-  { id: 131, pt: "Se você puder, me avise mais tarde.", en: "If you can, let me know later.", tags: ["conditional", "request"] },
-  { id: 132, pt: "Quando eu terminar, eu te ligo.", en: "When I finish, I'll call you.", tags: ["temporal", "future"] },
-  { id: 133, pt: "Eu queria ajudar, mas não tinha tempo.", en: "I wanted to help, but I didn't have time.", tags: ["contrast", "past"] },
-  { id: 134, pt: "Assim que ele chegar, a gente começa.", en: "As soon as he arrives, we start.", tags: ["temporal"] },
-  { id: 135, pt: "Mesmo se ela tentar, não vai dar certo.", en: "Even if she tries, it won't work.", tags: ["concessive"] },
-  { id: 136, pt: "Eu não fui porque estava doente.", en: "I didn't go because I was sick.", tags: ["cause", "past"] },
-  { id: 137, pt: "Já que você terminou, pode descansar.", en: "Since you finished, you can rest.", tags: ["cause"] },
-  { id: 138, pt: "Eu estudei bastante, então passei.", en: "I studied a lot, so I passed.", tags: ["result", "past"] },
-  { id: 139, pt: "Ela falou baixo para ninguém ouvir.", en: ["She spoke quietly so that no one would hear.", "She spoke quietly so nobody would hear."], tags: ["purpose"] },
-  { id: 140, pt: "Eu saí cedo para evitar trânsito.", en: ["I left early in order to avoid traffic.", "I left early to avoid traffic.", "I left early to avoid the traffic."], tags: ["purpose", "past"] },
-  { id: 141, pt: "Ele é tão educado quanto o irmão.", en: "He is as polite as his brother.", tags: ["comparison"] },
-  { id: 142, pt: "Ela corre mais rápido do que eu.", en: "She runs faster than me.", tags: ["comparison"] },
-  { id: 143, pt: "Eu queria que chovesse menos.", en: "I wish it rained less.", tags: ["desire"] },
-  { id: 144, pt: "Tomara que você consiga.", en: "I hope you can make it.", tags: ["desire"] },
-  { id: 145, pt: "Eu tenho que sair agora.", en: "I have to leave now.", tags: ["obligation"] },
-  { id: 146, pt: "Nós precisamos terminar hoje.", en: "We need to finish today.", tags: ["obligation"] },
-  { id: 147, pt: "Você deveria descansar mais.", en: "You should rest more.", tags: ["advice"] },
-  { id: 148, pt: "Se eu fosse você, eu falaria com ela.", en: "If I were you, I would talk to her.", tags: ["advice", "conditional"] },
-  { id: 149, pt: "Que tal pedir ajuda?", en: ["Why don't you ask for help?", "How about asking for help?"], tags: ["suggestion"] },
-  { id: 150, pt: "Vamos sair mais cedo?", en: "Shall we leave earlier?", tags: ["suggestion"] },
-  { id: 151, pt: "Talvez ele chegue tarde.", en: "Maybe he arrives late.", tags: ["possibility"] },
-  { id: 152, pt: "Pode ser que eu me atrase.", en: ["I might be late.", "I may be late."], tags: ["possibility"] }
-];
-
-// --- DADOS DO JOGO DE SPEAKING (SEQUENCIAL & COMPLETO) ---
-export const SPEAKING_DATA = {
-  alphabet: [
-    { display: 'A', valid: ['a', 'ei', 'hey'] },
-    { display: 'B', valid: ['b', 'bee', 'be'] },
-    { display: 'C', valid: ['c', 'see', 'sea'] },
-    { display: 'D', valid: ['d', 'dee'] },
-    { display: 'E', valid: ['e'] },
-    { display: 'F', valid: ['f', 'eff'] },
-    { display: 'G', valid: ['g', 'jee', 'gee'] },
-    { display: 'H', valid: ['h', 'aitch'] },
-    { display: 'I', valid: ['i', 'eye'] },
-    { display: 'J', valid: ['j', 'jay'] },
-    { display: 'K', valid: ['k', 'kay'] },
-    { display: 'L', valid: ['l', 'el'] },
-    { display: 'M', valid: ['m', 'em'] },
-    { display: 'N', valid: ['n', 'en'] },
-    { display: 'O', valid: ['o', 'oh'] },
-    { display: 'P', valid: ['p', 'pee'] },
-    { display: 'Q', valid: ['q', 'cue', 'queue'] },
-    { display: 'R', valid: ['r', 'ar', 'are'] },
-    { display: 'S', valid: ['s', 'ess'] },
-    { display: 'T', valid: ['t', 'tee', 'tea'] },
-    { display: 'U', valid: ['u', 'you'] },
-    { display: 'V', valid: ['v', 'vee'] },
-    { display: 'W', valid: ['w', 'double u'] },
-    { display: 'X', valid: ['x', 'ex'] },
-    { display: 'Y', valid: ['y', 'why'] },
-    { display: 'Z', valid: ['z', 'zee', 'zed'] }
-  ],
-  numbers: [
-    { display: '0', valid: ['0', 'zero', 'oh'] },
-    { display: '3', valid: ['3', 'three'] }, // Muita gente fala "tree"
-    { display: '13', valid: ['13', 'thirteen'] },
-    { display: '30', valid: ['30', 'thirty'] },
-    { display: '33', valid: ['33', 'thirty three'] },
-    { display: '100', valid: ['100', 'one hundred', 'a hundred'] },
-    { display: '1,000', valid: ['1000', 'one thousand', 'a thousand'] },
-    { display: '2025', valid: ['2025', 'two thousand twenty five', 'twenty twenty five'] }
-  ],
-  ordinals: [
-    { display: '1st', valid: ['1st', 'first'] },
-    { display: '2nd', valid: ['2nd', 'second'] },
-    { display: '3rd', valid: ['3rd', 'third'] },
-    { display: '5th', valid: ['5th', 'fifth'] },
-    { display: '6th', valid: ['6th', 'sixth'] }, // Difícil pronunciar o xth
-    { display: '12th', valid: ['12th', 'twelfth'] },
-    { display: '20th', valid: ['20th', 'twentieth'] }
-  ],
-  
-  // --- NOVAS CATEGORIAS ---
-
-  // Palavras com letras mudas (Silent Letters) - O terror dos brasileiros
-  silent_letters: [
-    { display: 'Knife', valid: ['knife'] }, // K mudo
-    { display: 'Island', valid: ['island'] }, // S mudo
-    { display: 'Chocolate', valid: ['chocolate'] }, // Late -> Let
-    { display: 'Salmon', valid: ['salmon'] }, // L mudo
-    { display: 'Comfortable', valid: ['comfortable'] }, // "Comftable"
-    { display: 'Vegetable', valid: ['vegetable'] }, // "Vegtable"
-    { display: 'Muscle', valid: ['muscle'] }, // C mudo
-    { display: 'Answer', valid: ['answer'] }, // W mudo
-    { display: 'Wednesday', valid: ['wednesday'] }, // D mudo
-    { display: 'Castle', valid: ['castle'] } // T mudo
-  ],
-
-  // Pares Mínimos e Sons Difíceis (TH, EE vs I)
-  tricky_words: [
-    { display: 'World', valid: ['world'] }, // O Rl é difícil
-    { display: 'Word', valid: ['word'] },
-    { display: 'Girl', valid: ['girl'] },
-    { display: 'Beach', valid: ['beach'] }, // vs Bitch
-    { display: 'Sheet', valid: ['sheet'] }, // vs Shit
-    { display: 'Three', valid: ['three'] }, // TH
-    { display: 'Tree', valid: ['tree'] }, 
-    { display: 'Thought', valid: ['thought'] },
-    { display: 'Throughout', valid: ['throughout'] },
-    { display: 'Iron', valid: ['iron'] } // "Aiern" não "Airon"
-  ],
-
-  // Trava-Línguas Curtos (Tongue Twisters)
-  tongue_twisters: [
-    { display: 'Ice Cream', valid: ['ice cream'] },
-    { display: 'I scream', valid: ['i scream'] },
-    { display: 'She sells sea shells', valid: ['she sells sea shells'] },
-    { display: 'Red lorry, yellow lorry', valid: ['red lorry yellow lorry'] },
-    { display: 'Eleven benevolent elephants', valid: ['eleven benevolent elephants'] },
-    { display: 'Good blood, bad blood', valid: ['good blood bad blood'] }
-  ],
-
-  // Marcas e Tech (Como se fala em inglês nativo)
-  tech_brands: [
-    { display: 'Apple', valid: ['apple'] }, // Não "Êipou"
-    { display: 'Google', valid: ['google'] }, // Não "Gugou"
-    { display: 'Facebook', valid: ['facebook'] }, // Não "Feisibuki"
-    { display: 'LinkedIn', valid: ['linkedin'] }, // Não "Linkidin"
-    { display: 'Instagram', valid: ['instagram'] },
-    { display: 'Wi-Fi', valid: ['wifi', 'wi-fi'] }, // "Wai Fai"
-    { display: 'YouTube', valid: ['youtube'] },
-    { display: 'Spotify', valid: ['spotify'] }
-  ]
-};
-
-// --- NOVO JOGO: VOCABULARY BUILDER (30 Palavras por Dia) ---
+//#region ================= DAILY VOCABULARY DATA =================//
 export const VOCABULARY_DATA = [
   { id: 2328, en: "secure", pt: ["seguro", "protegido", "garantir", "proteger"] },
   { id: 191, en: "attitude", pt: ["atitude", "postura", "comportamento"] },
@@ -4152,3 +3001,1614 @@ export const VOCABULARY_DATA = [
   { id: 2114, en: "race", pt: ["corrida"] },
   { id: 2093, en: "purpose", pt: ["propósito"] }
 ];
+//#endregion
+
+//#region ================= IRREGULAR VERBS DATA =================//
+export const IRREGULAR_VERBS_DATA = [
+  // FASE 1 (1-10) - Essenciais do Dia a Dia
+  { id: 1, pt: 'beber', presente: 'drink', passado: 'drank', particípio: 'drunk'},
+  { id: 2, pt: 'comer', presente: 'eat', passado: 'ate', particípio: 'eaten'},
+  { id: 3, pt: 'ir', presente: 'go', passado: 'went', particípio: 'gone'},
+  { id: 4, pt: 'ver', presente: 'see', passado: 'saw', particípio: 'seen'},
+  { id: 5, pt: 'escrever', presente: 'write', passado: 'wrote', particípio: 'written'},
+  { id: 6, pt: 'quebrar', presente: 'break', passado: 'broke', particípio: 'broken'},
+  { id: 7, pt: 'trazer', presente: 'bring', passado: 'brought', particípio: 'brought'},
+  { id: 8, pt: 'manter', presente: 'keep', passado: 'kept', particípio: 'kept' },
+  { id: 9, pt: 'significar', presente: 'mean', passado: 'meant', particípio: 'meant' },
+  { id: 10, pt: 'obter/conseguir', presente: 'get', passado: 'got', particípio: 'gotten' },
+
+  // FASE 2 (11-20) - Movimento e Ação
+  { id: 11, pt: 'correr', presente: 'run', passado: 'ran', particípio: 'run' },
+  { id: 12, pt: 'dizer', presente: 'say', passado: 'said', particípio: 'said' },
+  { id: 13, pt: 'falar', presente: 'speak', passado: 'spoke', particípio: 'spoken' },
+  { id: 14, pt: 'colocar', presente: 'put', passado: 'put', particípio: 'put' },
+  { id: 15, pt: 'pegar/levar', presente: 'take', passado: 'took', particípio: 'taken' },
+  { id: 16, pt: 'começar', presente: 'begin', passado: 'began', particípio: 'begun' },
+  { id: 17, pt: 'escolher', presente: 'choose', passado: 'chose', particípio: 'chosen' },
+  { id: 18, pt: 'vir', presente: 'come', passado: 'came', particípio: 'come' },
+  { id: 19, pt: 'fazer', presente: 'do', passado: 'did', particípio: 'done' },
+  { id: 20, pt: 'cair', presente: 'fall', passado: 'fell', particípio: 'fallen' },
+
+  // FASE 3 (21-30) - Cognição e Estado
+  { id: 21, pt: 'sentir', presente: 'feel', passado: 'felt', particípio: 'felt' },
+  { id: 22, pt: 'voar', presente: 'fly', passado: 'flew', particípio: 'flown' },
+  { id: 23, pt: 'esquecer', presente: 'forget', passado: 'forgot', particípio: 'forgotten' },
+  { id: 24, pt: 'dar', presente: 'give', passado: 'gave', particípio: 'given' },
+  { id: 25, pt: 'ouvir', presente: 'hear', passado: 'heard', particípio: 'heard' },
+  { id: 26, pt: 'saber', presente: 'know', passado: 'knew', particípio: 'known' },
+  { id: 27, pt: 'sair/deixar', presente: 'leave', passado: 'left', particípio: 'left' },
+  { id: 28, pt: 'perder', presente: 'lose', passado: 'lost', particípio: 'lost' },
+  { id: 29, pt: 'fazer (criar)', presente: 'make', passado: 'made', particípio: 'made' },
+  { id: 30, pt: 'conhecer/encontrar', presente: 'meet', passado: 'met', particípio: 'met' },
+
+  // FASE 4 (31-40) - Transações e Posse
+  { id: 31, pt: 'pagar', presente: 'pay', passado: 'paid', particípio: 'paid' },
+  { id: 32, pt: 'comprar', presente: 'buy', passado: 'bought', particípio: 'bought' },
+  { id: 33, pt: 'vender', presente: 'sell', passado: 'sold', particípio: 'sold' },
+  { id: 34, pt: 'enviar', presente: 'send', passado: 'sent', particípio: 'sent' },
+  { id: 35, pt: 'gastar', presente: 'spend', passado: 'spent', particípio: 'spent' },
+  { id: 36, pt: 'emprestar', presente: 'lend', passado: 'lent', particípio: 'lent' },
+  { id: 37, pt: 'custar', presente: 'cost', passado: 'cost', particípio: 'cost' },
+  { id: 38, pt: 'construir', presente: 'build', passado: 'built', particípio: 'built' },
+  { id: 39, pt: 'cortar', presente: 'cut', passado: 'cut', particípio: 'cut' },
+  { id: 40, pt: 'ter', presente: 'have', passado: 'had', particípio: 'had' },
+
+  // FASE 5 (41-50) - Sensoriais e Mentais
+  { id: 41, pt: 'ler', presente: 'read', passado: 'read', particípio: 'read' }, // Pronúncia muda (red)
+  { id: 42, pt: 'pensar', presente: 'think', passado: 'thought', particípio: 'thought' },
+  { id: 43, pt: 'entender', presente: 'understand', passado: 'understood', particípio: 'understood' },
+  { id: 44, pt: 'ensinar', presente: 'teach', passado: 'taught', particípio: 'taught' },
+  { id: 45, pt: 'contar (história)', presente: 'tell', passado: 'told', particípio: 'told' },
+  { id: 46, pt: 'dormir', presente: 'sleep', passado: 'slept', particípio: 'slept' },
+  { id: 47, pt: 'acordar', presente: 'wake', passado: 'woke', particípio: 'woken' },
+  { id: 48, pt: 'sonhar', presente: 'dream', passado: 'dreamt', particípio: 'dreamt' },
+  { id: 49, pt: 'vestir', presente: 'wear', passado: 'wore', particípio: 'worn' },
+  { id: 50, pt: 'cantar', presente: 'sing', passado: 'sang', particípio: 'sung' },
+
+  // FASE 6 (51-60) - Natureza e Mudança
+  { id: 51, pt: 'crescer', presente: 'grow', passado: 'grew', particípio: 'grown' },
+  { id: 52, pt: 'tornar-se', presente: 'become', passado: 'became', particípio: 'become' },
+  { id: 53, pt: 'morder', presente: 'bite', passado: 'bit', particípio: 'bitten' },
+  { id: 54, pt: 'soprar', presente: 'blow', passado: 'blew', particípio: 'blown' },
+  { id: 55, pt: 'congelar', presente: 'freeze', passado: 'froze', particípio: 'frozen' },
+  { id: 56, pt: 'brilhar', presente: 'shine', passado: 'shone', particípio: 'shone' },
+  { id: 57, pt: 'queimar', presente: 'burn', passado: 'burnt', particípio: 'burnt' },
+  { id: 58, pt: 'esconder', presente: 'hide', passado: 'hid', particípio: 'hidden' },
+  { id: 59, pt: 'segurar', presente: 'hold', passado: 'held', particípio: 'held' },
+  { id: 60, pt: 'alimentar', presente: 'feed', passado: 'fed', particípio: 'fed' },
+
+  // FASE 7 (61-70) - Ações Físicas Intensas
+  { id: 61, pt: 'pegar/agarrar', presente: 'catch', passado: 'caught', particípio: 'caught' },
+  { id: 62, pt: 'lutar', presente: 'fight', passado: 'fought', particípio: 'fought' },
+  { id: 63, pt: 'bater', presente: 'hit', passado: 'hit', particípio: 'hit' },
+  { id: 64, pt: 'machucar', presente: 'hurt', passado: 'hurt', particípio: 'hurt' },
+  { id: 65, pt: 'disparar/atirar', presente: 'shoot', passado: 'shot', particípio: 'shot' },
+  { id: 66, pt: 'lançar', presente: 'throw', passado: 'threw', particípio: 'thrown' },
+  { id: 67, pt: 'vencer', presente: 'win', passado: 'won', particípio: 'won' },
+  { id: 68, pt: 'roubar', presente: 'steal', passado: 'stole', particípio: 'stolen' },
+  { id: 69, pt: 'andar (veículo)', presente: 'ride', passado: 'rode', particípio: 'ridden' },
+  { id: 70, pt: 'nadar', presente: 'swim', passado: 'swam', particípio: 'swum' },
+
+  // FASE 8 (71-80) - Posição e Localização
+  { id: 71, pt: 'sentar', presente: 'sit', passado: 'sat', particípio: 'sat' },
+  { id: 72, pt: 'ficar de pé', presente: 'stand', passado: 'stood', particípio: 'stood' },
+  { id: 73, pt: 'deitar (posição)', presente: 'lie', passado: 'lay', particípio: 'lain' },
+  { id: 74, pt: 'colocar/pôr', presente: 'set', passado: 'set', particípio: 'set' },
+  { id: 75, pt: 'deixar/permitir', presente: 'let', passado: 'let', particípio: 'let' },
+  { id: 76, pt: 'liderar', presente: 'lead', passado: 'led', particípio: 'led' },
+  { id: 77, pt: 'encontrar/achar', presente: 'find', passado: 'found', particípio: 'found' },
+  { id: 78, pt: 'pendurar', presente: 'hang', passado: 'hung', particípio: 'hung' },
+  { id: 79, pt: 'fechar', presente: 'shut', passado: 'shut', particípio: 'shut' },
+  { id: 80, pt: 'tocar (som)', presente: 'ring', passado: 'rang', particípio: 'rung' },
+
+  // FASE 9 (81-90) - Criativos e Abstratos
+  { id: 81, pt: 'desenhar', presente: 'draw', passado: 'drew', particípio: 'drawn' },
+  { id: 82, pt: 'mostrar', presente: 'show', passado: 'showed', particípio: 'shown' },
+  { id: 83, pt: 'lidar', presente: 'deal', passado: 'dealt', particípio: 'dealt' },
+  { id: 84, pt: 'cavar', presente: 'dig', passado: 'dug', particípio: 'dug' },
+  { id: 85, pt: 'acender/iluminar', presente: 'light', passado: 'lit', particípio: 'lit' },
+  { id: 86, pt: 'provar', presente: 'prove', passado: 'proved', particípio: 'proven' },
+  { id: 87, pt: 'costurar', presente: 'sew', passado: 'sewed', particípio: 'sewn' },
+  { id: 88, pt: 'afundar', presente: 'sink', passado: 'sank', particípio: 'sunk' },
+  { id: 89, pt: 'espalhar', presente: 'spread', passado: 'spread', particípio: 'spread' },
+  { id: 90, pt: 'colar/grudar', presente: 'stick', passado: 'stuck', particípio: 'stuck' },
+
+  // FASE 10 (91-100) - Desafios Finais
+  { id: 91, pt: 'surgir', presente: 'arise', passado: 'arose', particípio: 'arisen' },
+  { id: 92, pt: 'suportar', presente: 'bear', passado: 'bore', particípio: 'born' },
+  { id: 93, pt: 'apostar', presente: 'bet', passado: 'bet', particípio: 'bet' },
+  { id: 94, pt: 'proibir', presente: 'forbid', passado: 'forbade', particípio: 'forbidden' },
+  { id: 95, pt: 'perdoar', presente: 'forgive', passado: 'forgave', particípio: 'forgiven' },
+  { id: 96, pt: 'sacudir', presente: 'shake', passado: 'shook', particípio: 'shaken' },
+  { id: 97, pt: 'deslizar', presente: 'slide', passado: 'slid', particípio: 'slid' },
+  { id: 98, pt: 'girar', presente: 'spin', passado: 'spun', particípio: 'spun' },
+  { id: 99, pt: 'rasgar', presente: 'tear', passado: 'tore', particípio: 'torn' },
+  { id: 100, pt: 'vestir/usar', presente: 'wear', passado: 'wore', particípio: 'worn' }
+];
+//#endregion
+
+//#region ================ PHRASAL VERBS DATA =================//
+export const PHRASAL_VERBS_DATA = [
+  // FASE 1 (1-10) - Fundamentais e Continuidade
+  { 
+    id: 1, 
+    verb: "Go on", 
+    definitions: [
+      { meaning: "Continuar", example: "Please go on with your story." },
+      { meaning: "Acontecer", example: "I don't know what is going on here." }
+    ]
+  },
+  { 
+    id: 2, 
+    verb: "Give up", 
+    definitions: [
+      { meaning: "Desistir", example: "Don't give up on your dreams." },
+      { meaning: "Parar de fazer algo", example: "I finally gave up smoking last year." }
+    ]
+  },
+  { 
+    id: 3, 
+    verb: "Look for", 
+    definitions: [
+      { meaning: "Procurar", example: "I am looking for my keys." }
+    ]
+  },
+  { 
+    id: 4, 
+    verb: "Find out", 
+    definitions: [
+      { meaning: "Descobrir", example: "I found out the truth yesterday." }
+    ]
+  },
+  { 
+    id: 5, 
+    verb: "Run out of", 
+    definitions: [
+      { meaning: "Ficar sem", example: "We ran out of milk this morning." }
+    ]
+  },
+  { 
+    id: 6, 
+    verb: "Carry on", 
+    definitions: [
+      { meaning: "Continuar fazendo algo", example: "Carry on working while I'm gone." }
+    ]
+  },
+  { 
+    id: 7, 
+    verb: "Hold on", 
+    definitions: [
+      { meaning: "Aguardar um momento", example: "Hold on a second, please." },
+      { meaning: "Segurar firme", example: "Hold on tight to the railing!" }
+    ]
+  },
+  { 
+    id: 8, 
+    verb: "Watch out", 
+    definitions: [
+      { meaning: "Ter cuidado", example: "Watch out! There's a car coming." },
+      { meaning: "Prestar atenção", example: "You need to watch out for pickpockets here." }
+    ]
+  },
+  { 
+    id: 9, 
+    verb: "Figure out", 
+    definitions: [
+      { meaning: "Compreender", example: "I can't figure out why he did that." },
+      { meaning: "Encontrar solução", example: "We need to figure out a way to fix this." }
+    ]
+  },
+  { 
+    id: 10, 
+    verb: "Keep on", 
+    definitions: [
+      { meaning: "Continuar", example: "He kept on talking during the movie." }
+    ]
+  },
+
+  // FASE 2 (11-20) - Problemas, Soluções e Imprevistos
+  { 
+    id: 11, 
+    verb: "Break down", 
+    definitions: [
+      { meaning: "Parar de funcionar", example: "My car broke down on the highway." },
+      { meaning: "Desabar emocionalmente", example: "She broke down in tears after the news." }
+    ]
+  },
+  { 
+    id: 12, 
+    verb: "Call off", 
+    definitions: [
+      { meaning: "Cancelar", example: "The meeting was called off due to rain." }
+    ]
+  },
+  { 
+    id: 13, 
+    verb: "Put off", 
+    definitions: [
+      { meaning: "Adiar", example: "We had to put off the trip until next month." }
+    ]
+  },
+  { 
+    id: 14, 
+    verb: "Work out", 
+    definitions: [
+      { meaning: "Exercitar-se", example: "I work out at the gym three times a week." },
+      { meaning: "Resolver", example: "We need to work out a solution." },
+      { meaning: "Dar certo", example: "Don't worry, things will work out in the end." }
+    ]
+  },
+  {
+    id: 15,
+    verb: "Blow up",
+    definitions: [
+      { meaning: "Explodir (literalmente) / Explodir de raiva (perder a paciência)", example: "He blew up at me for being late." }
+    ]
+  },
+  { 
+    id: 16, 
+    verb: "Close down", 
+    definitions: [
+      { meaning: "Fechar definitivamente", example: "The factory closed down last year." }
+    ]
+  },
+  { 
+    id: 17, 
+    verb: "Chip in", 
+    definitions: [
+      { meaning: "Contribuir", example: "We all chipped in to buy him a gift." }
+    ]
+  },
+  { 
+    id: 18, 
+    verb: "Break in", 
+    definitions: [
+      { meaning: "Invadir", example: "Thieves broke in while we were away." },
+      { meaning: "Interromper", example: "Sorry to break in on your conversation." }
+    ]
+  },
+  { 
+    id: 19, 
+    verb: "Calm down", 
+    definitions: [
+      { meaning: "Acalmar-se", example: "You need to calm down before speaking." }
+    ]
+  },
+  { 
+    id: 20, 
+    verb: "Turn up", 
+    definitions: [
+      { meaning: "Chegar", example: "He turned up late to the party." },
+      { meaning: "Aumentar volume", example: "Can you turn up the radio?" }
+    ]
+  },
+
+  // FASE 3 (21-30) - Social, Cuidado e Lazer
+  { 
+    id: 21, 
+    verb: "Get along", 
+    definitions: [
+      { meaning: "Ter um bom relacionamento", example: "I get along well with my neighbors." }
+    ]
+  },
+  { 
+    id: 22, 
+    verb: "Hang out", 
+    definitions: [
+      { meaning: "Passar tempo", example: "We used to hang out at the park." }
+    ]
+  },
+  { 
+    id: 23, 
+    verb: "Look after", 
+    definitions: [
+      { meaning: "Cuidar de alguém", example: "Can you look after my dog?" }
+    ]
+  },
+  { 
+    id: 24, 
+    verb: "Catch up", 
+    definitions: [
+      { meaning: "Alcançar", example: "Go ahead, I'll catch up with you later." },
+      { meaning: "Colocar o papo em dia", example: "Let's meet for coffee to catch up." }
+    ]
+  },
+  { 
+    id: 25, 
+    verb: "Bring up", 
+    definitions: [
+      { meaning: "Mencionar um assunto", example: "Don't bring up that topic again." },
+      { meaning: "Criar filhos", example: "She brought up three children alone." }
+    ]
+  },
+  { 
+    id: 26, 
+    verb: "Back up", 
+    definitions: [
+      { meaning: "Apoiar", example: "Can you back me up in the meeting?" },
+      { meaning: "Fazer cópia de segurança", example: "Remember to back up your files." }
+    ]
+  },
+  { 
+    id: 27, 
+    verb: "Drop off", 
+    definitions: [
+      { meaning: "Deixar alguém", example: "I can drop you off at the station." },
+      { meaning: "Adormecer", example: "I dropped off during the movie." }
+    ]
+  },
+  { 
+    id: 28, 
+    verb: "Get away", 
+    definitions: [
+      { meaning: "Escapar", example: "The robbers managed to get away." },
+      { meaning: "Sair de férias", example: "We need to get away for a few days." }
+    ]
+  },
+  { 
+    id: 29, 
+    verb: "Check in", 
+    definitions: [
+      { meaning: "Registrar entrada", example: "We checked in at the hotel at 2 PM." }
+    ]
+  },
+  { 
+    id: 30, 
+    verb: "Pass out", 
+    definitions: [
+      { meaning: "Desmaiar", example: "It was so hot that he passed out." },
+      { meaning: "Distribuir", example: "The teacher passed out the exams." }
+    ]
+  },
+
+  // FASE 4 (31-40) - Rotina e Ações Básicas
+  { 
+    id: 31, 
+    verb: "Wake up", 
+    definitions: [
+      { meaning: "Acordar", example: "I wake up at 7 AM every day." }
+    ]
+  },
+  { 
+    id: 32, 
+    verb: "Get up", 
+    definitions: [
+      { meaning: "Levantar-se", example: "He gets up as soon as the alarm rings." }
+    ]
+  },
+  { 
+    id: 33, 
+    verb: "Put on", 
+    definitions: [
+      { meaning: "Vestir", example: "Put on your coat, it's cold outside." },
+      { meaning: "Ganhar peso", example: "He has put on some weight." }
+    ]
+  },
+  { 
+    id: 34, 
+    verb: "Take off", 
+    definitions: [
+      { meaning: "Tirar roupa", example: "Please take off your shoes inside." },
+      { meaning: "Decolar", example: "The plane took off on time." }
+    ]
+  },
+  { 
+    id: 35, 
+    verb: "Turn on", 
+    definitions: [
+      { meaning: "Ligar", example: "Can you turn on the TV?" }
+    ]
+  },
+  { 
+    id: 36, 
+    verb: "Turn off", 
+    definitions: [
+      { meaning: "Desligar", example: "Don't forget to turn off the lights." }
+    ]
+  },
+  { 
+    id: 37, 
+    verb: "Eat out", 
+    definitions: [
+      { meaning: "Comer fora", example: "We love to eat out on Fridays." }
+    ]
+  },
+  { 
+    id: 38, 
+    verb: "Look forward to", 
+    definitions: [
+      { meaning: "Esperar ansiosamente", example: "I look forward to seeing you again." }
+    ]
+  },
+  { 
+    id: 39, 
+    verb: "Cut down on", 
+    definitions: [
+      { meaning: "Reduzir o consumo", example: "I need to cut down on sugar." }
+    ]
+  },
+  { 
+    id: 40, 
+    verb: "Dress up", 
+    definitions: [
+      { meaning: "Vestir-se formalmente", example: "We need to dress up for the wedding." },
+      { meaning: "Fantasiar-se", example: "Kids love to dress up as superheroes." }
+    ]
+  },
+
+  // FASE 5 (41-50) - Relacionamentos e Emoções
+  { 
+    id: 41, 
+    verb: "Ask out", 
+    definitions: [
+      { meaning: "Convidar para sair", example: "He finally asked her out for dinner." }
+    ]
+  },
+  { 
+    id: 42, 
+    verb: "Break up", 
+    definitions: [
+      { meaning: "Terminar relacionamento", example: "They broke up after two years together." }
+    ]
+  },
+  { 
+    id: 43, 
+    verb: "Cheer up", 
+    definitions: [
+      { meaning: "Animar-se", example: "Cheer up! Things will get better." }
+    ]
+  },
+  { 
+    id: 44, 
+    verb: "Let down", 
+    definitions: [
+      { meaning: "Decepcionar", example: "I promised to help, I won't let you down." }
+    ]
+  },
+  { 
+    id: 45, 
+    verb: "Make up", 
+    definitions: [
+      { meaning: "Fazer as pazes", example: "They argued but made up quickly." },
+      { meaning: "Inventar", example: "He made up the whole story." }
+    ]
+  },
+  { 
+    id: 46, 
+    verb: "Pick on", 
+    definitions: [
+      { meaning: "Implicar", example: "Stop picking on your little brother." }
+    ]
+  },
+  { 
+    id: 47, 
+    verb: "Put up with", 
+    definitions: [
+      { meaning: "Tolerar", example: "I can't put up with this noise anymore." }
+    ]
+  },
+  { 
+    id: 48, 
+    verb: "Run into", 
+    definitions: [
+      { meaning: "Encontrar por acaso", example: "I ran into an old friend at the mall." },
+      { meaning: "Colidir", example: "The car ran into a tree." }
+    ]
+  },
+  { 
+    id: 49, 
+    verb: "Split up", 
+    definitions: [
+      { meaning: "Separar-se", example: "The group split up to find the clues." }
+    ]
+  },
+  { 
+    id: 50, 
+    verb: "Grow up", 
+    definitions: [
+      { meaning: "Crescer", example: "I grew up in a small town." }
+    ]
+  },
+  
+  // FASE 6 (51-60) - Trabalho e Estudos
+  {
+    id: 51,
+    verb: "Burn out",
+    definitions: [
+      { meaning: "Esgotar-se", example: "If you work too much, you will burn out." }
+    ]
+  },
+  {
+    id: 52,
+    verb: "Fill out",
+    definitions: [
+      { meaning: "Preencher", example: "Please fill out this application form." }
+    ]
+  },
+  {
+    id: 53,
+    verb: "Hand in",
+    definitions: [
+      { meaning: "Entregar", example: "Submit your homework by handing it in tomorrow." }
+    ]
+  },
+  {
+    id: 54,
+    verb: "Lay off",
+    definitions: [
+      { meaning: "Demitir", example: "The company had to lay off 50 employees." }
+    ]
+  },
+  {
+    id: 55,
+    verb: "Take over",
+    definitions: [
+      { meaning: "Assumir o controle", example: "She will take over the project next week." }
+    ]
+  },
+  {
+    id: 56,
+    verb: "Set up",
+    definitions: [
+      { meaning: "Configurar", example: "I need to set up my new computer." },
+      { meaning: "Estabelecer", example: "They set up a new branch in the city." }
+    ]
+  },
+  {
+    id: 57,
+    verb: "Slack off",
+    definitions: [
+      { meaning: "Fazer corpo mole", example: "Stop slacking off and get back to work." }
+    ]
+  },
+  {
+    id: 58,
+    verb: "Think over",
+    definitions: [
+      { meaning: "Refletir", example: "I need some time to think it over." }
+    ]
+  },
+  {
+    id: 59,
+    verb: "Write down",
+    definitions: [
+      { meaning: "Anotar", example: "Write down the address so you don't forget." }
+    ]
+  },
+  {
+    id: 60,
+    verb: "Catch on",
+    definitions: [
+      { meaning: "Entender", example: "It took him a while to catch on to the joke." },
+      { meaning: "Tornar-se popular", example: "This new fashion style is catching on fast." }
+    ]
+  },
+
+  // FASE 7 (61-70) - Movimento e Viagem
+  {
+    id: 61,
+    verb: "Check out",
+    definitions: [
+      { meaning: "Fazer checkout", example: "We must check out of the hotel by 11 AM." },
+      { meaning: "Dar uma olhada", example: "Check out this new car!" }
+    ]
+  },
+  {
+    id: 62,
+    verb: "Get in",
+    definitions: [
+      { meaning: "Entrar", example: "Get in the car, let's go!" },
+      { meaning: "Chegar em casa", example: "What time did you get in last night?" }
+    ]
+  },
+  {
+    id: 63,
+    verb: "Get out",
+    definitions: [
+      { meaning: "Sair", example: "Get out of here immediately!" }
+    ]
+  },
+  {
+    id: 64,
+    verb: "Get on",
+    definitions: [
+      { meaning: "Subir/Entrar (em veículo)", example: "I got on the wrong bus." },
+      { meaning: "Se dar bem / Progredir", example: "He is getting on well in his new job." }
+    ]
+  },
+  {
+    id: 65,
+    verb: "Get off",
+    definitions: [
+      { meaning: "Descer", example: "We get off at the next station." }
+    ]
+  },
+  {
+    id: 66,
+    verb: "Go away",
+    definitions: [
+      { meaning: "Ir embora", example: "Please go away and leave me alone." }
+    ]
+  },
+  {
+    id: 67,
+    verb: "Pull over",
+    definitions: [
+      { meaning: "Encostar o veículo", example: "The police asked him to pull over." }
+    ]
+  },
+  {
+    id: 68,
+    verb: "See off",
+    definitions: [
+      { meaning: "Acompanhar na despedida (ex.: ver alguém partir no aeroporto)", example: "I went to the airport to see him off." }
+    ]
+  },
+  {
+    id: 69,
+    verb: "Speed up",
+    definitions: [
+      { meaning: "Acelerar", example: "You need to speed up to pass that truck." }
+    ]
+  },
+  {
+    id: 70,
+    verb: "Slow down",
+    definitions: [
+      { meaning: "Desacelerar", example: "Slow down! You're driving too fast." }
+    ]
+  },
+
+  // FASE 8 (71-80) - Comunicação e Ideias
+  {
+    id: 71,
+    verb: "Call back",
+    definitions: [
+      { meaning: "Retornar a ligação", example: "I'm busy now, can I call you back?" }
+    ]
+  },
+  {
+    id: 72,
+    verb: "Come up with",
+    definitions: [
+      { meaning: "Propor", example: "He came up with a brilliant plan." }
+    ]
+  },
+  {
+    id: 73,
+    verb: "Cut off",
+    definitions: [
+      { meaning: "Interromper", example: "Don't cut me off while I'm speaking." },
+      { meaning: "Cortar fornecimento", example: "They cut off our electricity." }
+    ]
+  },
+  {
+    id: 74,
+    verb: "Get across",
+    definitions: [
+      { meaning: "Fazer-se entender", example: "He tried to get his point across." }
+    ]
+  },
+  {
+    id: 75,
+    verb: "Look back",
+    definitions: [
+      { meaning: "Olhar para trás", example: "When I look back, I have no regrets." }
+    ]
+  },
+  {
+    id: 76,
+    verb: "Point out",
+    definitions: [
+      { meaning: "Salientar", example: "She pointed out the mistakes in my report." }
+    ]
+  },
+  {
+    id: 77,
+    verb: "Read up on",
+    definitions: [
+      { meaning: "Pesquisar", example: "I need to read up on this subject." }
+    ]
+  },
+  {
+    id: 78,
+    verb: "Speak up",
+    definitions: [
+      { meaning: "Falar mais alto", example: "Could you speak up? I can't hear you." }
+    ]
+  },
+  {
+    id: 79,
+    verb: "Talk over",
+    definitions: [
+      { meaning: "Discutir detalhadamente", example: "We need to talk over our future plans." }
+    ]
+  },
+  {
+    id: 80,
+    verb: "Turn down",
+    definitions: [
+      { meaning: "Recusar", example: "She turned down the job offer." },
+      { meaning: "Abaixar volume", example: "Please turn down the music." }
+    ]
+  },
+
+  // FASE 9 (81-90) - Problemas e Conflitos
+  {
+    id: 81,
+    verb: "Fall apart",
+    definitions: [
+      { meaning: "Desmoronar", example: "The old chair fell apart when I sat on it." }
+    ]
+  },
+  {
+    id: 82,
+    verb: "Get away with",
+    definitions: [
+      { meaning: "Sair impune", example: "He broke the vase and got away with it." }
+    ]
+  },
+  {
+    id: 83,
+    verb: "Hold back",
+    definitions: [
+      { meaning: "Conter / Impedir (ex.: controlar multidão)", example: "The police held back the crowd." },
+      { meaning: "Reprimir / Conter emoção", example: "She couldn't hold back the tears." }
+    ]
+  },
+  {
+    id: 84,
+    verb: "Mess up",
+    definitions: [
+      { meaning: "Estragar tudo", example: "I messed up the presentation." }
+    ]
+  },
+  {
+    id: 85,
+    verb: "Pay back",
+    definitions: [
+      { meaning: "Pagar de volta", example: "I will pay you back as soon as possible." },
+      { meaning: "Vingar-se", example: "He paid him back for the insult." }
+    ]
+  },
+  {
+    id: 86,
+    verb: "Rip off",
+    definitions: [
+      { meaning: "Enganar / Cobrar muito caro (passar a perna)", example: "That tourist shop rips people off." }
+    ]
+  },
+  {
+    id: 87,
+    verb: "Run over",
+    definitions: [
+      { meaning: "Atropelar", example: "Be careful not to run over the cat." }
+    ]
+  },
+  {
+    id: 88,
+    verb: "Stand up for",
+    definitions: [
+      { meaning: "Defender", example: "You must stand up for your rights." }
+    ]
+  },
+  {
+    id: 89,
+    verb: "Tell off",
+    definitions: [
+      { meaning: "Dar uma bronca", example: "The teacher told him off for being late." }
+    ]
+  },
+  {
+    id: 90,
+    verb: "Use up",
+    definitions: [
+      { meaning: "Gastar tudo", example: "We have used up all the paper." }
+    ]
+  },
+
+  // FASE 10 (91-100) - Variados e Idiomáticos
+  {
+    id: 91,
+    verb: "Do over",
+    definitions: [
+      { meaning: "Fazer novamente", example: "This report is bad, you have to do it over." }
+    ]
+  },
+  {
+    id: 92,
+    verb: "Drop out",
+    definitions: [
+      { meaning: "Abandonar (os estudos) / Largar", example: "He dropped out of college to start a business." }
+    ]
+  },
+  {
+    id: 93,
+    verb: "End up",
+    definitions: [
+      { meaning: "Acabar", example: "We ended up eating pizza at home." }
+    ]
+  },
+  {
+    id: 94,
+    verb: "Fall behind",
+    definitions: [
+      { meaning: "Ficar para trás", example: "Study hard so you don't fall behind." }
+    ]
+  },
+  {
+    id: 95,
+    verb: "Go over",
+    definitions: [
+      { meaning: "Revisar", example: "Let's go over the details one more time." }
+    ]
+  },
+  {
+    id: 96,
+    verb: "Keep up with",
+    definitions: [
+      { meaning: "Acompanhar o ritmo", example: "It's hard to keep up with technology." }
+    ]
+  },
+  {
+    id: 97,
+    verb: "Look up to",
+    definitions: [
+      { meaning: "Admirar", example: "I have always looked up to my father." }
+    ]
+  },
+  {
+    id: 98,
+    verb: "Pass away",
+    definitions: [
+      { meaning: "Falecer", example: "His grandfather passed away last night." }
+    ]
+  },
+  {
+    id: 99,
+    verb: "Show off",
+    definitions: [
+      { meaning: "Exibir-se", example: "Stop showing off your new car." }
+    ]
+  },
+  {
+    id: 100,
+    verb: "Throw away",
+    definitions: [
+      { meaning: "Jogar fora", example: "Don't throw away these old photos." }
+    ]
+  }
+];
+//#endregion
+
+//#region ================= TRANSLATION CHALLENGE DATA =================//
+export const TRANSLATION_DATA = {
+  // TIPO 1: PRESENT PERFECT
+  present_perfect: [
+    { id: 1, pt: "Eu perdi minha carteira.", en: "I have lost my wallet." },
+    { id: 2, pt: "Ela ainda não chegou.", en: "She has not arrived yet." },
+    { id: 3, pt: "Nós já estivemos lá antes.", en: "We have been there before." },
+    { id: 4, pt: "Você já viu esse filme?", en: "Have you seen this movie?" },
+    { id: 5, pt: "Eles compraram um carro novo.", en: "They have bought a new car." },
+    { id: 6, pt: "Eu nunca comi sushi.", en: "I have never eaten sushi." },
+    { id: 7, pt: "Ele acabou de sair.", en: "He has just left." },
+    { id: 8, pt: "Nós perdemos nossas chaves.", en: "We have lost our keys." },
+    { id: 9, pt: "Ela morou aqui por dois anos.", en: "She has lived here for two years." },
+    { id: 10, pt: "Eu já terminei meu dever de casa.", en: "I have already finished my homework." },
+    { id: 11, pt: "Você já esteve no Brasil?", en: "Have you ever been to Brazil?" },
+    { id: 12, pt: "O trem ainda não partiu.", en: "The train has not left yet." },
+    { id: 13, pt: "Eu conheço ele desde 2010.", en: "I have known him since 2010." },
+    { id: 14, pt: "Ela quebrou a perna.", en: "She has broken her leg." },
+    { id: 15, pt: "Nós vendemos nossa casa.", en: "We have sold our house." },
+    { id: 16, pt: "Onde você esteve?", en: "Where have you been?" },
+    { id: 17, pt: "Eu cortei meu dedo.", en: "I have cut my finger." },
+    { id: 18, pt: "Eles não me contaram a verdade.", en: "They have not told me the truth." },
+    { id: 19, pt: "Ela esqueceu seu nome?", en: "Has she forgotten your name?" },
+    { id: 20, pt: "Eu li três livros essa semana.", en: "I have read three books this week." },
+    { id: 21, pt: "Nós bebemos muita água hoje.", en: "We have drunk a lot of water today." },
+    { id: 22, pt: "Você trancou a porta?", en: "Have you locked the door?" },
+    { id: 23, pt: "O tempo mudou de repente.", en: "The weather has changed suddenly." },
+    { id: 24, pt: "Eu sempre amei música.", en: "I have always loved music." },
+    { id: 25, pt: "Ela não fez a cama dela.", en: "She has not made her bed." },
+    { id: 26, pt: "Eu tenho trabalhado muito ultimamente.", en: "I have been working hard lately." },
+    { id: 27, pt: "Ela tem esperado por horas.", en: "She has been waiting for hours." },
+    { id: 28, pt: "O que você tem feito?", en: "What have you been doing?" },
+    { id: 29, pt: "Nós temos estudado inglês o dia todo.", en: "We have been studying English all day." },
+    { id: 30, pt: "Tem chovido desde ontem.", en: "It has been raining since yesterday." },
+    { id: 31, pt: "Eu tenho tentado te ligar.", en: "I have been trying to call you." },
+    { id: 32, pt: "Eles têm jogado futebol a tarde toda.", en: "They have been playing soccer all afternoon." },
+    { id: 33, pt: "Você tem dormido bem?", en: "Have you been sleeping well?" },
+    { id: 34, pt: "Ela tem aprendido a tocar piano.", en: "She has been learning to play the piano." },
+    { id: 35, pt: "Eu tenho pensado em você.", en: "I have been thinking about you." },
+    { id: 36, pt: "Nós temos morado aqui há dez anos.", en: "We have been living here for ten years." },
+    { id: 37, pt: "Por que você tem chorado?", en: "Why have you been crying?" },
+    { id: 38, pt: "Ele tem consertado o carro.", en: "He has been fixing the car." },
+    { id: 39, pt: "Eu não tenho me sentido bem.", en: "I have not been feeling well." },
+    { id: 40, pt: "Eles têm conversado por horas.", en: "They have been talking for hours." },
+    { id: 41, pt: "Você tem assistido TV demais.", en: "You have been watching too much TV." },
+    { id: 42, pt: "Ela tem corrido no parque?", en: "Has she been running in the park?" },
+    { id: 43, pt: "Eu tenho procurado minhas chaves.", en: "I have been looking for my keys." },
+    { id: 44, pt: "Nós temos economizado dinheiro.", en: "We have been saving money." },
+    { id: 45, pt: "O cachorro tem latido a noite toda.", en: "The dog has been barking all night." },
+    { id: 46, pt: "Eu tenho lido aquele livro.", en: "I have been reading that book." },
+    { id: 47, pt: "Eles têm viajado pela Europa.", en: "They have been traveling around Europe." },
+    { id: 48, pt: "Você tem comido saudável?", en: "Have you been eating healthy?" },
+    { id: 49, pt: "Ela tem ensinado nesta escola desde 2015.", en: "She has been teaching at this school since 2015." },
+    { id: 50, pt: "Eu tenho cozinhado o jantar.", en: "I have been cooking dinner." }
+  ],
+
+  // TIPO 2: PAST PERFECT 
+  past_perfect: [
+    { id: 51, pt: "Quando cheguei, ela já tinha saído.", en: "When I arrived, she had already left." },
+    { id: 52, pt: "Eu nunca tinha visto aquilo antes.", en: "I had never seen that before." },
+    { id: 53, pt: "Eles tinham acabado de terminar o jantar.", en: "They had just finished dinner." },
+    { id: 54, pt: "O filme já tinha começado?", en: "Had the movie already started?" },
+    { id: 55, pt: "Eu perdi a chave que ele tinha me dado.", en: "I lost the key he had given me." },
+    { id: 56, pt: "Ela disse que não tinha estudado.", en: "She said she had not studied." },
+    { id: 57, pt: "Nós ficamos felizes porque tínhamos vencido.", en: "We were happy because we had won." },
+    { id: 58, pt: "Ele tinha esquecido seu passaporte.", en: "He had forgotten his passport." },
+    { id: 59, pt: "Você já tinha estado lá antes?", en: "Had you been there before?" },
+    { id: 60, pt: "A chuva tinha parado quando saímos.", en: "The rain had stopped when we went out." },
+    { id: 61, pt: "Eu percebi que tinha cometido um erro.", en: "I realized I had made a mistake." },
+    { id: 62, pt: "Ela estava cansada porque tinha trabalhado muito.", en: "She was tired because she had worked hard." },
+    { id: 63, pt: "Eles não tinham comido nada o dia todo.", en: "They had not eaten anything all day." },
+    { id: 64, pt: "Eu pensei que você tinha ligado.", en: "I thought you had called." },
+    { id: 65, pt: "A casa estava quieta, as crianças tinham dormido.", en: "The house was quiet, the children had slept." },
+    { id: 66, pt: "Ele me disse que tinha comprado um carro.", en: "He told me he had bought a car." },
+    { id: 67, pt: "Eu não sabia quem tinha enviado a carta.", en: "I did not know who had sent the letter." },
+    { id: 68, pt: "Ela tinha vivido em Londres antes de mudar.", en: "She had lived in London before moving." },
+    { id: 69, pt: "Nós tínhamos reservado uma mesa.", en: "We had reserved a table." },
+    { id: 70, pt: "O ladrão já tinha escapado.", en: "The thief had already escaped." },
+    { id: 71, pt: "Você tinha terminado o relatório?", en: "Had you finished the report?" },
+    { id: 72, pt: "Eu nunca tinha conhecido alguém tão famoso.", en: "I had never met someone so famous." },
+    { id: 73, pt: "O avião já tinha decolado.", en: "The plane had already taken off." },
+    { id: 74, pt: "Ela sentiu que já tinha visto ele.", en: "She felt she had seen him before." },
+    { id: 75, pt: "Eles tinham vendido tudo.", en: "They had sold everything." },
+    { id: 76, pt: "Eu estava esperando há uma hora quando ele chegou.", en: "I had been waiting for an hour when he arrived." },
+    { id: 77, pt: "Ela estava chorando antes de você entrar?", en: "Had she been crying before you came in?" },
+    { id: 78, pt: "Nós estávamos andando o dia todo.", en: "We had been walking all day." },
+    { id: 79, pt: "Ele estava bebendo?", en: "Had he been drinking?" },
+    { id: 80, pt: "A estrada estava molhada porque tinha estado chovendo.", en: "The road was wet because it had been raining." },
+    { id: 81, pt: "Eu estava trabalhando naquela empresa há anos.", en: "I had been working at that company for years." },
+    { id: 82, pt: "Eles estavam tentando consertar o computador.", en: "They had been trying to fix the computer." },
+    { id: 83, pt: "Ela estava dormindo mal ultimamente.", en: "She had been sleeping badly lately." },
+    { id: 84, pt: "O que você estava fazendo antes disso?", en: "What had you been doing before that?" },
+    { id: 85, pt: "Nós estávamos viajando por três meses.", en: "We had been traveling for three months." },
+    { id: 86, pt: "Ele estava correndo, por isso estava suado.", en: "He had been running, that's why he was sweaty." },
+    { id: 87, pt: "Eu estava estudando espanhol antes de ir para a Espanha.", en: "I had been studying Spanish before going to Spain." },
+    { id: 88, pt: "Eles não estavam prestando atenção.", en: "They had not been paying attention." },
+    { id: 89, pt: "Você estava esperando muito tempo?", en: "Had you been waiting long?" },
+    { id: 90, pt: "Ela estava ensinando lá desde 1990.", en: "She had been teaching there since 1990." },
+    { id: 91, pt: "O motor estava quente, ele estava dirigindo.", en: "The engine was hot, he had been driving." },
+    { id: 92, pt: "Nós estávamos procurando a casa certa.", en: "We had been looking for the right house." },
+    { id: 93, pt: "Eu estava sonhando com isso.", en: "I had been dreaming about this." },
+    { id: 94, pt: "Eles estavam discutindo antes da festa.", en: "They had been arguing before the party." },
+    { id: 95, pt: "Ela estava cozinhando o dia inteiro.", en: "She had been cooking all day." },
+    { id: 96, pt: "Eu não estava me sentindo bem naquela semana.", en: "I had not been feeling well that week." },
+    { id: 97, pt: "O cachorro estava latindo há horas.", en: "The dog had been barking for hours." },
+    { id: 98, pt: "Eles estavam jogando tênis quando choveu.", en: "They had been playing tennis when it rained." },
+    { id: 99, pt: "Eu estava lendo até dormir.", en: "I had been reading until I fell asleep." },
+    { id: 100, pt: "Você estava assistindo TV?", en: "Had you been watching TV?" }
+  ],
+
+  // TIPO 3: FUTURE PERFECT
+  future_perfect: [
+    { id: 101, pt: "Eu terei terminado até amanhã.", en: "I will have finished by tomorrow." },
+    { id: 102, pt: "Ela terá saído quando você chegar.", en: "She will have left by the time you arrive." },
+    { id: 103, pt: "Nós teremos feito o trabalho até as 5.", en: "We will have done the work by 5." },
+    { id: 104, pt: "Eles terão chegado em casa?", en: "Will they have arrived home?" },
+    { id: 105, pt: "Eu não terei esquecido isso.", en: "I will not have forgotten this." },
+    { id: 106, pt: "O filme já terá terminado.", en: "The movie will have already finished." },
+    { id: 107, pt: "Você terá lido o livro até a aula?", en: "Will you have read the book by class?" },
+    { id: 108, pt: "Ela terá se formado no ano que vem.", en: "She will have graduated next year." },
+    { id: 109, pt: "Nós teremos vivido aqui por dez anos em breve.", en: "We will have lived here for ten years soon." },
+    { id: 110, pt: "Ele terá consertado o carro até sexta?", en: "Will he have fixed the car by Friday?" },
+    { id: 111, pt: "Eu terei economizado dinheiro suficiente.", en: "I will have saved enough money." },
+    { id: 112, pt: "Tudo terá mudado até lá.", en: "Everything will have changed by then." },
+    { id: 113, pt: "Ela terá preparado o jantar.", en: "She will have cooked dinner." },
+    { id: 114, pt: "Nós não teremos ido ainda.", en: "We will not have gone yet." },
+    { id: 115, pt: "O sol terá se posto.", en: "The sun will have set." },
+    { id: 116, pt: "Eu terei escrito o relatório.", en: "I will have written the report." },
+    { id: 117, pt: "Eles terão construído a ponte.", en: "They will have built the bridge." },
+    { id: 118, pt: "Você terá limpado seu quarto?", en: "Will you have cleaned your room?" },
+    { id: 119, pt: "Ela terá aprendido inglês.", en: "She will have learned English." },
+    { id: 120, pt: "Eu terei visto tudo.", en: "I will have seen everything." },
+    { id: 121, pt: "O avião terá pousado.", en: "The plane will have landed." },
+    { id: 122, pt: "Nós teremos pago a dívida.", en: "We will have paid the debt." },
+    { id: 123, pt: "Ele terá encontrado um emprego.", en: "He will have found a job." },
+    { id: 124, pt: "Eu terei acordado antes de você.", en: "I will have woken up before you." },
+    { id: 125, pt: "A neve terá derretido.", en: "The snow will have melted." }
+  ],
+
+  // TIPO 4: COMUNICAÇÃO DO DIA A DIA 
+  tagged: [
+    // Condicional
+    { id: 129, pt: "Se não tivesse chovido, eu até iria.", en: "If it hadn't rained, I would have gone.", tags: ["conditional", "past"] },
+    { id: 131, pt: "Se você puder, me avise mais tarde.", en: "If you can, let me know later.", tags: ["conditional", "request"] },
+    { id: 153, pt: "Se você estudar, vai melhorar rápido.", en: "If you study, you'll improve quickly.", tags: ["conditional"] },
+    { id: 154, pt: "Se eu tivesse mais tempo, eu te ajudaria.", en: "If I had more time, I would help you.", tags: ["conditional"] },
+    { id: 155, pt: "Se ele chegar cedo, a gente pode sair.", en: "If he arrives early, we can leave.", tags: ["conditional", "possibility"] },
+    { id: 156, pt: "Se você não quiser, tudo bem.", en: "If you don't want to, it's okay.", tags: ["conditional", "permission"] },
+    { id: 195, pt: "Se você vier hoje, a gente conversa.", en: "If you come today, we'll talk.", tags: ["conditional"] },
+    { id: 196, pt: "Se eu terminar cedo, eu te ajudo.", en: "If I finish early, I'll help you.", tags: ["conditional"] },
+    { id: 197, pt: "Se ela ligar, me avise.", en: "If she calls, let me know.", tags: ["conditional", "request"] },
+    { id: 198, pt: "Se você estiver cansado, pode descansar.", en: "If you are tired, you can rest.", tags: ["conditional", "permission"] },
+    { id: 199, pt: "Se ele não aparecer, a gente vai sem ele.", en: "If he doesn't show up, we'll go without him.", tags: ["conditional", "negative"] },
+    { id: 200, pt: "Se chover, a gente fica em casa.", en: "If it rains, we'll stay home.", tags: ["conditional"] },
+    { id: 201, pt: "Se você estudar todo dia, vai aprender mais rápido.", en: "If you study every day, you'll learn faster.", tags: ["conditional", "habit"] },
+    { id: 202, pt: "Se você praticar, vai ganhar confiança.", en: "If you practice, you'll gain confidence.", tags: ["conditional"] },
+    { id: 203, pt: "Se eu tiver dúvidas, eu te pergunto.", en: "If I have questions, I'll ask you.", tags: ["conditional"] },
+    { id: 204, pt: "Se eu lembrar, eu te mando mensagem.", en: "If I remember, I'll text you.", tags: ["conditional"] },
+    { id: 205, pt: "Se ele chegar cedo, a gente janta juntos.", en: "If he arrives early, we'll have dinner together.", tags: ["conditional"] },
+    { id: 206, pt: "Se você quiser, eu espero mais um pouco.", en: "If you want, I'll wait a little longer.", tags: ["conditional", "permission"] },
+    { id: 207, pt: "Se você não entender, eu explico de novo.", en: "If you don't understand, I'll explain again.", tags: ["conditional", "negative"] },
+    { id: 208, pt: "Se eu não conseguir hoje, eu faço amanhã.", en: "If I can't do it today, I'll do it tomorrow.", tags: ["conditional", "negative"] },
+    { id: 209, pt: "Se você não tiver tempo, tudo bem.", en: "If you don't have time, it's okay.", tags: ["conditional", "permission", "negative"] },
+    { id: 210, pt: "Se ela não responder, a gente tenta depois.", en: "If she doesn't reply, we'll try later.", tags: ["conditional", "negative"] },
+    { id: 211, pt: "Se eu tivesse mais dinheiro, eu viajaria.", en: "If I had more money, I would travel.", tags: ["conditional", "desire"] },
+    { id: 212, pt: "Se eu tivesse mais tempo, eu estudaria mais.", en: "If I had more time, I would study more.", tags: ["conditional"] },
+    { id: 213, pt: "Se ele tivesse paciência, ele aprenderia rápido.", en: "If he had patience, he would learn quickly.", tags: ["conditional"] },
+    { id: 214, pt: "Se você pudesse, me ajudaria hoje?", en: "If you could, would you help me today?", tags: ["conditional", "request"] },
+    { id: 215, pt: "Se a gente tivesse carro, seria mais fácil.", en: "If we had a car, it would be easier.", tags: ["conditional"] },
+    { id: 216, pt: "Se eu tivesse estudado mais, eu teria passado.", en: "If I had studied more, I would have passed.", tags: ["conditional", "past"] },
+    { id: 217, pt: "Se você tivesse me avisado, eu teria ido.", en: "If you had told me, I would have gone.", tags: ["conditional", "past"] },
+    { id: 218, pt: "Se ele não tivesse saído cedo, ele teria visto a gente.", en: "If he hadn't left early, he would have seen us.", tags: ["conditional", "past", "negative"] },
+    { id: 219, pt: "Se a gente tivesse saído mais cedo, não teria se atrasado.", en: "If we had left earlier, we wouldn't have been late.", tags: ["conditional", "past", "negative"] },
+    { id: 220, pt: "Se ela tivesse descansado, teria se sentido melhor.", en: "If she had rested, she would have felt better.", tags: ["conditional", "past"] },
+    { id: 221, pt: "Se você puder, me manda isso hoje.", en: "If you can, send me that today.", tags: ["conditional", "request"] },
+    { id: 222, pt: "Se você quiser, eu posso te ajudar agora.", en: "If you want, I can help you now.", tags: ["conditional", "permission"] },
+    { id: 223, pt: "Se for possível, a gente se encontra mais tarde.", en: "If possible, we'll meet later.", tags: ["conditional", "possibility"] },
+    { id: 224, pt: "Se ele estiver livre, ele pode vir com a gente.", en: "If he's free, he can come with us.", tags: ["conditional", "possibility"] },
+    
+    // Contraste
+    { id: 133, pt: "Eu queria ajudar, mas não tinha tempo.", en: "I wanted to help, but I didn't have time.", tags: ["contrast", "past"] },
+    { id: 127, pt: "Eu aprendi muito com ela, mas ela não é minha professora mais.", en: "I learned a lot from her, but she is not my teacher anymore.", tags: ["contrast", "past"] },
+    { id: 157, pt: "Eu tentei explicar, mas ele não entendeu.", en: "I tried to explain, but he didn't understand.", tags: ["contrast", "past"] },
+    { id: 158, pt: "Ela é bem nova, mas é muito responsável.", en: "She is very young, but she is very responsible.", tags: ["contrast"] },
+    { id: 159, pt: "Eu gosto de café, mas hoje prefiro chá.", en: "I like coffee, but today I prefer tea.", tags: ["contrast"] },
+    { id: 225, pt: "Eu estava com sono, mas continuei estudando.", en: "I was sleepy, but I kept studying.", tags: ["contrast"] },
+    { id: 226, pt: "Ele falou muito, mas não disse nada importante.", en: "He talked a lot, but he didn't say anything important.", tags: ["contrast"] },
+    { id: 227, pt: "Ela queria sair, mas estava chovendo.", en: "She wanted to go out, but it was raining.", tags: ["contrast"] },
+    { id: 228, pt: "Eu tentei ser rápido, mas me atrasei.", en: "I tried to be quick, but I was late.", tags: ["contrast"] },
+    { id: 229, pt: "A comida estava boa, mas estava fria.", en: "The food was good, but it was cold.", tags: ["contrast"] },
+    { id: 230, pt: "Eu gosto dele, mas não confio muito.", en: "I like him, but I don't trust him much.", tags: ["contrast"] },
+    { id: 231, pt: "Eu tinha dinheiro, mas não comprei.", en: "I had money, but I didn't buy it.", tags: ["contrast"] },
+    { id: 232, pt: "Ela sabia a resposta, mas não falou nada.", en: "She knew the answer, but she didn't say anything.", tags: ["contrast"] },
+    { id: 233, pt: "Ele é inteligente, mas não estuda.", en: "He is smart, but he doesn't study.", tags: ["contrast"] },
+    { id: 234, pt: "Eu acordei cedo, mas ainda estou cansado.", en: "I woke up early, but I'm still tired.", tags: ["contrast"] },
+    { id: 235, pt: "Eu queria ir, mas não consegui.", en: "I wanted to go, but I couldn't.", tags: ["contrast"] },
+    { id: 236, pt: "Ela é tímida, mas fala muito com amigos.", en: "She is shy, but she talks a lot with friends.", tags: ["contrast"] },
+    { id: 237, pt: "O filme era bom, mas era longo demais.", en: "The movie was good, but it was too long.", tags: ["contrast"] },
+    { id: 238, pt: "Eu estudei bastante, mas ainda errei.", en: "I studied a lot, but I still made mistakes.", tags: ["contrast"] },
+    { id: 239, pt: "Ele prometeu ajudar, mas sumiu.", en: "He promised to help, but he disappeared.", tags: ["contrast"] },
+    { id: 240, pt: "Ela sorriu, mas parecia triste.", en: "She smiled, but she looked sad.", tags: ["contrast"] },
+    { id: 241, pt: "O lugar é bonito, mas é longe.", en: "The place is beautiful, but it's far.", tags: ["contrast"] },
+    { id: 242, pt: "Eu falei com calma, mas ele ficou bravo.", en: "I spoke calmly, but he got angry.", tags: ["contrast"] },
+    { id: 243, pt: "Eu estava com pressa, mas esperei mesmo assim.", en: "I was in a hurry, but I waited anyway.", tags: ["contrast"] },
+    { id: 244, pt: "Ele estudou pouco, mas foi bem na prova.", en: "He studied little, but he did well on the test.", tags: ["contrast"] },
+    { id: 245, pt: "Ela trabalha muito, mas ganha pouco.", en: "She works a lot, but she earns little.", tags: ["contrast"] },
+    { id: 246, pt: "Eu queria falar, mas fiquei quieto.", en: "I wanted to talk, but I stayed quiet.", tags: ["contrast"] },
+    { id: 247, pt: "Ele estava animado, mas ficou nervoso na hora.", en: "He was excited, but he got nervous at the moment.", tags: ["contrast"] },
+    { id: 248, pt: "Eu treinei bastante, mas não melhorei muito.", en: "I trained a lot, but I didn't improve much.", tags: ["contrast"] },
+    { id: 249, pt: "Ela tentou entender, mas foi difícil.", en: "She tried to understand, but it was difficult.", tags: ["contrast"] },
+    { id: 250, pt: "Eu já sabia disso, mas fiquei surpreso.", en: "I already knew that, but I was surprised.", tags: ["contrast"] },
+    { id: 251, pt: "Ele falou que vinha, mas não veio.", en: "He said he was coming, but he didn't come.", tags: ["contrast"] },
+    { id: 252, pt: "A gente chegou no horário, mas a loja estava fechada.", en: "We arrived on time, but the store was closed.", tags: ["contrast"] },
+    { id: 253, pt: "Eu estava bem, mas do nada fiquei mal.", en: "I was fine, but suddenly I felt sick.", tags: ["contrast"] },
+    { id: 254, pt: "Ela é muito gentil, mas não gosta de conversa.", en: "She is very kind, but she doesn't like small talk.", tags: ["contrast"] },
+
+    // Temporal
+    { id: 134, pt: "Assim que ele chegar, a gente começa.", en: "As soon as he arrives, we start.", tags: ["temporal"] },
+    { id: 132, pt: "Quando eu terminar, eu te ligo.", en: "When I finish, I'll call you.", tags: ["temporal", "future"] },
+    { id: 128, pt: "Enquanto ele não sair, eu não consigo ajudar.", en: "While he doesn't leave, I can't help.", tags: ["temporal", "negative"] },
+    { id: 160, pt: "Antes de sair, apague as luzes.", en: "Before you leave, turn off the lights.", tags: ["temporal", "request"] },
+    { id: 161, pt: "Depois que eu chegar em casa, eu te mando mensagem.", en: "After I get home, I'll text you.", tags: ["temporal", "future"] },
+    { id: 162, pt: "Enquanto você estiver aqui, fique à vontade.", en: "While you are here, make yourself at home.", tags: ["temporal"] },
+    { id: 163, pt: "Até eu terminar isso, não me chama.", en: "Until I finish this, don't call me.", tags: ["temporal", "negative"] },
+    { id: 164, pt: "Sempre que eu posso, eu vou caminhar.", en: "Whenever I can, I go for a walk.", tags: ["temporal", "habit"] },
+    { id: 255, pt: "Quando você chegar, me chama.", en: "When you arrive, call me.", tags: ["temporal", "request"] },
+    { id: 256, pt: "Assim que eu terminar isso, eu descanso.", en: "As soon as I finish this, I'll rest.", tags: ["temporal"] },
+    { id: 257, pt: "Depois que você comer, escove os dentes.", en: "After you eat, brush your teeth.", tags: ["temporal", "request"] },
+    { id: 258, pt: "Antes de dormir, tome um banho.", en: "Before you sleep, take a shower.", tags: ["temporal", "request"] },
+    { id: 259, pt: "Enquanto eu estiver trabalhando, não me interrompa.", en: "While I'm working, don't interrupt me.", tags: ["temporal", "negative"] },
+    { id: 260, pt: "Até ele voltar, a gente espera aqui.", en: "Until he comes back, we'll wait here.", tags: ["temporal"] },
+    { id: 261, pt: "Quando eu tiver tempo, eu faço isso.", en: "When I have time, I'll do it.", tags: ["temporal"] },
+    { id: 262, pt: "Assim que ela sair, eu fecho a porta.", en: "As soon as she leaves, I'll close the door.", tags: ["temporal"] },
+    { id: 263, pt: "Depois que eu falar com ele, eu te aviso.", en: "After I talk to him, I'll let you know.", tags: ["temporal"] },
+    { id: 264, pt: "Antes de você sair, pega sua chave.", en: "Before you leave, get your key.", tags: ["temporal", "request"] },
+    { id: 265, pt: "Enquanto estiver chovendo, fique em casa.", en: "While it's raining, stay home.", tags: ["temporal", "request"] },
+    { id: 266, pt: "Até eu resolver isso, não faça nada.", en: "Until I fix this, don't do anything.", tags: ["temporal", "negative"] },
+    { id: 267, pt: "Sempre que eu posso, eu estudo um pouco.", en: "Whenever I can, I study a little.", tags: ["temporal", "habit"] },
+    { id: 268, pt: "Sempre que ele liga, eu atendo.", en: "Whenever he calls, I answer.", tags: ["temporal", "habit"] },
+    { id: 269, pt: "Quando eu acordo, eu bebo água.", en: "When I wake up, I drink water.", tags: ["temporal", "habit"] },
+    { id: 270, pt: "Depois do almoço, eu fico com sono.", en: "After lunch, I get sleepy.", tags: ["temporal", "habit"] },
+    { id: 271, pt: "Antes de eu sair, eu confiro tudo.", en: "Before I leave, I check everything.", tags: ["temporal", "habit"] },
+    { id: 272, pt: "Enquanto eu cozinho, eu escuto música.", en: "While I cook, I listen to music.", tags: ["temporal", "habit"] },
+    { id: 273, pt: "Quando ele terminar, a gente vai embora.", en: "When he finishes, we'll leave.", tags: ["temporal"] },
+    { id: 274, pt: "Assim que você entender, vai ficar fácil.", en: "As soon as you understand, it will get easy.", tags: ["temporal"] },
+    { id: 275, pt: "Depois que eu abrir o arquivo, eu te mostro.", en: "After I open the file, I'll show you.", tags: ["temporal"] },
+    { id: 276, pt: "Antes de começar, respira fundo.", en: "Before you start, take a deep breath.", tags: ["temporal", "request"] },
+    { id: 277, pt: "Enquanto ele não pedir desculpa, eu não falo com ele.", en: "While he doesn't apologize, I won't talk to him.", tags: ["temporal", "negative"] },
+    { id: 278, pt: "Até você terminar, eu vou ficar aqui.", en: "Until you finish, I'll stay here.", tags: ["temporal"] },
+    { id: 279, pt: "Sempre que você precisar, eu vou estar aqui.", en: "Whenever you need it, I'll be here.", tags: ["temporal"] },
+    { id: 280, pt: "Quando eu chegar em casa, eu relaxo.", en: "When I get home, I relax.", tags: ["temporal"] },
+    { id: 281, pt: "Depois que ele acordar, ele vai comer.", en: "After he wakes up, he'll eat.", tags: ["temporal"] },
+    { id: 282, pt: "Antes de você falar, pense bem.", en: "Before you speak, think carefully.", tags: ["temporal", "request"] },
+    { id: 283, pt: "Enquanto eu não terminar, não me chama.", en: "While I don't finish, don't call me.", tags: ["temporal", "negative"] },
+    { id: 284, pt: "Até eu aprender isso, eu vou praticar todo dia.", en: "Until I learn this, I'll practice every day.", tags: ["temporal", "habit"] },
+
+    // Concessão
+    { id: 135, pt: "Mesmo se ela tentar, não vai dar certo.", en: "Even if she tries, it won't work.", tags: ["concessive"] },
+    { id: 130, pt: "Embora eu esteja cansado, ainda preciso terminar isso.", en: "Although I am tired, I still need to finish this.", tags: ["concessive"] },
+    { id: 126, pt: "Mesmo que eu não vá, eu quero que você aproveite.", en: "Even if I don't go, I want you to enjoy it.", tags: ["concessive", "desire"] },
+    { id: 165, pt: "Mesmo que seja difícil, eu vou tentar.", en: "Even though it's hard, I'll try.", tags: ["concessive"] },
+    { id: 166, pt: "Apesar de estar com medo, ele foi.", en: "Although he was afraid, he went.", tags: ["concessive", "past"] },
+    { id: 167, pt: "Mesmo se eu errar, vou continuar.", en: "Even if I make mistakes, I'll keep going.", tags: ["concessive", "conditional"] },
+    { id: 285, pt: "Mesmo que eu esteja ocupado, eu posso ajudar.", en: "Even though I'm busy, I can help.", tags: ["concessive"] },
+    { id: 286, pt: "Embora esteja tarde, eu ainda vou sair.", en: "Although it's late, I'm still going out.", tags: ["concessive"] },
+    { id: 287, pt: "Mesmo que ele não concorde, eu vou fazer isso.", en: "Even if he doesn't agree, I'll do it.", tags: ["concessive"] },
+    { id: 288, pt: "Apesar de estar cansada, ela continuou.", en: "Although she was tired, she kept going.", tags: ["concessive"] },
+    { id: 289, pt: "Mesmo se chover, a gente vai.", en: "Even if it rains, we'll go.", tags: ["concessive"] },
+    { id: 290, pt: "Embora eu não goste muito, eu vou tentar.", en: "Although I don't like it much, I'll try.", tags: ["concessive"] },
+    { id: 291, pt: "Mesmo que seja caro, eu quero comprar.", en: "Even though it's expensive, I want to buy it.", tags: ["concessive", "desire"] },
+    { id: 292, pt: "Embora eu esteja com medo, eu quero ir.", en: "Although I'm scared, I want to go.", tags: ["concessive", "desire"] },
+    { id: 293, pt: "Mesmo se eu não conseguir, eu vou tentar de novo.", en: "Even if I don't make it, I'll try again.", tags: ["concessive"] },
+    { id: 294, pt: "Apesar de estar doente, ele foi trabalhar.", en: "Although he was sick, he went to work.", tags: ["concessive"] },
+    { id: 295, pt: "Mesmo que eu não entenda, eu vou continuar estudando.", en: "Even if I don't understand, I'll keep studying.", tags: ["concessive"] },
+    { id: 296, pt: "Embora esteja difícil, não desista.", en: "Although it's hard, don't give up.", tags: ["concessive"] },
+    { id: 297, pt: "Mesmo que você não queira, eu vou te ajudar.", en: "Even if you don't want it, I'll help you.", tags: ["concessive"] },
+    { id: 298, pt: "Apesar de estar nervoso, ele falou bem.", en: "Although he was nervous, he spoke well.", tags: ["concessive"] },
+    { id: 299, pt: "Mesmo se eles reclamarem, a gente continua.", en: "Even if they complain, we'll continue.", tags: ["concessive"] },
+    { id: 300, pt: "Embora eu esteja sem tempo, eu vou tentar fazer.", en: "Although I don't have time, I'll try to do it.", tags: ["concessive"] },
+    { id: 301, pt: "Mesmo que eu erre, eu aprendo com isso.", en: "Even if I make mistakes, I learn from it.", tags: ["concessive"] },
+    { id: 302, pt: "Apesar de estar chovendo, ela saiu.", en: "Although it was raining, she went out.", tags: ["concessive"] },
+    { id: 303, pt: "Mesmo que eu já tenha tentado, eu vou tentar de novo.", en: "Even though I've tried before, I'll try again.", tags: ["concessive"] },
+    { id: 304, pt: "Embora ele seja novo, ele trabalha muito bem.", en: "Although he's new, he works very well.", tags: ["concessive"] },
+    { id: 305, pt: "Mesmo se eu estiver errado, eu vou ouvir você.", en: "Even if I'm wrong, I'll listen to you.", tags: ["concessive"] },
+    { id: 306, pt: "Apesar de ser simples, muita gente erra.", en: "Although it's simple, many people make mistakes.", tags: ["concessive"] },
+    { id: 307, pt: "Embora eu não esteja pronto, eu vou tentar.", en: "Although I'm not ready, I'll try.", tags: ["concessive"] },
+    { id: 308, pt: "Mesmo que ele fale pouco, ele entende tudo.", en: "Even though he doesn't talk much, he understands everything.", tags: ["concessive"] },
+    { id: 309, pt: "Mesmo que eu não vá, eu quero que você vá.", en: "Even if I don't go, I want you to go.", tags: ["concessive", "desire"] },
+    { id: 310, pt: "Embora eu tenha errado, eu aprendi bastante.", en: "Although I made mistakes, I learned a lot.", tags: ["concessive"] },
+    { id: 311, pt: "Mesmo se eu perder, eu vou ficar tranquilo.", en: "Even if I lose, I'll stay calm.", tags: ["concessive"] },
+    { id: 312, pt: "Apesar de ter sido difícil, deu certo.", en: "Even though it was hard, it worked out.", tags: ["concessive"] },
+    { id: 313, pt: "Mesmo que eu não saiba, eu posso procurar.", en: "Even if I don't know, I can look it up.", tags: ["concessive"] },
+    { id: 314, pt: "Mesmo se eu tivesse entendido antes, eu ainda teria errado.", en: "Even if I had understood earlier, I still would have made mistakes.", tags: ["concessive", "conditional", "past"] },
+
+    // Causa
+    { id: 136, pt: "Eu não fui porque estava doente.", en: "I didn't go because I was sick.", tags: ["cause", "past"] },
+    { id: 137, pt: "Já que você terminou, pode descansar.", en: "Since you finished, you can rest.", tags: ["cause"] },
+    { id: 168, pt: "Eu fiquei em casa porque estava cansado.", en: "I stayed home because I was tired.", tags: ["cause", "past"] },
+    { id: 169, pt: "Como você me ajudou, eu consegui terminar.", en: "Since you helped me, I managed to finish.", tags: ["cause", "past"] },
+    { id: 170, pt: "Ele saiu cedo porque tinha uma reunião.", en: "He left early because he had a meeting.", tags: ["cause", "past"] },
+    { id: 315, pt: "Eu cheguei cedo porque não tinha trânsito.", en: "I arrived early because there was no traffic.", tags: ["cause", "past"] },
+    { id: 316, pt: "Ele faltou porque estava com febre.", en: "He missed it because he had a fever.", tags: ["cause", "past"] },
+    { id: 317, pt: "Ela ficou feliz porque passou na prova.", en: "She was happy because she passed the test.", tags: ["cause", "past"] },
+    { id: 318, pt: "Eu não comprei porque estava caro.", en: "I didn't buy it because it was expensive.", tags: ["cause", "past"] },
+    { id: 319, pt: "A gente saiu porque já era tarde.", en: "We left because it was already late.", tags: ["cause", "past"] },
+    { id: 320, pt: "Ele ficou em silêncio porque estava pensando.", en: "He stayed quiet because he was thinking.", tags: ["cause", "past"] },
+    { id: 321, pt: "Ela não veio porque tinha trabalho.", en: "She didn't come because she had work.", tags: ["cause", "past"] },
+    { id: 322, pt: "Eu desliguei o celular porque estava sem bateria.", en: "I turned off my phone because it had no battery.", tags: ["cause", "past"] },
+    { id: 323, pt: "Ele foi embora porque estava cansado.", en: "He went home because he was tired.", tags: ["cause", "past"] },
+    { id: 324, pt: "Eu aprendi rápido porque pratiquei todo dia.", en: "I learned quickly because I practiced every day.", tags: ["cause", "past"] },
+    { id: 325, pt: "Ela melhorou porque descansou bastante.", en: "She got better because she rested a lot.", tags: ["cause", "past"] },
+    { id: 326, pt: "Eu não respondi porque não vi a mensagem.", en: "I didn't reply because I didn't see the message.", tags: ["cause", "past"] },
+    { id: 327, pt: "Como ele estava doente, ele ficou em casa.", en: "Since he was sick, he stayed home.", tags: ["cause", "past"] },
+    { id: 328, pt: "Como eu não tinha dinheiro, eu não fui.", en: "Since I didn't have money, I didn't go.", tags: ["cause", "past"] },
+    { id: 329, pt: "Já que você está aqui, vamos começar.", en: "Since you're here, let's start.", tags: ["cause"] },
+    { id: 330, pt: "Já que ela sabe, pergunta pra ela.", en: "Since she knows, ask her.", tags: ["cause"] },
+    { id: 331, pt: "Como você me pediu, eu fiz.", en: "Since you asked me, I did it.", tags: ["cause", "past"] },
+    { id: 332, pt: "Já que você não quer, tudo bem.", en: "Since you don't want to, it's okay.", tags: ["cause"] },
+    { id: 333, pt: "Eu fiquei nervoso porque era importante.", en: "I got nervous because it was important.", tags: ["cause", "past"] },
+    { id: 334, pt: "Ela chorou porque ficou emocionada.", en: "She cried because she got emotional.", tags: ["cause", "past"] },
+    { id: 335, pt: "Eu mudei de ideia porque você explicou melhor.", en: "I changed my mind because you explained it better.", tags: ["cause", "past"] },
+    { id: 336, pt: "Ele não conseguiu porque não estudou.", en: "He couldn't do it because he didn't study.", tags: ["cause", "past"] },
+    { id: 337, pt: "A gente cancelou porque estava chovendo.", en: "We canceled because it was raining.", tags: ["cause", "past"] },
+    { id: 338, pt: "Eu voltei porque tinha esquecido a chave.", en: "I came back because I had forgotten the key.", tags: ["cause", "past"] },
+    { id: 339, pt: "Ela se atrasou porque perdeu o ônibus.", en: "She was late because she missed the bus.", tags: ["cause", "past"] },
+    { id: 340, pt: "Eu ajudei porque você precisava.", en: "I helped because you needed it.", tags: ["cause", "past"] },
+    { id: 341, pt: "Ele ficou bravo porque ninguém avisou.", en: "He got angry because nobody told him.", tags: ["cause", "past"] },
+    { id: 342, pt: "Eu fui embora porque não estava bem.", en: "I left because I wasn't feeling well.", tags: ["cause", "past"] },
+    { id: 343, pt: "Ela ficou acordada porque estava preocupada.", en: "She stayed awake because she was worried.", tags: ["cause", "past"] },
+    { id: 344, pt: "Eu não falei nada porque não era o momento.", en: "I didn't say anything because it wasn't the right moment.", tags: ["cause", "past"] },
+
+    // Resultado
+    { id: 138, pt: "Eu estudei bastante, então passei.", en: "I studied a lot, so I passed.", tags: ["result", "past"] },
+    { id: 171, pt: "Eu perdi o ônibus, então cheguei atrasado.", en: "I missed the bus, so I arrived late.", tags: ["result", "past"] },
+    { id: 172, pt: "Ela treinou muito, então ficou mais forte.", en: "She trained a lot, so she got stronger.", tags: ["result", "past"] },
+    { id: 173, pt: "Estava muito barulho, então eu não consegui dormir.", en: "It was very noisy, so I couldn't sleep.", tags: ["result", "past"] },
+    { id: 345, pt: "Eu acordei tarde, então perdi a aula.", en: "I woke up late, so I missed class.", tags: ["result", "past"] },
+    { id: 346, pt: "Eu não estudei, então fui mal na prova.", en: "I didn't study, so I did badly on the test.", tags: ["result", "past"] },
+    { id: 347, pt: "Ela estava doente, então ficou em casa.", en: "She was sick, so she stayed home.", tags: ["result", "past"] },
+    { id: 348, pt: "Eu economizei dinheiro, então consegui viajar.", en: "I saved money, so I was able to travel.", tags: ["result", "past"] },
+    { id: 349, pt: "Ele treinou todo dia, então melhorou muito.", en: "He trained every day, so he improved a lot.", tags: ["result", "past"] },
+    { id: 350, pt: "A gente saiu cedo, então chegou no horário.", en: "We left early, so we arrived on time.", tags: ["result", "past"] },
+    { id: 351, pt: "Eu estava com fome, então comi rápido.", en: "I was hungry, so I ate quickly.", tags: ["result", "past"] },
+    { id: 352, pt: "Ele ficou nervoso, então errou.", en: "He got nervous, so he made a mistake.", tags: ["result", "past"] },
+    { id: 353, pt: "Ela praticou bastante, então falou melhor.", en: "She practiced a lot, so she spoke better.", tags: ["result", "past"] },
+    { id: 354, pt: "Eu me distraí, então esqueci o que ia fazer.", en: "I got distracted, so I forgot what I was going to do.", tags: ["result", "past"] },
+    { id: 355, pt: "Ele não dormiu bem, então ficou cansado.", en: "He didn't sleep well, so he was tired.", tags: ["result", "past"] },
+    { id: 356, pt: "A internet caiu, então eu não consegui entrar.", en: "The internet went down, so I couldn't log in.", tags: ["result", "past"] },
+    { id: 357, pt: "Eu perdi a chave, então não consegui entrar.", en: "I lost the key, so I couldn't get in.", tags: ["result", "past"] },
+    { id: 358, pt: "Ela ficou muito feliz, então sorriu.", en: "She was very happy, so she smiled.", tags: ["result", "past"] },
+    { id: 359, pt: "Ele não prestou atenção, então não entendeu.", en: "He didn't pay attention, so he didn't understand.", tags: ["result", "past"] },
+    { id: 360, pt: "Eu corri muito, então fiquei sem fôlego.", en: "I ran a lot, so I got out of breath.", tags: ["result", "past"] },
+    { id: 361, pt: "A gente falou demais, então o tempo passou rápido.", en: "We talked too much, so time passed quickly.", tags: ["result", "past"] },
+    { id: 362, pt: "Ele trabalhou muito, então ficou estressado.", en: "He worked a lot, so he got stressed.", tags: ["result", "past"] },
+    { id: 363, pt: "Eu fiquei com medo, então não fui.", en: "I got scared, so I didn't go.", tags: ["result", "past"] },
+    { id: 364, pt: "Ela chegou tarde, então perdeu a reunião.", en: "She arrived late, so she missed the meeting.", tags: ["result", "past"] },
+    { id: 365, pt: "Eu não ouvi direito, então respondi errado.", en: "I didn't hear it properly, so I answered wrong.", tags: ["result", "past"] },
+    { id: 366, pt: "Ele esqueceu o nome, então ficou sem graça.", en: "He forgot the name, so he felt awkward.", tags: ["result", "past"] },
+    { id: 367, pt: "A comida estava ruim, então ninguém comeu.", en: "The food was bad, so nobody ate.", tags: ["result", "past"] },
+    { id: 368, pt: "Eu estava com pressa, então fiz errado.", en: "I was in a hurry, so I did it wrong.", tags: ["result", "past"] },
+    { id: 369, pt: "Eu treinei mais, então fiquei mais forte.", en: "I trained more, so I got stronger.", tags: ["result", "past"] },
+    { id: 370, pt: "Ela estudou certinho, então passou fácil.", en: "She studied properly, so she passed easily.", tags: ["result", "past"] },
+    { id: 371, pt: "Eu fiquei acordado até tarde, então acordei cansado.", en: "I stayed up late, so I woke up tired.", tags: ["result", "past"] },
+    { id: 372, pt: "Ele não se cuidou, então ficou doente.", en: "He didn't take care of himself, so he got sick.", tags: ["result", "past"] },
+    { id: 373, pt: "Eu me organizei melhor, então terminei mais rápido.", en: "I organized myself better, so I finished faster.", tags: ["result", "past"] },
+    { id: 374, pt: "A gente esperou muito, então foi embora.", en: "We waited a long time, so we left.", tags: ["result", "past"] },
+
+    // Propósito
+    { id: 139, pt: "Ela falou baixo para ninguém ouvir.", en: ["She spoke quietly so that no one would hear.", "She spoke quietly so nobody would hear."], tags: ["purpose"] },
+    { id: 140, pt: "Eu saí cedo para evitar trânsito.", en: ["I left early in order to avoid traffic.", "I left early to avoid traffic.", "I left early to avoid the traffic."], tags: ["purpose", "past"] },
+    { id: 174, pt: "Eu anotei tudo para não esquecer.", en: ["I wrote everything down so I wouldn't forget.", "I wrote everything down so that I wouldn't forget."], tags: ["purpose", "past"] },
+    { id: 175, pt: "Ela fechou a janela para não entrar frio.", en: ["She closed the window to keep the cold out.", "She closed the window so that the cold wouldn't come in."], tags: ["purpose", "past"] },
+    { id: 176, pt: "Eu economizo dinheiro para viajar.", en: "I save money to travel.", tags: ["purpose"] },
+    { id: 375, pt: "Eu estudo inglês para conseguir um emprego melhor.", en: "I study English to get a better job.", tags: ["purpose"] },
+    { id: 376, pt: "Eu treino todo dia para ficar mais forte.", en: "I train every day to get stronger.", tags: ["purpose"] },
+    { id: 377, pt: "Eu bebo água para me sentir melhor.", en: "I drink water to feel better.", tags: ["purpose"] },
+    { id: 378, pt: "Eu uso alarme para não perder a hora.", en: ["I use an alarm so I don't miss the time.", "I use an alarm so I don't lose track of time."], tags: ["purpose"] },
+    { id: 379, pt: "Eu deixo tudo pronto para não me atrasar.", en: ["I get everything ready so I won't be late.", "I prepare everything so I won't be late."], tags: ["purpose"] },
+    { id: 380, pt: "Eu fecho a porta para ninguém entrar.", en: ["I close the door so no one comes in.", "I close the door so that no one can come in."], tags: ["purpose"] },
+    { id: 381, pt: "Eu desligo a luz para economizar energia.", en: "I turn off the light to save energy.", tags: ["purpose"] },
+    { id: 382, pt: "Eu leio bastante para aprender mais.", en: "I read a lot to learn more.", tags: ["purpose"] },
+    { id: 383, pt: "Eu falo devagar para você entender.", en: ["I speak slowly so you can understand.", "I speak slowly so that you understand."], tags: ["purpose"] },
+    { id: 384, pt: "Eu escrevo isso para não esquecer.", en: ["I write this down so I don't forget.", "I write this down so that I don't forget."], tags: ["purpose"] },
+    { id: 385, pt: "Eu guardo dinheiro para comprar um celular novo.", en: "I save money to buy a new phone.", tags: ["purpose"] },
+    { id: 386, pt: "Eu uso fone para não incomodar ninguém.", en: ["I use headphones so I don't bother anyone.", "I use earphones so I don't bother anyone."], tags: ["purpose"] },
+    { id: 387, pt: "Eu abri a janela para entrar ar.", en: ["I opened the window to let air in.", "I opened the window so that fresh air could come in."], tags: ["purpose", "past"] },
+    { id: 388, pt: "Eu fui mais cedo para pegar um bom lugar.", en: "I went earlier to get a good spot.", tags: ["purpose", "past"] },
+    { id: 389, pt: "Eu mandei mensagem para confirmar.", en: ["I texted to confirm.", "I sent a message to confirm."], tags: ["purpose", "past"] },
+    { id: 390, pt: "Ela ficou acordada para terminar o trabalho.", en: "She stayed up to finish the work.", tags: ["purpose", "past"] },
+    { id: 391, pt: "Eu levei guarda-chuva para não me molhar.", en: ["I took an umbrella so I wouldn't get wet.", "I brought an umbrella so I wouldn't get wet."], tags: ["purpose", "past"] },
+    { id: 392, pt: "Ele falou baixo para ninguém ouvir.", en: ["He spoke quietly so no one would hear.", "He spoke quietly so that no one would hear."], tags: ["purpose", "past"] },
+    { id: 393, pt: "Eu desliguei o celular para não me distrair.", en: ["I turned off my phone so I wouldn't get distracted.", "I turned off my phone so that I wouldn't get distracted."], tags: ["purpose", "past"] },
+    { id: 394, pt: "Ela anotou tudo para lembrar depois.", en: ["She wrote everything down to remember later.", "She took notes so she could remember later."], tags: ["purpose", "past"] },
+    { id: 395, pt: "Eu saí mais cedo para evitar o trânsito.", en: ["I left earlier to avoid traffic.", "I left early in order to avoid traffic."], tags: ["purpose", "past"] },
+    { id: 396, pt: "Ele economizou dinheiro para viajar.", en: "He saved money to travel.", tags: ["purpose", "past"] },
+    { id: 397, pt: "Eu comprei isso para te dar de presente.", en: "I bought this to give you as a gift.", tags: ["purpose", "past"] },
+    { id: 398, pt: "Ela fechou a janela para não entrar frio.", en: ["She closed the window so the cold wouldn't come in.", "She closed the window to keep the cold out."], tags: ["purpose", "past"] },
+    { id: 399, pt: "Eu levo um casaco para não sentir frio.", en: ["I bring a jacket so I don't feel cold.", "I take a jacket so I don't get cold."], tags: ["purpose"] },
+    { id: 400, pt: "Eu pratico pronúncia para falar melhor.", en: "I practice pronunciation to speak better.", tags: ["purpose"] },
+    { id: 401, pt: "Eu deixo a casa limpa para receber visitas.", en: "I keep the house clean to receive visitors.", tags: ["purpose"] },
+    { id: 402, pt: "Eu faço pausas para descansar a mente.", en: "I take breaks to rest my mind.", tags: ["purpose"] },
+    { id: 403, pt: "Eu uso um caderno para organizar minhas ideias.", en: "I use a notebook to organize my ideas.", tags: ["purpose"] },
+    { id: 404, pt: "Eu repito a frase para treinar.", en: "I repeat the sentence to practice.", tags: ["purpose"] },
+
+    // Comparação
+    { id: 141, pt: "Ele é tão educado quanto o irmão.", en: "He is as polite as his brother.", tags: ["comparison"] },
+    { id: 142, pt: "Ela corre mais rápido do que eu.", en: "She runs faster than me.", tags: ["comparison"] },
+    { id: 177, pt: "Esse exercício é mais fácil do que parece.", en: "This exercise is easier than it looks.", tags: ["comparison"] },
+    { id: 178, pt: "Hoje está tão quente quanto ontem.", en: "Today is as hot as yesterday.", tags: ["comparison"] },
+    { id: 179, pt: "Ele fala inglês melhor do que eu.", en: "He speaks English better than me.", tags: ["comparison"] },
+    { id: 405, pt: "Ela é mais alta do que eu.", en: "She is taller than me.", tags: ["comparison"] },
+    { id: 406, pt: "Esse caminho é mais curto do que o outro.", en: "This way is shorter than the other one.", tags: ["comparison"] },
+    { id: 407, pt: "Hoje eu estou mais animado do que ontem.", en: "Today I'm more excited than yesterday.", tags: ["comparison"] },
+    { id: 408, pt: "Meu celular é mais rápido do que o antigo.", en: "My phone is faster than the old one.", tags: ["comparison"] },
+    { id: 409, pt: "Esse filme é melhor do que eu esperava.", en: "This movie is better than I expected.", tags: ["comparison"] },
+    { id: 410, pt: "Eu acordo mais cedo do que ele.", en: "I wake up earlier than him.", tags: ["comparison"] },
+    { id: 411, pt: "Ela fala mais baixo do que eu.", en: "She speaks more quietly than me.", tags: ["comparison"] },
+    { id: 412, pt: "Esse exercício é mais difícil do que parece.", en: "This exercise is harder than it looks.", tags: ["comparison"] },
+    { id: 413, pt: "Ele é menos paciente do que você.", en: "He is less patient than you.", tags: ["comparison"] },
+    { id: 414, pt: "Eu sou tão teimoso quanto ele.", en: "I am as stubborn as him.", tags: ["comparison"] },
+    { id: 415, pt: "Hoje está mais frio do que ontem.", en: "Today is colder than yesterday.", tags: ["comparison"] },
+    { id: 416, pt: "Esse lugar é mais tranquilo do que o centro.", en: "This place is calmer than downtown.", tags: ["comparison"] },
+    { id: 417, pt: "Ela é tão inteligente quanto ele.", en: "She is as smart as him.", tags: ["comparison"] },
+    { id: 418, pt: "Meu inglês está melhor do que antes.", en: "My English is better than before.", tags: ["comparison"] },
+    { id: 419, pt: "Esse livro é mais interessante do que o outro.", en: "This book is more interesting than the other one.", tags: ["comparison"] },
+    { id: 420, pt: "Ela trabalha mais do que eu.", en: "She works more than me.", tags: ["comparison"] },
+    { id: 421, pt: "Ele dirige mais rápido do que eu.", en: "He drives faster than me.", tags: ["comparison"] },
+    { id: 422, pt: "Hoje eu estou tão cansado quanto você.", en: "Today I'm as tired as you.", tags: ["comparison"] },
+    { id: 423, pt: "Essa cadeira é mais confortável do que aquela.", en: "This chair is more comfortable than that one.", tags: ["comparison"] },
+    { id: 424, pt: "Ele fala mais rápido do que eu consigo entender.", en: "He speaks faster than I can understand.", tags: ["comparison"] },
+    { id: 425, pt: "Esse jogo é mais divertido do que eu pensava.", en: "This game is more fun than I thought.", tags: ["comparison"] },
+    { id: 426, pt: "Ela aprende mais rápido do que eu.", en: "She learns faster than me.", tags: ["comparison"] },
+    { id: 427, pt: "O ônibus é mais barato do que o carro.", en: "The bus is cheaper than the car.", tags: ["comparison"] },
+    { id: 428, pt: "Esse café é tão bom quanto o da cafeteria.", en: "This coffee is as good as the one from the coffee shop.", tags: ["comparison"] },
+    { id: 429, pt: "Hoje o dia está mais bonito do que ontem.", en: "Today is more beautiful than yesterday.", tags: ["comparison"] },
+    { id: 430, pt: "Ele é tão engraçado quanto o irmão.", en: "He is as funny as his brother.", tags: ["comparison"] },
+    { id: 431, pt: "Meu quarto é menor do que o seu.", en: "My room is smaller than yours.", tags: ["comparison"] },
+    { id: 432, pt: "Essa parte é mais fácil do que a primeira.", en: "This part is easier than the first one.", tags: ["comparison"] },
+    { id: 433, pt: "Ela canta melhor do que eu.", en: "She sings better than me.", tags: ["comparison"] },
+    { id: 434, pt: "Esse problema é maior do que parece.", en: "This problem is bigger than it looks.", tags: ["comparison"] },
+
+    // Desejo
+    { id: 143, pt: "Eu queria que chovesse menos.", en: "I wish it rained less.", tags: ["desire"] },
+    { id: 144, pt: "Tomara que você consiga.", en: "I hope you can make it.", tags: ["desire"] },
+    { id: 180, pt: "Eu queria poder descansar agora.", en: "I wish I could rest now.", tags: ["desire"] },
+    { id: 181, pt: "Tomara que tudo dê certo.", en: "I hope everything works out.", tags: ["desire"] },
+    { id: 182, pt: "Eu queria que fosse mais simples.", en: "I wish it were simpler.", tags: ["desire"] },
+    { id: 435, pt: "Eu queria ter mais tempo.", en: "I wish I had more time.", tags: ["desire"] },
+    { id: 436, pt: "Tomara que ele melhore logo.", en: "I hope he gets better soon.", tags: ["desire"] },
+    { id: 437, pt: "Eu queria aprender inglês mais rápido.", en: "I wish I could learn English faster.", tags: ["desire"] },
+    { id: 438, pt: "Tomara que não chova hoje.", en: "I hope it doesn't rain today.", tags: ["desire"] },
+    { id: 439, pt: "Eu queria morar perto do trabalho.", en: "I wish I lived close to work.", tags: ["desire"] },
+    { id: 440, pt: "Tomara que você tenha um bom dia.", en: "I hope you have a good day.", tags: ["desire"] },
+    { id: 441, pt: "Eu queria que ele me entendesse.", en: "I wish he understood me.", tags: ["desire"] },
+    { id: 442, pt: "Tomara que a gente consiga terminar hoje.", en: "I hope we can finish today.", tags: ["desire"] },
+    { id: 443, pt: "Eu queria não ficar tão nervoso.", en: "I wish I weren't so nervous.", tags: ["desire"] },
+    { id: 444, pt: "Tomara que essa notícia seja boa.", en: "I hope this news is good.", tags: ["desire"] },
+    { id: 445, pt: "Eu queria poder viajar mais.", en: "I wish I could travel more.", tags: ["desire"] },
+    { id: 446, pt: "Tomara que ele chegue a tempo.", en: "I hope he arrives on time.", tags: ["desire"] },
+    { id: 447, pt: "Eu queria que minha vida fosse mais tranquila.", en: "I wish my life were calmer.", tags: ["desire"] },
+    { id: 448, pt: "Tomara que você goste do presente.", en: "I hope you like the gift.", tags: ["desire"] },
+    { id: 449, pt: "Eu queria ser mais paciente.", en: "I wish I were more patient.", tags: ["desire"] },
+    { id: 450, pt: "Tomara que a internet volte logo.", en: "I hope the internet comes back soon.", tags: ["desire"] },
+    { id: 451, pt: "Eu queria que hoje fosse mais leve.", en: "I wish today were easier.", tags: ["desire"] },
+    { id: 452, pt: "Tomara que ele aceite o convite.", en: "I hope he accepts the invitation.", tags: ["desire"] },
+    { id: 453, pt: "Eu queria conseguir acordar cedo.", en: "I wish I could wake up early.", tags: ["desire"] },
+    { id: 454, pt: "Tomara que tudo fique bem.", en: "I hope everything is okay.", tags: ["desire"] },
+    { id: 455, pt: "Eu queria entender isso melhor.", en: "I wish I understood this better.", tags: ["desire"] },
+    { id: 456, pt: "Tomara que a gente se veja logo.", en: "I hope we see each other soon.", tags: ["desire"] },
+    { id: 457, pt: "Eu queria ter mais coragem.", en: "I wish I had more courage.", tags: ["desire"] },
+    { id: 458, pt: "Tomara que ele não se atrase.", en: "I hope he doesn't get late.", tags: ["desire"] },
+    { id: 459, pt: "Eu queria que fosse menos complicado.", en: "I wish it were less complicated.", tags: ["desire"] },
+    { id: 460, pt: "Tomara que você consiga esse trabalho.", en: "I hope you get that job.", tags: ["desire"] },
+    { id: 461, pt: "Eu queria não me preocupar tanto.", en: "I wish I didn't worry so much.", tags: ["desire"] },
+    { id: 462, pt: "Tomara que eu não esqueça disso.", en: "I hope I don't forget this.", tags: ["desire"] },
+    { id: 463, pt: "Eu queria que ele fosse mais educado.", en: "I wish he were more polite.", tags: ["desire"] },
+    { id: 464, pt: "Tomara que isso dê certo.", en: "I hope this works out.", tags: ["desire"] },
+
+    // Obrigação
+    { id: 145, pt: "Eu tenho que sair agora.", en: "I have to leave now.", tags: ["obligation"] },
+    { id: 146, pt: "Nós precisamos terminar hoje.", en: "We need to finish today.", tags: ["obligation"] },
+    { id: 183, pt: "Você tem que prestar atenção.", en: "You have to pay attention.", tags: ["obligation"] },
+    { id: 184, pt: "Eu preciso acordar cedo amanhã.", en: "I need to wake up early tomorrow.", tags: ["obligation", "future"] },
+    { id: 185, pt: "A gente tem que resolver isso hoje.", en: "We have to solve this today.", tags: ["obligation"] },
+    { id: 465, pt: "Eu preciso estudar hoje.", en: "I need to study today.", tags: ["obligation"] },
+    { id: 466, pt: "Eu tenho que trabalhar amanhã.", en: "I have to work tomorrow.", tags: ["obligation"] },
+    { id: 467, pt: "A gente precisa sair agora.", en: "We need to leave now.", tags: ["obligation"] },
+    { id: 468, pt: "Você tem que fazer isso hoje.", en: "You have to do this today.", tags: ["obligation"] },
+    { id: 469, pt: "Eu preciso comprar comida.", en: "I need to buy food.", tags: ["obligation"] },
+    { id: 470, pt: "Ele tem que ligar pra ela.", en: "He has to call her.", tags: ["obligation"] },
+    { id: 471, pt: "Ela precisa tomar esse remédio.", en: "She needs to take this medicine.", tags: ["obligation"] },
+    { id: 472, pt: "Eu tenho que limpar meu quarto.", en: "I have to clean my room.", tags: ["obligation"] },
+    { id: 473, pt: "A gente tem que falar com o professor.", en: "We have to talk to the teacher.", tags: ["obligation"] },
+    { id: 474, pt: "Você precisa prestar atenção nisso.", en: "You need to pay attention to this.", tags: ["obligation"] },
+    { id: 475, pt: "Eu tenho que terminar esse trabalho.", en: "I have to finish this work.", tags: ["obligation"] },
+    { id: 476, pt: "Ele precisa descansar um pouco.", en: "He needs to rest a little.", tags: ["obligation"] },
+    { id: 477, pt: "Ela tem que acordar cedo.", en: "She has to wake up early.", tags: ["obligation"] },
+    { id: 478, pt: "Eu preciso economizar dinheiro.", en: "I need to save money.", tags: ["obligation"] },
+    { id: 479, pt: "A gente tem que esperar aqui.", en: "We have to wait here.", tags: ["obligation"] },
+    { id: 480, pt: "Você tem que se organizar melhor.", en: "You have to organize yourself better.", tags: ["obligation"] },
+    { id: 481, pt: "Eu preciso ir ao médico.", en: "I need to go to the doctor.", tags: ["obligation"] },
+    { id: 482, pt: "Ele tem que estudar mais.", en: "He has to study more.", tags: ["obligation"] },
+    { id: 483, pt: "Ela precisa chegar no horário.", en: "She needs to arrive on time.", tags: ["obligation"] },
+    { id: 484, pt: "Eu tenho que pagar essa conta.", en: "I have to pay this bill.", tags: ["obligation"] },
+    { id: 485, pt: "A gente precisa resolver isso logo.", en: "We need to solve this soon.", tags: ["obligation"] },
+    { id: 486, pt: "Você precisa dormir mais cedo.", en: "You need to sleep earlier.", tags: ["obligation"] },
+    { id: 487, pt: "Eu tenho que responder essa mensagem.", en: "I have to reply to this message.", tags: ["obligation"] },
+    { id: 488, pt: "Ele precisa pedir desculpa.", en: "He needs to apologize.", tags: ["obligation"] },
+    { id: 489, pt: "Ela tem que praticar mais.", en: "She has to practice more.", tags: ["obligation"] },
+    { id: 490, pt: "Eu preciso levar isso comigo.", en: "I need to take this with me.", tags: ["obligation"] },
+    { id: 491, pt: "A gente tem que ter cuidado.", en: "We have to be careful.", tags: ["obligation"] },
+    { id: 492, pt: "Você tem que fazer sua parte.", en: "You have to do your part.", tags: ["obligation"] },
+    { id: 493, pt: "Eu preciso me concentrar agora.", en: "I need to focus now.", tags: ["obligation"] },
+    { id: 494, pt: "Ele tem que parar com isso.", en: "He has to stop that.", tags: ["obligation"] },
+
+    // Conselho
+    { id: 147, pt: "Você deveria descansar mais.", en: "You should rest more.", tags: ["advice"] },
+    { id: 148, pt: "Se eu fosse você, eu falaria com ela.", en: "If I were you, I would talk to her.", tags: ["advice", "conditional"] },
+    { id: 186, pt: "Você deveria beber mais água.", en: "You should drink more water.", tags: ["advice"] },
+    { id: 187, pt: "Se eu fosse você, eu não faria isso.", en: "If I were you, I wouldn't do that.", tags: ["advice", "conditional"] },
+    { id: 188, pt: "É melhor você sair mais cedo.", en: "You'd better leave earlier.", tags: ["advice"] },
+    { id: 495, pt: "Você deveria estudar um pouco todo dia.", en: "You should study a little every day.", tags: ["advice"] },
+    { id: 496, pt: "Você deveria dormir mais cedo.", en: "You should go to bed earlier.", tags: ["advice"] },
+    { id: 497, pt: "Você deveria comer melhor.", en: "You should eat better.", tags: ["advice"] },
+    { id: 498, pt: "Você deveria fazer mais exercícios.", en: "You should exercise more.", tags: ["advice"] },
+    { id: 499, pt: "Você deveria praticar sua pronúncia.", en: "You should practice your pronunciation.", tags: ["advice"] },
+    { id: 500, pt: "Você deveria tentar de novo.", en: "You should try again.", tags: ["advice"] },
+    { id: 501, pt: "É melhor você se organizar antes de começar.", en: "You'd better get organized before you start.", tags: ["advice"] },
+    { id: 502, pt: "É melhor você falar a verdade.", en: "You'd better tell the truth.", tags: ["advice"] },
+    { id: 503, pt: "É melhor você ir com calma.", en: "You'd better take it easy.", tags: ["advice"] },
+    { id: 504, pt: "É melhor você não deixar para depois.", en: "You'd better not leave it for later.", tags: ["advice"] },
+    { id: 505, pt: "É melhor você pedir ajuda.", en: "You'd better ask for help.", tags: ["advice"] },
+    { id: 506, pt: "É melhor você revisar antes da prova.", en: "You'd better review before the test.", tags: ["advice"] },
+    { id: 507, pt: "Se eu fosse você, eu estudaria mais.", en: "If I were you, I would study more.", tags: ["advice", "conditional"] },
+    { id: 508, pt: "Se eu fosse você, eu dormiria cedo hoje.", en: "If I were you, I would go to bed early today.", tags: ["advice", "conditional"] },
+    { id: 509, pt: "Se eu fosse você, eu falaria com ele.", en: "If I were you, I would talk to him.", tags: ["advice", "conditional"] },
+    { id: 510, pt: "Se eu fosse você, eu não desistiria agora.", en: "If I were you, I wouldn't give up now.", tags: ["advice", "conditional"] },
+    { id: 511, pt: "Se eu fosse você, eu pediria desculpa.", en: "If I were you, I would apologize.", tags: ["advice", "conditional"] },
+    { id: 512, pt: "Se eu fosse você, eu não falaria isso.", en: "If I were you, I wouldn't say that.", tags: ["advice", "conditional"] },
+    { id: 513, pt: "Você deveria tomar mais cuidado.", en: "You should be more careful.", tags: ["advice"] },
+    { id: 514, pt: "Você deveria respirar fundo antes de falar.", en: "You should take a deep breath before speaking.", tags: ["advice"] },
+    { id: 515, pt: "Você deveria beber mais água hoje.", en: "You should drink more water today.", tags: ["advice"] },
+    { id: 516, pt: "Você deveria tentar entender antes de responder.", en: "You should try to understand before replying.", tags: ["advice"] },
+    { id: 517, pt: "Você deveria fazer uma pausa.", en: "You should take a break.", tags: ["advice"] },
+    { id: 518, pt: "Você deveria praticar com frases curtas.", en: "You should practice with short sentences.", tags: ["advice"] },
+    { id: 519, pt: "É melhor você não se comparar com os outros.", en: "You'd better not compare yourself to others.", tags: ["advice"] },
+    { id: 520, pt: "É melhor você economizar seu dinheiro.", en: "You'd better save your money.", tags: ["advice"] },
+    { id: 521, pt: "É melhor você falar devagar.", en: "You'd better speak slowly.", tags: ["advice"] },
+    { id: 522, pt: "Se eu fosse você, eu faria isso com calma.", en: "If I were you, I would do it calmly.", tags: ["advice", "conditional"] },
+    { id: 523, pt: "Se eu fosse você, eu não iria agora.", en: "If I were you, I wouldn't go now.", tags: ["advice", "conditional"] },
+    { id: 524, pt: "Se eu fosse você, eu tentaria de outro jeito.", en: "If I were you, I would try a different way.", tags: ["advice", "conditional"] },
+
+    // Sugestão
+    { id: 149, pt: "Que tal pedir ajuda?", en: ["Why don't you ask for help?", "How about asking for help?"], tags: ["suggestion"] },
+    { id: 150, pt: "Vamos sair mais cedo?", en: "Shall we leave earlier?", tags: ["suggestion"] },
+    { id: 189, pt: "Que tal a gente tentar de novo?", en: ["How about we try again?", "Why don't we try again?"], tags: ["suggestion"] },
+    { id: 190, pt: "Vamos fazer isso depois?", en: "Shall we do this later?", tags: ["suggestion"] },
+    { id: 191, pt: "Podemos pedir comida hoje.", en: "We could order food today.", tags: ["suggestion"] },
+    { id: 525, pt: "Que tal a gente sair agora?", en: ["How about we go out now?", "Why don't we go out now?"], tags: ["suggestion"] },
+    { id: 526, pt: "Vamos tomar um café?", en: "Shall we have a coffee?", tags: ["suggestion"] },
+    { id: 527, pt: "Que tal assistir um filme hoje?", en: ["How about watching a movie today?", "Why don't we watch a movie today?"], tags: ["suggestion"] },
+    { id: 528, pt: "Vamos começar por essa parte?", en: "Shall we start with this part?", tags: ["suggestion"] },
+    { id: 529, pt: "Que tal você descansar um pouco?", en: ["How about you rest a little?", "Why don't you rest a little?"], tags: ["suggestion"] },
+    { id: 530, pt: "Vamos fazer isso juntos?", en: "Shall we do this together?", tags: ["suggestion"] },
+    { id: 531, pt: "Que tal a gente estudar agora?", en: ["How about we study now?", "Why don't we study now?"], tags: ["suggestion"] },
+    { id: 532, pt: "Vamos praticar inglês um pouco?", en: "Shall we practice English a little?", tags: ["suggestion"] },
+    { id: 533, pt: "Que tal você tentar de novo?", en: ["How about you try again?", "Why don't you try again?"], tags: ["suggestion"] },
+    { id: 534, pt: "Vamos sair mais cedo amanhã?", en: "Shall we leave earlier tomorrow?", tags: ["suggestion"] },
+    { id: 535, pt: "Que tal pedir mais um tempo?", en: ["How about asking for more time?", "Why don't you ask for more time?"], tags: ["suggestion"] },
+    { id: 536, pt: "Vamos marcar para depois?", en: "Shall we schedule it for later?", tags: ["suggestion"] },
+    { id: 537, pt: "Que tal a gente comer algo?", en: ["How about we eat something?", "Why don't we eat something?"], tags: ["suggestion"] },
+    { id: 538, pt: "Vamos pedir comida hoje?", en: "Shall we order food today?", tags: ["suggestion"] },
+    { id: 539, pt: "Que tal você beber água?", en: ["How about you drink some water?", "Why don't you drink some water?"], tags: ["suggestion"] },
+    { id: 540, pt: "Vamos fazer uma pausa?", en: "Shall we take a break?", tags: ["suggestion"] },
+    { id: 541, pt: "Que tal você anotar isso?", en: ["How about writing this down?", "Why don't you write this down?"], tags: ["suggestion"] },
+    { id: 542, pt: "Vamos repetir essa frase?", en: "Shall we repeat this sentence?", tags: ["suggestion"] },
+    { id: 543, pt: "Que tal a gente caminhar um pouco?", en: ["How about we go for a walk?", "Why don't we go for a walk?"], tags: ["suggestion"] },
+    { id: 544, pt: "Vamos conversar depois?", en: "Shall we talk later?", tags: ["suggestion"] },
+    { id: 545, pt: "Que tal você mandar uma mensagem pra ele?", en: ["How about you text him?", "Why don't you text him?"], tags: ["suggestion"] },
+    { id: 546, pt: "Vamos fazer isso de outro jeito?", en: "Shall we do it another way?", tags: ["suggestion"] },
+    { id: 547, pt: "Que tal assistir uma aula curta?", en: ["How about watching a short lesson?", "Why don't you watch a short lesson?"], tags: ["suggestion"] },
+    { id: 548, pt: "Vamos tentar mais uma vez?", en: "Shall we try one more time?", tags: ["suggestion"] },
+    { id: 549, pt: "Que tal a gente ir de ônibus?", en: ["How about we take the bus?", "Why don't we take the bus?"], tags: ["suggestion"] },
+    { id: 550, pt: "Vamos comprar isso depois?", en: "Shall we buy it later?", tags: ["suggestion"] },
+    { id: 551, pt: "Que tal você falar com calma?", en: ["How about speaking calmly?", "Why don't you speak calmly?"], tags: ["suggestion"] },
+    { id: 552, pt: "Vamos focar no mais importante primeiro?", en: "Shall we focus on the most important thing first?", tags: ["suggestion"] },
+    { id: 553, pt: "Que tal a gente revisar isso juntos?", en: ["How about we review this together?", "Why don't we review this together?"], tags: ["suggestion"] },
+    { id: 554, pt: "Vamos resolver isso agora?", en: "Shall we solve this now?", tags: ["suggestion"] },
+
+    // Possibilidade
+    { id: 151, pt: "Talvez ele chegue tarde.", en: "Maybe he arrives late.", tags: ["possibility"] },
+    { id: 152, pt: "Pode ser que eu me atrase.", en: ["I might be late.", "I may be late."], tags: ["possibility"] },
+    { id: 192, pt: "Acho que ele não vem hoje.", en: ["I think he isn't coming today.", "I don't think he's coming today."], tags: ["possibility"] },
+    { id: 193, pt: "Talvez eu vá mais tarde.", en: "Maybe I'll go later.", tags: ["possibility", "future"] },
+    { id: 194, pt: "Pode ser que chova à noite.", en: ["It might rain at night.", "It may rain tonight."], tags: ["possibility"] },
+    { id: 555, pt: "Talvez ele esteja ocupado.", en: "Maybe he's busy.", tags: ["possibility"] },
+    { id: 556, pt: "Pode ser que ela chegue mais cedo.", en: ["She might arrive earlier.", "She may arrive earlier."], tags: ["possibility"] },
+    { id: 557, pt: "Acho que vai chover hoje.", en: "I think it's going to rain today.", tags: ["possibility"] },
+    { id: 558, pt: "Talvez eu não consiga ir.", en: "Maybe I won't be able to go.", tags: ["possibility"] },
+    { id: 559, pt: "Pode ser que ele esteja dormindo.", en: ["He might be sleeping.", "He may be sleeping."], tags: ["possibility"] },
+    { id: 560, pt: "Talvez a gente saia mais tarde.", en: "Maybe we'll go out later.", tags: ["possibility"] },
+    { id: 561, pt: "Pode ser que eu esqueça.", en: ["I might forget.", "I may forget."], tags: ["possibility"] },
+    { id: 562, pt: "Talvez ela não goste.", en: "Maybe she doesn't like it.", tags: ["possibility"] },
+    { id: 563, pt: "Acho que ele já foi embora.", en: "I think he already left.", tags: ["possibility"] },
+    { id: 564, pt: "Pode ser que isso demore.", en: ["This might take a while.", "This may take a while."], tags: ["possibility"] },
+    { id: 565, pt: "Talvez ele não responda agora.", en: "Maybe he won't reply now.", tags: ["possibility"] },
+    { id: 566, pt: "Pode ser que eu esteja errado.", en: ["I might be wrong.", "I may be wrong."], tags: ["possibility"] },
+    { id: 567, pt: "Talvez a internet caia de novo.", en: "Maybe the internet will go down again.", tags: ["possibility"] },
+    { id: 568, pt: "Pode ser que ela esteja ocupada.", en: ["She might be busy.", "She may be busy."], tags: ["possibility"] },
+    { id: 569, pt: "Acho que ele não entendeu.", en: "I think he didn't understand.", tags: ["possibility"] },
+    { id: 570, pt: "Talvez eu precise de ajuda.", en: "Maybe I'll need help.", tags: ["possibility"] },
+    { id: 571, pt: "Pode ser que a gente se atrase.", en: ["We might be late.", "We may be late."], tags: ["possibility"] },
+    { id: 572, pt: "Talvez isso seja verdade.", en: "Maybe that's true.", tags: ["possibility"] },
+    { id: 573, pt: "Pode ser que ele esteja no trabalho.", en: ["He might be at work.", "He may be at work."], tags: ["possibility"] },
+    { id: 574, pt: "Talvez ela esteja doente.", en: "Maybe she's sick.", tags: ["possibility"] },
+    { id: 575, pt: "Acho que a loja já fechou.", en: "I think the store is already closed.", tags: ["possibility"] },
+    { id: 576, pt: "Pode ser que ele esteja com fome.", en: ["He might be hungry.", "He may be hungry."], tags: ["possibility"] },
+    { id: 577, pt: "Talvez eu vá amanhã.", en: "Maybe I'll go tomorrow.", tags: ["possibility"] },
+    { id: 578, pt: "Pode ser que ela não venha hoje.", en: ["She might not come today.", "She may not come today."], tags: ["possibility"] },
+    { id: 579, pt: "Talvez a gente consiga resolver hoje.", en: "Maybe we can solve it today.", tags: ["possibility"] },
+    { id: 580, pt: "Pode ser que eu não tenha tempo.", en: ["I might not have time.", "I may not have time."], tags: ["possibility"] },
+    { id: 581, pt: "Acho que ele vai chegar atrasado.", en: "I think he's going to arrive late.", tags: ["possibility"] },
+    { id: 582, pt: "Talvez eu esteja cansado demais.", en: "Maybe I'm too tired.", tags: ["possibility"] },
+    { id: 583, pt: "Pode ser que isso dê certo.", en: ["This might work.", "This may work."], tags: ["possibility"] },
+    { id: 584, pt: "Talvez a gente precise tentar de novo.", en: "Maybe we need to try again.", tags: ["possibility"] },
+  ]
+};
+//#endregion
+
+//#region ================= PRONUNCIATION LAB DATA =================//
+// --- DADOS DO JOGO DE SPEAKING (SEQUENCIAL & COMPLETO) ---
+export const SPEAKING_DATA = {
+  alphabet: [
+    { display: 'A', valid: ['a', 'ei', 'hey'] },
+    { display: 'B', valid: ['b', 'bee', 'be'] },
+    { display: 'C', valid: ['c', 'see', 'sea'] },
+    { display: 'D', valid: ['d', 'dee'] },
+    { display: 'E', valid: ['e'] },
+    { display: 'F', valid: ['f', 'eff'] },
+    { display: 'G', valid: ['g', 'jee', 'gee'] },
+    { display: 'H', valid: ['h', 'aitch'] },
+    { display: 'I', valid: ['i', 'eye'] },
+    { display: 'J', valid: ['j', 'jay'] },
+    { display: 'K', valid: ['k', 'kay'] },
+    { display: 'L', valid: ['l', 'el'] },
+    { display: 'M', valid: ['m', 'em'] },
+    { display: 'N', valid: ['n', 'en'] },
+    { display: 'O', valid: ['o', 'oh'] },
+    { display: 'P', valid: ['p', 'pee'] },
+    { display: 'Q', valid: ['q', 'cue', 'queue'] },
+    { display: 'R', valid: ['r', 'ar', 'are'] },
+    { display: 'S', valid: ['s', 'ess'] },
+    { display: 'T', valid: ['t', 'tee', 'tea'] },
+    { display: 'U', valid: ['u', 'you'] },
+    { display: 'V', valid: ['v', 'vee'] },
+    { display: 'W', valid: ['w', 'double u'] },
+    { display: 'X', valid: ['x', 'ex'] },
+    { display: 'Y', valid: ['y', 'why'] },
+    { display: 'Z', valid: ['z', 'zee', 'zed'] }
+  ],
+  numbers: [
+    { display: '0', valid: ['0', 'zero', 'oh'] },
+    { display: '3', valid: ['3', 'three'] }, // Muita gente fala "tree"
+    { display: '13', valid: ['13', 'thirteen'] },
+    { display: '30', valid: ['30', 'thirty'] },
+    { display: '33', valid: ['33', 'thirty three'] },
+    { display: '100', valid: ['100', 'one hundred', 'a hundred'] },
+    { display: '1,000', valid: ['1000', 'one thousand', 'a thousand'] },
+    { display: '2025', valid: ['2025', 'two thousand twenty five', 'twenty twenty five'] }
+  ],
+  ordinals: [
+    { display: '1st', valid: ['1st', 'first'] },
+    { display: '2nd', valid: ['2nd', 'second'] },
+    { display: '3rd', valid: ['3rd', 'third'] },
+    { display: '5th', valid: ['5th', 'fifth'] },
+    { display: '6th', valid: ['6th', 'sixth'] }, // Difícil pronunciar o xth
+    { display: '12th', valid: ['12th', 'twelfth'] },
+    { display: '20th', valid: ['20th', 'twentieth'] }
+  ],
+
+  // Palavras com letras mudas (Silent Letters) - O terror dos brasileiros
+  silent_letters: [
+    { display: 'Knife', valid: ['knife'] }, // K mudo
+    { display: 'Island', valid: ['island'] }, // S mudo
+    { display: 'Chocolate', valid: ['chocolate'] }, // Late -> Let
+    { display: 'Salmon', valid: ['salmon'] }, // L mudo
+    { display: 'Comfortable', valid: ['comfortable'] }, // "Comftable"
+    { display: 'Vegetable', valid: ['vegetable'] }, // "Vegtable"
+    { display: 'Muscle', valid: ['muscle'] }, // C mudo
+    { display: 'Answer', valid: ['answer'] }, // W mudo
+    { display: 'Wednesday', valid: ['wednesday'] }, // D mudo
+    { display: 'Castle', valid: ['castle'] } // T mudo
+  ],
+
+  // Pares Mínimos e Sons Difíceis (TH, EE vs I)
+  tricky_words: [
+    { display: 'World', valid: ['world'] }, // O Rl é difícil
+    { display: 'Word', valid: ['word'] },
+    { display: 'Girl', valid: ['girl'] },
+    { display: 'Beach', valid: ['beach'] }, // vs Bitch
+    { display: 'Sheet', valid: ['sheet'] }, // vs Shit
+    { display: 'Three', valid: ['three'] }, // TH
+    { display: 'Tree', valid: ['tree'] }, 
+    { display: 'Thought', valid: ['thought'] },
+    { display: 'Throughout', valid: ['throughout'] },
+    { display: 'Iron', valid: ['iron'] } // "Aiern" não "Airon"
+  ],
+
+  // Trava-Línguas Curtos (Tongue Twisters)
+  tongue_twisters: [
+    { display: 'Ice Cream', valid: ['ice cream'] },
+    { display: 'I scream', valid: ['i scream'] },
+    { display: 'She sells sea shells', valid: ['she sells sea shells'] },
+    { display: 'Red lorry, yellow lorry', valid: ['red lorry yellow lorry'] },
+    { display: 'Eleven benevolent elephants', valid: ['eleven benevolent elephants'] },
+    { display: 'Good blood, bad blood', valid: ['good blood bad blood'] }
+  ],
+
+  // Marcas e Tech (Como se fala em inglês nativo)
+  tech_brands: [
+    { display: 'Apple', valid: ['apple'] }, // Não "Êipou"
+    { display: 'Google', valid: ['google'] }, // Não "Gugou"
+    { display: 'Facebook', valid: ['facebook'] }, // Não "Feisibuki"
+    { display: 'LinkedIn', valid: ['linkedin'] }, // Não "Linkidin"
+    { display: 'Instagram', valid: ['instagram'] },
+    { display: 'Wi-Fi', valid: ['wifi', 'wi-fi'] }, // "Wai Fai"
+    { display: 'YouTube', valid: ['youtube'] },
+    { display: 'Spotify', valid: ['spotify'] }
+  ]
+};
+//#endregion ================= SPEAKING DATA =================//
