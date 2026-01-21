@@ -12,13 +12,6 @@ import {
 
 const WORDS_PER_LEVEL = 30;
 
-/**
- * 1) Normalização forte (sem IA):
- * - lower + trim
- * - remove acentos
- * - remove pontuação (mantém letras/números/espaço/hífen)
- * - colapsa espaços
- */
 const normalize = (text) => {
   return String(text ?? '')
     .toLowerCase()
@@ -30,41 +23,74 @@ const normalize = (text) => {
 };
 
 /**
- * 2) Sinônimos locais (sem IA).
- * Use chaves já "normalizadas" (sem acento, minúsculas).
- * Ex.: "confiável" -> chave "confiavel"
- */
-const SYNONYMS_PT = {
-  // exemplos (adicione aos poucos conforme necessário)
-  trabalho: ['emprego', 'servico'],
-  professor: ['docente', 'mestre'],
-  seguro: ['protegido', 'confiavel'],
-  comprar: ['adquirir'],
-  // ...coloque seus sinônimos aqui
-};
-
-/**
- * Constrói o conjunto de respostas aceitas:
- * - inclui as respostas do JSON (pt)
- * - inclui sinônimos a partir do SYNONYMS_PT
+ * ✅ Aceita SOMENTE as traduções que já estão no JSON (currentWord.pt)
+ * (sem sinônimos)
  */
 const buildAcceptedAnswers = (ptArray) => {
   const accepted = new Set();
 
   for (const raw of Array.isArray(ptArray) ? ptArray : []) {
     const base = normalize(raw);
-    if (!base) continue;
-
-    accepted.add(base);
-
-    const syns = SYNONYMS_PT[base] || [];
-    for (const s of syns) {
-      const ns = normalize(s);
-      if (ns) accepted.add(ns);
-    }
+    if (base) accepted.add(base);
   }
 
   return accepted;
+};
+
+// ✅ Levenshtein + Similaridade (para pronúncia)
+const levenshtein = (a, b) => {
+  const m = a.length;
+  const n = b.length;
+  if (m === 0) return n;
+  if (n === 0) return m;
+
+  const dp = Array.from({ length: m + 1 }, () => Array(n + 1).fill(0));
+
+  for (let i = 0; i <= m; i++) dp[i][0] = i;
+  for (let j = 0; j <= n; j++) dp[0][j] = j;
+
+  for (let i = 1; i <= m; i++) {
+    for (let j = 1; j <= n; j++) {
+      const cost = a[i - 1] === b[j - 1] ? 0 : 1;
+      dp[i][j] = Math.min(
+        dp[i - 1][j] + 1,
+        dp[i][j - 1] + 1,
+        dp[i - 1][j - 1] + cost
+      );
+    }
+  }
+  return dp[m][n];
+};
+
+const similarity = (a, b) => {
+  const A = normalize(a);
+  const B = normalize(b);
+  if (!A || !B) return 0;
+  const dist = levenshtein(A, B);
+  const maxLen = Math.max(A.length, B.length);
+  return maxLen === 0 ? 1 : 1 - dist / maxLen;
+};
+
+const isPronunciationMatch = (heardRaw, targetRaw) => {
+  const heard = normalize(heardRaw);
+  const target = normalize(targetRaw);
+
+  if (!heard || !target) return false;
+
+  // 1) Match direto
+  if (heard === target) return true;
+
+  // 2) Às vezes vem com frase tipo "the work", "to work"
+  if (heard.includes(target)) return true;
+
+  // 3) Similaridade aproximada (salva MUITA coisa)
+  const score = similarity(heard, target);
+
+  // Palavras curtas precisam ser mais tolerantes
+  if (target.length <= 4) return score >= 0.8;
+
+  // Regra geral
+  return score >= 0.85;
 };
 
 const shuffleWords = (words) => {
@@ -86,6 +112,8 @@ const VocabularyGame = ({ onBack }) => {
   const [feedback, setFeedback] = useState(null);
   const [stats, setStats] = useState({ correct: 0, wrong: 0 });
   const [levelShuffleKey, setLevelShuffleKey] = useState(0);
+
+  // Voz
   const [isSpeaking, setIsSpeaking] = useState(false);
   const [isListening, setIsListening] = useState(false);
   const [pronunciationFeedback, setPronunciationFeedback] = useState(null);
@@ -163,6 +191,7 @@ const VocabularyGame = ({ onBack }) => {
     if (feedback) return;
     if (!currentWord) return;
 
+    // ✅ aceita apenas as respostas que já existem no JSON (pt)
     const accepted = buildAcceptedAnswers(currentWord.pt);
     const userAnswer = normalize(userInput);
 
@@ -197,9 +226,13 @@ const VocabularyGame = ({ onBack }) => {
     window.speechSynthesis.speak(utterance);
   };
 
+  // ✅ Reconhecimento de pronúncia MELHORADO (sem mostrar "ouvido:")
   const startPronunciationCheck = () => {
     if (!currentWord?.en) return;
-    const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+
+    const SpeechRecognition =
+      window.SpeechRecognition || window.webkitSpeechRecognition;
+
     if (!SpeechRecognition) {
       setPronunciationError('Seu navegador nao suporta reconhecimento de voz.');
       return;
@@ -212,24 +245,59 @@ const VocabularyGame = ({ onBack }) => {
     const recognition = new SpeechRecognition();
     recognition.lang = 'en-US';
     recognition.interimResults = false;
-    recognition.maxAlternatives = 1;
+
+    // ✅ MAIS alternativas melhora MUITO
+    recognition.maxAlternatives = 5;
+
+    // ✅ tenta “sugerir” a palavra pro motor (ajuda em alguns casos)
+    const SpeechGrammarList =
+      window.SpeechGrammarList || window.webkitSpeechGrammarList;
+
+    if (SpeechGrammarList && currentWord?.en) {
+      try {
+        const grammar = `#JSGF V1.0; grammar words; public <word> = ${currentWord.en};`;
+        const speechRecognitionList = new SpeechGrammarList();
+        speechRecognitionList.addFromString(grammar, 1);
+        recognition.grammars = speechRecognitionList;
+      } catch (err) {
+        // ignora se o navegador não aceitar
+      }
+    }
 
     recognition.onstart = () => {
       setPronunciationError(null);
       setPronunciationFeedback(null);
       setIsListening(true);
     };
-    recognition.onend = () => setIsListening(false);
+
+    recognition.onend = () => {
+      setIsListening(false);
+    };
+
     recognition.onerror = () => {
       setIsListening(false);
       setPronunciationError('Nao foi possivel capturar sua voz.');
     };
+
     recognition.onresult = (event) => {
-      const transcript = event.results?.[0]?.[0]?.transcript || '';
-      const target = normalize(currentWord.en);
-      const heard = normalize(transcript);
-      const isCorrect = heard === target || heard.includes(target);
-      setPronunciationFeedback(isCorrect ? 'correct' : 'wrong');
+      const results = event.results?.[0];
+      const target = currentWord.en;
+
+      if (!results || results.length === 0) {
+        setPronunciationFeedback('wrong');
+        return;
+      }
+
+      const alternatives = Array.from(results).map((r) => ({
+        transcript: r.transcript || '',
+      }));
+
+      // ✅ aceita se qualquer alternativa bater por match aproximado
+      const hit = alternatives.some((alt) =>
+        isPronunciationMatch(alt.transcript, target)
+      );
+
+      setPronunciationFeedback(hit ? 'correct' : 'wrong');
     };
 
     recognitionRef.current = recognition;
@@ -399,6 +467,7 @@ const VocabularyGame = ({ onBack }) => {
                     <option value={1.25}>1.25x</option>
                   </select>
                 </label>
+
                 <button
                   type="button"
                   onClick={speakCurrentWord}
@@ -407,6 +476,7 @@ const VocabularyGame = ({ onBack }) => {
                 >
                   {isSpeaking ? 'Reproduzindo...' : 'Ouvir pronuncia'}
                 </button>
+
                 <button
                   type="button"
                   onClick={startPronunciationCheck}
@@ -484,7 +554,9 @@ const VocabularyGame = ({ onBack }) => {
                     </p>
 
                     <p className="text-slate-400 text-xs mt-2">
-                      {currentWord?.pt?.length > 1 ? `(Aceita também: ${currentWord.pt.slice(1).join(', ')})` : ''}
+                      {currentWord?.pt?.length > 1
+                        ? `(Aceita também: ${currentWord.pt.slice(1).join(', ')})`
+                        : ''}
                     </p>
                   </div>
                 )}
