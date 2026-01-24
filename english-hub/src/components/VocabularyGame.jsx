@@ -22,6 +22,11 @@ const normalize = (text) => {
     .replace(/\s+/g, ' ');
 };
 
+// ✅ Normalização mais “solta” para considerar hífen = espaço
+const normalizeLoose = (text) => {
+  return normalize(text).replace(/-/g, ' ').replace(/\s+/g, ' ').trim();
+};
+
 /**
  * ✅ Aceita SOMENTE as traduções que já estão no JSON (currentWord.pt)
  * (sem sinônimos)
@@ -30,7 +35,7 @@ const buildAcceptedAnswers = (ptArray) => {
   const accepted = new Set();
 
   for (const raw of Array.isArray(ptArray) ? ptArray : []) {
-    const base = normalize(raw);
+    const base = normalizeLoose(raw);
     if (base) accepted.add(base);
   }
 
@@ -77,19 +82,12 @@ const isPronunciationMatch = (heardRaw, targetRaw) => {
 
   if (!heard || !target) return false;
 
-  // 1) Match direto
   if (heard === target) return true;
-
-  // 2) Às vezes vem com frase tipo "the work", "to work"
   if (heard.includes(target)) return true;
 
-  // 3) Similaridade aproximada (salva MUITA coisa)
   const score = similarity(heard, target);
 
-  // Palavras curtas precisam ser mais tolerantes
   if (target.length <= 4) return score >= 0.8;
-
-  // Regra geral
   return score >= 0.85;
 };
 
@@ -108,10 +106,18 @@ const VocabularyGame = ({ onBack }) => {
   // Estados do Jogo
   const [currentLevelId, setCurrentLevelId] = useState(1);
   const [currentWordIndex, setCurrentWordIndex] = useState(0);
+
+  // ✅ Agora temos: resposta principal + respostas extras
   const [userInput, setUserInput] = useState('');
+  const [extraInput, setExtraInput] = useState('');
+  const [extraAnswers, setExtraAnswers] = useState([]); // lista de significados adicionados
+
   const [feedback, setFeedback] = useState(null);
   const [stats, setStats] = useState({ correct: 0, wrong: 0 });
   const [levelShuffleKey, setLevelShuffleKey] = useState(0);
+
+  // ✅ Relatório da correção (pra pintar cada resposta e mostrar faltantes)
+  const [answerReport, setAnswerReport] = useState(null);
 
   // Voz
   const [isSpeaking, setIsSpeaking] = useState(false);
@@ -148,18 +154,25 @@ const VocabularyGame = ({ onBack }) => {
     setIsListening(false);
   };
 
+  const resetInputsAndFeedback = () => {
+    setUserInput('');
+    setExtraInput('');
+    setExtraAnswers([]);
+    setFeedback(null);
+    setAnswerReport(null);
+    setIsFocused(false);
+    setPronunciationFeedback(null);
+    setPronunciationError(null);
+  };
+
   const enterLevel = (levelId) => {
     stopListening();
     setCurrentLevelId(levelId);
     setLevelShuffleKey((prev) => prev + 1);
     setCurrentWordIndex(0);
     setStats({ correct: 0, wrong: 0 });
-    setFeedback(null);
-    setPronunciationFeedback(null);
-    setPronunciationError(null);
     setSpeechRate(1);
-    setUserInput('');
-    setIsFocused(false);
+    resetInputsAndFeedback();
     setView('game');
     window.scrollTo(0, 0);
   };
@@ -173,11 +186,7 @@ const VocabularyGame = ({ onBack }) => {
   };
 
   const nextWord = () => {
-    setUserInput('');
-    setFeedback(null);
-    setIsFocused(false);
-    setPronunciationFeedback(null);
-    setPronunciationError(null);
+    resetInputsAndFeedback();
 
     if (currentWordIndex + 1 < currentLevelWords.length) {
       setCurrentWordIndex((prev) => prev + 1);
@@ -186,16 +195,70 @@ const VocabularyGame = ({ onBack }) => {
     }
   };
 
+  // ✅ Adiciona significado extra (sem duplicar)
+  const addExtraAnswer = () => {
+    if (feedback) return;
+
+    const raw = extraInput.trim();
+    if (!raw) return;
+
+    const key = normalizeLoose(raw);
+
+    // não adiciona duplicados (comparando pelo normalizado)
+    const already = extraAnswers.some((a) => normalizeLoose(a) === key);
+    const equalsMain = normalizeLoose(userInput) === key;
+
+    if (!already && !equalsMain) {
+      setExtraAnswers((prev) => [...prev, raw]);
+    }
+
+    setExtraInput('');
+  };
+
+  const removeExtraAnswer = (index) => {
+    if (feedback) return;
+    setExtraAnswers((prev) => prev.filter((_, i) => i !== index));
+  };
+
   const checkAnswer = (e) => {
     e.preventDefault();
     if (feedback) return;
     if (!currentWord) return;
 
-    // ✅ aceita apenas as respostas que já existem no JSON (pt)
     const accepted = buildAcceptedAnswers(currentWord.pt);
-    const userAnswer = normalize(userInput);
 
-    if (accepted.has(userAnswer)) {
+    // ✅ Todas as respostas fornecidas (principal + extras)
+    const providedRaw = [userInput, ...extraAnswers].map((s) => String(s || '').trim());
+    const providedClean = providedRaw.filter(Boolean);
+
+    // se o usuário não escreveu nada
+    if (providedClean.length === 0) return;
+
+    const providedEval = providedClean.map((text) => {
+      const ok = accepted.has(normalizeLoose(text));
+      return { text, ok };
+    });
+
+    const anyCorrect = providedEval.some((a) => a.ok);
+
+    // ✅ conjunto das respostas corretas fornecidas
+    const providedCorrectSet = new Set(
+      providedEval.filter((a) => a.ok).map((a) => normalizeLoose(a.text))
+    );
+
+    // ✅ faltantes (comparando com o JSON)
+    const missing = (Array.isArray(currentWord.pt) ? currentWord.pt : []).filter((pt) => {
+      return !providedCorrectSet.has(normalizeLoose(pt));
+    });
+
+    // ✅ monta relatório pra UI
+    setAnswerReport({
+      provided: providedEval,
+      missing,
+      allAccepted: Array.isArray(currentWord.pt) ? currentWord.pt : [],
+    });
+
+    if (anyCorrect) {
       setFeedback('correct');
       setStats((prev) => ({ ...prev, correct: prev.correct + 1 }));
     } else {
@@ -245,11 +308,8 @@ const VocabularyGame = ({ onBack }) => {
     const recognition = new SpeechRecognition();
     recognition.lang = 'en-US';
     recognition.interimResults = false;
-
-    // ✅ MAIS alternativas melhora MUITO
     recognition.maxAlternatives = 5;
 
-    // ✅ tenta “sugerir” a palavra pro motor (ajuda em alguns casos)
     const SpeechGrammarList =
       window.SpeechGrammarList || window.webkitSpeechGrammarList;
 
@@ -259,9 +319,7 @@ const VocabularyGame = ({ onBack }) => {
         const speechRecognitionList = new SpeechGrammarList();
         speechRecognitionList.addFromString(grammar, 1);
         recognition.grammars = speechRecognitionList;
-      } catch (err) {
-        // ignora se o navegador não aceitar
-      }
+      } catch (err) {}
     }
 
     recognition.onstart = () => {
@@ -292,7 +350,6 @@ const VocabularyGame = ({ onBack }) => {
         transcript: r.transcript || '',
       }));
 
-      // ✅ aceita se qualquer alternativa bater por match aproximado
       const hit = alternatives.some((alt) =>
         isPronunciationMatch(alt.transcript, target)
       );
@@ -500,33 +557,103 @@ const VocabularyGame = ({ onBack }) => {
               )}
             </div>
 
-            <form onSubmit={checkAnswer} className="max-w-md mx-auto relative mb-8">
-              <input
-                ref={inputRef}
-                type="text"
-                value={userInput}
-                onChange={(e) => setUserInput(e.target.value)}
-                onFocus={() => setIsFocused(true)}
-                onBlur={() => setIsFocused(false)}
-                placeholder={isFocused ? '' : 'Digite a tradução...'}
-                className={`w-full p-4 text-center text-xl font-medium border-2 rounded-xl outline-none transition-all shadow-sm
-                  ${
-                    feedback === 'correct'
-                      ? 'border-green-500 bg-green-50 text-green-700'
-                      : feedback === 'wrong'
-                      ? 'border-red-500 bg-red-50 text-red-700'
-                      : 'border-slate-200 focus:border-blue-500 focus:shadow-md'
-                  }`}
-                disabled={feedback !== null}
-              />
+            {/* ✅ FORMULÁRIO: agora tem 2 caixas lado a lado */}
+            <form onSubmit={checkAnswer} className="max-w-3xl mx-auto mb-8">
+              <div className="flex flex-col md:flex-row gap-3">
+                {/* Caixa principal */}
+                <div className="relative flex-1">
+                  <input
+                    ref={inputRef}
+                    type="text"
+                    value={userInput}
+                    onChange={(e) => setUserInput(e.target.value)}
+                    onFocus={() => setIsFocused(true)}
+                    onBlur={() => setIsFocused(false)}
+                    placeholder={isFocused ? '' : 'Digite a tradução principal...'}
+                    className={`w-full p-4 text-center text-lg font-medium border-2 rounded-xl outline-none transition-all shadow-sm
+                      ${
+                        feedback === 'correct'
+                          ? 'border-green-500 bg-green-50 text-green-700'
+                          : feedback === 'wrong'
+                          ? 'border-red-500 bg-red-50 text-red-700'
+                          : 'border-slate-200 focus:border-blue-500 focus:shadow-md'
+                      }`}
+                    disabled={feedback !== null}
+                  />
 
-              {!feedback && userInput.trim() && (
-                <button
-                  type="submit"
-                  className="absolute right-3 top-1/2 -translate-y-1/2 p-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors shadow-md"
-                >
-                  <ArrowRight className="w-5 h-5" />
-                </button>
+                  {!feedback && userInput.trim() && (
+                    <button
+                      type="submit"
+                      className="absolute right-3 top-1/2 -translate-y-1/2 p-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors shadow-md"
+                      title="Enviar respostas"
+                    >
+                      <ArrowRight className="w-5 h-5" />
+                    </button>
+                  )}
+                </div>
+
+                {/* Caixa para adicionar significados */}
+                <div className="relative flex-1">
+                  <input
+                    type="text"
+                    value={extraInput}
+                    onChange={(e) => setExtraInput(e.target.value)}
+                    placeholder="Adicionar outro significado..."
+                    className="w-full p-4 text-center text-lg font-medium border-2 border-slate-200 rounded-xl outline-none transition-all shadow-sm focus:border-blue-500 focus:shadow-md"
+                    disabled={feedback !== null}
+                    onKeyDown={(e) => {
+                      // ✅ Enter aqui adiciona, não envia o formulário
+                      if (e.key === 'Enter') {
+                        e.preventDefault();
+                        addExtraAnswer();
+                      }
+                    }}
+                  />
+
+                  {!feedback && extraInput.trim() && (
+                    <button
+                      type="button"
+                      onClick={addExtraAnswer}
+                      className="absolute right-3 top-1/2 -translate-y-1/2 px-3 py-2 bg-slate-900 text-white rounded-lg hover:bg-slate-800 transition-colors shadow-md text-sm font-bold"
+                      title="Adicionar significado"
+                    >
+                      +
+                    </button>
+                  )}
+                </div>
+              </div>
+
+              {/* ✅ Lista de extras */}
+              {extraAnswers.length > 0 && (
+                <div className="mt-4 flex flex-wrap gap-2 justify-center">
+                  {extraAnswers.map((ans, idx) => {
+                    const status =
+                      feedback && answerReport
+                        ? answerReport.provided.find((p) => p.text === ans)?.ok
+                        : null;
+
+                    const chipClass =
+                      status === true
+                        ? 'bg-green-50 border-green-500 text-green-700'
+                        : status === false
+                        ? 'bg-red-50 border-red-500 text-red-700'
+                        : 'bg-white border-slate-200 text-slate-700 hover:bg-slate-100';
+
+                    return (
+                      <button
+                        key={`${ans}-${idx}`}
+                        type="button"
+                        onClick={() => removeExtraAnswer(idx)}
+                        disabled={feedback !== null}
+                        className={`px-3 py-1 rounded-full text-sm font-bold border transition ${chipClass}
+                          ${feedback ? 'cursor-default' : 'cursor-pointer'}`}
+                        title={feedback ? '' : 'Clique para remover'}
+                      >
+                        {ans} {!feedback && <span className="ml-1 text-slate-400">×</span>}
+                      </button>
+                    );
+                  })}
+                </div>
               )}
             </form>
 
@@ -536,28 +663,23 @@ const VocabularyGame = ({ onBack }) => {
                   <div className="flex flex-col items-center text-green-600 mb-6">
                     <div className="flex items-center gap-2 bg-green-100 px-4 py-2 rounded-full mb-2">
                       <Check className="w-5 h-5" />
-                      <span className="font-bold">Correto!</span>
+                      <span className="font-bold">
+                        <span className="font-bold">Correto!</span>
+                      </span>
+                      
                     </div>
+                    {feedback === 'correct' && answerReport?.missing?.length > 0 && (
+                        <p className="text-xs text-slate-500 mt-2 text-center">
+                          Faltou: <strong>{answerReport.missing.join(', ')}</strong>
+                        </p>
+                      )}
                   </div>
                 ) : (
-                  <div className="mb-8 bg-red-50 p-4 rounded-2xl border border-red-100">
-                    <div className="flex items-center justify-center gap-2 text-red-500 mb-2">
+                  <div className="flex flex-col items-center text-red-600 mb-6">
+                    <div className="flex items-center gap-2 bg-red-100 px-4 py-2 rounded-full mb-2">
                       <X className="w-5 h-5" />
-                      <span className="font-bold">Ops!</span>
+                      <span className="font-bold">Ops! Nenhum significado bateu.</span>
                     </div>
-
-                    <p className="text-slate-600 text-sm">
-                      A resposta era:{' '}
-                      <strong className="text-slate-900 text-lg block mt-1">
-                        {currentWord?.pt?.[0]}
-                      </strong>
-                    </p>
-
-                    <p className="text-slate-400 text-xs mt-2">
-                      {currentWord?.pt?.length > 1
-                        ? `(Aceita também: ${currentWord.pt.slice(1).join(', ')})`
-                        : ''}
-                    </p>
                   </div>
                 )}
 
