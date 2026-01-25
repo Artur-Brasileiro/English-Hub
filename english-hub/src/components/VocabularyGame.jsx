@@ -1,4 +1,5 @@
-import React, { useState, useMemo, useRef } from 'react';
+import React, { useState, useMemo, useRef, useEffect } from 'react';
+import { useNavigate } from "react-router-dom";
 import { VOCABULARY_DATA } from '../data/gameData';
 import {
   ArrowRight,
@@ -8,10 +9,12 @@ import {
   ArrowLeft,
   BookOpen,
   PlayCircle,
+  CornerDownLeft
 } from 'lucide-react';
 
 const WORDS_PER_LEVEL = 30;
 
+// --- FUNÇÕES UTILITÁRIAS ---
 const normalize = (text) => {
   return String(text ?? '')
     .toLowerCase()
@@ -22,46 +25,32 @@ const normalize = (text) => {
     .replace(/\s+/g, ' ');
 };
 
-// ✅ Normalização mais “solta” para considerar hífen = espaço
 const normalizeLoose = (text) => {
   return normalize(text).replace(/-/g, ' ').replace(/\s+/g, ' ').trim();
 };
 
-/**
- * ✅ Aceita SOMENTE as traduções que já estão no JSON (currentWord.pt)
- * (sem sinônimos)
- */
 const buildAcceptedAnswers = (ptArray) => {
   const accepted = new Set();
-
   for (const raw of Array.isArray(ptArray) ? ptArray : []) {
     const base = normalizeLoose(raw);
     if (base) accepted.add(base);
   }
-
   return accepted;
 };
 
-// ✅ Levenshtein + Similaridade (para pronúncia)
+// --- ALGORITMOS DE TEXTO ---
 const levenshtein = (a, b) => {
   const m = a.length;
   const n = b.length;
   if (m === 0) return n;
   if (n === 0) return m;
-
   const dp = Array.from({ length: m + 1 }, () => Array(n + 1).fill(0));
-
   for (let i = 0; i <= m; i++) dp[i][0] = i;
   for (let j = 0; j <= n; j++) dp[0][j] = j;
-
   for (let i = 1; i <= m; i++) {
     for (let j = 1; j <= n; j++) {
       const cost = a[i - 1] === b[j - 1] ? 0 : 1;
-      dp[i][j] = Math.min(
-        dp[i - 1][j] + 1,
-        dp[i][j - 1] + 1,
-        dp[i - 1][j - 1] + cost
-      );
+      dp[i][j] = Math.min(dp[i - 1][j] + 1, dp[i][j - 1] + 1, dp[i - 1][j - 1] + cost);
     }
   }
   return dp[m][n];
@@ -79,14 +68,10 @@ const similarity = (a, b) => {
 const isPronunciationMatch = (heardRaw, targetRaw) => {
   const heard = normalize(heardRaw);
   const target = normalize(targetRaw);
-
   if (!heard || !target) return false;
-
   if (heard === target) return true;
   if (heard.includes(target)) return true;
-
   const score = similarity(heard, target);
-
   if (target.length <= 4) return score >= 0.8;
   return score >= 0.85;
 };
@@ -100,36 +85,34 @@ const shuffleWords = (words) => {
   return shuffled;
 };
 
+// --- COMPONENTE PRINCIPAL ---
+
 const VocabularyGame = ({ onBack }) => {
+  const navigate = useNavigate();
   const [view, setView] = useState('menu');
 
   // Estados do Jogo
   const [currentLevelId, setCurrentLevelId] = useState(1);
   const [currentWordIndex, setCurrentWordIndex] = useState(0);
 
-  // ✅ Agora temos: resposta principal + respostas extras
-  const [userInput, setUserInput] = useState('');
-  const [extraInput, setExtraInput] = useState('');
-  const [extraAnswers, setExtraAnswers] = useState([]); // lista de significados adicionados
-
+  // Estados de Input (Tags + Texto)
+  const [tags, setTags] = useState([]); 
+  const [typingText, setTypingText] = useState('');
+  
   const [feedback, setFeedback] = useState(null);
   const [stats, setStats] = useState({ correct: 0, wrong: 0 });
   const [levelShuffleKey, setLevelShuffleKey] = useState(0);
-
-  // ✅ Relatório da correção (pra pintar cada resposta e mostrar faltantes)
   const [answerReport, setAnswerReport] = useState(null);
 
-  // Voz
+  // Voz e Pronúncia
   const [isSpeaking, setIsSpeaking] = useState(false);
   const [isListening, setIsListening] = useState(false);
-  const [pronunciationFeedback, setPronunciationFeedback] = useState(null);
+  const [pronunciationFeedback, setPronunciationFeedback] = useState(null); // null, 'correct', 'wrong'
   const [pronunciationError, setPronunciationError] = useState(null);
   const [speechRate, setSpeechRate] = useState(1);
 
-  // Placeholder visual
+  // Refs e Foco
   const [isFocused, setIsFocused] = useState(false);
-
-  // Ref para manipular o input se necessário
   const inputRef = useRef(null);
   const recognitionRef = useRef(null);
 
@@ -144,7 +127,14 @@ const VocabularyGame = ({ onBack }) => {
 
   const currentWord = currentLevelWords[currentWordIndex];
 
-  // --- FUNÇÕES ---
+  // Focar no input ao mudar a palavra
+  useEffect(() => {
+    if (!feedback && view === 'game') {
+      inputRef.current?.focus();
+    }
+  }, [currentWordIndex, feedback, view]);
+
+  // --- FUNÇÕES DE CONTROLE ---
 
   const stopListening = () => {
     if (recognitionRef.current) {
@@ -155,12 +145,13 @@ const VocabularyGame = ({ onBack }) => {
   };
 
   const resetInputsAndFeedback = () => {
-    setUserInput('');
-    setExtraInput('');
-    setExtraAnswers([]);
+    setTags([]);
+    setTypingText('');
     setFeedback(null);
     setAnswerReport(null);
     setIsFocused(false);
+    
+    // Reseta estado de pronúncia
     setPronunciationFeedback(null);
     setPronunciationError(null);
   };
@@ -187,7 +178,6 @@ const VocabularyGame = ({ onBack }) => {
 
   const nextWord = () => {
     resetInputsAndFeedback();
-
     if (currentWordIndex + 1 < currentLevelWords.length) {
       setCurrentWordIndex((prev) => prev + 1);
     } else {
@@ -195,68 +185,73 @@ const VocabularyGame = ({ onBack }) => {
     }
   };
 
-  // ✅ Adiciona significado extra (sem duplicar)
-  const addExtraAnswer = () => {
+  // --- LÓGICA DE TAGS ---
+
+  const addTag = (text) => {
     if (feedback) return;
+    const clean = text.trim();
+    if (!clean) return;
 
-    const raw = extraInput.trim();
-    if (!raw) return;
-
-    const key = normalizeLoose(raw);
-
-    // não adiciona duplicados (comparando pelo normalizado)
-    const already = extraAnswers.some((a) => normalizeLoose(a) === key);
-    const equalsMain = normalizeLoose(userInput) === key;
-
-    if (!already && !equalsMain) {
-      setExtraAnswers((prev) => [...prev, raw]);
+    if (!tags.some(t => normalizeLoose(t) === normalizeLoose(clean))) {
+      setTags(prev => [...prev, clean]);
     }
-
-    setExtraInput('');
+    setTypingText('');
   };
 
-  const removeExtraAnswer = (index) => {
+  const removeTag = (index) => {
     if (feedback) return;
-    setExtraAnswers((prev) => prev.filter((_, i) => i !== index));
+    setTags(prev => prev.filter((_, i) => i !== index));
+    inputRef.current?.focus();
+  };
+
+  const handleKeyDown = (e) => {
+    if (feedback) return;
+
+    if (['Enter', ','].includes(e.key)) {
+      e.preventDefault();
+      if (typingText.trim()) {
+        addTag(typingText);
+      } else if (tags.length > 0 && e.key === 'Enter') {
+        checkAnswer(e);
+      }
+    }
+    
+    if (e.key === 'Backspace' && !typingText && tags.length > 0) {
+      removeTag(tags.length - 1);
+    }
   };
 
   const checkAnswer = (e) => {
-    e.preventDefault();
+    if (e) e.preventDefault();
     if (feedback) return;
     if (!currentWord) return;
 
+    const providedRaw = [...tags];
+    if (typingText.trim()) providedRaw.push(typingText.trim());
+
+    if (providedRaw.length === 0) return;
+
     const accepted = buildAcceptedAnswers(currentWord.pt);
 
-    // ✅ Todas as respostas fornecidas (principal + extras)
-    const providedRaw = [userInput, ...extraAnswers].map((s) => String(s || '').trim());
-    const providedClean = providedRaw.filter(Boolean);
-
-    // se o usuário não escreveu nada
-    if (providedClean.length === 0) return;
-
-    const providedEval = providedClean.map((text) => {
+    const providedEval = providedRaw.map((text) => {
       const ok = accepted.has(normalizeLoose(text));
       return { text, ok };
     });
 
     const anyCorrect = providedEval.some((a) => a.ok);
+    const providedCorrectSet = new Set(providedEval.filter((a) => a.ok).map((a) => normalizeLoose(a.text)));
 
-    // ✅ conjunto das respostas corretas fornecidas
-    const providedCorrectSet = new Set(
-      providedEval.filter((a) => a.ok).map((a) => normalizeLoose(a.text))
-    );
-
-    // ✅ faltantes (comparando com o JSON)
     const missing = (Array.isArray(currentWord.pt) ? currentWord.pt : []).filter((pt) => {
       return !providedCorrectSet.has(normalizeLoose(pt));
     });
 
-    // ✅ monta relatório pra UI
     setAnswerReport({
       provided: providedEval,
       missing,
-      allAccepted: Array.isArray(currentWord.pt) ? currentWord.pt : [],
     });
+
+    setTags(providedRaw);
+    setTypingText('');
 
     if (anyCorrect) {
       setFeedback('correct');
@@ -267,13 +262,13 @@ const VocabularyGame = ({ onBack }) => {
     }
   };
 
+  // --- ÁUDIO E VOZ ---
   const speakCurrentWord = () => {
     if (!currentWord?.en) return;
     if (!window.speechSynthesis) {
-      setPronunciationError('Seu navegador nao suporta leitura em voz alta.');
+      setPronunciationError('Erro áudio');
       return;
     }
-
     const utterance = new SpeechSynthesisUtterance(currentWord.en);
     utterance.lang = 'en-US';
     utterance.rate = speechRate;
@@ -281,38 +276,29 @@ const VocabularyGame = ({ onBack }) => {
     utterance.onend = () => setIsSpeaking(false);
     utterance.onerror = () => {
       setIsSpeaking(false);
-      setPronunciationError('Nao foi possivel reproduzir o audio.');
+      setPronunciationError('Erro áudio');
     };
-
     setPronunciationError(null);
     window.speechSynthesis.cancel();
     window.speechSynthesis.speak(utterance);
   };
 
-  // ✅ Reconhecimento de pronúncia MELHORADO (sem mostrar "ouvido:")
   const startPronunciationCheck = () => {
     if (!currentWord?.en) return;
-
-    const SpeechRecognition =
-      window.SpeechRecognition || window.webkitSpeechRecognition;
-
+    const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
     if (!SpeechRecognition) {
-      setPronunciationError('Seu navegador nao suporta reconhecimento de voz.');
+      setPronunciationError('Navegador não suporta');
       return;
     }
-
     if (recognitionRef.current) {
       recognitionRef.current.abort();
     }
-
     const recognition = new SpeechRecognition();
     recognition.lang = 'en-US';
     recognition.interimResults = false;
     recognition.maxAlternatives = 5;
 
-    const SpeechGrammarList =
-      window.SpeechGrammarList || window.webkitSpeechGrammarList;
-
+    const SpeechGrammarList = window.SpeechGrammarList || window.webkitSpeechGrammarList;
     if (SpeechGrammarList && currentWord?.en) {
       try {
         const grammar = `#JSGF V1.0; grammar words; public <word> = ${currentWord.en};`;
@@ -324,39 +310,26 @@ const VocabularyGame = ({ onBack }) => {
 
     recognition.onstart = () => {
       setPronunciationError(null);
-      setPronunciationFeedback(null);
+      setPronunciationFeedback(null); // Reseta a bolinha para cinza/amarelo
       setIsListening(true);
     };
-
-    recognition.onend = () => {
-      setIsListening(false);
-    };
-
+    recognition.onend = () => setIsListening(false);
     recognition.onerror = () => {
       setIsListening(false);
-      setPronunciationError('Nao foi possivel capturar sua voz.');
+      setPronunciationFeedback('wrong'); // Erro técnico conta como falha visualmente ou pode ser tratado diferente
+      setPronunciationError('Erro');
     };
-
     recognition.onresult = (event) => {
       const results = event.results?.[0];
       const target = currentWord.en;
-
       if (!results || results.length === 0) {
         setPronunciationFeedback('wrong');
         return;
       }
-
-      const alternatives = Array.from(results).map((r) => ({
-        transcript: r.transcript || '',
-      }));
-
-      const hit = alternatives.some((alt) =>
-        isPronunciationMatch(alt.transcript, target)
-      );
-
+      const alternatives = Array.from(results).map((r) => ({ transcript: r.transcript || '' }));
+      const hit = alternatives.some((alt) => isPronunciationMatch(alt.transcript, target));
       setPronunciationFeedback(hit ? 'correct' : 'wrong');
     };
-
     recognitionRef.current = recognition;
     recognition.start();
   };
@@ -381,15 +354,13 @@ const VocabularyGame = ({ onBack }) => {
               níveis.
             </p>
             <button
-              onClick={onBack}
+              onClick={() => navigate("/")}
               className="bg-white border border-slate-300 text-slate-600 hover:bg-slate-100 hover:text-slate-800 px-6 py-2 rounded-full font-bold text-sm transition-all shadow-sm flex items-center justify-center gap-2 mx-auto"
             >
               <ArrowLeft className="w-4 h-4" /> Voltar ao Hub Principal
             </button>
           </div>
-
           <hr className="border-slate-200 mb-8" />
-
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 mb-16">
             {levelsArray.map((levelId) => (
               <div
@@ -509,6 +480,7 @@ const VocabularyGame = ({ onBack }) => {
               <p className="text-slate-400 text-sm font-medium italic">Como se diz isso em português?</p>
             </div>
 
+            {/* CONTROLES DE ÁUDIO COM "BOLINHA" */}
             <div className="flex flex-col items-center gap-3 mb-8">
               <div className="flex flex-wrap items-center justify-center gap-3">
                 <label className="flex items-center gap-2 text-xs font-bold text-slate-500 uppercase tracking-wide">
@@ -534,128 +506,119 @@ const VocabularyGame = ({ onBack }) => {
                   {isSpeaking ? 'Reproduzindo...' : 'Ouvir pronuncia'}
                 </button>
 
+                {/* BOTÃO COM STATUS DE PRONÚNCIA EM BOLINHA */}
                 <button
                   type="button"
                   onClick={startPronunciationCheck}
-                  className="px-4 py-2 rounded-lg bg-blue-600 text-white text-sm font-bold hover:bg-blue-700 transition-colors disabled:opacity-50"
+                  className="px-4 py-2 rounded-lg bg-blue-600 text-white text-sm font-bold hover:bg-blue-700 transition-colors disabled:opacity-50 flex items-center gap-2"
                   disabled={isListening}
                 >
-                  <span className="relative z-10">
-                    {isListening ? 'Ouvindo...' : 'Repetir pronuncia'}
-                  </span>
+                  <span>{isListening ? 'Ouvindo...' : 'Repetir pronuncia'}</span>
+                  
+                  {/* BOLINHA INDICADORA */}
+                  <div 
+                    className={`w-3 h-3 rounded-full transition-all duration-300
+                      ${
+                        // Estado: Ouvindo (Piscando Amarelo/Branco)
+                        isListening 
+                          ? 'bg-yellow-300 animate-pulse shadow-[0_0_8px_rgba(253,224,71,0.8)]'
+                          : // Estado: Correto (Verde)
+                          pronunciationFeedback === 'correct'
+                          ? 'bg-green-400 shadow-[0_0_8px_rgba(74,222,128,1)] scale-110'
+                          : // Estado: Errado (Vermelho)
+                          pronunciationFeedback === 'wrong'
+                          ? 'bg-red-500 shadow-[0_0_8px_rgba(239,68,68,0.8)]'
+                          : // Estado: Padrão (Cinza Claro)
+                          'bg-blue-400/50' 
+                      }
+                    `}
+                  />
                 </button>
               </div>
 
+              {/* Mensagem de erro técnica (só aparece se o navegador falhar, não se o usuário errar a pronúncia) */}
               {pronunciationError && (
                 <p className="text-xs text-red-500 font-medium">{pronunciationError}</p>
               )}
-              {pronunciationFeedback === 'correct' && (
-                <p className="text-xs text-green-600 font-bold">Boa! Pronuncia reconhecida.</p>
-              )}
-              {pronunciationFeedback === 'wrong' && (
-                <p className="text-xs text-red-500 font-bold">Nao entendi. Tente novamente.</p>
-              )}
             </div>
 
-            {/* ✅ FORMULÁRIO: agora tem 2 caixas lado a lado */}
-            <form onSubmit={checkAnswer} className="max-w-3xl mx-auto mb-8">
-              <div className="flex flex-col md:flex-row gap-3">
-                {/* Caixa principal */}
-                <div className="relative flex-1">
-                  <input
-                    ref={inputRef}
-                    type="text"
-                    value={userInput}
-                    onChange={(e) => setUserInput(e.target.value)}
-                    onFocus={() => setIsFocused(true)}
-                    onBlur={() => setIsFocused(false)}
-                    placeholder={isFocused ? '' : 'Digite a tradução principal...'}
-                    className={`w-full p-4 text-center text-lg font-medium border-2 rounded-xl outline-none transition-all shadow-sm
-                      ${
-                        feedback === 'correct'
-                          ? 'border-green-500 bg-green-50 text-green-700'
-                          : feedback === 'wrong'
-                          ? 'border-red-500 bg-red-50 text-red-700'
-                          : 'border-slate-200 focus:border-blue-500 focus:shadow-md'
-                      }`}
-                    disabled={feedback !== null}
-                  />
+            {/* ÁREA DE RESPOSTA (TAGS) */}
+            <div className="max-w-3xl mx-auto mb-8">
+                <div 
+                    className={`
+                        min-h-17.5 w-full bg-white border-2 rounded-xl flex flex-wrap items-center gap-2 p-3 cursor-text transition-all shadow-sm
+                        ${feedback 
+                            ? (feedback === 'correct' ? 'border-green-500 bg-green-50' : 'border-red-500 bg-red-50') 
+                            : (isFocused ? 'border-blue-500 shadow-md' : 'border-slate-200 hover:border-slate-300')
+                        }
+                    `}
+                    onClick={() => !feedback && inputRef.current?.focus()}
+                >
+                    {/* Tags */}
+                    {tags.map((tag, idx) => {
+                        let tagStyle = "bg-slate-100 border-slate-300 text-slate-700";
+                        let icon = null;
 
-                  {!feedback && userInput.trim() && (
-                    <button
-                      type="submit"
-                      className="absolute right-3 top-1/2 -translate-y-1/2 p-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors shadow-md"
-                      title="Enviar respostas"
-                    >
-                      <ArrowRight className="w-5 h-5" />
-                    </button>
-                  )}
+                        if (feedback && answerReport) {
+                            const result = answerReport.provided.find(p => p.text === tag);
+                            if (result?.ok) {
+                                tagStyle = "bg-green-100 border-green-400 text-green-800";
+                                icon = <Check className="w-3 h-3 ml-1" />;
+                            } else {
+                                tagStyle = "bg-red-100 border-red-400 text-red-800 opacity-70 line-through decoration-red-500";
+                            }
+                        }
+
+                        return (
+                            <span key={idx} className={`px-3 py-1.5 rounded-lg text-lg font-medium border flex items-center animate-scale-in ${tagStyle}`}>
+                                {tag}
+                                {icon}
+                                {!feedback && (
+                                    <button 
+                                        onClick={(e) => { e.stopPropagation(); removeTag(idx); }}
+                                        className="ml-2 text-slate-400 hover:text-slate-600"
+                                    >
+                                        <X className="w-3 h-3" />
+                                    </button>
+                                )}
+                            </span>
+                        );
+                    })}
+
+                    {!feedback && (
+                        <input
+                            ref={inputRef}
+                            type="text"
+                            value={typingText}
+                            onChange={(e) => setTypingText(e.target.value)}
+                            onKeyDown={handleKeyDown}
+                            onFocus={() => setIsFocused(true)}
+                            onBlur={() => setIsFocused(false)}
+                            className="grow bg-transparent outline-none text-lg font-medium text-slate-800 placeholder:text-slate-300 min-w-35 text-left"
+                            placeholder={tags.length === 0 ? "Digite a tradução..." : "Digite outra..."}
+                            autoComplete="off"
+                        />
+                    )}
+
+                    {!feedback && (typingText || tags.length > 0) && (
+                         <button
+                         onClick={checkAnswer}
+                         className="bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors shadow-md p-2 ml-auto"
+                         title="Enviar respostas"
+                       >
+                         <ArrowRight className="w-5 h-5" />
+                       </button>
+                    )}
                 </div>
 
-                {/* Caixa para adicionar significados */}
-                <div className="relative flex-1">
-                  <input
-                    type="text"
-                    value={extraInput}
-                    onChange={(e) => setExtraInput(e.target.value)}
-                    placeholder="Adicionar outro significado..."
-                    className="w-full p-4 text-center text-lg font-medium border-2 border-slate-200 rounded-xl outline-none transition-all shadow-sm focus:border-blue-500 focus:shadow-md"
-                    disabled={feedback !== null}
-                    onKeyDown={(e) => {
-                      // ✅ Enter aqui adiciona, não envia o formulário
-                      if (e.key === 'Enter') {
-                        e.preventDefault();
-                        addExtraAnswer();
-                      }
-                    }}
-                  />
-
-                  {!feedback && extraInput.trim() && (
-                    <button
-                      type="button"
-                      onClick={addExtraAnswer}
-                      className="absolute right-3 top-1/2 -translate-y-1/2 px-3 py-2 bg-slate-900 text-white rounded-lg hover:bg-slate-800 transition-colors shadow-md text-sm font-bold"
-                      title="Adicionar significado"
-                    >
-                      +
-                    </button>
-                  )}
-                </div>
-              </div>
-
-              {/* ✅ Lista de extras */}
-              {extraAnswers.length > 0 && (
-                <div className="mt-4 flex flex-wrap gap-2 justify-center">
-                  {extraAnswers.map((ans, idx) => {
-                    const status =
-                      feedback && answerReport
-                        ? answerReport.provided.find((p) => p.text === ans)?.ok
-                        : null;
-
-                    const chipClass =
-                      status === true
-                        ? 'bg-green-50 border-green-500 text-green-700'
-                        : status === false
-                        ? 'bg-red-50 border-red-500 text-red-700'
-                        : 'bg-white border-slate-200 text-slate-700 hover:bg-slate-100';
-
-                    return (
-                      <button
-                        key={`${ans}-${idx}`}
-                        type="button"
-                        onClick={() => removeExtraAnswer(idx)}
-                        disabled={feedback !== null}
-                        className={`px-3 py-1 rounded-full text-sm font-bold border transition ${chipClass}
-                          ${feedback ? 'cursor-default' : 'cursor-pointer'}`}
-                        title={feedback ? '' : 'Clique para remover'}
-                      >
-                        {ans} {!feedback && <span className="ml-1 text-slate-400">×</span>}
-                      </button>
-                    );
-                  })}
-                </div>
-              )}
-            </form>
+                {!feedback && (
+                    <div className="flex justify-center mt-2 text-xs text-slate-400 gap-1 items-center">
+                        <span>Pressione</span> 
+                        <span className="border border-slate-200 rounded px-1 py-0.5 bg-white font-mono flex items-center shadow-sm"><CornerDownLeft className="w-3 h-3"/></span>
+                        <span>para adicionar sinônimos</span>
+                    </div>
+                )}
+            </div>
 
             {feedback && (
               <div className="animate-fade-in-up">
@@ -663,14 +626,11 @@ const VocabularyGame = ({ onBack }) => {
                   <div className="flex flex-col items-center text-green-600 mb-6">
                     <div className="flex items-center gap-2 bg-green-100 px-4 py-2 rounded-full mb-2">
                       <Check className="w-5 h-5" />
-                      <span className="font-bold">
-                        <span className="font-bold">Correto!</span>
-                      </span>
-                      
+                      <span className="font-bold">Correto!</span>
                     </div>
-                    {feedback === 'correct' && answerReport?.missing?.length > 0 && (
+                    {answerReport?.missing?.length > 0 && (
                         <p className="text-xs text-slate-500 mt-2 text-center">
-                          Faltou: <strong>{answerReport.missing.join(', ')}</strong>
+                          Outras opções: <strong>{answerReport.missing.join(', ')}</strong>
                         </p>
                       )}
                   </div>
@@ -678,13 +638,17 @@ const VocabularyGame = ({ onBack }) => {
                   <div className="flex flex-col items-center text-red-600 mb-6">
                     <div className="flex items-center gap-2 bg-red-100 px-4 py-2 rounded-full mb-2">
                       <X className="w-5 h-5" />
-                      <span className="font-bold">Ops! Nenhum significado bateu.</span>
+                      <span className="font-bold">Ops! Não foi dessa vez.</span>
                     </div>
+                    <p className="text-slate-500 text-sm mt-1">
+                        Respostas corretas: <strong className="text-slate-700">{currentWord.pt.join(', ')}</strong>
+                    </p>
                   </div>
                 )}
 
                 <button
                   onClick={nextWord}
+                  autoFocus
                   className={`w-full md:w-auto px-8 py-3 rounded-xl font-bold text-white shadow-lg transition transform hover:scale-105 active:scale-95 flex items-center justify-center gap-2 mx-auto
                     ${
                       feedback === 'correct'

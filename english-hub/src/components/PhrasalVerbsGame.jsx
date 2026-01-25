@@ -1,10 +1,13 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { BrainCircuit, Layers, ArrowLeft, RefreshCw, CheckCircle, XCircle, ArrowRight, HelpCircle } from 'lucide-react';
 import { PHRASAL_VERBS_DATA } from '../data/gameData';
+import { useNavigate } from "react-router-dom";
 
 const ITEMS_PER_PHASE = 10;
 
 const PhrasalVerbsGame = ({ onBack }) => {
+  const navigate = useNavigate();
+
   const [gameState, setGameState] = useState('start'); 
   const [activePhase, setActivePhase] = useState(1);
   const [score, setScore] = useState(0); 
@@ -153,11 +156,11 @@ const PhrasalVerbsGame = ({ onBack }) => {
         </div>
 
         <div className="text-center mt-auto">
-          <button 
-            onClick={onBack} 
+          <button
+            onClick={() => navigate("/")}
             className="bg-white border border-slate-300 text-slate-600 hover:bg-slate-100 hover:text-slate-800 px-6 py-2 rounded-full font-bold text-sm transition-all shadow-sm flex items-center justify-center gap-2 mx-auto"
           >
-              <ArrowLeft className="w-4 h-4" /> Voltar ao Hub Principal
+            <ArrowLeft className="w-4 h-4" /> Voltar ao Hub Principal
           </button>
         </div>
       </div>

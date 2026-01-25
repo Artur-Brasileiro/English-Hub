@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate } from "react-router-dom";
 import { 
   Languages, RefreshCw, ArrowLeft, CheckCircle, XCircle, Mic, 
   Clock, History, Layers, FastForward, 
@@ -7,6 +8,8 @@ import {
 import { TRANSLATION_DATA } from '../data/gameData';
 
 const TranslationGame = ({ onBack }) => {
+  const navigate = useNavigate();
+
   const [gameState, setGameState] = useState('start'); 
   const [score, setScore] = useState(0);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
@@ -356,11 +359,11 @@ const TranslationGame = ({ onBack }) => {
           </div>
 
           {/* BOTÃO CORRIGIDO: mx-auto centraliza o botão na página */}
-          <button 
-            onClick={onBack} 
+          <button
+            onClick={() => navigate("/")}
             className="bg-white border border-slate-300 text-slate-600 hover:bg-slate-100 hover:text-slate-800 px-6 py-2 rounded-full font-bold text-sm transition-all shadow-sm flex items-center justify-center gap-2 mx-auto"
           >
-              <ArrowLeft className="w-4 h-4" /> Voltar ao Hub Principal
+            <ArrowLeft className="w-4 h-4" /> Voltar ao Hub Principal
           </button>
         </div>
       </div>
