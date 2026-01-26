@@ -20,6 +20,7 @@ const TranslationGame = ({ onBack }) => {
   const [answerStatus, setAnswerStatus] = useState(null); 
   const [isListening, setIsListening] = useState(false);
 
+  // --- CONFIGURAÇÃO VISUAL DOS MODOS ---
   const tagMeta = {
     conditional: { label: 'Condicionais', sub: 'If/Se', color: 'bg-amber-500', desc: 'If I had...', example: 'If it rained...', icon: GitBranch },
     concessive: { label: 'Concessivas', sub: 'Even/Embora', color: 'bg-teal-600', desc: 'Even if...', example: 'Even if I go...', icon: Shield },
@@ -63,37 +64,24 @@ const TranslationGame = ({ onBack }) => {
     { id: 'questions', label: 'Perguntas', sub: 'Todas em forma de pergunta', icon: HelpCircle, color: grammarMeta.questions.color, desc: 'Have you... ? / Why... ?' }
   ];
 
+  // --- HELPERS ---
   const toArray = (value) => Array.isArray(value) ? value : [];
   const taggedItems = toArray(TRANSLATION_DATA.tagged);
   const allTranslationItems = Object.values(TRANSLATION_DATA).flatMap(toArray);
 
   const getPrimaryTag = (tags = []) => tags.find((tag) => tagModes.includes(tag));
 
-  // --- LÓGICA DE DETECÇÃO GRAMATICAL AVANÇADA ---
+  // --- LÓGICA DE DETECÇÃO GRAMATICAL ---
   const getGrammarType = (englishSentence) => {
     const sampleSentence = Array.isArray(englishSentence) ? englishSentence[0] : englishSentence;
     if (!sampleSentence || typeof sampleSentence !== 'string') return 'present_perfect';
     const lower = sampleSentence.toLowerCase();
     
-    // A ORDEM IMPORTA! Verificamos do mais específico para o mais geral.
-
-    // 1. Future Perfect Continuous: "will have been" + ing
     if (/will\s+have\s+been\s+\w+ing/.test(lower)) return 'future_perfect_continuous';
-
-    // 2. Future Perfect Simple: "will have" + particípio (sem been+ing)
     if (/will\s+have/.test(lower)) return 'future_perfect';
-
-    // 3. Past Perfect Continuous: "had been" + ing
     if (/had\s+been\s+\w+ing/.test(lower)) return 'past_perfect_continuous';
-
-    // 4. Present Perfect Continuous: "have/has been" + ing
     if (/(have|has|'ve|'s)\s+been\s+\w+ing/.test(lower)) return 'present_perfect_continuous';
-
-    // 5. Past Perfect Simple: "had" + particípio (sobra o had sozinho)
-    // Evita confusão com "have had"
     if (/\bhad\b/.test(lower) && !/(have|has|'ve|'s)\s+had/.test(lower)) return 'past_perfect';
-
-    // 6. Present Perfect Simple: O padrão que sobra
     return 'present_perfect';
   };
 
@@ -107,9 +95,83 @@ const TranslationGame = ({ onBack }) => {
     });
   };
 
+  // --- SISTEMA DE CORREÇÃO FLEXÍVEL (REGEX) ---
+
+  // 1. Normaliza a resposta do usuário (remove pontuação, espaços extras, lowercase)
+  const normalizeUserAnswer = (text) => {
+    return text.toLowerCase()
+      .replace(/[.,!?;:]/g, '') // Remove pontuação
+      .replace(/\s+/g, ' ')     // Remove espaços duplos
+      .trim();
+  };
+
+  // 2. Transforma o gabarito em uma expressão regular inteligente
+  const createFlexibleRegex = (correctAnswer) => {
+    // Limpa a resposta correta base
+    const clean = correctAnswer.toLowerCase().replace(/[.,!?;:]/g, '').trim();
+    
+    // Divide por espaços para analisar token por token
+    const tokens = clean.split(/\s+/);
+    
+    const regexParts = tokens.map((token, index) => {
+      let processedToken = token;
+      let isOptional = false;
+
+      // Verifica se é opcional: (word)
+      if (token.startsWith('(') && token.endsWith(')')) {
+        processedToken = token.slice(1, -1); // remove ( )
+        isOptional = true;
+      }
+
+      // Verifica alternativas: word/other
+      if (processedToken.includes('/')) {
+        processedToken = `(?:${processedToken.replace(/\//g, '|')})`;
+      } else {
+        // Escapa caracteres especiais de regex se não for alternativa
+        processedToken = processedToken.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+      }
+
+      // Constrói a parte da regex para este token
+      if (index === 0) {
+        // Se for a primeira palavra
+        return isOptional ? `(?:${processedToken}\\s+)?` : `${processedToken}`;
+      } else {
+        // Se for palavra subsequente (precisa de espaço antes)
+        return isOptional ? `(?:\\s+${processedToken})?` : `\\s+${processedToken}`;
+      }
+    });
+
+    // Junta tudo. ^ = início, $ = fim.
+    return new RegExp(`^${regexParts.join('')}$`, 'i');
+  };
+
+  const checkAnswer = () => {
+    const currentItem = shuffledQuestions[currentQuestionIndex];
+    // Garante que é sempre array para poder iterar
+    const possibleAnswers = Array.isArray(currentItem.en) ? currentItem.en : [currentItem.en];
+    
+    const normalizedUser = normalizeUserAnswer(userAnswer);
+
+    // Verifica se ALGUMA das respostas possíveis bate
+    const isCorrect = possibleAnswers.some((correctAnswer) => {
+      try {
+        const regex = createFlexibleRegex(correctAnswer);
+        return regex.test(normalizedUser);
+      } catch (e) {
+        // Fallback de segurança: comparação exata simples
+        console.error("Regex error:", e);
+        return normalizedUser === normalizeUserAnswer(correctAnswer);
+      }
+    });
+
+    setAnswerStatus(isCorrect ? 'correct' : 'incorrect');
+    if (isCorrect) setScore(s => s + 1);
+  };
+
+  // --- FIM DO SISTEMA DE CORREÇÃO ---
+
   const startGame = (mode) => {
     setCurrentMode(mode);
-    
     let dataToUse = allTranslationItems;
     
     if (tagModes.includes(mode)) {
@@ -143,147 +205,8 @@ const TranslationGame = ({ onBack }) => {
     setIsListening(false);
   };
 
-  const normalizeText = (text) => {
-    return text.toLowerCase()
-      .replace(/[.,!?;:]/g, '')
-      .replace(/[’']/g, '')
-      .replace(/\s+/g, ' ')
-      .trim();
-  };
-
-  const contractionMap = {
-    "i'm": "i am",
-    "you're": "you are",
-    "he's": "he is",
-    "she's": "she is",
-    "it's": "it is",
-    "we're": "we are",
-    "they're": "they are",
-    "i've": "i have",
-    "you've": "you have",
-    "we've": "we have",
-    "they've": "they have",
-    "i'd": "i would",
-    "you'd": "you would",
-    "he'd": "he would",
-    "she'd": "she would",
-    "we'd": "we would",
-    "they'd": "they would",
-    "i'll": "i will",
-    "you'll": "you will",
-    "he'll": "he will",
-    "she'll": "she will",
-    "we'll": "we will",
-    "they'll": "they will",
-    "can't": "cannot",
-    "won't": "will not",
-    "don't": "do not",
-    "doesn't": "does not",
-    "didn't": "did not",
-    "isn't": "is not",
-    "aren't": "are not",
-    "wasn't": "was not",
-    "weren't": "were not",
-    "haven't": "have not",
-    "hasn't": "has not",
-    "hadn't": "had not",
-    "wouldn't": "would not",
-    "shouldn't": "should not",
-    "couldn't": "could not",
-    "let's": "let us",
-    "gonna": "going to",
-    "wanna": "want to"
-  };
-
-  const synonymMap = {
-    kids: "children",
-    kid: "child",
-    movie: "film",
-    films: "movies",
-    cellphone: "phone",
-    tv: "television"
-  };
-
-  const normalizeTokens = (text) => {
-    let working = text.toLowerCase();
-    Object.entries(contractionMap).forEach(([from, to]) => {
-      working = working.replace(new RegExp(`\\b${from}\\b`, 'g'), to);
-    });
-    working = normalizeText(working);
-    const tokens = working.split(' ').filter(Boolean);
-    return tokens
-      .filter((token) => !['a', 'an', 'the'].includes(token))
-      .map((token) => synonymMap[token] || token);
-  };
-
-  const levenshteinDistance = (a, b) => {
-    const aLen = a.length;
-    const bLen = b.length;
-    if (!aLen) return bLen;
-    if (!bLen) return aLen;
-    const matrix = Array.from({ length: aLen + 1 }, () => Array(bLen + 1).fill(0));
-    for (let i = 0; i <= aLen; i += 1) matrix[i][0] = i;
-    for (let j = 0; j <= bLen; j += 1) matrix[0][j] = j;
-    for (let i = 1; i <= aLen; i += 1) {
-      for (let j = 1; j <= bLen; j += 1) {
-        const cost = a[i - 1] === b[j - 1] ? 0 : 1;
-        matrix[i][j] = Math.min(
-          matrix[i - 1][j] + 1,
-          matrix[i][j - 1] + 1,
-          matrix[i - 1][j - 1] + cost
-        );
-      }
-    }
-    return matrix[aLen][bLen];
-  };
-
-  const stringSimilarity = (a, b) => {
-    if (!a || !b) return 0;
-    const distance = levenshteinDistance(a, b);
-    const maxLen = Math.max(a.length, b.length);
-    return maxLen === 0 ? 1 : 1 - distance / maxLen;
-  };
-
-  const tokenSimilarity = (aTokens, bTokens) => {
-    if (!aTokens.length || !bTokens.length) return 0;
-    const aSet = new Set(aTokens);
-    const bSet = new Set(bTokens);
-    const intersection = [...aSet].filter((token) => bSet.has(token)).length;
-    const union = new Set([...aSet, ...bSet]).size;
-    return union === 0 ? 0 : intersection / union;
-  };
-
-  const isFlexibleMatch = (user, accepted) => {
-    const normalizedUser = normalizeText(user);
-    const normalizedAccepted = normalizeText(accepted);
-    if (normalizedUser === normalizedAccepted) return true;
-
-    const userTokens = normalizeTokens(user);
-    const acceptedTokens = normalizeTokens(accepted);
-    const userJoined = userTokens.join(' ');
-    const acceptedJoined = acceptedTokens.join(' ');
-    if (userJoined === acceptedJoined) return true;
-
-    const similarityScore = Math.max(
-      stringSimilarity(userJoined, acceptedJoined),
-      tokenSimilarity(userTokens, acceptedTokens)
-    );
-
-    return similarityScore >= 0.85;
-  };
-
-  const checkAnswer = () => {
-    const currentItem = shuffledQuestions[currentQuestionIndex];
-    const acceptedAnswers = Array.isArray(currentItem.en) ? currentItem.en : [currentItem.en];
-    const isCorrect = acceptedAnswers.some((answer) => isFlexibleMatch(userAnswer, answer));
-    
-    setAnswerStatus(isCorrect ? 'correct' : 'incorrect');
-    if (isCorrect) setScore(s => s + 1);
-  };
-
   const handleSpeech = () => {
     const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
-    
     if (!SpeechRecognition) {
       alert("Seu navegador não suporta reconhecimento de voz.");
       return;
@@ -297,7 +220,7 @@ const TranslationGame = ({ onBack }) => {
 
     recognition.onresult = (event) => {
       const transcript = event.results[0][0].transcript;
-      setUserAnswer(transcript);
+      setUserAnswer(transcript); // A regex vai limpar a pontuação depois
       setIsListening(false);
     };
 
@@ -321,12 +244,12 @@ const TranslationGame = ({ onBack }) => {
     }
   };
 
+  // --- RENDERS ---
+
   if (gameState === 'start') {
-    // Lista completa de modos
     const modes = [
       ...tagModeList,
       ...grammarModeList,
-      // { id: 'future_perfect_continuous', label: 'Future Perfect', sub: 'Continuous', icon: Timer, color: grammarMeta.future_perfect_continuous.color, desc: 'I will have been eating' },
       { id: 'mix', label: 'Desafio Total', sub: 'All Tenses', icon: Skull, color: 'bg-emerald-500', desc: 'Mistura tudo!' },
     ];
 
@@ -358,7 +281,6 @@ const TranslationGame = ({ onBack }) => {
             ))}
           </div>
 
-          {/* BOTÃO CORRIGIDO: mx-auto centraliza o botão na página */}
           <button
             onClick={() => navigate("/")}
             className="bg-white border border-slate-300 text-slate-600 hover:bg-slate-100 hover:text-slate-800 px-6 py-2 rounded-full font-bold text-sm transition-all shadow-sm flex items-center justify-center gap-2 mx-auto"
@@ -370,7 +292,6 @@ const TranslationGame = ({ onBack }) => {
     );
   }
   
-  // Lógica de visualização no modo RESULT e GAME (similar ao anterior)
   if (gameState === 'result') {
     return (
       <div className="flex flex-col items-center justify-center h-full py-12 px-4 animate-fadeIn">
@@ -392,7 +313,6 @@ const TranslationGame = ({ onBack }) => {
   const shouldResolveGrammar = currentMode === 'mix' || currentMode === 'present_perfect' || currentMode === 'past_perfect';
   const questionType = shouldResolveGrammar && !primaryTag ? getGrammarType(currentItem.en) : currentMode;
 
-  // Cores dinâmicas para o cartão
   let headerColorClass = 'bg-emerald-500';
   let typeLabel = 'Traduza';
 
@@ -474,11 +394,14 @@ const TranslationGame = ({ onBack }) => {
                       {Array.isArray(currentItem.en) ? (
                         <ul className="text-red-700 font-bold text-lg space-y-1">
                           {currentItem.en.map((answer) => (
-                            <li key={answer}>"{answer}"</li>
+                            <li key={answer}>
+                              {/* Remove os códigos da exibição visual para ficar mais limpo para o usuário */}
+                              "{answer.replace(/[()]/g, '').replace(/\//g, ' ou ')}"
+                            </li>
                           ))}
                         </ul>
                       ) : (
-                        <p className="text-red-700 font-bold text-lg">"{currentItem.en}"</p>
+                         <p className="text-red-700 font-bold text-lg">"{currentItem.en.replace(/[()]/g, '').replace(/\//g, ' ou ')}"</p>
                       )}                
                       </div>
                  )}
