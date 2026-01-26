@@ -181,7 +181,7 @@ const TranslationGame = ({ onBack }) => {
     } else if (mode === 'past_perfect') {
       dataToUse = toArray(TRANSLATION_DATA.past_perfect);
     } else if (mode === 'questions') {
-      dataToUse = allTranslationItems.filter(item => isQuestionSentence(item.en));
+      dataToUse = toArray(TRANSLATION_DATA.questions);
     } else if (mode !== 'mix' && TRANSLATION_DATA[mode]) {
       dataToUse = toArray(TRANSLATION_DATA[mode]);
     }
