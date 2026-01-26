@@ -4047,660 +4047,4502 @@ export const TRANSLATION_DATA = {
 
   // TIPO 4: COMUNICAÇÃO DO DIA A DIA 
   tagged: [
-    // Condicional
-    { id: 129, pt: "Se não tivesse chovido, eu até iria.", en: "If it hadn't rained, I would have gone.", tags: ["conditional"] },
-    { id: 131, pt: "Se você puder, me avise mais tarde.", en: "If you can, let me know later.", tags: ["conditional", "request"] },
-    { id: 153, pt: "Se você estudar, vai melhorar rápido.", en: "If you study, you'll improve quickly.", tags: ["conditional"] },
-    { id: 154, pt: "Se eu tivesse mais tempo, eu te ajudaria.", en: "If I had more time, I would help you.", tags: ["conditional"] },
-    { id: 155, pt: "Se ele chegar cedo, a gente pode sair.", en: "If he arrives early, we can leave.", tags: ["conditional", "possibility"] },
-    { id: 156, pt: "Se você não quiser, tudo bem.", en: "If you don't want to, it's okay.", tags: ["conditional", "permission"] },
-    { id: 195, pt: "Se você vier hoje, a gente conversa.", en: "If you come today, we'll talk.", tags: ["conditional"] },
-    { id: 196, pt: "Se eu terminar cedo, eu te ajudo.", en: "If I finish early, I'll help you.", tags: ["conditional"] },
-    { id: 197, pt: "Se ela ligar, me avise.", en: "If she calls, let me know.", tags: ["conditional", "request"] },
-    { id: 198, pt: "Se você estiver cansado, pode descansar.", en: "If you are tired, you can rest.", tags: ["conditional", "permission"] },
-    { id: 199, pt: "Se ele não aparecer, a gente vai sem ele.", en: "If he doesn't show up, we'll go without him.", tags: ["conditional", "negative"] },
-    { id: 200, pt: "Se chover, a gente fica em casa.", en: "If it rains, we'll stay home.", tags: ["conditional"] },
-    { id: 201, pt: "Se você estudar todo dia, vai aprender mais rápido.", en: "If you study every day, you'll learn faster.", tags: ["conditional", "habit"] },
-    { id: 202, pt: "Se você praticar, vai ganhar confiança.", en: "If you practice, you'll gain confidence.", tags: ["conditional"] },
-    { id: 203, pt: "Se eu tiver dúvidas, eu te pergunto.", en: "If I have questions, I'll ask you.", tags: ["conditional"] },
-    { id: 204, pt: "Se eu lembrar, eu te mando mensagem.", en: "If I remember, I'll text you.", tags: ["conditional"] },
-    { id: 205, pt: "Se ele chegar cedo, a gente janta juntos.", en: "If he arrives early, we'll have dinner together.", tags: ["conditional"] },
-    { id: 206, pt: "Se você quiser, eu espero mais um pouco.", en: "If you want, I'll wait a little longer.", tags: ["conditional", "permission"] },
-    { id: 207, pt: "Se você não entender, eu explico de novo.", en: "If you don't understand, I'll explain again.", tags: ["conditional", "negative"] },
-    { id: 208, pt: "Se eu não conseguir hoje, eu faço amanhã.", en: "If I can't do it today, I'll do it tomorrow.", tags: ["conditional", "negative"] },
-    { id: 209, pt: "Se você não tiver tempo, tudo bem.", en: "If you don't have time, it's okay.", tags: ["conditional", "permission", "negative"] },
-    { id: 210, pt: "Se ela não responder, a gente tenta depois.", en: "If she doesn't reply, we'll try later.", tags: ["conditional", "negative"] },
-    { id: 211, pt: "Se eu tivesse mais dinheiro, eu viajaria.", en: "If I had more money, I would travel.", tags: ["conditional", "desire"] },
-    { id: 212, pt: "Se eu tivesse mais tempo, eu estudaria mais.", en: "If I had more time, I would study more.", tags: ["conditional"] },
-    { id: 213, pt: "Se ele tivesse paciência, ele aprenderia rápido.", en: "If he had patience, he would learn quickly.", tags: ["conditional"] },
-    { id: 214, pt: "Se você pudesse, me ajudaria hoje?", en: "If you could, would you help me today?", tags: ["conditional", "request"] },
-    { id: 215, pt: "Se a gente tivesse carro, seria mais fácil.", en: "If we had a car, it would be easier.", tags: ["conditional"] },
-    { id: 216, pt: "Se eu tivesse estudado mais, eu teria passado.", en: "If I had studied more, I would have passed.", tags: ["conditional", "past"] },
-    { id: 217, pt: "Se você tivesse me avisado, eu teria ido.", en: "If you had told me, I would have gone.", tags: ["conditional", "past"] },
-    { id: 218, pt: "Se ele não tivesse saído cedo, ele teria visto a gente.", en: "If he hadn't left early, he would have seen us.", tags: ["conditional", "past", "negative"] },
-    { id: 219, pt: "Se a gente tivesse saído mais cedo, não teria se atrasado.", en: "If we had left earlier, we wouldn't have been late.", tags: ["conditional", "past", "negative"] },
-    { id: 220, pt: "Se ela tivesse descansado, teria se sentido melhor.", en: "If she had rested, she would have felt better.", tags: ["conditional", "past"] },
-    { id: 221, pt: "Se você puder, me manda isso hoje.", en: "If you can, send me that today.", tags: ["conditional", "request"] },
-    { id: 222, pt: "Se você quiser, eu posso te ajudar agora.", en: "If you want, I can help you now.", tags: ["conditional", "permission"] },
-    { id: 223, pt: "Se for possível, a gente se encontra mais tarde.", en: "If possible, we'll meet later.", tags: ["conditional", "possibility"] },
-    { id: 224, pt: "Se ele estiver livre, ele pode vir com a gente.", en: "If he's free, he can come with us.", tags: ["conditional", "possibility"] },
-    { id: 225, pt: "Se você terminar isso hoje, amanhã fica mais leve.", en: "If you finish this today, tomorrow will be easier.", tags: ["conditional"] },
+   // Condicional
+    { 
+        id: 129, 
+        pt: "Se não tivesse chovido, eu até iria.", 
+        en: "If it had not/hadn't rained, I would have/would've gone", 
+        tags: ["conditional"] 
+    },
+    { 
+        id: 131, 
+        pt: "Se você puder, me avise mais tarde.", 
+        en: "If you can, let me know/tell me later", 
+        tags: ["conditional"] 
+    },
+    { 
+        id: 153, 
+        pt: "Se você estudar, vai melhorar rápido.", 
+        en: "If you study, you will/you'll improve/get better quickly/fast", 
+        tags: ["conditional"] 
+    },
+    { 
+        id: 154, 
+        pt: "Se eu tivesse mais tempo, eu te ajudaria.", 
+        en: "If I had more time, I would/'d help you", 
+        tags: ["conditional"] 
+    },
+    { 
+        id: 155, 
+        pt: "Se ele chegar cedo, a gente pode sair.", 
+        en: "If he arrives/gets here early, we can leave/go (out)", 
+        tags: ["conditional", "possibility"] 
+    },
+    { 
+        id: 156, 
+        pt: "Se você não quiser, tudo bem.", 
+        en: "If you do not/don't want (to), it is/it's okay/fine", 
+        tags: ["conditional", "permission"] 
+    },
+    { 
+        id: 195, 
+        pt: "Se você vier hoje, a gente conversa.", 
+        en: "If you come today, we will/we'll talk", 
+        tags: ["conditional"] 
+    },
+    { 
+        id: 196, 
+        pt: "Se eu terminar cedo, eu te ajudo.", 
+        en: "If I finish early, I will/I'll help you", 
+        tags: ["conditional"] 
+    },
+    { 
+        id: 197, 
+        pt: "Se ela ligar, me avise.", 
+        en: "If she calls, let me know/tell me", 
+        tags: ["conditional"] 
+    },
+    { 
+        id: 198, 
+        pt: "Se você estiver cansado, pode descansar.", 
+        en: "If you are/you're tired, you can rest", 
+        tags: ["conditional"] 
+    },
+    { 
+        id: 199, 
+        pt: "Se ele não aparecer, a gente vai sem ele.", 
+        en: "If he does not/doesn't show up/come, we will/we'll go without him", 
+        tags: ["conditional"] 
+    },
+    { 
+        id: 200, 
+        pt: "Se chover, a gente fica em casa.", 
+        en: "If it rains, we will/we'll stay (at) home", 
+        tags: ["conditional"] 
+    },
+    { 
+        id: 201, 
+        pt: "Se você estudar todo dia, vai aprender mais rápido.", 
+        en: "If you study every day, you will/you'll learn faster", 
+        tags: ["conditional"] 
+    },
+    { 
+        id: 202, 
+        pt: "Se você praticar, vai ganhar confiança.", 
+        en: "If you practice, you will/you'll gain/get confidence", 
+        tags: ["conditional"] 
+    },
+    { 
+        id: 203, 
+        pt: "Se eu tiver dúvidas, eu te pergunto.", 
+        en: "If I have questions/doubts, I will/I'll ask you", 
+        tags: ["conditional"] 
+    },
+    { 
+        id: 204, 
+        pt: "Se eu lembrar, eu te mando mensagem.", 
+        en: "If I remember, I will/I'll text (you)/send (you) a message", 
+        tags: ["conditional"] 
+    },
+    { 
+        id: 205, 
+        pt: "Se ele chegar cedo, a gente janta juntos.", 
+        en: "If he arrives early, we will/we'll have dinner together", 
+        tags: ["conditional"] 
+    },
+    { 
+        id: 206, 
+        pt: "Se você quiser, eu espero mais um pouco.", 
+        en: "If you want (to), I will/I'll wait a little longer/bit", 
+        tags: ["conditional"] 
+    },
+    { 
+        id: 207, 
+        pt: "Se você não entender, eu explico de novo.", 
+        en: "If you do not/don't understand, I will/I'll explain (it) again", 
+        tags: ["conditional"] 
+    },
+    { 
+        id: 208, 
+        pt: "Se eu não conseguir hoje, eu faço amanhã.", 
+        en: "If I cannot/can't do it today, I will/I'll do it tomorrow", 
+        tags: ["conditional"] 
+    },
+    { 
+        id: 209, 
+        pt: "Se você não tiver tempo, tudo bem.", 
+        en: "If you do not/don't have time, it is/it's okay/fine", 
+        tags: ["conditional"] 
+    },
+    { 
+        id: 210, 
+        pt: "Se ela não responder, a gente tenta depois.", 
+        en: "If she does not/doesn't reply/answer, we will/we'll try later", 
+        tags: ["conditional"] 
+    },
+    { 
+        id: 211, 
+        pt: "Se eu tivesse mais dinheiro, eu viajaria.", 
+        en: "If I had more money, I would/'d travel", 
+        tags: ["conditional", "desire"] 
+    },
+    { 
+        id: 212, 
+        pt: "Se eu tivesse mais tempo, eu estudaria mais.", 
+        en: "If I had more time, I would/'d study more", 
+        tags: ["conditional"] 
+    },
+    { 
+        id: 213, 
+        pt: "Se ele tivesse paciência, ele aprenderia rápido.", 
+        en: "If he had patience, he would/'d learn quickly/fast", 
+        tags: ["conditional"] 
+    },
+    { 
+        id: 214, 
+        pt: "Se você pudesse, me ajudaria hoje?", 
+        en: "If you could, would you help me today?", 
+        tags: ["conditional"] 
+    },
+    { 
+        id: 215, 
+        pt: "Se a gente tivesse carro, seria mais fácil.", 
+        en: "If we had a car, it would/'d be easier", 
+        tags: ["conditional"] 
+    },
+    { 
+        id: 216, 
+        pt: "Se eu tivesse estudado mais, eu teria passado.", 
+        en: "If I had studied more, I would have/would've passed", 
+        tags: ["conditional"] 
+    },
+    { 
+        id: 217, 
+        pt: "Se você tivesse me avisado, eu teria ido.", 
+        en: "If you had told/warned me, I would have/would've gone", 
+        tags: ["conditional"] 
+    },
+    { 
+        id: 218, 
+        pt: "Se ele não tivesse saído cedo, ele teria visto a gente.", 
+        en: "If he had not/hadn't left early, he would have/would've seen us", 
+        tags: ["conditional"] 
+    },
+    { 
+        id: 219, 
+        pt: "Se a gente tivesse saído mais cedo, não teria se atrasado.", 
+        en: "If we had left earlier, we would not/wouldn't have been late", 
+        tags: ["conditional"] 
+    },
+    { 
+        id: 220, 
+        pt: "Se ela tivesse descansado, teria se sentido melhor.", 
+        en: "If she had rested, she would have/would've felt better", 
+        tags: ["conditional"] 
+    },
+    { 
+        id: 221, 
+        pt: "Se você puder, me manda isso hoje.",
+        en: ["If you can, send me that today", "If you can, send that to me today"], 
+        tags: ["conditional"] 
+    },
+    { 
+        id: 222, 
+        pt: "Se você quiser, eu posso te ajudar agora.", 
+        en: "If you want (to), I can help you now", 
+        tags: ["conditional"] 
+    },
+    { 
+        id: 223, 
+        pt: "Se for possível, a gente se encontra mais tarde.", 
+        en: "If (it is/it's) possible, we will/we'll meet (up) later", 
+        tags: ["conditional", "possibility"] 
+    },
+    { 
+        id: 224, 
+        pt: "Se ele estiver livre, ele pode vir com a gente.", 
+        en: "If he is/he's free, he can come with us", 
+        tags: ["conditional", "possibility"] 
+    },
+    { 
+        id: 225, 
+        pt: "Se você terminar isso hoje, amanhã fica mais leve.", 
+        en: "If you finish this today, tomorrow will be easier", 
+        tags: ["conditional"] 
+    },
     
     // Contraste
-    { id: 133, pt: "Eu queria ajudar, mas não tinha tempo.", en: "I wanted to help, but I didn't have time.", tags: ["contrast", "past"] },
-    { id: 127, pt: "Eu aprendi muito com ela, mas ela não é minha professora mais.", en: "I learned a lot from her, but she is not my teacher anymore.", tags: ["contrast", "past"] },
-    { id: 157, pt: "Eu tentei explicar, mas ele não entendeu.", en: "I tried to explain, but he didn't understand.", tags: ["contrast", "past"] },
-    { id: 158, pt: "Ela é bem nova, mas é muito responsável.", en: "She is very young, but she is very responsible.", tags: ["contrast"] },
-    { id: 159, pt: "Eu gosto de café, mas hoje prefiro chá.", en: "I like coffee, but today I prefer tea.", tags: ["contrast"] },
-    { id: 225, pt: "Eu estava com sono, mas continuei estudando.", en: "I was sleepy, but I kept studying.", tags: ["contrast"] },
-    { id: 226, pt: "Ele falou muito, mas não disse nada importante.", en: "He talked a lot, but he didn't say anything important.", tags: ["contrast"] },
-    { id: 227, pt: "Ela queria sair, mas estava chovendo.", en: "She wanted to go out, but it was raining.", tags: ["contrast"] },
-    { id: 228, pt: "Eu tentei ser rápido, mas me atrasei.", en: "I tried to be quick, but I was late.", tags: ["contrast"] },
-    { id: 229, pt: "A comida estava boa, mas estava fria.", en: "The food was good, but it was cold.", tags: ["contrast"] },
-    { id: 230, pt: "Eu gosto dele, mas não confio muito.", en: "I like him, but I don't trust him much.", tags: ["contrast"] },
-    { id: 231, pt: "Eu tinha dinheiro, mas não comprei.", en: "I had money, but I didn't buy it.", tags: ["contrast"] },
-    { id: 232, pt: "Ela sabia a resposta, mas não falou nada.", en: "She knew the answer, but she didn't say anything.", tags: ["contrast"] },
-    { id: 233, pt: "Ele é inteligente, mas não estuda.", en: "He is smart, but he doesn't study.", tags: ["contrast"] },
-    { id: 234, pt: "Eu acordei cedo, mas ainda estou cansado.", en: "I woke up early, but I'm still tired.", tags: ["contrast"] },
-    { id: 235, pt: "Eu queria ir, mas não consegui.", en: "I wanted to go, but I couldn't.", tags: ["contrast"] },
-    { id: 236, pt: "Ela é tímida, mas fala muito com amigos.", en: "She is shy, but she talks a lot with friends.", tags: ["contrast"] },
-    { id: 237, pt: "O filme era bom, mas era longo demais.", en: "The movie was good, but it was too long.", tags: ["contrast"] },
-    { id: 238, pt: "Eu estudei bastante, mas ainda errei.", en: "I studied a lot, but I still made mistakes.", tags: ["contrast"] },
-    { id: 239, pt: "Ele prometeu ajudar, mas sumiu.", en: "He promised to help, but he disappeared.", tags: ["contrast"] },
-    { id: 240, pt: "Ela sorriu, mas parecia triste.", en: "She smiled, but she looked sad.", tags: ["contrast"] },
-    { id: 241, pt: "O lugar é bonito, mas é longe.", en: "The place is beautiful, but it's far.", tags: ["contrast"] },
-    { id: 242, pt: "Eu falei com calma, mas ele ficou bravo.", en: "I spoke calmly, but he got angry.", tags: ["contrast"] },
-    { id: 243, pt: "Eu estava com pressa, mas esperei mesmo assim.", en: "I was in a hurry, but I waited anyway.", tags: ["contrast"] },
-    { id: 244, pt: "Ele estudou pouco, mas foi bem na prova.", en: "He studied little, but he did well on the test.", tags: ["contrast"] },
-    { id: 245, pt: "Ela trabalha muito, mas ganha pouco.", en: "She works a lot, but she earns little.", tags: ["contrast"] },
-    { id: 246, pt: "Eu queria falar, mas fiquei quieto.", en: "I wanted to talk, but I stayed quiet.", tags: ["contrast"] },
-    { id: 247, pt: "Ele estava animado, mas ficou nervoso na hora.", en: "He was excited, but he got nervous at the moment.", tags: ["contrast"] },
-    { id: 248, pt: "Eu treinei bastante, mas não melhorei muito.", en: "I trained a lot, but I didn't improve much.", tags: ["contrast"] },
-    { id: 249, pt: "Ela tentou entender, mas foi difícil.", en: "She tried to understand, but it was difficult.", tags: ["contrast"] },
-    { id: 250, pt: "Eu já sabia disso, mas fiquei surpreso.", en: "I already knew that, but I was surprised.", tags: ["contrast"] },
-    { id: 251, pt: "Ele falou que vinha, mas não veio.", en: "He said he was coming, but he didn't come.", tags: ["contrast"] },
-    { id: 252, pt: "A gente chegou no horário, mas a loja estava fechada.", en: "We arrived on time, but the store was closed.", tags: ["contrast"] },
-    { id: 253, pt: "Eu estava bem, mas do nada fiquei mal.", en: "I was fine, but suddenly I felt sick.", tags: ["contrast"] },
-    { id: 254, pt: "Ela é muito gentil, mas não gosta de conversa.", en: "She is very kind, but she doesn't like small talk.", tags: ["contrast"] },
-    { id: 255, pt: "Eu queria ficar, mas precisava ir embora.", en: "I wanted to stay, but I had to leave.", tags: ["contrast"] },
-    { id: 256, pt: "Ele tinha certeza, mas estava errado.", en: "He was sure, but he was wrong.", tags: ["contrast"] },
-    { id: 257, pt: "Ela estava feliz, mas fingiu que não ligava.", en: "She was happy, but she pretended she didn't care.", tags: ["contrast"] },
-    { id: 258, pt: "Eu estava pronto, mas o plano mudou.", en: "I was ready, but the plan changed.", tags: ["contrast"] },
-    { id: 259, pt: "A gente tentou ajudar, mas não adiantou.", en: "We tried to help, but it didn't work.", tags: ["contrast"] },
-    { id: 260, pt: "Eu gostei da ideia, mas achei arriscado.", en: "I liked the idea, but I thought it was risky.", tags: ["contrast"] },
-    { id: 261, pt: "Ele queria conversar, mas eu estava ocupado.", en: "He wanted to talk, but I was busy.", tags: ["contrast"] },
-    { id: 262, pt: "Ela estudou muito, mas ficou nervosa na prova.", en: "She studied a lot, but she got nervous during the test.", tags: ["contrast"] },
-    { id: 263, pt: "Eu achei que ia ser fácil, mas foi bem difícil.", en: "I thought it would be easy, but it was really hard.", tags: ["contrast"] },
-    { id: 264, pt: "O trabalho era simples, mas demorou bastante.", en: "The job was simple, but it took a long time.", tags: ["contrast"] },
-    { id: 265, pt: "Ele parecia confiante, mas estava com medo.", en: "He looked confident, but he was scared.", tags: ["contrast"] },
-    { id: 266, pt: "Eu estava com fome, mas não quis comer agora.", en: "I was hungry, but I didn't want to eat now.", tags: ["contrast"] },
-    { id: 267, pt: "Ela queria comprar, mas achou caro.", en: "She wanted to buy it, but she thought it was expensive.", tags: ["contrast"] },
-    { id: 268, pt: "A gente se esforçou, mas o resultado não veio.", en: "We tried hard, but the result didn't come.", tags: ["contrast"] },
-    { id: 269, pt: "Eu planejei tudo, mas esqueci um detalhe.", en: "I planned everything, but I forgot one detail.", tags: ["contrast"] },
+    { 
+        id: 133, 
+        pt: "Eu queria ajudar, mas não tinha tempo.", 
+        en: "I wanted to help, but I did not/didn't have time", 
+        tags: ["contrast"] 
+    },
+    { 
+        id: 127, 
+        pt: "Eu aprendi muito com ela, mas ela não é minha professora mais.", 
+        en: "I learned a lot from her, but she is not/isn't my teacher anymore", 
+        tags: ["contrast"] 
+    },
+    { 
+        id: 157, 
+        pt: "Eu tentei explicar, mas ele não entendeu.", 
+        en: "I tried to explain, but he did not/didn't understand", 
+        tags: ["contrast"] 
+    },
+    { 
+        id: 158, 
+        pt: "Ela é bem nova, mas é muito responsável.", 
+        en: "She is/She's very young, but (she is/she's) very responsible", 
+        tags: ["contrast"] 
+    },
+    { 
+        id: 159, 
+        pt: "Eu gosto de café, mas hoje prefiro chá.", 
+        en: "I like coffee, but today I prefer tea", 
+        tags: ["contrast"] 
+    },
+    { 
+        id: 225, 
+        pt: "Eu estava com sono, mas continuei estudando.", 
+        en: [
+            "I was sleepy, but I kept (on) studying",
+            "I was sleepy, but I continued studying"
+        ],
+        tags: ["contrast"] 
+    },
+    { 
+        id: 226, 
+        pt: "Ele falou muito, mas não disse nada importante.", 
+        en: "He talked a lot, but (he) did not/didn't say anything important", 
+        tags: ["contrast"] 
+    },
+    { 
+        id: 227, 
+        pt: "Ela queria sair, mas estava chovendo.", 
+        en: "She wanted to go out, but it was raining", 
+        tags: ["contrast"] 
+    },
+    { 
+        id: 228, 
+        pt: "Eu tentei ser rápido, mas me atrasei.", 
+        en: "I tried to be quick/fast, but I was late", 
+        tags: ["contrast"] 
+    },
+    { 
+        id: 229, 
+        pt: "A comida estava boa, mas estava fria.", 
+        en: "The food was good, but (it was) cold", 
+        tags: ["contrast"] 
+    },
+    { 
+        id: 230, 
+        pt: "Eu gosto dele, mas não confio muito.", 
+        en: "I like him, but I do not/don't trust him much", 
+        tags: ["contrast"] 
+    },
+    { 
+        id: 231, 
+        pt: "Eu tinha dinheiro, mas não comprei.", 
+        en: "I had money, but I did not/didn't buy it", 
+        tags: ["contrast"] 
+    },
+    { 
+        id: 232, 
+        pt: "Ela sabia a resposta, mas não falou nada.", 
+        en: "She knew the answer, but (she) did not/didn't say anything", 
+        tags: ["contrast"] 
+    },
+    { 
+        id: 233, 
+        pt: "Ele é inteligente, mas não estuda.", 
+        en: "He is/He's smart/intelligent, but (he) does not/doesn't study", 
+        tags: ["contrast"] 
+    },
+    { 
+        id: 234, 
+        pt: "Eu acordei cedo, mas ainda estou cansado.", 
+        en: "I woke up early, but I am/I'm still tired", 
+        tags: ["contrast"] 
+    },
+    { 
+        id: 235, 
+        pt: "Eu queria ir, mas não consegui.", 
+        en: "I wanted to go, but I could not/couldn't", 
+        tags: ["contrast"] 
+    },
+    { 
+        id: 236, 
+        pt: "Ela é tímida, mas fala muito com amigos.", 
+        en: "She is/She's shy, but (she) talks a lot with friends", 
+        tags: ["contrast"] 
+    },
+    { 
+        id: 237, 
+        pt: "O filme era bom, mas era longo demais.", 
+        en: "The movie/film was good, but (it was) too long", 
+        tags: ["contrast"] 
+    },
+    { 
+        id: 238, 
+        pt: "Eu estudei bastante, mas ainda errei.", 
+        en: [
+            "I studied a lot, but I still made mistakes",
+            "I studied a lot, but I still got it wrong"
+        ],
+        tags: ["contrast"] 
+    },
+    { 
+        id: 239, 
+        pt: "Ele prometeu ajudar, mas sumiu.", 
+        en: "He promised to help, but (he) disappeared/vanished", 
+        tags: ["contrast"] 
+    },
+    { 
+        id: 240, 
+        pt: "Ela sorriu, mas parecia triste.", 
+        en: "She smiled, but (she) looked/seemed sad", 
+        tags: ["contrast"] 
+    },
+    { 
+        id: 241, 
+        pt: "O lugar é bonito, mas é longe.", 
+        en: "The place is beautiful, but (it is/it's) far (away)", 
+        tags: ["contrast"] 
+    },
+    { 
+        id: 242, 
+        pt: "Eu falei com calma, mas ele ficou bravo.", 
+        en: "I spoke calmly, but he got angry/mad", 
+        tags: ["contrast"] 
+    },
+    { 
+        id: 243, 
+        pt: "Eu estava com pressa, mas esperei mesmo assim.", 
+        en: "I was in a hurry, but I waited anyway", 
+        tags: ["contrast"] 
+    },
+    { 
+        id: 244, 
+        pt: "Ele estudou pouco, mas foi bem na prova.", 
+        en: "He studied little, but (he) did well on the test/exam", 
+        tags: ["contrast"] 
+    },
+    { 
+        id: 245, 
+        pt: "Ela trabalha muito, mas ganha pouco.", 
+        en: "She works a lot, but (she) earns/makes little", 
+        tags: ["contrast"] 
+    },
+    { 
+        id: 246, 
+        pt: "Eu queria falar, mas fiquei quieto.", 
+        en: [
+             "I wanted to talk, but I stayed quiet",
+             "I wanted to talk, but I kept quiet"
+        ],
+        tags: ["contrast"] 
+    },
+    { 
+        id: 247, 
+        pt: "Ele estava animado, mas ficou nervoso na hora.", 
+        en: "He was excited, but (he) got nervous at the moment/time", 
+        tags: ["contrast"] 
+    },
+    { 
+        id: 248, 
+        pt: "Eu treinei bastante, mas não melhorei muito.", 
+        en: "I trained a lot, but I did not/didn't improve much", 
+        tags: ["contrast"] 
+    },
+    { 
+        id: 249, 
+        pt: "Ela tentou entender, mas foi difícil.", 
+        en: "She tried to understand, but it was difficult/hard", 
+        tags: ["contrast"] 
+    },
+    { 
+        id: 250, 
+        pt: "Eu já sabia disso, mas fiquei surpreso.", 
+        en: "I already knew that, but I was surprised", 
+        tags: ["contrast"] 
+    },
+    { 
+        id: 251, 
+        pt: "Ele falou que vinha, mas não veio.", 
+        en: [
+            "He said he was coming, but he did not/didn't come",
+            "He said he would come, but he did not/didn't come"
+        ],
+        tags: ["contrast"] 
+    },
+    { 
+        id: 252, 
+        pt: "A gente chegou no horário, mas a loja estava fechada.", 
+        en: "We arrived on time, but the store/shop was closed", 
+        tags: ["contrast"] 
+    },
+    { 
+        id: 253, 
+        pt: "Eu estava bem, mas do nada fiquei mal.", 
+        en: [
+            "I was fine, but suddenly I felt sick/bad",
+            "I was fine, but suddenly I got sick"
+        ],
+        tags: ["contrast"] 
+    },
+    { 
+        id: 254, 
+        pt: "Ela é muito gentil, mas não gosta de conversa.", 
+        en: "She is/She's very kind, but she does not/doesn't like small talk", 
+        tags: ["contrast"] 
+    },
+    { 
+        id: 255, 
+        pt: "Eu queria ficar, mas precisava ir embora.", 
+        en: "I wanted to stay, but I had to leave/go", 
+        tags: ["contrast"] 
+    },
+    { 
+        id: 256, 
+        pt: "Ele tinha certeza, mas estava errado.", 
+        en: "He was sure, but he was wrong", 
+        tags: ["contrast"] 
+    },
+    { 
+        id: 257, 
+        pt: "Ela estava feliz, mas fingiu que não ligava.", 
+        en: "She was happy, but (she) pretended (that) she did not/didn't care", 
+        tags: ["contrast"] 
+    },
+    { 
+        id: 258, 
+        pt: "Eu estava pronto, mas o plano mudou.", 
+        en: "I was ready, but the plan changed", 
+        tags: ["contrast"] 
+    },
+    { 
+        id: 259, 
+        pt: "A gente tentou ajudar, mas não adiantou.", 
+        en: [
+            "We tried to help, but it did not/didn't work",
+            "We tried to help, but it was no use"
+        ],
+        tags: ["contrast"] 
+    },
+    { 
+        id: 260, 
+        pt: "Eu gostei da ideia, mas achei arriscado.", 
+        en: "I liked the idea, but I thought it was risky", 
+        tags: ["contrast"] 
+    },
+    { 
+        id: 261, 
+        pt: "Ele queria conversar, mas eu estava ocupado.", 
+        en: "He wanted to talk, but I was busy", 
+        tags: ["contrast"] 
+    },
+    { 
+        id: 262, 
+        pt: "Ela estudou muito, mas ficou nervosa na prova.", 
+        en: "She studied a lot, but (she) got nervous during/on the test", 
+        tags: ["contrast"] 
+    },
+    { 
+        id: 263, 
+        pt: "Eu achei que ia ser fácil, mas foi bem difícil.", 
+        en: [
+            "I thought it would be easy, but it was really hard/difficult",
+            "I thought it was going to be easy, but it was really hard/difficult"
+        ],
+        tags: ["contrast"] 
+    },
+    { 
+        id: 264, 
+        pt: "O trabalho era simples, mas demorou bastante.", 
+        en: "The job/work was simple, but it took a long time", 
+        tags: ["contrast"] 
+    },
+    { 
+        id: 265, 
+        pt: "Ele parecia confiante, mas estava com medo.", 
+        en: "He looked/seemed confident, but he was scared/afraid", 
+        tags: ["contrast"] 
+    },
+    { 
+        id: 266, 
+        pt: "Eu estava com fome, mas não quis comer agora.", 
+        en: "I was hungry, but I did not/didn't want to eat now", 
+        tags: ["contrast"] 
+    },
+    { 
+        id: 267, 
+        pt: "Ela queria comprar, mas achou caro.", 
+        en: "She wanted to buy (it), but she thought it was expensive", 
+        tags: ["contrast"] 
+    },
+    { 
+        id: 268, 
+        pt: "A gente se esforçou, mas o resultado não veio.", 
+        en: "We tried hard, but the result did not/didn't come", 
+        tags: ["contrast"] 
+    },
+    { 
+        id: 269, 
+        pt: "Eu planejei tudo, mas esqueci um detalhe.", 
+        en: "I planned everything, but I forgot a/one detail", 
+        tags: ["contrast"] 
+    },
 
     // Temporal
-    { id: 134, pt: "Assim que ele chegar, a gente começa.", en: "As soon as he arrives, we start.", tags: ["temporal"] },
-    { id: 132, pt: "Quando eu terminar, eu te ligo.", en: "When I finish, I'll call you.", tags: ["temporal", "future"] },
-    { id: 128, pt: "Enquanto ele não sair, eu não consigo ajudar.", en: "While he doesn't leave, I can't help.", tags: ["temporal", "negative"] },
-    { id: 160, pt: "Antes de sair, apague as luzes.", en: "Before you leave, turn off the lights.", tags: ["temporal", "request"] },
-    { id: 161, pt: "Depois que eu chegar em casa, eu te mando mensagem.", en: "After I get home, I'll text you.", tags: ["temporal", "future"] },
-    { id: 162, pt: "Enquanto você estiver aqui, fique à vontade.", en: "While you are here, make yourself at home.", tags: ["temporal"] },
-    { id: 163, pt: "Até eu terminar isso, não me chama.", en: "Until I finish this, don't call me.", tags: ["temporal", "negative"] },
-    { id: 164, pt: "Sempre que eu posso, eu vou caminhar.", en: "Whenever I can, I go for a walk.", tags: ["temporal", "habit"] },
-    { id: 255, pt: "Quando você chegar, me chama.", en: "When you arrive, call me.", tags: ["temporal", "request"] },
-    { id: 256, pt: "Assim que eu terminar isso, eu descanso.", en: "As soon as I finish this, I'll rest.", tags: ["temporal"] },
-    { id: 257, pt: "Depois que você comer, escove os dentes.", en: "After you eat, brush your teeth.", tags: ["temporal", "request"] },
-    { id: 258, pt: "Antes de dormir, tome um banho.", en: "Before you sleep, take a shower.", tags: ["temporal", "request"] },
-    { id: 259, pt: "Enquanto eu estiver trabalhando, não me interrompa.", en: "While I'm working, don't interrupt me.", tags: ["temporal", "negative"] },
-    { id: 260, pt: "Até ele voltar, a gente espera aqui.", en: "Until he comes back, we'll wait here.", tags: ["temporal"] },
-    { id: 261, pt: "Quando eu tiver tempo, eu faço isso.", en: "When I have time, I'll do it.", tags: ["temporal"] },
-    { id: 262, pt: "Assim que ela sair, eu fecho a porta.", en: "As soon as she leaves, I'll close the door.", tags: ["temporal"] },
-    { id: 263, pt: "Depois que eu falar com ele, eu te aviso.", en: "After I talk to him, I'll let you know.", tags: ["temporal"] },
-    { id: 264, pt: "Antes de você sair, pega sua chave.", en: "Before you leave, get your key.", tags: ["temporal", "request"] },
-    { id: 265, pt: "Enquanto estiver chovendo, fique em casa.", en: "While it's raining, stay home.", tags: ["temporal", "request"] },
-    { id: 266, pt: "Até eu resolver isso, não faça nada.", en: "Until I fix this, don't do anything.", tags: ["temporal", "negative"] },
-    { id: 267, pt: "Sempre que eu posso, eu estudo um pouco.", en: "Whenever I can, I study a little.", tags: ["temporal", "habit"] },
-    { id: 268, pt: "Sempre que ele liga, eu atendo.", en: "Whenever he calls, I answer.", tags: ["temporal", "habit"] },
-    { id: 269, pt: "Quando eu acordo, eu bebo água.", en: "When I wake up, I drink water.", tags: ["temporal", "habit"] },
-    { id: 270, pt: "Depois do almoço, eu fico com sono.", en: "After lunch, I get sleepy.", tags: ["temporal", "habit"] },
-    { id: 271, pt: "Antes de eu sair, eu confiro tudo.", en: "Before I leave, I check everything.", tags: ["temporal", "habit"] },
-    { id: 272, pt: "Enquanto eu cozinho, eu escuto música.", en: "While I cook, I listen to music.", tags: ["temporal", "habit"] },
-    { id: 273, pt: "Quando ele terminar, a gente vai embora.", en: "When he finishes, we'll leave.", tags: ["temporal"] },
-    { id: 274, pt: "Assim que você entender, vai ficar fácil.", en: "As soon as you understand, it will get easy.", tags: ["temporal"] },
-    { id: 275, pt: "Depois que eu abrir o arquivo, eu te mostro.", en: "After I open the file, I'll show you.", tags: ["temporal"] },
-    { id: 276, pt: "Antes de começar, respira fundo.", en: "Before you start, take a deep breath.", tags: ["temporal", "request"] },
-    { id: 277, pt: "Enquanto ele não pedir desculpa, eu não falo com ele.", en: "While he doesn't apologize, I won't talk to him.", tags: ["temporal", "negative"] },
-    { id: 278, pt: "Até você terminar, eu vou ficar aqui.", en: "Until you finish, I'll stay here.", tags: ["temporal"] },
-    { id: 279, pt: "Sempre que você precisar, eu vou estar aqui.", en: "Whenever you need it, I'll be here.", tags: ["temporal"] },
-    { id: 280, pt: "Quando eu chegar em casa, eu relaxo.", en: "When I get home, I relax.", tags: ["temporal"] },
-    { id: 281, pt: "Depois que ele acordar, ele vai comer.", en: "After he wakes up, he'll eat.", tags: ["temporal"] },
-    { id: 282, pt: "Antes de você falar, pense bem.", en: "Before you speak, think carefully.", tags: ["temporal", "request"] },
-    { id: 283, pt: "Enquanto eu não terminar, não me chama.", en: "While I don't finish, don't call me.", tags: ["temporal", "negative"] },
-    { id: 284, pt: "Até eu aprender isso, eu vou praticar todo dia.", en: "Until I learn this, I'll practice every day.", tags: ["temporal", "habit"] },
-    { id: 285, pt: "Assim que eu terminar a reunião, eu te respondo.", en: "As soon as I finish the meeting, I'll reply to you.", tags: ["temporal", "future"] },
-    { id: 286, pt: "Quando você acabar isso, me avisa.", en: "When you finish that, let me know.", tags: ["temporal", "request"] },
-    { id: 287, pt: "Depois que a aula acabar, a gente conversa.", en: "After class ends, we'll talk.", tags: ["temporal"] },
-    { id: 288, pt: "Antes de sair de casa, eu sempre confiro a carteira.", en: "Before leaving home, I always check my wallet.", tags: ["temporal", "habit"] },
-    { id: 289, pt: "Enquanto eu estiver estudando, deixa meu celular longe.", en: "While I'm studying, keep my phone away.", tags: ["temporal", "request"] },
-    { id: 290, pt: "Até eu receber a resposta, eu não vou decidir nada.", en: "Until I get the answer, I won't decide anything.", tags: ["temporal", "negative"] },
-    { id: 291, pt: "Sempre que eu termino cedo, eu vou dormir mais cedo.", en: "Whenever I finish early, I go to bed earlier.", tags: ["temporal", "habit"] },
-    { id: 292, pt: "Quando eu estiver pronto, eu te chamo.", en: "When I'm ready, I'll call you.", tags: ["temporal", "future"] },
-    { id: 293, pt: "Depois que você sair, eu organizo tudo.", en: "After you leave, I'll organize everything.", tags: ["temporal"] },
-    { id: 294, pt: "Antes de começar a prova, eu leio tudo com calma.", en: "Before starting the test, I read everything calmly.", tags: ["temporal", "habit"] },
-    { id: 295, pt: "Enquanto ele não confirmar, a gente não compra nada.", en: "While he doesn't confirm, we won't buy anything.", tags: ["temporal", "negative"] },
-    { id: 296, pt: "Até você voltar, eu vou ficar por aqui.", en: "Until you come back, I'll stay around.", tags: ["temporal"] },
+    { 
+        id: 134, 
+        pt: "Assim que ele chegar, a gente começa.", 
+        en: "As soon as he arrives/gets here, we (will/we'll) start", 
+        tags: ["temporal"] 
+    },
+    { 
+        id: 132, 
+        pt: "Quando eu terminar, eu te ligo.", 
+        en: [
+            "When I finish, I will/I'll call you", 
+            "When I am/I'm done, I will/I'll call you"
+        ], 
+        tags: ["temporal"] 
+    },
+    { 
+        id: 128, 
+        pt: "Enquanto ele não sair, eu não consigo ajudar.", 
+        en: "While he does not/doesn't leave, I cannot/can't help", 
+        tags: ["temporal"] 
+    },
+    { 
+        id: 160, 
+        pt: "Antes de sair, apague as luzes.", 
+        en: [
+            "Before you leave, turn off the lights",
+            "Before leaving, turn off the lights"
+        ],
+        tags: ["temporal", "request"] 
+    },
+    { 
+        id: 161, 
+        pt: "Depois que eu chegar em casa, eu te mando mensagem.", 
+        en: "After I get home, I will/I'll text (you)/message (you)", 
+        tags: ["temporal"] 
+    },
+    { 
+        id: 162, 
+        pt: "Enquanto você estiver aqui, fique à vontade.", 
+        en: "While you are/you're here, make yourself at home", 
+        tags: ["temporal"] 
+    },
+    { 
+        id: 163, 
+        pt: "Até eu terminar isso, não me chama.", 
+        en: [
+            "Until I finish this, do not/don't call me",
+            "Until I am/I'm done (with this), do not/don't call me"
+        ], 
+        tags: ["temporal"] 
+    },
+    { 
+        id: 164, 
+        pt: "Sempre que eu posso, eu vou caminhar.", 
+        en: "Whenever I can, I go for a walk", 
+        tags: ["temporal"] 
+    },
+    { 
+        id: 255, 
+        pt: "Quando você chegar, me chama.", 
+        en: "When you arrive/get here, call me", 
+        tags: ["temporal", "request"] 
+    },
+    { 
+        id: 256, 
+        pt: "Assim que eu terminar isso, eu descanso.", 
+        en: "As soon as I finish this, I will/I'll rest", 
+        tags: ["temporal"] 
+    },
+    { 
+        id: 257, 
+        pt: "Depois que você comer, escove os dentes.", 
+        en: [
+            "After you eat, brush your teeth",
+            "After eating, brush your teeth"
+        ],
+        tags: ["temporal", "request"] 
+    },
+    { 
+        id: 258, 
+        pt: "Antes de dormir, tome um banho.", 
+        en: [
+            "Before you sleep, take a shower",
+            "Before sleeping, take a shower",
+            "Before you go to bed, take a shower"
+        ],
+        tags: ["temporal", "request"] 
+    },
+    { 
+        id: 259, 
+        pt: "Enquanto eu estiver trabalhando, não me interrompa.", 
+        en: "While I am/I'm working, do not/don't interrupt me", 
+        tags: ["temporal"] 
+    },
+    { 
+        id: 260, 
+        pt: "Até ele voltar, a gente espera aqui.", 
+        en: [
+             "Until he comes back, we will/we'll wait here",
+             "Until he returns, we will/we'll wait here"
+        ],
+        tags: ["temporal"] 
+    },
+    { 
+        id: 261, 
+        pt: "Quando eu tiver tempo, eu faço isso.", 
+        en: "When I have time, I will/I'll do it", 
+        tags: ["temporal"] 
+    },
+    { 
+        id: 262, 
+        pt: "Assim que ela sair, eu fecho a porta.", 
+        en: "As soon as she leaves, I will/I'll close the door", 
+        tags: ["temporal"] 
+    },
+    { 
+        id: 263, 
+        pt: "Depois que eu falar com ele, eu te aviso.", 
+        en: "After I talk/speak to/with him, I will/I'll let you know", 
+        tags: ["temporal"] 
+    },
+    { 
+        id: 264, 
+        pt: "Antes de você sair, pega sua chave.", 
+        en: [
+            "Before you leave, get/take your key",
+            "Before leaving, get/take your key"
+        ],
+        tags: ["temporal"] 
+    },
+    { 
+        id: 265, 
+        pt: "Enquanto estiver chovendo, fique em casa.", 
+        en: "While it is/it's raining, stay (at) home", 
+        tags: ["temporal"] 
+    },
+    { 
+        id: 266, 
+        pt: "Até eu resolver isso, não faça nada.", 
+        en: [
+            "Until I fix/solve this, do not/don't do anything",
+            "Until I figure this out, do not/don't do anything"
+        ],
+        tags: ["temporal"] 
+    },
+    { 
+        id: 267, 
+        pt: "Sempre que eu posso, eu estudo um pouco.", 
+        en: "Whenever I can, I study a little (bit)", 
+        tags: ["temporal"] 
+    },
+    { 
+        id: 268, 
+        pt: "Sempre que ele liga, eu atendo.", 
+        en: "Whenever he calls, I answer/pick up", 
+        tags: ["temporal"] 
+    },
+    { 
+        id: 269, 
+        pt: "Quando eu acordo, eu bebo água.", 
+        en: "When I wake up, I drink water", 
+        tags: ["temporal"] 
+    },
+    { 
+        id: 270, 
+        pt: "Depois do almoço, eu fico com sono.", 
+        en: "After lunch, I get sleepy", 
+        tags: ["temporal"] 
+    },
+    { 
+        id: 271, 
+        pt: "Antes de eu sair, eu confiro tudo.", 
+        en: [
+            "Before I leave, I check everything",
+            "Before leaving, I check everything"
+        ],
+        tags: ["temporal"] 
+    },
+    { 
+        id: 272, 
+        pt: "Enquanto eu cozinho, eu escuto música.", 
+        en: [
+            "While I cook, I listen to music",
+            "While I am/I'm cooking, I listen to music"
+        ],
+        tags: ["temporal"] 
+    },
+    { 
+        id: 273, 
+        pt: "Quando ele terminar, a gente vai embora.", 
+        en: [
+             "When he finishes, we will/we'll leave/go",
+             "When he is/he's done, we will/we'll leave/go"
+        ],
+        tags: ["temporal"] 
+    },
+    { 
+        id: 274, 
+        pt: "Assim que você entender, vai ficar fácil.", 
+        en: "As soon as you understand, it will get/become easy", 
+        tags: ["temporal"] 
+    },
+    { 
+        id: 275, 
+        pt: "Depois que eu abrir o arquivo, eu te mostro.", 
+        en: "After I open the file, I will/I'll show (it to) you", 
+        tags: ["temporal"] 
+    },
+    { 
+        id: 276, 
+        pt: "Antes de começar, respira fundo.", 
+        en: [
+            "Before you start, take a deep breath",
+            "Before starting, take a deep breath"
+        ],
+        tags: ["temporal"] 
+    },
+    { 
+        id: 277, 
+        pt: "Enquanto ele não pedir desculpa, eu não falo com ele.", 
+        en: "While he does not/doesn't apologize, I will not/won't talk to him", 
+        tags: ["temporal"] 
+    },
+    { 
+        id: 278, 
+        pt: "Até você terminar, eu vou ficar aqui.", 
+        en: [
+             "Until you finish, I will/I'll stay here",
+             "Until you are/you're done, I will/I'll stay here"
+        ],
+        tags: ["temporal"] 
+    },
+    { 
+        id: 279, 
+        pt: "Sempre que você precisar, eu vou estar aqui.", 
+        en: "Whenever you need (it), I will/I'll be here", 
+        tags: ["temporal"] 
+    },
+    { 
+        id: 280, 
+        pt: "Quando eu chegar em casa, eu relaxo.", 
+        en: "When I get home, I relax", 
+        tags: ["temporal"] 
+    },
+    { 
+        id: 281, 
+        pt: "Depois que ele acordar, ele vai comer.", 
+        en: "After he wakes up, he will/he'll eat", 
+        tags: ["temporal"] 
+    },
+    { 
+        id: 282, 
+        pt: "Antes de você falar, pense bem.", 
+        en: [
+            "Before you speak, think carefully",
+            "Before speaking, think carefully"
+        ],
+        tags: ["temporal"] 
+    },
+    { 
+        id: 283, 
+        pt: "Enquanto eu não terminar, não me chama.", 
+        en: [
+             "While I do not/don't finish, do not/don't call me",
+             "While I am/I'm not done, do not/don't call me"
+        ],
+        tags: ["temporal"] 
+    },
+    { 
+        id: 284, 
+        pt: "Até eu aprender isso, eu vou praticar todo dia.", 
+        en: "Until I learn this, I will/I'll practice every day", 
+        tags: ["temporal"] 
+    },
+    { 
+        id: 285, 
+        pt: "Assim que eu terminar a reunião, eu te respondo.", 
+        en: "As soon as I finish the meeting, I will/I'll reply (to) you", 
+        tags: ["temporal"] 
+    },
+    { 
+        id: 286, 
+        pt: "Quando você acabar isso, me avisa.", 
+        en: [
+            "When you finish that, let me know",
+            "When you are/you're done (with that), let me know"
+        ],
+        tags: ["temporal"] 
+    },
+    { 
+        id: 287, 
+        pt: "Depois que a aula acabar, a gente conversa.", 
+        en: "After class ends/finishes, we will/we'll talk", 
+        tags: ["temporal"] 
+    },
+    { 
+        id: 288, 
+        pt: "Antes de sair de casa, eu sempre confiro a carteira.", 
+        en: [
+             "Before leaving home, I always check my wallet",
+             "Before I leave home, I always check my wallet"
+        ],
+        tags: ["temporal"] 
+    },
+    { 
+        id: 289, 
+        pt: "Enquanto eu estiver estudando, deixa meu celular longe.", 
+        en: "While I am/I'm studying, keep/leave my phone away", 
+        tags: ["temporal"] 
+    },
+    { 
+        id: 290, 
+        pt: "Até eu receber a resposta, eu não vou decidir nada.", 
+        en: "Until I get/receive the answer, I will not/won't decide anything", 
+        tags: ["temporal"] 
+    },
+    { 
+        id: 291, 
+        pt: "Sempre que eu termino cedo, eu vou dormir mais cedo.", 
+        en: "Whenever I finish early, I go to bed earlier", 
+        tags: ["temporal"] 
+    },
+    { 
+        id: 292, 
+        pt: "Quando eu estiver pronto, eu te chamo.", 
+        en: "When I am/I'm ready, I will/I'll call you", 
+        tags: ["temporal"] 
+    },
+    { 
+        id: 293, 
+        pt: "Depois que você sair, eu organizo tudo.", 
+        en: "After you leave, I will/I'll organize everything", 
+        tags: ["temporal"] 
+    },
+    { 
+        id: 294, 
+        pt: "Antes de começar a prova, eu leio tudo com calma.", 
+        en: [
+            "Before starting the test, I read everything calmly",
+            "Before I start the test, I read everything calmly"
+        ],
+        tags: ["temporal"] 
+    },
+    { 
+        id: 295, 
+        pt: "Enquanto ele não confirmar, a gente não compra nada.", 
+        en: "While he does not/doesn't confirm, we will not/won't buy anything", 
+        tags: ["temporal"] 
+    },
+    { 
+        id: 296, 
+        pt: "Até você voltar, eu vou ficar por aqui.", 
+        en: "Until you come back/return, I will/I'll stay around", 
+        tags: ["temporal"] 
+    },
 
     // Concessão
-    { id: 135, pt: "Mesmo se ela tentar, não vai dar certo.", en: "Even if she tries, it won't work.", tags: ["concessive"] },
-    { id: 130, pt: "Embora eu esteja cansado, ainda preciso terminar isso.", en: "Although I am tired, I still need to finish this.", tags: ["concessive"] },
-    { id: 126, pt: "Mesmo que eu não vá, eu quero que você aproveite.", en: "Even if I don't go, I want you to enjoy it.", tags: ["concessive", "desire"] },
-    { id: 165, pt: "Mesmo que seja difícil, eu vou tentar.", en: "Even though it's hard, I'll try.", tags: ["concessive"] },
-    { id: 166, pt: "Apesar de estar com medo, ele foi.", en: "Although he was afraid, he went.", tags: ["concessive", "past"] },
-    { id: 167, pt: "Mesmo se eu errar, vou continuar.", en: "Even if I make mistakes, I'll keep going.", tags: ["concessive", "conditional"] },
-    { id: 285, pt: "Mesmo que eu esteja ocupado, eu posso ajudar.", en: "Even though I'm busy, I can help.", tags: ["concessive"] },
-    { id: 286, pt: "Embora esteja tarde, eu ainda vou sair.", en: "Although it's late, I'm still going out.", tags: ["concessive"] },
-    { id: 287, pt: "Mesmo que ele não concorde, eu vou fazer isso.", en: "Even if he doesn't agree, I'll do it.", tags: ["concessive"] },
-    { id: 288, pt: "Apesar de estar cansada, ela continuou.", en: "Although she was tired, she kept going.", tags: ["concessive"] },
-    { id: 289, pt: "Mesmo se chover, a gente vai.", en: "Even if it rains, we'll go.", tags: ["concessive"] },
-    { id: 290, pt: "Embora eu não goste muito, eu vou tentar.", en: "Although I don't like it much, I'll try.", tags: ["concessive"] },
-    { id: 291, pt: "Mesmo que seja caro, eu quero comprar.", en: "Even though it's expensive, I want to buy it.", tags: ["concessive", "desire"] },
-    { id: 292, pt: "Embora eu esteja com medo, eu quero ir.", en: "Although I'm scared, I want to go.", tags: ["concessive", "desire"] },
-    { id: 293, pt: "Mesmo se eu não conseguir, eu vou tentar de novo.", en: "Even if I don't make it, I'll try again.", tags: ["concessive"] },
-    { id: 294, pt: "Apesar de estar doente, ele foi trabalhar.", en: "Although he was sick, he went to work.", tags: ["concessive"] },
-    { id: 295, pt: "Mesmo que eu não entenda, eu vou continuar estudando.", en: "Even if I don't understand, I'll keep studying.", tags: ["concessive"] },
-    { id: 296, pt: "Embora esteja difícil, não desista.", en: "Although it's hard, don't give up.", tags: ["concessive"] },
-    { id: 297, pt: "Mesmo que você não queira, eu vou te ajudar.", en: "Even if you don't want it, I'll help you.", tags: ["concessive"] },
-    { id: 298, pt: "Apesar de estar nervoso, ele falou bem.", en: "Although he was nervous, he spoke well.", tags: ["concessive"] },
-    { id: 299, pt: "Mesmo se eles reclamarem, a gente continua.", en: "Even if they complain, we'll continue.", tags: ["concessive"] },
-    { id: 300, pt: "Embora eu esteja sem tempo, eu vou tentar fazer.", en: "Although I don't have time, I'll try to do it.", tags: ["concessive"] },
-    { id: 301, pt: "Mesmo que eu erre, eu aprendo com isso.", en: "Even if I make mistakes, I learn from it.", tags: ["concessive"] },
-    { id: 302, pt: "Apesar de estar chovendo, ela saiu.", en: "Although it was raining, she went out.", tags: ["concessive"] },
-    { id: 303, pt: "Mesmo que eu já tenha tentado, eu vou tentar de novo.", en: "Even though I've tried before, I'll try again.", tags: ["concessive"] },
-    { id: 304, pt: "Embora ele seja novo, ele trabalha muito bem.", en: "Although he's new, he works very well.", tags: ["concessive"] },
-    { id: 305, pt: "Mesmo se eu estiver errado, eu vou ouvir você.", en: "Even if I'm wrong, I'll listen to you.", tags: ["concessive"] },
-    { id: 306, pt: "Apesar de ser simples, muita gente erra.", en: "Although it's simple, many people make mistakes.", tags: ["concessive"] },
-    { id: 307, pt: "Embora eu não esteja pronto, eu vou tentar.", en: "Although I'm not ready, I'll try.", tags: ["concessive"] },
-    { id: 308, pt: "Mesmo que ele fale pouco, ele entende tudo.", en: "Even though he doesn't talk much, he understands everything.", tags: ["concessive"] },
-    { id: 309, pt: "Mesmo que eu não vá, eu quero que você vá.", en: "Even if I don't go, I want you to go.", tags: ["concessive", "desire"] },
-    { id: 310, pt: "Embora eu tenha errado, eu aprendi bastante.", en: "Although I made mistakes, I learned a lot.", tags: ["concessive"] },
-    { id: 311, pt: "Mesmo se eu perder, eu vou ficar tranquilo.", en: "Even if I lose, I'll stay calm.", tags: ["concessive"] },
-    { id: 312, pt: "Apesar de ter sido difícil, deu certo.", en: "Even though it was hard, it worked out.", tags: ["concessive"] },
-    { id: 313, pt: "Mesmo que eu não saiba, eu posso procurar.", en: "Even if I don't know, I can look it up.", tags: ["concessive"] },
-    { id: 314, pt: "Mesmo se eu tivesse entendido antes, eu ainda teria errado.", en: "Even if I had understood earlier, I still would have made mistakes.", tags: ["concessive", "conditional", "past"] },
-    { id: 315, pt: "Mesmo que eu esteja nervoso, eu vou tentar falar.", en: "Even though I'm nervous, I'll try to speak.", tags: ["concessive"] },
-    { id: 316, pt: "Embora ela esteja cansada, ela não vai parar.", en: "Although she is tired, she won't stop.", tags: ["concessive"] },
-    { id: 317, pt: "Mesmo se eu não tiver certeza, eu vou fazer o meu melhor.", en: "Even if I'm not sure, I'll do my best.", tags: ["concessive"] },
-    { id: 318, pt: "Apesar de estar frio, eu vou sair mesmo assim.", en: "Although it's cold, I'll go out anyway.", tags: ["concessive"] },
-    { id: 319, pt: "Mesmo que ele esteja ocupado, ele sempre responde.", en: "Even though he's busy, he always replies.", tags: ["concessive"] },
-    { id: 320, pt: "Embora eu não concorde, eu respeito sua opinião.", en: "Although I don't agree, I respect your opinion.", tags: ["concessive"] },
-    { id: 321, pt: "Mesmo se ela não acreditar, eu vou explicar de novo.", en: "Even if she doesn't believe it, I'll explain again.", tags: ["concessive"] },
-    { id: 322, pt: "Apesar de estar difícil, eu estou melhorando aos poucos.", en: "Even though it's difficult, I'm improving little by little.", tags: ["concessive"] },
-    { id: 323, pt: "Mesmo que você não veja agora, isso vai valer a pena.", en: "Even if you don't see it now, it will be worth it.", tags: ["concessive"] },
-    { id: 324, pt: "Embora eu tenha pouco tempo, eu vou tentar ajudar.", en: "Although I have little time, I'll try to help.", tags: ["concessive"] },
-    { id: 325, pt: "Mesmo que ele fale errado, eu entendo a ideia.", en: "Even if he says it wrong, I understand the idea.", tags: ["concessive"] },
-    { id: 326, pt: "Apesar de eu estar sem dinheiro, eu vou dar um jeito.", en: "Even though I don't have money, I'll find a way.", tags: ["concessive"] },
-    { id: 327, pt: "Mesmo se eu não gostar, eu vou tentar ser educado.", en: "Even if I don't like it, I'll try to be polite.", tags: ["concessive"] },
-    { id: 328, pt: "Embora eu tenha medo, eu não vou desistir.", en: "Although I'm afraid, I won't give up.", tags: ["concessive"] },
+    { 
+        id: 135, 
+        pt: "Mesmo se ela tentar, não vai dar certo.", 
+        en: "Even if she tries, it will not/won't work", 
+        tags: ["concessive"] 
+    },
+    { 
+        id: 130, 
+        pt: "Embora eu esteja cansado, ainda preciso terminar isso.", 
+        en: "Although I am/I'm tired, I still need to finish this", 
+        tags: ["concessive"] 
+    },
+    { 
+        id: 126, 
+        pt: "Mesmo que eu não vá, eu quero que você aproveite.", 
+        en: [
+            "Even if I do not/don't go, I want you to enjoy it",
+            "Even if I do not/don't go, I want you to have fun"
+        ], 
+        tags: ["concessive", "desire"] 
+    },
+    { 
+        id: 165, 
+        pt: "Mesmo que seja difícil, eu vou tentar.", 
+        en: "Even though it is/it's hard/difficult, I will/I'll try", 
+        tags: ["concessive"] 
+    },
+    { 
+        id: 166, 
+        pt: "Apesar de estar com medo, ele foi.", 
+        en: "Although he was afraid/scared, he went", 
+        tags: ["concessive"] 
+    },
+    { 
+        id: 167, 
+        pt: "Mesmo se eu errar, vou continuar.", 
+        en: [
+            "Even if I make mistakes, I will/I'll keep going",
+            "Even if I make mistakes, I will/I'll continue"
+        ],
+        tags: ["concessive", "conditional"] 
+    },
+    { 
+        id: 285, 
+        pt: "Mesmo que eu esteja ocupado, eu posso ajudar.", 
+        en: "Even though I am/I'm busy, I can help", 
+        tags: ["concessive"] 
+    },
+    { 
+        id: 286, 
+        pt: "Embora esteja tarde, eu ainda vou sair.", 
+        en: "Although it is/it's late, I am/I'm still going out", 
+        tags: ["concessive"] 
+    },
+    { 
+        id: 287, 
+        pt: "Mesmo que ele não concorde, eu vou fazer isso.", 
+        en: "Even if he does not/doesn't agree, I will/I'll do it/this", 
+        tags: ["concessive"] 
+    },
+    { 
+        id: 288, 
+        pt: "Apesar de estar cansada, ela continuou.", 
+        en: [
+            "Although she was tired, she kept going",
+            "Although she was tired, she continued"
+        ],
+        tags: ["concessive"] 
+    },
+    { 
+        id: 289, 
+        pt: "Mesmo se chover, a gente vai.", 
+        en: "Even if it rains, we will/we'll go", 
+        tags: ["concessive"] 
+    },
+    { 
+        id: 290, 
+        pt: "Embora eu não goste muito, eu vou tentar.", 
+        en: "Although I do not/don't like it much, I will/I'll try", 
+        tags: ["concessive"] 
+    },
+    { 
+        id: 291, 
+        pt: "Mesmo que seja caro, eu quero comprar.", 
+        en: "Even though it is/it's expensive, I want to buy it", 
+        tags: ["concessive", "desire"] 
+    },
+    { 
+        id: 292, 
+        pt: "Embora eu esteja com medo, eu quero ir.", 
+        en: "Although I am/I'm scared/afraid, I want to go", 
+        tags: ["concessive", "desire"] 
+    },
+    { 
+        id: 293, 
+        pt: "Mesmo se eu não conseguir, eu vou tentar de novo.", 
+        en: [
+             "Even if I do not/don't make it, I will/I'll try again",
+             "Even if I do not/don't succeed, I will/I'll try again"
+        ],
+        tags: ["concessive"] 
+    },
+    { 
+        id: 294, 
+        pt: "Apesar de estar doente, ele foi trabalhar.", 
+        en: "Although he was sick/ill, he went to work", 
+        tags: ["concessive"] 
+    },
+    { 
+        id: 295, 
+        pt: "Mesmo que eu não entenda, eu vou continuar estudando.", 
+        en: [
+            "Even if I do not/don't understand, I will/I'll keep studying",
+            "Even if I do not/don't understand, I will/I'll continue studying"
+        ],
+        tags: ["concessive"] 
+    },
+    { 
+        id: 296, 
+        pt: "Embora esteja difícil, não desista.", 
+        en: "Although it is/it's hard/difficult, do not/don't give up", 
+        tags: ["concessive"] 
+    },
+    { 
+        id: 297, 
+        pt: "Mesmo que você não queira, eu vou te ajudar.", 
+        en: "Even if you do not/don't want (it/to), I will/I'll help you", 
+        tags: ["concessive"] 
+    },
+    { 
+        id: 298, 
+        pt: "Apesar de estar nervoso, ele falou bem.", 
+        en: "Although he was nervous, he spoke well", 
+        tags: ["concessive"] 
+    },
+    { 
+        id: 299, 
+        pt: "Mesmo se eles reclamarem, a gente continua.", 
+        en: [
+            "Even if they complain, we will/we'll continue",
+            "Even if they complain, we will/we'll keep going"
+        ],
+        tags: ["concessive"] 
+    },
+    { 
+        id: 300, 
+        pt: "Embora eu esteja sem tempo, eu vou tentar fazer.", 
+        en: [
+            "Although I do not/don't have time, I will/I'll try to do it",
+            "Although I am/I'm out of time, I will/I'll try to do it"
+        ],
+        tags: ["concessive"] 
+    },
+    { 
+        id: 301, 
+        pt: "Mesmo que eu erre, eu aprendo com isso.", 
+        en: "Even if I make mistakes, I learn from it", 
+        tags: ["concessive"] 
+    },
+    { 
+        id: 302, 
+        pt: "Apesar de estar chovendo, ela saiu.", 
+        en: "Although it was raining, she went out", 
+        tags: ["concessive"] 
+    },
+    { 
+        id: 303, 
+        pt: "Mesmo que eu já tenha tentado, eu vou tentar de novo.", 
+        en: "Even though I have/I've tried before, I will/I'll try again", 
+        tags: ["concessive"] 
+    },
+    { 
+        id: 304, 
+        pt: "Embora ele seja novo, ele trabalha muito bem.", 
+        en: "Although he is/he's new, he works very well", 
+        tags: ["concessive"] 
+    },
+    { 
+        id: 305, 
+        pt: "Mesmo se eu estiver errado, eu vou ouvir você.", 
+        en: "Even if I am/I'm wrong, I will/I'll listen to you", 
+        tags: ["concessive"] 
+    },
+    { 
+        id: 306, 
+        pt: "Apesar de ser simples, muita gente erra.", 
+        en: "Although it is/it's simple, many people make mistakes", 
+        tags: ["concessive"] 
+    },
+    { 
+        id: 307, 
+        pt: "Embora eu não esteja pronto, eu vou tentar.", 
+        en: "Although I am/I'm not ready, I will/I'll try", 
+        tags: ["concessive"] 
+    },
+    { 
+        id: 308, 
+        pt: "Mesmo que ele fale pouco, ele entende tudo.", 
+        en: "Even though he does not/doesn't talk/speak much, he understands everything", 
+        tags: ["concessive"] 
+    },
+    { 
+        id: 309, 
+        pt: "Mesmo que eu não vá, eu quero que você vá.", 
+        en: "Even if I do not/don't go, I want you to go", 
+        tags: ["concessive", "desire"] 
+    },
+    { 
+        id: 310, 
+        pt: "Embora eu tenha errado, eu aprendi bastante.", 
+        en: "Although I made mistakes, I learned a lot", 
+        tags: ["concessive"] 
+    },
+    { 
+        id: 311, 
+        pt: "Mesmo se eu perder, eu vou ficar tranquilo.", 
+        en: [
+            "Even if I lose, I will/I'll stay calm",
+            "Even if I lose, I will/I'll be cool"
+        ], 
+        tags: ["concessive"] 
+    },
+    { 
+        id: 312, 
+        pt: "Apesar de ter sido difícil, deu certo.", 
+        en: [
+             "Even though it was hard/difficult, it worked (out)",
+             "Although it was hard/difficult, it worked (out)"
+        ],
+        tags: ["concessive"] 
+    },
+    { 
+        id: 313, 
+        pt: "Mesmo que eu não saiba, eu posso procurar.", 
+        en: [
+            "Even if I do not/don't know, I can look it up",
+            "Even if I do not/don't know, I can search for it"
+        ],
+        tags: ["concessive"] 
+    },
+    { 
+        id: 314, 
+        pt: "Mesmo se eu tivesse entendido antes, eu ainda teria errado.", 
+        en: "Even if I had understood earlier, I still would have/would've made mistakes", 
+        tags: ["concessive", "conditional"] 
+    },
+    { 
+        id: 315, 
+        pt: "Mesmo que eu esteja nervoso, eu vou tentar falar.", 
+        en: "Even though I am/I'm nervous, I will/I'll try to speak/talk", 
+        tags: ["concessive"] 
+    },
+    { 
+        id: 316, 
+        pt: "Embora ela esteja cansada, ela não vai parar.", 
+        en: "Although she is tired, she will not/won't stop", 
+        tags: ["concessive"] 
+    },
+    { 
+        id: 317, 
+        pt: "Mesmo se eu não tiver certeza, eu vou fazer o meu melhor.", 
+        en: "Even if I am/I'm not sure, I will/I'll do my best", 
+        tags: ["concessive"] 
+    },
+    { 
+        id: 318, 
+        pt: "Apesar de estar frio, eu vou sair mesmo assim.", 
+        en: "Although it is/it's cold, I will/I'll go out anyway", 
+        tags: ["concessive"] 
+    },
+    { 
+        id: 319, 
+        pt: "Mesmo que ele esteja ocupado, ele sempre responde.", 
+        en: "Even though he is/he's busy, he always replies/answers", 
+        tags: ["concessive"] 
+    },
+    { 
+        id: 320, 
+        pt: "Embora eu não concorde, eu respeito sua opinião.", 
+        en: "Although I do not/don't agree, I respect your opinion", 
+        tags: ["concessive"] 
+    },
+    { 
+        id: 321, 
+        pt: "Mesmo se ela não acreditar, eu vou explicar de novo.", 
+        en: "Even if she does not/doesn't believe (it), I will/I'll explain (it) again", 
+        tags: ["concessive"] 
+    },
+    { 
+        id: 322, 
+        pt: "Apesar de estar difícil, eu estou melhorando aos poucos.", 
+        en: [
+            "Even though it is/it's difficult, I am/I'm improving little by little",
+            "Even though it is/it's hard, I am/I'm getting better little by little"
+        ],
+        tags: ["concessive"] 
+    },
+    { 
+        id: 323, 
+        pt: "Mesmo que você não veja agora, isso vai valer a pena.", 
+        en: "Even if you do not/don't see it now, it will be worth it", 
+        tags: ["concessive"] 
+    },
+    { 
+        id: 324, 
+        pt: "Embora eu tenha pouco tempo, eu vou tentar ajudar.", 
+        en: "Although I have little time, I will/I'll try to help", 
+        tags: ["concessive"] 
+    },
+    { 
+        id: 325, 
+        pt: "Mesmo que ele fale errado, eu entendo a ideia.", 
+        en: "Even if he says it wrong, I understand the idea", 
+        tags: ["concessive"] 
+    },
+    { 
+        id: 326, 
+        pt: "Apesar de eu estar sem dinheiro, eu vou dar um jeito.", 
+        en: [
+             "Even though I do not/don't have money, I will/I'll find a way",
+             "Even though I have no money, I will/I'll find a way"
+        ],
+        tags: ["concessive"] 
+    },
+    { 
+        id: 327, 
+        pt: "Mesmo se eu não gostar, eu vou tentar ser educado.", 
+        en: "Even if I do not/don't like it, I will/I'll try to be polite", 
+        tags: ["concessive"] 
+    },
+    { 
+        id: 328, 
+        pt: "Embora eu tenha medo, eu não vou desistir.", 
+        en: "Although I am/I'm afraid/scared, I will not/won't give up", 
+        tags: ["concessive"] 
+    },
 
     // Causa
-    { id: 136, pt: "Eu não fui porque estava doente.", en: "I didn't go because I was sick.", tags: ["cause", "past"] },
-    { id: 137, pt: "Já que você terminou, pode descansar.", en: "Since you finished, you can rest.", tags: ["cause"] },
-    { id: 168, pt: "Eu fiquei em casa porque estava cansado.", en: "I stayed home because I was tired.", tags: ["cause", "past"] },
-    { id: 169, pt: "Como você me ajudou, eu consegui terminar.", en: "Since you helped me, I managed to finish.", tags: ["cause", "past"] },
-    { id: 170, pt: "Ele saiu cedo porque tinha uma reunião.", en: "He left early because he had a meeting.", tags: ["cause", "past"] },
-    { id: 315, pt: "Eu cheguei cedo porque não tinha trânsito.", en: "I arrived early because there was no traffic.", tags: ["cause", "past"] },
-    { id: 316, pt: "Ele faltou porque estava com febre.", en: "He missed it because he had a fever.", tags: ["cause", "past"] },
-    { id: 317, pt: "Ela ficou feliz porque passou na prova.", en: "She was happy because she passed the test.", tags: ["cause", "past"] },
-    { id: 318, pt: "Eu não comprei porque estava caro.", en: "I didn't buy it because it was expensive.", tags: ["cause", "past"] },
-    { id: 319, pt: "A gente saiu porque já era tarde.", en: "We left because it was already late.", tags: ["cause", "past"] },
-    { id: 320, pt: "Ele ficou em silêncio porque estava pensando.", en: "He stayed quiet because he was thinking.", tags: ["cause", "past"] },
-    { id: 321, pt: "Ela não veio porque tinha trabalho.", en: "She didn't come because she had work.", tags: ["cause", "past"] },
-    { id: 322, pt: "Eu desliguei o celular porque estava sem bateria.", en: "I turned off my phone because it had no battery.", tags: ["cause", "past"] },
-    { id: 323, pt: "Ele foi embora porque estava cansado.", en: "He went home because he was tired.", tags: ["cause", "past"] },
-    { id: 324, pt: "Eu aprendi rápido porque pratiquei todo dia.", en: "I learned quickly because I practiced every day.", tags: ["cause", "past"] },
-    { id: 325, pt: "Ela melhorou porque descansou bastante.", en: "She got better because she rested a lot.", tags: ["cause", "past"] },
-    { id: 326, pt: "Eu não respondi porque não vi a mensagem.", en: "I didn't reply because I didn't see the message.", tags: ["cause", "past"] },
-    { id: 327, pt: "Como ele estava doente, ele ficou em casa.", en: "Since he was sick, he stayed home.", tags: ["cause", "past"] },
-    { id: 328, pt: "Como eu não tinha dinheiro, eu não fui.", en: "Since I didn't have money, I didn't go.", tags: ["cause", "past"] },
-    { id: 329, pt: "Já que você está aqui, vamos começar.", en: "Since you're here, let's start.", tags: ["cause"] },
-    { id: 330, pt: "Já que ela sabe, pergunta pra ela.", en: "Since she knows, ask her.", tags: ["cause"] },
-    { id: 331, pt: "Como você me pediu, eu fiz.", en: "Since you asked me, I did it.", tags: ["cause", "past"] },
-    { id: 332, pt: "Já que você não quer, tudo bem.", en: "Since you don't want to, it's okay.", tags: ["cause"] },
-    { id: 333, pt: "Eu fiquei nervoso porque era importante.", en: "I got nervous because it was important.", tags: ["cause", "past"] },
-    { id: 334, pt: "Ela chorou porque ficou emocionada.", en: "She cried because she got emotional.", tags: ["cause", "past"] },
-    { id: 335, pt: "Eu mudei de ideia porque você explicou melhor.", en: "I changed my mind because you explained it better.", tags: ["cause", "past"] },
-    { id: 336, pt: "Ele não conseguiu porque não estudou.", en: "He couldn't do it because he didn't study.", tags: ["cause", "past"] },
-    { id: 337, pt: "A gente cancelou porque estava chovendo.", en: "We canceled because it was raining.", tags: ["cause", "past"] },
-    { id: 338, pt: "Eu voltei porque tinha esquecido a chave.", en: "I came back because I had forgotten the key.", tags: ["cause", "past"] },
-    { id: 339, pt: "Ela se atrasou porque perdeu o ônibus.", en: "She was late because she missed the bus.", tags: ["cause", "past"] },
-    { id: 340, pt: "Eu ajudei porque você precisava.", en: "I helped because you needed it.", tags: ["cause", "past"] },
-    { id: 341, pt: "Ele ficou bravo porque ninguém avisou.", en: "He got angry because nobody told him.", tags: ["cause", "past"] },
-    { id: 342, pt: "Eu fui embora porque não estava bem.", en: "I left because I wasn't feeling well.", tags: ["cause", "past"] },
-    { id: 343, pt: "Ela ficou acordada porque estava preocupada.", en: "She stayed awake because she was worried.", tags: ["cause", "past"] },
-    { id: 344, pt: "Eu não falei nada porque não era o momento.", en: "I didn't say anything because it wasn't the right moment.", tags: ["cause", "past"] },
-    { id: 345, pt: "Eu não consegui dormir porque estava pensando demais.", en: "I couldn't sleep because I was overthinking.", tags: ["cause", "past"] },
-    { id: 346, pt: "Ela sorriu porque ficou aliviada.", en: "She smiled because she felt relieved.", tags: ["cause", "past"] },
-    { id: 347, pt: "Ele não foi porque tinha compromisso.", en: "He didn't go because he had an appointment.", tags: ["cause", "past"] },
-    { id: 348, pt: "A gente saiu mais cedo porque o lugar estava cheio.", en: "We left earlier because the place was crowded.", tags: ["cause", "past"] },
-    { id: 349, pt: "Eu fiquei quieto porque não sabia o que dizer.", en: "I stayed quiet because I didn't know what to say.", tags: ["cause", "past"] },
-    { id: 350, pt: "Ela ficou irritada porque ele chegou atrasado.", en: "She got annoyed because he arrived late.", tags: ["cause", "past"] },
-    { id: 351, pt: "Eu fiquei feliz porque você lembrou de mim.", en: "I was happy because you remembered me.", tags: ["cause", "past"] },
-    { id: 352, pt: "Ele melhorou porque começou a praticar mais.", en: "He improved because he started practicing more.", tags: ["cause", "past"] },
-    { id: 353, pt: "Eu não falei com ele porque estava chateado.", en: "I didn't talk to him because I was upset.", tags: ["cause", "past"] },
-    { id: 354, pt: "Como estava muito quente, eu abri a janela.", en: "Since it was very hot, I opened the window.", tags: ["cause", "past"] },
-    { id: 355, pt: "Já que você vai sair, compra pão pra gente.", en: "Since you're going out, buy some bread for us.", tags: ["cause", "request"] },
-    { id: 356, pt: "Como você não respondeu, eu achei que tinha acontecido algo.", en: "Since you didn't reply, I thought something had happened.", tags: ["cause", "past", "negative"] },
-    { id: 357, pt: "Eu perdi o prazo porque esqueci a data.", en: "I missed the deadline because I forgot the date.", tags: ["cause", "past"] },
-    { id: 358, pt: "Ela ficou orgulhosa porque você se esforçou.", en: "She felt proud because you made an effort.", tags: ["cause", "past"] },
-    { id: 359, pt: "Eu não saí porque estava sem vontade.", en: "I didn't go out because I didn't feel like it.", tags: ["cause", "past"] },
+    { 
+        id: 136, 
+        pt: "Eu não fui porque estava doente.", 
+        en: "I did not/didn't go because I was sick/ill", 
+        tags: ["cause"] 
+    },
+    { 
+        id: 137, 
+        pt: "Já que você terminou, pode descansar.", 
+        en: [
+            "Since you finished, you can rest",
+            "Since you are/you're done, you can rest"
+        ],
+        tags: ["cause"] 
+    },
+    { 
+        id: 168, 
+        pt: "Eu fiquei em casa porque estava cansado.", 
+        en: "I stayed (at) home because I was tired", 
+        tags: ["cause"] 
+    },
+    { 
+        id: 169, 
+        pt: "Como você me ajudou, eu consegui terminar.", 
+        en: [
+            "Since you helped me, I managed to finish",
+            "As you helped me, I managed to finish"
+        ],
+        tags: ["cause"] 
+    },
+    { 
+        id: 170, 
+        pt: "Ele saiu cedo porque tinha uma reunião.", 
+        en: "He left early because he had a meeting", 
+        tags: ["cause"] 
+    },
+    { 
+        id: 315, 
+        pt: "Eu cheguei cedo porque não tinha trânsito.", 
+        en: "I arrived early because there was no traffic", 
+        tags: ["cause"] 
+    },
+    { 
+        id: 316, 
+        pt: "Ele faltou porque estava com febre.", 
+        en: "He missed it because he had a fever", 
+        tags: ["cause"] 
+    },
+    { 
+        id: 317, 
+        pt: "Ela ficou feliz porque passou na prova.", 
+        en: [
+            "She was happy because she passed the test/exam",
+            "She got happy because she passed the test/exam"
+        ],
+        tags: ["cause"] 
+    },
+    { 
+        id: 318, 
+        pt: "Eu não comprei porque estava caro.", 
+        en: "I did not/didn't buy (it) because it was expensive", 
+        tags: ["cause"] 
+    },
+    { 
+        id: 319, 
+        pt: "A gente saiu porque já era tarde.", 
+        en: "We left because it was already late", 
+        tags: ["cause"] 
+    },
+    { 
+        id: 320, 
+        pt: "Ele ficou em silêncio porque estava pensando.", 
+        en: [
+            "He stayed quiet because he was thinking",
+            "He remained silent because he was thinking"
+        ],
+        tags: ["cause"] 
+    },
+    { 
+        id: 321, 
+        pt: "Ela não veio porque tinha trabalho.", 
+        en: "She did not/didn't come because she had work", 
+        tags: ["cause"] 
+    },
+    { 
+        id: 322, 
+        pt: "Eu desliguei o celular porque estava sem bateria.", 
+        en: [
+             "I turned off my phone because it had no battery",
+             "I turned off my phone because the battery died"
+        ],
+        tags: ["cause"] 
+    },
+    { 
+        id: 323, 
+        pt: "Ele foi embora porque estava cansado.", 
+        en: [
+             "He went home because he was tired",
+             "He left because he was tired"
+        ],
+        tags: ["cause"] 
+    },
+    { 
+        id: 324, 
+        pt: "Eu aprendi rápido porque pratiquei todo dia.", 
+        en: "I learned quickly/fast because I practiced every day", 
+        tags: ["cause"] 
+    },
+    { 
+        id: 325, 
+        pt: "Ela melhorou porque descansou bastante.", 
+        en: "She got better because she rested a lot", 
+        tags: ["cause"] 
+    },
+    { 
+        id: 326, 
+        pt: "Eu não respondi porque não vi a mensagem.", 
+        en: "I did not/didn't reply/answer because I did not/didn't see the message", 
+        tags: ["cause"] 
+    },
+    { 
+        id: 327, 
+        pt: "Como ele estava doente, ele ficou em casa.", 
+        en: "Since he was sick/ill, he stayed (at) home", 
+        tags: ["cause"] 
+    },
+    { 
+        id: 328, 
+        pt: "Como eu não tinha dinheiro, eu não fui.", 
+        en: [
+            "Since I didn't have money, I didn't go",
+            "As I didn't have money, I didn't go"
+        ],
+        tags: ["cause"] 
+    },
+    { 
+        id: 329, 
+        pt: "Já que você está aqui, vamos começar.", 
+        en: "Since you are/you're here, let's start", 
+        tags: ["cause"] 
+    },
+    { 
+        id: 330, 
+        pt: "Já que ela sabe, pergunta pra ela.", 
+        en: "Since she knows, ask her", 
+        tags: ["cause"] 
+    },
+    { 
+        id: 331, 
+        pt: "Como você me pediu, eu fiz.", 
+        en: [
+             "Since you asked me, I did it",
+             "As you asked me, I did it"
+        ],
+        tags: ["cause"] 
+    },
+    { 
+        id: 332, 
+        pt: "Já que você não quer, tudo bem.", 
+        en: "Since you do not/don't want to, it is/it's okay", 
+        tags: ["cause"] 
+    },
+    { 
+        id: 333, 
+        pt: "Eu fiquei nervoso porque era importante.", 
+        en: "I got/became nervous because it was important", 
+        tags: ["cause"] 
+    },
+    { 
+        id: 334, 
+        pt: "Ela chorou porque ficou emocionada.", 
+        en: "She cried because she got emotional", 
+        tags: ["cause"] 
+    },
+    { 
+        id: 335, 
+        pt: "Eu mudei de ideia porque você explicou melhor.", 
+        en: "I changed my mind because you explained (it) better", 
+        tags: ["cause"] 
+    },
+    { 
+        id: 336, 
+        pt: "Ele não conseguiu porque não estudou.", 
+        en: [
+            "He couldn't do it because he didn't study",
+            "He didn't make it because he didn't study"
+        ],
+        tags: ["cause"] 
+    },
+    { 
+        id: 337, 
+        pt: "A gente cancelou porque estava chovendo.", 
+        en: "We canceled because it was raining", 
+        tags: ["cause"] 
+    },
+    { 
+        id: 338, 
+        pt: "Eu voltei porque tinha esquecido a chave.", 
+        en: [
+             "I came back because I had forgotten the key",
+             "I went back because I had forgotten the key"
+        ],
+        tags: ["cause"] 
+    },
+    { 
+        id: 339, 
+        pt: "Ela se atrasou porque perdeu o ônibus.", 
+        en: "She was late because she missed the bus", 
+        tags: ["cause"] 
+    },
+    { 
+        id: 340, 
+        pt: "Eu ajudei porque você precisava.", 
+        en: "I helped because you needed (it)", 
+        tags: ["cause"] 
+    },
+    { 
+        id: 341, 
+        pt: "Ele ficou bravo porque ninguém avisou.", 
+        en: [
+            "He got angry because nobody told him",
+            "He got mad because nobody warned him"
+        ],
+        tags: ["cause"] 
+    },
+    { 
+        id: 342, 
+        pt: "Eu fui embora porque não estava bem.", 
+        en: [
+            "I left because I wasn't feeling well",
+            "I went away because I wasn't feeling well"
+        ],
+        tags: ["cause"] 
+    },
+    { 
+        id: 343, 
+        pt: "Ela ficou acordada porque estava preocupada.", 
+        en: "She stayed awake because she was worried", 
+        tags: ["cause"] 
+    },
+    { 
+        id: 344, 
+        pt: "Eu não falei nada porque não era o momento.", 
+        en: "I did not/didn't say anything because it was not/wasn't the right moment/time", 
+        tags: ["cause"] 
+    },
+    { 
+        id: 345, 
+        pt: "Eu não consegui dormir porque estava pensando demais.", 
+        en: "I could not/couldn't sleep because I was overthinking", 
+        tags: ["cause"] 
+    },
+    { 
+        id: 346, 
+        pt: "Ela sorriu porque ficou aliviada.", 
+        en: "She smiled because she felt relieved", 
+        tags: ["cause"] 
+    },
+    { 
+        id: 347, 
+        pt: "Ele não foi porque tinha compromisso.", 
+        en: [
+             "He didn't go because he had an appointment",
+             "He didn't go because he had plans"
+        ],
+        tags: ["cause"] 
+    },
+    { 
+        id: 348, 
+        pt: "A gente saiu mais cedo porque o lugar estava cheio.", 
+        en: "We left earlier because the place was crowded/full", 
+        tags: ["cause"] 
+    },
+    { 
+        id: 349, 
+        pt: "Eu fiquei quieto porque não sabia o que dizer.", 
+        en: [
+            "I stayed quiet because I didn't know what to say",
+            "I kept quiet because I didn't know what to say"
+        ],
+        tags: ["cause"] 
+    },
+    { 
+        id: 350, 
+        pt: "Ela ficou irritada porque ele chegou atrasado.", 
+        en: "She got annoyed/irritated because he arrived late", 
+        tags: ["cause"] 
+    },
+    { 
+        id: 351, 
+        pt: "Eu fiquei feliz porque você lembrou de mim.", 
+        en: "I was/got happy because you remembered me", 
+        tags: ["cause"] 
+    },
+    { 
+        id: 352, 
+        pt: "Ele melhorou porque começou a praticar mais.", 
+        en: "He improved because he started practicing more", 
+        tags: ["cause"] 
+    },
+    { 
+        id: 353, 
+        pt: "Eu não falei com ele porque estava chateado.", 
+        en: "I did not/didn't talk to him because I was upset", 
+        tags: ["cause"] 
+    },
+    { 
+        id: 354, 
+        pt: "Como estava muito quente, eu abri a janela.", 
+        en: [
+            "Since it was very hot, I opened the window",
+            "As it was very hot, I opened the window"
+        ],
+        tags: ["cause"] 
+    },
+    { 
+        id: 355, 
+        pt: "Já que você vai sair, compra pão pra gente.", 
+        en: "Since you are/you're going out, buy some bread for us", 
+        tags: ["cause", "request"] 
+    },
+    { 
+        id: 356, 
+        pt: "Como você não respondeu, eu achei que tinha acontecido algo.", 
+        en: "Since you did not/didn't reply, I thought something had happened", 
+        tags: ["cause"] 
+    },
+    { 
+        id: 357, 
+        pt: "Eu perdi o prazo porque esqueci a data.", 
+        en: "I missed the deadline because I forgot the date", 
+        tags: ["cause"] 
+    },
+    { 
+        id: 358, 
+        pt: "Ela ficou orgulhosa porque você se esforçou.", 
+        en: "She felt/was proud because you made an effort", 
+        tags: ["cause"] 
+    },
+    { 
+        id: 359, 
+        pt: "Eu não saí porque estava sem vontade.", 
+        en: [
+             "I didn't go out because I didn't feel like it",
+             "I didn't go out because I wasn't in the mood"
+        ],
+        tags: ["cause"] 
+    },
 
     // Resultado
-    { id: 138, pt: "Eu estudei bastante, então passei.", en: "I studied a lot, so I passed.", tags: ["result", "past"] },
-    { id: 171, pt: "Eu perdi o ônibus, então cheguei atrasado.", en: "I missed the bus, so I arrived late.", tags: ["result", "past"] },
-    { id: 172, pt: "Ela treinou muito, então ficou mais forte.", en: "She trained a lot, so she got stronger.", tags: ["result", "past"] },
-    { id: 173, pt: "Estava muito barulho, então eu não consegui dormir.", en: "It was very noisy, so I couldn't sleep.", tags: ["result", "past"] },
-    { id: 345, pt: "Eu acordei tarde, então perdi a aula.", en: "I woke up late, so I missed class.", tags: ["result", "past"] },
-    { id: 346, pt: "Eu não estudei, então fui mal na prova.", en: "I didn't study, so I did badly on the test.", tags: ["result", "past"] },
-    { id: 347, pt: "Ela estava doente, então ficou em casa.", en: "She was sick, so she stayed home.", tags: ["result", "past"] },
-    { id: 348, pt: "Eu economizei dinheiro, então consegui viajar.", en: "I saved money, so I was able to travel.", tags: ["result", "past"] },
-    { id: 349, pt: "Ele treinou todo dia, então melhorou muito.", en: "He trained every day, so he improved a lot.", tags: ["result", "past"] },
-    { id: 350, pt: "A gente saiu cedo, então chegou no horário.", en: "We left early, so we arrived on time.", tags: ["result", "past"] },
-    { id: 351, pt: "Eu estava com fome, então comi rápido.", en: "I was hungry, so I ate quickly.", tags: ["result", "past"] },
-    { id: 352, pt: "Ele ficou nervoso, então errou.", en: "He got nervous, so he made a mistake.", tags: ["result", "past"] },
-    { id: 353, pt: "Ela praticou bastante, então falou melhor.", en: "She practiced a lot, so she spoke better.", tags: ["result", "past"] },
-    { id: 354, pt: "Eu me distraí, então esqueci o que ia fazer.", en: "I got distracted, so I forgot what I was going to do.", tags: ["result", "past"] },
-    { id: 355, pt: "Ele não dormiu bem, então ficou cansado.", en: "He didn't sleep well, so he was tired.", tags: ["result", "past"] },
-    { id: 356, pt: "A internet caiu, então eu não consegui entrar.", en: "The internet went down, so I couldn't log in.", tags: ["result", "past"] },
-    { id: 357, pt: "Eu perdi a chave, então não consegui entrar.", en: "I lost the key, so I couldn't get in.", tags: ["result", "past"] },
-    { id: 358, pt: "Ela ficou muito feliz, então sorriu.", en: "She was very happy, so she smiled.", tags: ["result", "past"] },
-    { id: 359, pt: "Ele não prestou atenção, então não entendeu.", en: "He didn't pay attention, so he didn't understand.", tags: ["result", "past"] },
-    { id: 360, pt: "Eu corri muito, então fiquei sem fôlego.", en: "I ran a lot, so I got out of breath.", tags: ["result", "past"] },
-    { id: 361, pt: "A gente falou demais, então o tempo passou rápido.", en: "We talked too much, so time passed quickly.", tags: ["result", "past"] },
-    { id: 362, pt: "Ele trabalhou muito, então ficou estressado.", en: "He worked a lot, so he got stressed.", tags: ["result", "past"] },
-    { id: 363, pt: "Eu fiquei com medo, então não fui.", en: "I got scared, so I didn't go.", tags: ["result", "past"] },
-    { id: 364, pt: "Ela chegou tarde, então perdeu a reunião.", en: "She arrived late, so she missed the meeting.", tags: ["result", "past"] },
-    { id: 365, pt: "Eu não ouvi direito, então respondi errado.", en: "I didn't hear it properly, so I answered wrong.", tags: ["result", "past"] },
-    { id: 366, pt: "Ele esqueceu o nome, então ficou sem graça.", en: "He forgot the name, so he felt awkward.", tags: ["result", "past"] },
-    { id: 367, pt: "A comida estava ruim, então ninguém comeu.", en: "The food was bad, so nobody ate.", tags: ["result", "past"] },
-    { id: 368, pt: "Eu estava com pressa, então fiz errado.", en: "I was in a hurry, so I did it wrong.", tags: ["result", "past"] },
-    { id: 369, pt: "Eu treinei mais, então fiquei mais forte.", en: "I trained more, so I got stronger.", tags: ["result", "past"] },
-    { id: 370, pt: "Ela estudou certinho, então passou fácil.", en: "She studied properly, so she passed easily.", tags: ["result", "past"] },
-    { id: 371, pt: "Eu fiquei acordado até tarde, então acordei cansado.", en: "I stayed up late, so I woke up tired.", tags: ["result", "past"] },
-    { id: 372, pt: "Ele não se cuidou, então ficou doente.", en: "He didn't take care of himself, so he got sick.", tags: ["result", "past"] },
-    { id: 373, pt: "Eu me organizei melhor, então terminei mais rápido.", en: "I organized myself better, so I finished faster.", tags: ["result", "past"] },
-    { id: 374, pt: "A gente esperou muito, então foi embora.", en: "We waited a long time, so we left.", tags: ["result", "past"] },
-    { id: 375, pt: "Eu não comi nada, então fiquei fraco.", en: "I didn't eat anything, so I felt weak.", tags: ["result", "past"] },
-    { id: 376, pt: "Ela estudou cedo, então ficou tranquila depois.", en: "She studied early, so she felt calm later.", tags: ["result", "past"] },
-    { id: 377, pt: "Ele se perdeu, então demorou pra chegar.", en: "He got lost, so it took him longer to arrive.", tags: ["result", "past"] },
-    { id: 378, pt: "Eu esqueci o carregador, então o celular morreu.", en: "I forgot the charger, so my phone died.", tags: ["result", "past"] },
-    { id: 379, pt: "A gente não se planejou, então deu tudo errado.", en: "We didn't plan, so everything went wrong.", tags: ["result", "past"] },
-    { id: 380, pt: "Eu pratiquei mais, então comecei a entender melhor.", en: "I practiced more, so I started to understand better.", tags: ["result", "past"] },
-    { id: 381, pt: "Ela ficou com vergonha, então não falou nada.", en: "She felt embarrassed, so she didn't say anything.", tags: ["result", "past"] },
-    { id: 382, pt: "Ele ficou sem internet, então não conseguiu trabalhar.", en: "He had no internet, so he couldn't work.", tags: ["result", "past"] },
-    { id: 383, pt: "Eu ouvi a notícia, então fiquei preocupado.", en: "I heard the news, so I got worried.", tags: ["result", "past"] },
-    { id: 384, pt: "A gente se atrasou, então perdeu o começo.", en: "We were late, so we missed the beginning.", tags: ["result", "past"] },
-    { id: 385, pt: "Ela treinou bastante, então ganhou confiança.", en: "She trained a lot, so she gained confidence.", tags: ["result", "past"] },
-    { id: 386, pt: "Eu bebi pouca água, então fiquei com dor de cabeça.", en: "I drank little water, so I got a headache.", tags: ["result", "past"] },
-    { id: 387, pt: "Ele ficou irritado, então falou grosso.", en: "He got irritated, so he spoke rudely.", tags: ["result", "past"] },
-    { id: 388, pt: "Eu anotei tudo, então não esqueci nada.", en: "I wrote everything down, so I didn't forget anything.", tags: ["result", "past"] },
-    { id: 389, pt: "A gente resolveu rápido, então sobrou tempo.", en: "We solved it quickly, so we had time left.", tags: ["result", "past"] },
-    { id: 390, pt: "Ela pediu desculpa, então ficou tudo bem.", en: "She apologized, so everything was fine.", tags: ["result", "past"] },
+    { 
+        id: 138, 
+        pt: "Eu estudei bastante, então passei.", 
+        en: "I studied a lot, so I passed", 
+        tags: ["result"] 
+    },
+    { 
+        id: 171, 
+        pt: "Eu perdi o ônibus, então cheguei atrasado.", 
+        en: "I missed the bus, so I arrived late", 
+        tags: ["result"] 
+    },
+    { 
+        id: 172, 
+        pt: "Ela treinou muito, então ficou mais forte.", 
+        en: "She trained a lot, so she got stronger", 
+        tags: ["result"] 
+    },
+    { 
+        id: 173, 
+        pt: "Estava muito barulho, então eu não consegui dormir.", 
+        en: [
+            "It was very noisy, so I could not/couldn't sleep",
+            "It was too loud, so I could not/couldn't sleep"
+        ],
+        tags: ["result"] 
+    },
+    { 
+        id: 345, 
+        pt: "Eu acordei tarde, então perdi a aula.", 
+        en: "I woke up late, so I missed class", 
+        tags: ["result"] 
+    },
+    { 
+        id: 346, 
+        pt: "Eu não estudei, então fui mal na prova.", 
+        en: [
+            "I did not/didn't study, so I did badly on the test",
+            "I did not/didn't study, so I did poorly on the test"
+        ],
+        tags: ["result"] 
+    },
+    { 
+        id: 347, 
+        pt: "Ela estava doente, então ficou em casa.", 
+        en: "She was sick/ill, so she stayed (at) home", 
+        tags: ["result"] 
+    },
+    { 
+        id: 348, 
+        pt: "Eu economizei dinheiro, então consegui viajar.", 
+        en: "I saved money, so I was able to travel", 
+        tags: ["result"] 
+    },
+    { 
+        id: 349, 
+        pt: "Ele treinou todo dia, então melhorou muito.", 
+        en: "He trained every day, so he improved a lot", 
+        tags: ["result"] 
+    },
+    { 
+        id: 350, 
+        pt: "A gente saiu cedo, então chegou no horário.", 
+        en: "We left early, so we arrived on time", 
+        tags: ["result"] 
+    },
+    { 
+        id: 351, 
+        pt: "Eu estava com fome, então comi rápido.", 
+        en: "I was hungry, so I ate quickly/fast", 
+        tags: ["result"] 
+    },
+    { 
+        id: 352, 
+        pt: "Ele ficou nervoso, então errou.", 
+        en: [
+            "He got nervous, so he made a mistake",
+            "He got nervous, so he messed up"
+        ],
+        tags: ["result"] 
+    },
+    { 
+        id: 353, 
+        pt: "Ela praticou bastante, então falou melhor.", 
+        en: "She practiced a lot, so she spoke better", 
+        tags: ["result"] 
+    },
+    { 
+        id: 354, 
+        pt: "Eu me distraí, então esqueci o que ia fazer.", 
+        en: "I got distracted, so I forgot what I was going to do", 
+        tags: ["result"] 
+    },
+    { 
+        id: 355, 
+        pt: "Ele não dormiu bem, então ficou cansado.", 
+        en: [
+             "He did not/didn't sleep well, so he was tired",
+             "He did not/didn't sleep well, so he got tired"
+        ],
+        tags: ["result"] 
+    },
+    { 
+        id: 356, 
+        pt: "A internet caiu, então eu não consegui entrar.", 
+        en: [
+            "The internet went down, so I could not/couldn't log in",
+            "The internet crashed, so I could not/couldn't log in"
+        ],
+        tags: ["result"] 
+    },
+    { 
+        id: 357, 
+        pt: "Eu perdi a chave, então não consegui entrar.", 
+        en: "I lost the key, so I could not/couldn't get in", 
+        tags: ["result"] 
+    },
+    { 
+        id: 358, 
+        pt: "Ela ficou muito feliz, então sorriu.", 
+        en: "She was/got very happy, so she smiled", 
+        tags: ["result"] 
+    },
+    { 
+        id: 359, 
+        pt: "Ele não prestou atenção, então não entendeu.", 
+        en: "He did not/didn't pay attention, so he did not/didn't understand", 
+        tags: ["result"] 
+    },
+    { 
+        id: 360, 
+        pt: "Eu corri muito, então fiquei sem fôlego.", 
+        en: [
+            "I ran a lot, so I got out of breath",
+            "I ran a lot, so I ran out of breath"
+        ],
+        tags: ["result"] 
+    },
+    { 
+        id: 361, 
+        pt: "A gente falou demais, então o tempo passou rápido.", 
+        en: "We talked too much, so time passed quickly/fast", 
+        tags: ["result"] 
+    },
+    { 
+        id: 362, 
+        pt: "Ele trabalhou muito, então ficou estressado.", 
+        en: "He worked a lot, so he got stressed", 
+        tags: ["result"] 
+    },
+    { 
+        id: 363, 
+        pt: "Eu fiquei com medo, então não fui.", 
+        en: "I got scared/afraid, so I did not/didn't go", 
+        tags: ["result"] 
+    },
+    { 
+        id: 364, 
+        pt: "Ela chegou tarde, então perdeu a reunião.", 
+        en: "She arrived late, so she missed the meeting", 
+        tags: ["result"] 
+    },
+    { 
+        id: 365, 
+        pt: "Eu não ouvi direito, então respondi errado.", 
+        en: [
+            "I did not/didn't hear (it) properly, so I answered wrong",
+            "I did not/didn't hear (it) right, so I answered wrong"
+        ],
+        tags: ["result"] 
+    },
+    { 
+        id: 366, 
+        pt: "Ele esqueceu o nome, então ficou sem graça.", 
+        en: [
+            "He forgot the name, so he felt awkward",
+            "He forgot the name, so he felt embarrassed"
+        ],
+        tags: ["result"] 
+    },
+    { 
+        id: 367, 
+        pt: "A comida estava ruim, então ninguém comeu.", 
+        en: "The food was bad, so nobody ate", 
+        tags: ["result"] 
+    },
+    { 
+        id: 368, 
+        pt: "Eu estava com pressa, então fiz errado.", 
+        en: "I was in a hurry, so I did (it) wrong", 
+        tags: ["result"] 
+    },
+    { 
+        id: 369, 
+        pt: "Eu treinei mais, então fiquei mais forte.", 
+        en: "I trained more, so I got stronger", 
+        tags: ["result"] 
+    },
+    { 
+        id: 370, 
+        pt: "Ela estudou certinho, então passou fácil.", 
+        en: [
+            "She studied properly, so she passed easily",
+            "She studied right, so she passed easily"
+        ],
+        tags: ["result"] 
+    },
+    { 
+        id: 371, 
+        pt: "Eu fiquei acordado até tarde, então acordei cansado.", 
+        en: "I stayed up late, so I woke up tired", 
+        tags: ["result"] 
+    },
+    { 
+        id: 372, 
+        pt: "Ele não se cuidou, então ficou doente.", 
+        en: "He did not/didn't take care of himself, so he got sick/ill", 
+        tags: ["result"] 
+    },
+    { 
+        id: 373, 
+        pt: "Eu me organizei melhor, então terminei mais rápido.", 
+        en: "I organized myself better, so I finished faster", 
+        tags: ["result"] 
+    },
+    { 
+        id: 374, 
+        pt: "A gente esperou muito, então foi embora.", 
+        en: "We waited a long time, so we left", 
+        tags: ["result"] 
+    },
+    { 
+        id: 375, 
+        pt: "Eu não comi nada, então fiquei fraco.", 
+        en: [
+             "I did not/didn't eat anything, so I felt weak",
+             "I ate nothing, so I felt weak"
+        ],
+        tags: ["result"] 
+    },
+    { 
+        id: 376, 
+        pt: "Ela estudou cedo, então ficou tranquila depois.", 
+        en: "She studied early, so she felt calm later", 
+        tags: ["result"] 
+    },
+    { 
+        id: 377, 
+        pt: "Ele se perdeu, então demorou pra chegar.", 
+        en: [
+            "He got lost, so it took him longer to arrive",
+            "He got lost, so he took longer to arrive"
+        ],
+        tags: ["result"] 
+    },
+    { 
+        id: 378, 
+        pt: "Eu esqueci o carregador, então o celular morreu.", 
+        en: "I forgot the charger, so my phone died", 
+        tags: ["result"] 
+    },
+    { 
+        id: 379, 
+        pt: "A gente não se planejou, então deu tudo errado.", 
+        en: "We did not/didn't plan, so everything went wrong", 
+        tags: ["result"] 
+    },
+    { 
+        id: 380, 
+        pt: "Eu pratiquei mais, então comecei a entender melhor.", 
+        en: "I practiced more, so I started to understand better", 
+        tags: ["result"] 
+    },
+    { 
+        id: 381, 
+        pt: "Ela ficou com vergonha, então não falou nada.", 
+        en: [
+            "She felt embarrassed, so she did not/didn't say anything",
+            "She was ashamed, so she did not/didn't say anything"
+        ],
+        tags: ["result"] 
+    },
+    { 
+        id: 382, 
+        pt: "Ele ficou sem internet, então não conseguiu trabalhar.", 
+        en: [
+            "He had no internet, so he could not/couldn't work",
+            "He was out of internet, so he could not/couldn't work"
+        ],
+        tags: ["result"] 
+    },
+    { 
+        id: 383, 
+        pt: "Eu ouvi a notícia, então fiquei preocupado.", 
+        en: "I heard the news, so I got worried", 
+        tags: ["result"] 
+    },
+    { 
+        id: 384, 
+        pt: "A gente se atrasou, então perdeu o começo.", 
+        en: "We were late, so we missed the beginning", 
+        tags: ["result"] 
+    },
+    { 
+        id: 385, 
+        pt: "Ela treinou bastante, então ganhou confiança.", 
+        en: "She trained a lot, so she gained confidence", 
+        tags: ["result"] 
+    },
+    { 
+        id: 386, 
+        pt: "Eu bebi pouca água, então fiquei com dor de cabeça.", 
+        en: "I drank little water, so I got a headache", 
+        tags: ["result"] 
+    },
+    { 
+        id: 387, 
+        pt: "Ele ficou irritado, então falou grosso.", 
+        en: [
+            "He got irritated, so he spoke rudely",
+            "He got annoyed, so he spoke rudely"
+        ],
+        tags: ["result"] 
+    },
+    { 
+        id: 388, 
+        pt: "Eu anotei tudo, então não esqueci nada.", 
+        en: "I wrote everything down, so I did not/didn't forget anything", 
+        tags: ["result"] 
+    },
+    { 
+        id: 389, 
+        pt: "A gente resolveu rápido, então sobrou tempo.", 
+        en: "We solved (it) quickly, so we had time left", 
+        tags: ["result"] 
+    },
+    { 
+        id: 390, 
+        pt: "Ela pediu desculpa, então ficou tudo bem.", 
+        en: "She apologized, so everything was fine/okay", 
+        tags: ["result"] 
+    },
 
     // Finalidade
-    { id: 139, pt: "Ela falou baixo para ninguém ouvir.", en: ["She spoke quietly so that no one would hear.", "She spoke quietly so nobody would hear."], tags: ["purpose"] },
-    { id: 140, pt: "Eu saí cedo para evitar trânsito.", en: ["I left early in order to avoid traffic.", "I left early to avoid traffic.", "I left early to avoid the traffic."], tags: ["purpose", "past"] },
-    { id: 174, pt: "Eu anotei tudo para não esquecer.", en: ["I wrote everything down so I wouldn't forget.", "I wrote everything down so that I wouldn't forget."], tags: ["purpose", "past"] },
-    { id: 175, pt: "Ela fechou a janela para não entrar frio.", en: ["She closed the window to keep the cold out.", "She closed the window so that the cold wouldn't come in."], tags: ["purpose", "past"] },
-    { id: 176, pt: "Eu economizo dinheiro para viajar.", en: "I save money to travel.", tags: ["purpose"] },
-    { id: 375, pt: "Eu estudo inglês para conseguir um emprego melhor.", en: "I study English to get a better job.", tags: ["purpose"] },
-    { id: 376, pt: "Eu treino todo dia para ficar mais forte.", en: "I train every day to get stronger.", tags: ["purpose"] },
-    { id: 377, pt: "Eu bebo água para me sentir melhor.", en: "I drink water to feel better.", tags: ["purpose"] },
-    { id: 378, pt: "Eu uso alarme para não perder a hora.", en: ["I use an alarm so I don't miss the time.", "I use an alarm so I don't lose track of time."], tags: ["purpose"] },
-    { id: 379, pt: "Eu deixo tudo pronto para não me atrasar.", en: ["I get everything ready so I won't be late.", "I prepare everything so I won't be late."], tags: ["purpose"] },
-    { id: 380, pt: "Eu fecho a porta para ninguém entrar.", en: ["I close the door so no one comes in.", "I close the door so that no one can come in."], tags: ["purpose"] },
-    { id: 381, pt: "Eu desligo a luz para economizar energia.", en: "I turn off the light to save energy.", tags: ["purpose"] },
-    { id: 382, pt: "Eu leio bastante para aprender mais.", en: "I read a lot to learn more.", tags: ["purpose"] },
-    { id: 383, pt: "Eu falo devagar para você entender.", en: ["I speak slowly so you can understand.", "I speak slowly so that you understand."], tags: ["purpose"] },
-    { id: 384, pt: "Eu escrevo isso para não esquecer.", en: ["I write this down so I don't forget.", "I write this down so that I don't forget."], tags: ["purpose"] },
-    { id: 385, pt: "Eu guardo dinheiro para comprar um celular novo.", en: "I save money to buy a new phone.", tags: ["purpose"] },
-    { id: 386, pt: "Eu uso fone para não incomodar ninguém.", en: ["I use headphones so I don't bother anyone.", "I use earphones so I don't bother anyone."], tags: ["purpose"] },
-    { id: 387, pt: "Eu abri a janela para entrar ar.", en: ["I opened the window to let air in.", "I opened the window so that fresh air could come in."], tags: ["purpose", "past"] },
-    { id: 388, pt: "Eu fui mais cedo para pegar um bom lugar.", en: "I went earlier to get a good spot.", tags: ["purpose", "past"] },
-    { id: 389, pt: "Eu mandei mensagem para confirmar.", en: ["I texted to confirm.", "I sent a message to confirm."], tags: ["purpose", "past"] },
-    { id: 390, pt: "Ela ficou acordada para terminar o trabalho.", en: "She stayed up to finish the work.", tags: ["purpose", "past"] },
-    { id: 391, pt: "Eu levei guarda-chuva para não me molhar.", en: ["I took an umbrella so I wouldn't get wet.", "I brought an umbrella so I wouldn't get wet."], tags: ["purpose", "past"] },
-    { id: 392, pt: "Ele falou baixo para ninguém ouvir.", en: ["He spoke quietly so no one would hear.", "He spoke quietly so that no one would hear."], tags: ["purpose", "past"] },
-    { id: 393, pt: "Eu desliguei o celular para não me distrair.", en: ["I turned off my phone so I wouldn't get distracted.", "I turned off my phone so that I wouldn't get distracted."], tags: ["purpose", "past"] },
-    { id: 394, pt: "Ela anotou tudo para lembrar depois.", en: ["She wrote everything down to remember later.", "She took notes so she could remember later."], tags: ["purpose", "past"] },
-    { id: 395, pt: "Eu saí mais cedo para evitar o trânsito.", en: ["I left earlier to avoid traffic.", "I left early in order to avoid traffic."], tags: ["purpose", "past"] },
-    { id: 396, pt: "Ele economizou dinheiro para viajar.", en: "He saved money to travel.", tags: ["purpose", "past"] },
-    { id: 397, pt: "Eu comprei isso para te dar de presente.", en: "I bought this to give you as a gift.", tags: ["purpose", "past"] },
-    { id: 398, pt: "Ela fechou a janela para não entrar frio.", en: ["She closed the window so the cold wouldn't come in.", "She closed the window to keep the cold out."], tags: ["purpose", "past"] },
-    { id: 399, pt: "Eu levo um casaco para não sentir frio.", en: ["I bring a jacket so I don't feel cold.", "I take a jacket so I don't get cold."], tags: ["purpose"] },
-    { id: 400, pt: "Eu pratico pronúncia para falar melhor.", en: "I practice pronunciation to speak better.", tags: ["purpose"] },
-    { id: 401, pt: "Eu deixo a casa limpa para receber visitas.", en: "I keep the house clean to receive visitors.", tags: ["purpose"] },
-    { id: 402, pt: "Eu faço pausas para descansar a mente.", en: "I take breaks to rest my mind.", tags: ["purpose"] },
-    { id: 403, pt: "Eu uso um caderno para organizar minhas ideias.", en: "I use a notebook to organize my ideas.", tags: ["purpose"] },
-    { id: 404, pt: "Eu repito a frase para treinar.", en: "I repeat the sentence to practice.", tags: ["purpose"] },
-     { id: 405, pt: "Eu coloco lembrete para não esquecer.", en: ["I set a reminder so I don't forget.", "I set a reminder so that I won't forget."], tags: ["purpose"] },
-    { id: 406, pt: "Eu estudo todo dia para melhorar meu inglês.", en: "I study every day to improve my English.", tags: ["purpose"] },
-    { id: 407, pt: "Eu desligo as notificações para focar melhor.", en: ["I turn off notifications to focus better.", "I turn off notifications so I can focus better."], tags: ["purpose"] },
-    { id: 408, pt: "Eu faço lista de tarefas para me organizar.", en: ["I make a to-do list to stay organized.", "I make a task list to organize myself."], tags: ["purpose"] },
-    { id: 409, pt: "Eu uso mapa para não me perder.", en: ["I use a map so I don't get lost.", "I use a map so that I won't get lost."], tags: ["purpose"] },
-    { id: 410, pt: "Eu levo lanche para não sentir fome.", en: ["I bring a snack so I don't get hungry.", "I take a snack so I won't feel hungry."], tags: ["purpose"] },
-    { id: 411, pt: "Ela estudou mais para passar na entrevista.", en: ["She studied more to pass the interview.", "She studied more so that she could pass the interview."], tags: ["purpose", "past"] },
-    { id: 412, pt: "Eu treinei conversação para falar com mais confiança.", en: ["I practiced speaking to talk with more confidence.", "I practiced conversation to feel more confident speaking."], tags: ["purpose", "past"] },
-    { id: 413, pt: "Ele saiu cedo para pegar o primeiro ônibus.", en: ["He left early to catch the first bus.", "He left early so he could catch the first bus."], tags: ["purpose", "past"] },
-    { id: 414, pt: "Eu escrevi mais devagar para não errar.", en: ["I wrote more slowly so I wouldn't make mistakes.", "I wrote more slowly so that I wouldn't make mistakes."], tags: ["purpose", "past"] },
-    { id: 415, pt: "Ela guardou o dinheiro para comprar um computador.", en: ["She saved money to buy a computer.", "She saved money so she could buy a computer."], tags: ["purpose", "past"] },
-    { id: 416, pt: "Eu deixei a porta aberta para você entrar.", en: ["I left the door open so you could come in.", "I left the door open so that you could enter."], tags: ["purpose", "past"] },
-    { id: 417, pt: "Eu revisei o texto para ficar melhor.", en: ["I reviewed the text to make it better.", "I revised the text so it would be better."], tags: ["purpose", "past"] },
-    { id: 418, pt: "Eu uso exemplos para você entender mais fácil.", en: ["I use examples so you understand more easily.", "I use examples so that you can understand more easily."], tags: ["purpose"] },
-    { id: 419, pt: "Eu pedi ajuda para não fazer tudo sozinho.", en: ["I asked for help so I wouldn't do everything alone.", "I asked for help so that I wouldn't do everything by myself."], tags: ["purpose", "past"] },
+    { 
+        id: 139, 
+        pt: "Ela falou baixo para ninguém ouvir.", 
+        en: [
+             "She spoke quietly so (that) no one would hear",
+             "She spoke quietly so (that) nobody would hear"
+        ],
+        tags: ["purpose"] 
+    },
+    { 
+        id: 140, 
+        pt: "Eu saí cedo para evitar trânsito.", 
+        en: "I left early (in order) to avoid (the) traffic", 
+        tags: ["purpose"] 
+    },
+    { 
+        id: 174, 
+        pt: "Eu anotei tudo para não esquecer.", 
+        en: "I wrote everything down so (that) I would not/wouldn't forget", 
+        tags: ["purpose"] 
+    },
+    { 
+        id: 175, 
+        pt: "Ela fechou a janela para não entrar frio.", 
+        en: [
+            "She closed the window to keep the cold out",
+            "She closed the window so (that) the cold would not/wouldn't come in"
+        ],
+        tags: ["purpose"] 
+    },
+    { 
+        id: 176, 
+        pt: "Eu economizo dinheiro para viajar.", 
+        en: "I save money (in order) to travel", 
+        tags: ["purpose"] 
+    },
+    { 
+        id: 375, 
+        pt: "Eu estudo inglês para conseguir um emprego melhor.", 
+        en: "I study English (in order) to get a better job", 
+        tags: ["purpose"] 
+    },
+    { 
+        id: 376, 
+        pt: "Eu treino todo dia para ficar mais forte.", 
+        en: "I train every day to get/become stronger", 
+        tags: ["purpose"] 
+    },
+    { 
+        id: 377, 
+        pt: "Eu bebo água para me sentir melhor.", 
+        en: "I drink water to feel better", 
+        tags: ["purpose"] 
+    },
+    { 
+        id: 378, 
+        pt: "Eu uso alarme para não perder a hora.", 
+        en: [
+            "I use an alarm so (that) I do not/don't miss the time",
+            "I use an alarm so (that) I do not/don't lose track of time"
+        ],
+        tags: ["purpose"] 
+    },
+    { 
+        id: 379, 
+        pt: "Eu deixo tudo pronto para não me atrasar.", 
+        en: [
+            "I get everything ready so (that) I will not/won't be late",
+            "I prepare everything so (that) I will not/won't be late"
+        ],
+        tags: ["purpose"] 
+    },
+    { 
+        id: 380, 
+        pt: "Eu fecho a porta para ninguém entrar.", 
+        en: [
+             "I close the door so (that) no one comes/can come in",
+             "I close the door to keep everyone out"
+        ],
+        tags: ["purpose"] 
+    },
+    { 
+        id: 381, 
+        pt: "Eu desligo a luz para economizar energia.", 
+        en: "I turn off the light (in order) to save energy", 
+        tags: ["purpose"] 
+    },
+    { 
+        id: 382, 
+        pt: "Eu leio bastante para aprender mais.", 
+        en: "I read a lot (in order) to learn more", 
+        tags: ["purpose"] 
+    },
+    { 
+        id: 383, 
+        pt: "Eu falo devagar para você entender.", 
+        en: "I speak slowly so (that) you can understand", 
+        tags: ["purpose"] 
+    },
+    { 
+        id: 384, 
+        pt: "Eu escrevo isso para não esquecer.", 
+        en: "I write this/it down so (that) I do not/don't forget", 
+        tags: ["purpose"] 
+    },
+    { 
+        id: 385, 
+        pt: "Eu guardo dinheiro para comprar um celular novo.", 
+        en: "I save money (in order) to buy a new phone/cellphone", 
+        tags: ["purpose"] 
+    },
+    { 
+        id: 386, 
+        pt: "Eu uso fone para não incomodar ninguém.", 
+        en: [
+            "I use headphones so (that) I do not/don't bother anyone",
+            "I use earphones so (that) I do not/don't bother anyone"
+        ],
+        tags: ["purpose"] 
+    },
+    { 
+        id: 387, 
+        pt: "Eu abri a janela para entrar ar.", 
+        en: [
+             "I opened the window to let (fresh) air in",
+             "I opened the window so (that) (fresh) air could come in"
+        ],
+        tags: ["purpose"] 
+    },
+    { 
+        id: 388, 
+        pt: "Eu fui mais cedo para pegar um bom lugar.", 
+        en: [
+            "I went earlier to get a good spot/seat",
+            "I went early to get a good spot/seat"
+        ],
+        tags: ["purpose"] 
+    },
+    { 
+        id: 389, 
+        pt: "Eu mandei mensagem para confirmar.", 
+        en: [
+            "I texted to confirm",
+            "I sent a message to confirm"
+        ],
+        tags: ["purpose"] 
+    },
+    { 
+        id: 390, 
+        pt: "Ela ficou acordada para terminar o trabalho.", 
+        en: "She stayed up (late) to finish the work", 
+        tags: ["purpose"] 
+    },
+    { 
+        id: 391, 
+        pt: "Eu levei guarda-chuva para não me molhar.", 
+        en: [
+            "I took an umbrella so (that) I would not/wouldn't get wet",
+            "I brought an umbrella so (that) I would not/wouldn't get wet"
+        ],
+        tags: ["purpose"] 
+    },
+    { 
+        id: 392, 
+        pt: "Ele falou baixo para ninguém ouvir.", 
+        en: [
+            "He spoke quietly so (that) no one would hear",
+            "He spoke quietly so (that) nobody would hear"
+        ],
+        tags: ["purpose"] 
+    },
+    { 
+        id: 393, 
+        pt: "Eu desliguei o celular para não me distrair.", 
+        en: "I turned off my phone so (that) I would not/wouldn't get distracted", 
+        tags: ["purpose"] 
+    },
+    { 
+        id: 394, 
+        pt: "Ela anotou tudo para lembrar depois.", 
+        en: [
+            "She wrote everything down to remember later",
+            "She took notes so (that) she could remember later"
+        ],
+        tags: ["purpose"] 
+    },
+    { 
+        id: 395, 
+        pt: "Eu saí mais cedo para evitar o trânsito.", 
+        en: "I left earlier (in order) to avoid (the) traffic", 
+        tags: ["purpose"] 
+    },
+    { 
+        id: 396, 
+        pt: "Ele economizou dinheiro para viajar.", 
+        en: "He saved money (in order) to travel", 
+        tags: ["purpose"] 
+    },
+    { 
+        id: 397, 
+        pt: "Eu comprei isso para te dar de presente.", 
+        en: "I bought this to give (to) you as a gift/present", 
+        tags: ["purpose"] 
+    },
+    { 
+        id: 398, 
+        pt: "Ela fechou a janela para não entrar frio.", 
+        en: [
+            "She closed the window so (that) the cold would not/wouldn't come in",
+            "She closed the window to keep the cold out"
+        ],
+        tags: ["purpose"] 
+    },
+    { 
+        id: 399, 
+        pt: "Eu levo um casaco para não sentir frio.", 
+        en: [
+            "I bring a jacket so (that) I do not/don't feel cold",
+            "I take a jacket so (that) I do not/don't get cold"
+        ],
+        tags: ["purpose"] 
+    },
+    { 
+        id: 400, 
+        pt: "Eu pratico pronúncia para falar melhor.", 
+        en: "I practice pronunciation to speak better", 
+        tags: ["purpose"] 
+    },
+    { 
+        id: 401, 
+        pt: "Eu deixo a casa limpa para receber visitas.", 
+        en: [
+            "I keep the house clean to receive visitors/guests",
+            "I leave the house clean to receive visitors/guests"
+        ],
+        tags: ["purpose"] 
+    },
+    { 
+        id: 402, 
+        pt: "Eu faço pausas para descansar a mente.", 
+        en: "I take breaks to rest my mind", 
+        tags: ["purpose"] 
+    },
+    { 
+        id: 403, 
+        pt: "Eu uso um caderno para organizar minhas ideias.", 
+        en: "I use a notebook to organize my ideas", 
+        tags: ["purpose"] 
+    },
+    { 
+        id: 404, 
+        pt: "Eu repito a frase para treinar.", 
+        en: "I repeat the sentence (in order) to practice", 
+        tags: ["purpose"] 
+    },
+    { 
+        id: 405, 
+        pt: "Eu coloco lembrete para não esquecer.", 
+        en: "I set a reminder so (that) I do not/don't/won't forget", 
+        tags: ["purpose"] 
+    },
+    { 
+        id: 406, 
+        pt: "Eu estudo todo dia para melhorar meu inglês.", 
+        en: "I study every day to improve my English", 
+        tags: ["purpose"] 
+    },
+    { 
+        id: 407, 
+        pt: "Eu desligo as notificações para focar melhor.", 
+        en: [
+            "I turn off notifications to focus better",
+            "I turn off notifications so (that) I can focus better"
+        ],
+        tags: ["purpose"] 
+    },
+    { 
+        id: 408, 
+        pt: "Eu faço lista de tarefas para me organizar.", 
+        en: [
+            "I make a to-do list to stay organized",
+            "I make a task list to organize myself"
+        ],
+        tags: ["purpose"] 
+    },
+    { 
+        id: 409, 
+        pt: "Eu uso mapa para não me perder.", 
+        en: "I use a map so (that) I do not/don't/won't get lost", 
+        tags: ["purpose"] 
+    },
+    { 
+        id: 410, 
+        pt: "Eu levo lanche para não sentir fome.", 
+        en: [
+            "I bring a snack so (that) I do not/don't get hungry",
+            "I take a snack so (that) I will not/won't feel hungry"
+        ],
+        tags: ["purpose"] 
+    },
+    { 
+        id: 411, 
+        pt: "Ela estudou mais para passar na entrevista.", 
+        en: [
+            "She studied more to pass the interview",
+            "She studied more so (that) she could pass the interview"
+        ],
+        tags: ["purpose"] 
+    },
+    { 
+        id: 412, 
+        pt: "Eu treinei conversação para falar com mais confiança.", 
+        en: [
+            "I practiced speaking to talk with more confidence",
+            "I practiced conversation to feel more confident speaking"
+        ],
+        tags: ["purpose"] 
+    },
+    { 
+        id: 413, 
+        pt: "Ele saiu cedo para pegar o primeiro ônibus.", 
+        en: [
+            "He left early to catch the first bus",
+            "He left early so (that) he could catch the first bus"
+        ],
+        tags: ["purpose"] 
+    },
+    { 
+        id: 414, 
+        pt: "Eu escrevi mais devagar para não errar.", 
+        en: "I wrote more slowly so (that) I would not/wouldn't make mistakes", 
+        tags: ["purpose"] 
+    },
+    { 
+        id: 415, 
+        pt: "Ela guardou o dinheiro para comprar um computador.", 
+        en: [
+            "She saved money to buy a computer",
+            "She saved money so (that) she could buy a computer"
+        ],
+        tags: ["purpose"] 
+    },
+    { 
+        id: 416, 
+        pt: "Eu deixei a porta aberta para você entrar.", 
+        en: [
+             "I left the door open so (that) you could come in",
+             "I left the door open so (that) you could enter"
+        ],
+        tags: ["purpose"] 
+    },
+    { 
+        id: 417, 
+        pt: "Eu revisei o texto para ficar melhor.", 
+        en: [
+            "I reviewed the text to make it better",
+            "I revised the text so (that) it would be better"
+        ],
+        tags: ["purpose"] 
+    },
+    { 
+        id: 418, 
+        pt: "Eu uso exemplos para você entender mais fácil.", 
+        en: "I use examples so (that) you (can) understand more easily", 
+        tags: ["purpose"] 
+    },
+    { 
+        id: 419, 
+        pt: "Eu pedi ajuda para não fazer tudo sozinho.", 
+        en: [
+            "I asked for help so (that) I would not/wouldn't do everything alone",
+            "I asked for help so (that) I would not/wouldn't do everything by myself"
+        ],
+        tags: ["purpose"] 
+    },
 
     // Comparação
-    { id: 141, pt: "Ele é tão educado quanto o irmão.", en: "He is as polite as his brother.", tags: ["comparison"] },
-    { id: 142, pt: "Ela corre mais rápido do que eu.", en: "She runs faster than me.", tags: ["comparison"] },
-    { id: 177, pt: "Esse exercício é mais fácil do que parece.", en: "This exercise is easier than it looks.", tags: ["comparison"] },
-    { id: 178, pt: "Hoje está tão quente quanto ontem.", en: "Today is as hot as yesterday.", tags: ["comparison"] },
-    { id: 179, pt: "Ele fala inglês melhor do que eu.", en: "He speaks English better than me.", tags: ["comparison"] },
-    { id: 405, pt: "Ela é mais alta do que eu.", en: "She is taller than me.", tags: ["comparison"] },
-    { id: 406, pt: "Esse caminho é mais curto do que o outro.", en: "This way is shorter than the other one.", tags: ["comparison"] },
-    { id: 407, pt: "Hoje eu estou mais animado do que ontem.", en: "Today I'm more excited than yesterday.", tags: ["comparison"] },
-    { id: 408, pt: "Meu celular é mais rápido do que o antigo.", en: "My phone is faster than the old one.", tags: ["comparison"] },
-    { id: 409, pt: "Esse filme é melhor do que eu esperava.", en: "This movie is better than I expected.", tags: ["comparison"] },
-    { id: 410, pt: "Eu acordo mais cedo do que ele.", en: "I wake up earlier than him.", tags: ["comparison"] },
-    { id: 411, pt: "Ela fala mais baixo do que eu.", en: "She speaks more quietly than me.", tags: ["comparison"] },
-    { id: 412, pt: "Esse exercício é mais difícil do que parece.", en: "This exercise is harder than it looks.", tags: ["comparison"] },
-    { id: 413, pt: "Ele é menos paciente do que você.", en: "He is less patient than you.", tags: ["comparison"] },
-    { id: 414, pt: "Eu sou tão teimoso quanto ele.", en: "I am as stubborn as him.", tags: ["comparison"] },
-    { id: 415, pt: "Hoje está mais frio do que ontem.", en: "Today is colder than yesterday.", tags: ["comparison"] },
-    { id: 416, pt: "Esse lugar é mais tranquilo do que o centro.", en: "This place is calmer than downtown.", tags: ["comparison"] },
-    { id: 417, pt: "Ela é tão inteligente quanto ele.", en: "She is as smart as him.", tags: ["comparison"] },
-    { id: 418, pt: "Meu inglês está melhor do que antes.", en: "My English is better than before.", tags: ["comparison"] },
-    { id: 419, pt: "Esse livro é mais interessante do que o outro.", en: "This book is more interesting than the other one.", tags: ["comparison"] },
-    { id: 420, pt: "Ela trabalha mais do que eu.", en: "She works more than me.", tags: ["comparison"] },
-    { id: 421, pt: "Ele dirige mais rápido do que eu.", en: "He drives faster than me.", tags: ["comparison"] },
-    { id: 422, pt: "Hoje eu estou tão cansado quanto você.", en: "Today I'm as tired as you.", tags: ["comparison"] },
-    { id: 423, pt: "Essa cadeira é mais confortável do que aquela.", en: "This chair is more comfortable than that one.", tags: ["comparison"] },
-    { id: 424, pt: "Ele fala mais rápido do que eu consigo entender.", en: "He speaks faster than I can understand.", tags: ["comparison"] },
-    { id: 425, pt: "Esse jogo é mais divertido do que eu pensava.", en: "This game is more fun than I thought.", tags: ["comparison"] },
-    { id: 426, pt: "Ela aprende mais rápido do que eu.", en: "She learns faster than me.", tags: ["comparison"] },
-    { id: 427, pt: "O ônibus é mais barato do que o carro.", en: "The bus is cheaper than the car.", tags: ["comparison"] },
-    { id: 428, pt: "Esse café é tão bom quanto o da cafeteria.", en: "This coffee is as good as the one from the coffee shop.", tags: ["comparison"] },
-    { id: 429, pt: "Hoje o dia está mais bonito do que ontem.", en: "Today is more beautiful than yesterday.", tags: ["comparison"] },
-    { id: 430, pt: "Ele é tão engraçado quanto o irmão.", en: "He is as funny as his brother.", tags: ["comparison"] },
-    { id: 431, pt: "Meu quarto é menor do que o seu.", en: "My room is smaller than yours.", tags: ["comparison"] },
-    { id: 432, pt: "Essa parte é mais fácil do que a primeira.", en: "This part is easier than the first one.", tags: ["comparison"] },
-    { id: 433, pt: "Ela canta melhor do que eu.", en: "She sings better than me.", tags: ["comparison"] },
-    { id: 434, pt: "Esse problema é maior do que parece.", en: "This problem is bigger than it looks.", tags: ["comparison"] },
-    { id: 435, pt: "Esse celular é tão bom quanto o meu.", en: "This phone is as good as mine.", tags: ["comparison"] },
-    { id: 436, pt: "Ela é mais organizada do que eu.", en: "She is more organized than me.", tags: ["comparison"] },
-    { id: 437, pt: "Hoje eu estou menos preocupado do que ontem.", en: "Today I'm less worried than yesterday.", tags: ["comparison"] },
-    { id: 438, pt: "Esse caminho é tão seguro quanto o outro.", en: "This route is as safe as the other one.", tags: ["comparison"] },
-    { id: 439, pt: "Ele fala mais devagar do que antes.", en: "He speaks more slowly than before.", tags: ["comparison"] },
-    { id: 440, pt: "Esse exercício é mais importante do que parece.", en: "This exercise is more important than it seems.", tags: ["comparison"] },
-    { id: 441, pt: "A aula de hoje foi melhor do que a de ontem.", en: "Today's class was better than yesterday's.", tags: ["comparison"] },
-    { id: 442, pt: "Esse lugar é tão barulhento quanto o centro.", en: "This place is as noisy as downtown.", tags: ["comparison"] },
-    { id: 443, pt: "Ela cozinha melhor do que eu.", en: "She cooks better than me.", tags: ["comparison"] },
-    { id: 444, pt: "Meu computador é mais lento do que o seu.", en: "My computer is slower than yours.", tags: ["comparison"] },
-    { id: 445, pt: "Hoje está mais quente do que eu imaginava.", en: "Today is hotter than I imagined.", tags: ["comparison"] },
-    { id: 446, pt: "Ele é tão calmo quanto o pai.", en: "He is as calm as his father.", tags: ["comparison"] },
-    { id: 447, pt: "Essa música é mais bonita do que a outra.", en: "This song is more beautiful than the other one.", tags: ["comparison"] },
-    { id: 448, pt: "Eu estou mais confiante do que antes.", en: "I am more confident than before.", tags: ["comparison"] },
-    { id: 449, pt: "Esse assunto é menos difícil do que parecia.", en: "This topic is less difficult than it looked.", tags: ["comparison"] },
+    { 
+        id: 141, 
+        pt: "Ele é tão educado quanto o irmão.", 
+        en: "He is/He's as polite as his brother", 
+        tags: ["comparison"] 
+    },
+    { 
+        id: 142, 
+        pt: "Ela corre mais rápido do que eu.", 
+        en: [
+            "She runs faster than me",
+            "She runs faster than I do"
+        ],
+        tags: ["comparison"] 
+    },
+    { 
+        id: 177, 
+        pt: "Esse exercício é mais fácil do que parece.", 
+        en: "This exercise is easier than it looks/seems", 
+        tags: ["comparison"] 
+    },
+    { 
+        id: 178, 
+        pt: "Hoje está tão quente quanto ontem.", 
+        en: "Today is as hot as yesterday", 
+        tags: ["comparison"] 
+    },
+    { 
+        id: 179, 
+        pt: "Ele fala inglês melhor do que eu.", 
+        en: [
+            "He speaks English better than me",
+            "He speaks English better than I do"
+        ],
+        tags: ["comparison"] 
+    },
+    { 
+        id: 405, 
+        pt: "Ela é mais alta do que eu.", 
+        en: [
+            "She is taller than me",
+            "She is taller than I am"
+        ],
+        tags: ["comparison"] 
+    },
+    { 
+        id: 406, 
+        pt: "Esse caminho é mais curto do que o outro.", 
+        en: "This way/path is shorter than the other (one)", 
+        tags: ["comparison"] 
+    },
+    { 
+        id: 407, 
+        pt: "Hoje eu estou mais animado do que ontem.", 
+        en: "Today I am/I'm more excited than yesterday", 
+        tags: ["comparison"] 
+    },
+    { 
+        id: 408, 
+        pt: "Meu celular é mais rápido do que o antigo.", 
+        en: "My phone is faster than the old one", 
+        tags: ["comparison"] 
+    },
+    { 
+        id: 409, 
+        pt: "Esse filme é melhor do que eu esperava.", 
+        en: "This movie/film is better than I expected", 
+        tags: ["comparison"] 
+    },
+    { 
+        id: 410, 
+        pt: "Eu acordo mais cedo do que ele.", 
+        en: [
+             "I wake up earlier than him",
+             "I wake up earlier than he does"
+        ],
+        tags: ["comparison"] 
+    },
+    { 
+        id: 411, 
+        pt: "Ela fala mais baixo do que eu.", 
+        en: [
+             "She speaks more quietly than me",
+             "She speaks more quietly than I do"
+        ],
+        tags: ["comparison"] 
+    },
+    { 
+        id: 412, 
+        pt: "Esse exercício é mais difícil do que parece.", 
+        en: "This exercise is harder/more difficult than it looks/seems", 
+        tags: ["comparison"] 
+    },
+    { 
+        id: 413, 
+        pt: "Ele é menos paciente do que você.", 
+        en: "He is/He's less patient than you (are)", 
+        tags: ["comparison"] 
+    },
+    { 
+        id: 414, 
+        pt: "Eu sou tão teimoso quanto ele.", 
+        en: [
+            "I am as stubborn as him",
+            "I am as stubborn as he is"
+        ],
+        tags: ["comparison"] 
+    },
+    { 
+        id: 415, 
+        pt: "Hoje está mais frio do que ontem.", 
+        en: "Today is colder than yesterday", 
+        tags: ["comparison"] 
+    },
+    { 
+        id: 416, 
+        pt: "Esse lugar é mais tranquilo do que o centro.", 
+        en: "This place is calmer/quieter than downtown", 
+        tags: ["comparison"] 
+    },
+    { 
+        id: 417, 
+        pt: "Ela é tão inteligente quanto ele.", 
+        en: [
+            "She is as smart/intelligent as him",
+            "She is as smart/intelligent as he is"
+        ],
+        tags: ["comparison"] 
+    },
+    { 
+        id: 418, 
+        pt: "Meu inglês está melhor do que antes.", 
+        en: "My English is better than before", 
+        tags: ["comparison"] 
+    },
+    { 
+        id: 419, 
+        pt: "Esse livro é mais interessante do que o outro.", 
+        en: "This book is more interesting than the other (one)", 
+        tags: ["comparison"] 
+    },
+    { 
+        id: 420, 
+        pt: "Ela trabalha mais do que eu.", 
+        en: [
+             "She works more than me",
+             "She works more than I do"
+        ],
+        tags: ["comparison"] 
+    },
+    { 
+        id: 421, 
+        pt: "Ele dirige mais rápido do que eu.", 
+        en: [
+             "He drives faster than me",
+             "He drives faster than I do"
+        ],
+        tags: ["comparison"] 
+    },
+    { 
+        id: 422, 
+        pt: "Hoje eu estou tão cansado quanto você.", 
+        en: "Today I am/I'm as tired as you (are)", 
+        tags: ["comparison"] 
+    },
+    { 
+        id: 423, 
+        pt: "Essa cadeira é mais confortável do que aquela.", 
+        en: "This chair is more comfortable than that one", 
+        tags: ["comparison"] 
+    },
+    { 
+        id: 424, 
+        pt: "Ele fala mais rápido do que eu consigo entender.", 
+        en: "He speaks faster than I can understand", 
+        tags: ["comparison"] 
+    },
+    { 
+        id: 425, 
+        pt: "Esse jogo é mais divertido do que eu pensava.", 
+        en: "This game is more fun than I thought", 
+        tags: ["comparison"] 
+    },
+    { 
+        id: 426, 
+        pt: "Ela aprende mais rápido do que eu.", 
+        en: [
+            "She learns faster than me",
+            "She learns faster than I do"
+        ],
+        tags: ["comparison"] 
+    },
+    { 
+        id: 427, 
+        pt: "O ônibus é mais barato do que o carro.", 
+        en: "The bus is cheaper than the car", 
+        tags: ["comparison"] 
+    },
+    { 
+        id: 428, 
+        pt: "Esse café é tão bom quanto o da cafeteria.", 
+        en: "This coffee is as good as the one from the coffee shop/cafeteria", 
+        tags: ["comparison"] 
+    },
+    { 
+        id: 429, 
+        pt: "Hoje o dia está mais bonito do que ontem.", 
+        en: "Today is more beautiful than yesterday", 
+        tags: ["comparison"] 
+    },
+    { 
+        id: 430, 
+        pt: "Ele é tão engraçado quanto o irmão.", 
+        en: "He is/He's as funny as his brother", 
+        tags: ["comparison"] 
+    },
+    { 
+        id: 431, 
+        pt: "Meu quarto é menor do que o seu.", 
+        en: "My room/bedroom is smaller than yours", 
+        tags: ["comparison"] 
+    },
+    { 
+        id: 432, 
+        pt: "Essa parte é mais fácil do que a primeira.", 
+        en: "This part is easier than the first (one)", 
+        tags: ["comparison"] 
+    },
+    { 
+        id: 433, 
+        pt: "Ela canta melhor do que eu.", 
+        en: [
+             "She sings better than me",
+             "She sings better than I do"
+        ],
+        tags: ["comparison"] 
+    },
+    { 
+        id: 434, 
+        pt: "Esse problema é maior do que parece.", 
+        en: "This problem is bigger than it looks/seems", 
+        tags: ["comparison"] 
+    },
+    { 
+        id: 435, 
+        pt: "Esse celular é tão bom quanto o meu.", 
+        en: "This phone is as good as mine", 
+        tags: ["comparison"] 
+    },
+    { 
+        id: 436, 
+        pt: "Ela é mais organizada do que eu.", 
+        en: [
+            "She is more organized than me",
+            "She is more organized than I am"
+        ],
+        tags: ["comparison"] 
+    },
+    { 
+        id: 437, 
+        pt: "Hoje eu estou menos preocupado do que ontem.", 
+        en: "Today I am/I'm less worried than yesterday", 
+        tags: ["comparison"] 
+    },
+    { 
+        id: 438, 
+        pt: "Esse caminho é tão seguro quanto o outro.", 
+        en: "This route/path/way is as safe as the other (one)", 
+        tags: ["comparison"] 
+    },
+    { 
+        id: 439, 
+        pt: "Ele fala mais devagar do que antes.", 
+        en: "He speaks more slowly than before", 
+        tags: ["comparison"] 
+    },
+    { 
+        id: 440, 
+        pt: "Esse exercício é mais importante do que parece.", 
+        en: "This exercise is more important than it seems/looks", 
+        tags: ["comparison"] 
+    },
+    { 
+        id: 441, 
+        pt: "A aula de hoje foi melhor do que a de ontem.", 
+        en: "Today's class was better than yesterday's", 
+        tags: ["comparison"] 
+    },
+    { 
+        id: 442, 
+        pt: "Esse lugar é tão barulhento quanto o centro.", 
+        en: "This place is as noisy as downtown", 
+        tags: ["comparison"] 
+    },
+    { 
+        id: 443, 
+        pt: "Ela cozinha melhor do que eu.", 
+        en: [
+            "She cooks better than me",
+            "She cooks better than I do"
+        ],
+        tags: ["comparison"] 
+    },
+    { 
+        id: 444, 
+        pt: "Meu computador é mais lento do que o seu.", 
+        en: "My computer is slower than yours", 
+        tags: ["comparison"] 
+    },
+    { 
+        id: 445, 
+        pt: "Hoje está mais quente do que eu imaginava.", 
+        en: "Today is hotter than I imagined", 
+        tags: ["comparison"] 
+    },
+    { 
+        id: 446, 
+        pt: "Ele é tão calmo quanto o pai.", 
+        en: "He is/He's as calm as his father", 
+        tags: ["comparison"] 
+    },
+    { 
+        id: 447, 
+        pt: "Essa música é mais bonita do que a outra.", 
+        en: "This song is more beautiful than the other (one)", 
+        tags: ["comparison"] 
+    },
+    { 
+        id: 448, 
+        pt: "Eu estou mais confiante do que antes.", 
+        en: "I am/I'm more confident than before", 
+        tags: ["comparison"] 
+    },
+    { 
+        id: 449, 
+        pt: "Esse assunto é menos difícil do que parecia.", 
+        en: "This topic/subject is less difficult/hard than it looked/seemed", 
+        tags: ["comparison"] 
+    },
 
     // Desejo
-    { id: 143, pt: "Eu queria que chovesse menos.", en: "I wish it rained less.", tags: ["desire"] },
-    { id: 144, pt: "Tomara que você consiga.", en: "I hope you can make it.", tags: ["desire"] },
-    { id: 180, pt: "Eu queria poder descansar agora.", en: "I wish I could rest now.", tags: ["desire"] },
-    { id: 181, pt: "Tomara que tudo dê certo.", en: "I hope everything works out.", tags: ["desire"] },
-    { id: 182, pt: "Eu queria que fosse mais simples.", en: "I wish it were simpler.", tags: ["desire"] },
-    { id: 435, pt: "Eu queria ter mais tempo.", en: "I wish I had more time.", tags: ["desire"] },
-    { id: 436, pt: "Tomara que ele melhore logo.", en: "I hope he gets better soon.", tags: ["desire"] },
-    { id: 437, pt: "Eu queria aprender inglês mais rápido.", en: "I wish I could learn English faster.", tags: ["desire"] },
-    { id: 438, pt: "Tomara que não chova hoje.", en: "I hope it doesn't rain today.", tags: ["desire"] },
-    { id: 439, pt: "Eu queria morar perto do trabalho.", en: "I wish I lived close to work.", tags: ["desire"] },
-    { id: 440, pt: "Tomara que você tenha um bom dia.", en: "I hope you have a good day.", tags: ["desire"] },
-    { id: 441, pt: "Eu queria que ele me entendesse.", en: "I wish he understood me.", tags: ["desire"] },
-    { id: 442, pt: "Tomara que a gente consiga terminar hoje.", en: "I hope we can finish today.", tags: ["desire"] },
-    { id: 443, pt: "Eu queria não ficar tão nervoso.", en: "I wish I weren't so nervous.", tags: ["desire"] },
-    { id: 444, pt: "Tomara que essa notícia seja boa.", en: "I hope this news is good.", tags: ["desire"] },
-    { id: 445, pt: "Eu queria poder viajar mais.", en: "I wish I could travel more.", tags: ["desire"] },
-    { id: 446, pt: "Tomara que ele chegue a tempo.", en: "I hope he arrives on time.", tags: ["desire"] },
-    { id: 447, pt: "Eu queria que minha vida fosse mais tranquila.", en: "I wish my life were calmer.", tags: ["desire"] },
-    { id: 448, pt: "Tomara que você goste do presente.", en: "I hope you like the gift.", tags: ["desire"] },
-    { id: 449, pt: "Eu queria ser mais paciente.", en: "I wish I were more patient.", tags: ["desire"] },
-    { id: 450, pt: "Tomara que a internet volte logo.", en: "I hope the internet comes back soon.", tags: ["desire"] },
-    { id: 451, pt: "Eu queria que hoje fosse mais leve.", en: "I wish today were easier.", tags: ["desire"] },
-    { id: 452, pt: "Tomara que ele aceite o convite.", en: "I hope he accepts the invitation.", tags: ["desire"] },
-    { id: 453, pt: "Eu queria conseguir acordar cedo.", en: "I wish I could wake up early.", tags: ["desire"] },
-    { id: 454, pt: "Tomara que tudo fique bem.", en: "I hope everything is okay.", tags: ["desire"] },
-    { id: 455, pt: "Eu queria entender isso melhor.", en: "I wish I understood this better.", tags: ["desire"] },
-    { id: 456, pt: "Tomara que a gente se veja logo.", en: "I hope we see each other soon.", tags: ["desire"] },
-    { id: 457, pt: "Eu queria ter mais coragem.", en: "I wish I had more courage.", tags: ["desire"] },
-    { id: 458, pt: "Tomara que ele não se atrase.", en: "I hope he doesn't get late.", tags: ["desire"] },
-    { id: 459, pt: "Eu queria que fosse menos complicado.", en: "I wish it were less complicated.", tags: ["desire"] },
-    { id: 460, pt: "Tomara que você consiga esse trabalho.", en: "I hope you get that job.", tags: ["desire"] },
-    { id: 461, pt: "Eu queria não me preocupar tanto.", en: "I wish I didn't worry so much.", tags: ["desire"] },
-    { id: 462, pt: "Tomara que eu não esqueça disso.", en: "I hope I don't forget this.", tags: ["desire"] },
-    { id: 463, pt: "Eu queria que ele fosse mais educado.", en: "I wish he were more polite.", tags: ["desire"] },
-    { id: 464, pt: "Tomara que isso dê certo.", en: "I hope this works out.", tags: ["desire"] },
-    { id: 465, pt: "Eu queria ter mais confiança.", en: "I wish I had more confidence.", tags: ["desire"] },
-    { id: 466, pt: "Tomara que a gente consiga resolver isso hoje.", en: "I hope we can solve this today.", tags: ["desire"] },
-    { id: 467, pt: "Eu queria falar melhor em inglês.", en: "I wish I could speak English better.", tags: ["desire"] },
-    { id: 468, pt: "Tomara que ele entenda o que eu quis dizer.", en: "I hope he understands what I meant.", tags: ["desire"] },
-    { id: 469, pt: "Eu queria que meu dia fosse mais produtivo.", en: "I wish my day were more productive.", tags: ["desire"] },
-    { id: 470, pt: "Tomara que eu consiga dormir cedo hoje.", en: "I hope I can sleep early today.", tags: ["desire"] },
-    { id: 471, pt: "Eu queria que as coisas fossem mais fáceis.", en: "I wish things were easier.", tags: ["desire"] },
-    { id: 472, pt: "Tomara que você se sinta melhor logo.", en: "I hope you feel better soon.", tags: ["desire"] },
-    { id: 473, pt: "Eu queria ter mais disciplina.", en: "I wish I had more discipline.", tags: ["desire"] },
-    { id: 474, pt: "Tomara que amanhã seja um dia melhor.", en: "I hope tomorrow is a better day.", tags: ["desire"] },
+    { 
+        id: 143, 
+        pt: "Eu queria que chovesse menos.", 
+        en: "I wish it rained less", 
+        tags: ["desire"] 
+    },
+    { 
+        id: 144, 
+        pt: "Tomara que você consiga.", 
+        en: [
+            "I hope you can make it",
+            "I hope you make it"
+        ],
+        tags: ["desire"] 
+    },
+    { 
+        id: 180, 
+        pt: "Eu queria poder descansar agora.", 
+        en: "I wish I could rest now", 
+        tags: ["desire"] 
+    },
+    { 
+        id: 181, 
+        pt: "Tomara que tudo dê certo.", 
+        en: [
+            "I hope everything works out",
+            "I hope everything goes well"
+        ],
+        tags: ["desire"] 
+    },
+    { 
+        id: 182, 
+        pt: "Eu queria que fosse mais simples.", 
+        en: "I wish it were/was simpler", 
+        tags: ["desire"] 
+    },
+    { 
+        id: 435, 
+        pt: "Eu queria ter mais tempo.", 
+        en: "I wish I had more time", 
+        tags: ["desire"] 
+    },
+    { 
+        id: 436, 
+        pt: "Tomara que ele melhore logo.", 
+        en: "I hope he gets better/improves soon", 
+        tags: ["desire"] 
+    },
+    { 
+        id: 437, 
+        pt: "Eu queria aprender inglês mais rápido.", 
+        en: "I wish I could learn English faster/quickly", 
+        tags: ["desire"] 
+    },
+    { 
+        id: 438, 
+        pt: "Tomara que não chova hoje.", 
+        en: "I hope it does not/doesn't rain today", 
+        tags: ["desire"] 
+    },
+    { 
+        id: 439, 
+        pt: "Eu queria morar perto do trabalho.", 
+        en: "I wish I lived close to/near (work/the job)", 
+        tags: ["desire"] 
+    },
+    { 
+        id: 440, 
+        pt: "Tomara que você tenha um bom dia.", 
+        en: "I hope you have a good/nice day", 
+        tags: ["desire"] 
+    },
+    { 
+        id: 441, 
+        pt: "Eu queria que ele me entendesse.", 
+        en: "I wish he understood me", 
+        tags: ["desire"] 
+    },
+    { 
+        id: 442, 
+        pt: "Tomara que a gente consiga terminar hoje.", 
+        en: [
+            "I hope we can finish today",
+            "I hope we can get it done today"
+        ],
+        tags: ["desire"] 
+    },
+    { 
+        id: 443, 
+        pt: "Eu queria não ficar tão nervoso.", 
+        en: "I wish I were/was not/wasn't/weren't so nervous", 
+        tags: ["desire"] 
+    },
+    { 
+        id: 444, 
+        pt: "Tomara que essa notícia seja boa.", 
+        en: "I hope this news is good", 
+        tags: ["desire"] 
+    },
+    { 
+        id: 445, 
+        pt: "Eu queria poder viajar mais.", 
+        en: "I wish I could travel more", 
+        tags: ["desire"] 
+    },
+    { 
+        id: 446, 
+        pt: "Tomara que ele chegue a tempo.", 
+        en: [
+            "I hope he arrives on time",
+            "I hope he gets here on time"
+        ],
+        tags: ["desire"] 
+    },
+    { 
+        id: 447, 
+        pt: "Eu queria que minha vida fosse mais tranquila.", 
+        en: "I wish my life were/was calmer/more peaceful", 
+        tags: ["desire"] 
+    },
+    { 
+        id: 448, 
+        pt: "Tomara que você goste do presente.", 
+        en: "I hope you like the gift/present", 
+        tags: ["desire"] 
+    },
+    { 
+        id: 449, 
+        pt: "Eu queria ser mais paciente.", 
+        en: "I wish I were/was more patient", 
+        tags: ["desire"] 
+    },
+    { 
+        id: 450, 
+        pt: "Tomara que a internet volte logo.", 
+        en: [
+            "I hope the internet comes back soon",
+            "I hope the internet returns soon"
+        ],
+        tags: ["desire"] 
+    },
+    { 
+        id: 451, 
+        pt: "Eu queria que hoje fosse mais leve.", 
+        en: "I wish today were/was easier/lighter", 
+        tags: ["desire"] 
+    },
+    { 
+        id: 452, 
+        pt: "Tomara que ele aceite o convite.", 
+        en: "I hope he accepts the invitation", 
+        tags: ["desire"] 
+    },
+    { 
+        id: 453, 
+        pt: "Eu queria conseguir acordar cedo.", 
+        en: [
+            "I wish I could wake up early",
+            "I wish I could get up early"
+        ],
+        tags: ["desire"] 
+    },
+    { 
+        id: 454, 
+        pt: "Tomara que tudo fique bem.", 
+        en: [
+            "I hope everything is okay/fine",
+            "I hope everything will be okay/fine"
+        ],
+        tags: ["desire"] 
+    },
+    { 
+        id: 455, 
+        pt: "Eu queria entender isso melhor.", 
+        en: "I wish I understood this/it better", 
+        tags: ["desire"] 
+    },
+    { 
+        id: 456, 
+        pt: "Tomara que a gente se veja logo.", 
+        en: "I hope we see each other soon", 
+        tags: ["desire"] 
+    },
+    { 
+        id: 457, 
+        pt: "Eu queria ter mais coragem.", 
+        en: "I wish I had more courage", 
+        tags: ["desire"] 
+    },
+    { 
+        id: 458, 
+        pt: "Tomara que ele não se atrase.", 
+        en: [
+            "I hope he does not/doesn't get late",
+            "I hope he is not/isn't late"
+        ],
+        tags: ["desire"] 
+    },
+    { 
+        id: 459, 
+        pt: "Eu queria que fosse menos complicado.", 
+        en: "I wish it were/was less complicated", 
+        tags: ["desire"] 
+    },
+    { 
+        id: 460, 
+        pt: "Tomara que você consiga esse trabalho.", 
+        en: [
+            "I hope you get that/this job",
+            "I hope you get the job"
+        ],
+        tags: ["desire"] 
+    },
+    { 
+        id: 461, 
+        pt: "Eu queria não me preocupar tanto.", 
+        en: "I wish I did not/didn't worry so much", 
+        tags: ["desire"] 
+    },
+    { 
+        id: 462, 
+        pt: "Tomara que eu não esqueça disso.", 
+        en: "I hope I do not/don't forget this/it", 
+        tags: ["desire"] 
+    },
+    { 
+        id: 463, 
+        pt: "Eu queria que ele fosse mais educado.", 
+        en: "I wish he were/was more polite", 
+        tags: ["desire"] 
+    },
+    { 
+        id: 464, 
+        pt: "Tomara que isso dê certo.", 
+        en: [
+            "I hope this works out",
+            "I hope this goes well"
+        ],
+        tags: ["desire"] 
+    },
+    { 
+        id: 465, 
+        pt: "Eu queria ter mais confiança.", 
+        en: "I wish I had more confidence", 
+        tags: ["desire"] 
+    },
+    { 
+        id: 466, 
+        pt: "Tomara que a gente consiga resolver isso hoje.", 
+        en: [
+            "I hope we can solve this today",
+            "I hope we can resolve this today",
+            "I hope we can fix this today"
+        ],
+        tags: ["desire"] 
+    },
+    { 
+        id: 467, 
+        pt: "Eu queria falar melhor em inglês.", 
+        en: "I wish I could speak English better", 
+        tags: ["desire"] 
+    },
+    { 
+        id: 468, 
+        pt: "Tomara que ele entenda o que eu quis dizer.", 
+        en: "I hope he understands what I meant", 
+        tags: ["desire"] 
+    },
+    { 
+        id: 469, 
+        pt: "Eu queria que meu dia fosse mais produtivo.", 
+        en: "I wish my day were/was more productive", 
+        tags: ["desire"] 
+    },
+    { 
+        id: 470, 
+        pt: "Tomara que eu consiga dormir cedo hoje.", 
+        en: [
+            "I hope I can sleep early today",
+            "I hope I can go to bed early today"
+        ],
+        tags: ["desire"] 
+    },
+    { 
+        id: 471, 
+        pt: "Eu queria que as coisas fossem mais fáceis.", 
+        en: "I wish things were/was easier", 
+        tags: ["desire"] 
+    },
+    { 
+        id: 472, 
+        pt: "Tomara que você se sinta melhor logo.", 
+        en: "I hope you feel better soon", 
+        tags: ["desire"] 
+    },
+    { 
+        id: 473, 
+        pt: "Eu queria ter mais disciplina.", 
+        en: "I wish I had more discipline", 
+        tags: ["desire"] 
+    },
+    { 
+        id: 474, 
+        pt: "Tomara que amanhã seja um dia melhor.", 
+        en: "I hope tomorrow is a better day", 
+        tags: ["desire"] 
+    },
 
     // Obrigação
-    { id: 145, pt: "Eu tenho que sair agora.", en: "I have to leave now.", tags: ["obligation"] },
-    { id: 146, pt: "Nós precisamos terminar hoje.", en: "We need to finish today.", tags: ["obligation"] },
-    { id: 183, pt: "Você tem que prestar atenção.", en: "You have to pay attention.", tags: ["obligation"] },
-    { id: 184, pt: "Eu preciso acordar cedo amanhã.", en: "I need to wake up early tomorrow.", tags: ["obligation", "future"] },
-    { id: 185, pt: "A gente tem que resolver isso hoje.", en: "We have to solve this today.", tags: ["obligation"] },
-    { id: 465, pt: "Eu preciso estudar hoje.", en: "I need to study today.", tags: ["obligation"] },
-    { id: 466, pt: "Eu tenho que trabalhar amanhã.", en: "I have to work tomorrow.", tags: ["obligation"] },
-    { id: 467, pt: "A gente precisa sair agora.", en: "We need to leave now.", tags: ["obligation"] },
-    { id: 468, pt: "Você tem que fazer isso hoje.", en: "You have to do this today.", tags: ["obligation"] },
-    { id: 469, pt: "Eu preciso comprar comida.", en: "I need to buy food.", tags: ["obligation"] },
-    { id: 470, pt: "Ele tem que ligar pra ela.", en: "He has to call her.", tags: ["obligation"] },
-    { id: 471, pt: "Ela precisa tomar esse remédio.", en: "She needs to take this medicine.", tags: ["obligation"] },
-    { id: 472, pt: "Eu tenho que limpar meu quarto.", en: "I have to clean my room.", tags: ["obligation"] },
-    { id: 473, pt: "A gente tem que falar com o professor.", en: "We have to talk to the teacher.", tags: ["obligation"] },
-    { id: 474, pt: "Você precisa prestar atenção nisso.", en: "You need to pay attention to this.", tags: ["obligation"] },
-    { id: 475, pt: "Eu tenho que terminar esse trabalho.", en: "I have to finish this work.", tags: ["obligation"] },
-    { id: 476, pt: "Ele precisa descansar um pouco.", en: "He needs to rest a little.", tags: ["obligation"] },
-    { id: 477, pt: "Ela tem que acordar cedo.", en: "She has to wake up early.", tags: ["obligation"] },
-    { id: 478, pt: "Eu preciso economizar dinheiro.", en: "I need to save money.", tags: ["obligation"] },
-    { id: 479, pt: "A gente tem que esperar aqui.", en: "We have to wait here.", tags: ["obligation"] },
-    { id: 480, pt: "Você tem que se organizar melhor.", en: "You have to organize yourself better.", tags: ["obligation"] },
-    { id: 481, pt: "Eu preciso ir ao médico.", en: "I need to go to the doctor.", tags: ["obligation"] },
-    { id: 482, pt: "Ele tem que estudar mais.", en: "He has to study more.", tags: ["obligation"] },
-    { id: 483, pt: "Ela precisa chegar no horário.", en: "She needs to arrive on time.", tags: ["obligation"] },
-    { id: 484, pt: "Eu tenho que pagar essa conta.", en: "I have to pay this bill.", tags: ["obligation"] },
-    { id: 485, pt: "A gente precisa resolver isso logo.", en: "We need to solve this soon.", tags: ["obligation"] },
-    { id: 486, pt: "Você precisa dormir mais cedo.", en: "You need to sleep earlier.", tags: ["obligation"] },
-    { id: 487, pt: "Eu tenho que responder essa mensagem.", en: "I have to reply to this message.", tags: ["obligation"] },
-    { id: 488, pt: "Ele precisa pedir desculpa.", en: "He needs to apologize.", tags: ["obligation"] },
-    { id: 489, pt: "Ela tem que praticar mais.", en: "She has to practice more.", tags: ["obligation"] },
-    { id: 490, pt: "Eu preciso levar isso comigo.", en: "I need to take this with me.", tags: ["obligation"] },
-    { id: 491, pt: "A gente tem que ter cuidado.", en: "We have to be careful.", tags: ["obligation"] },
-    { id: 492, pt: "Você tem que fazer sua parte.", en: "You have to do your part.", tags: ["obligation"] },
-    { id: 493, pt: "Eu preciso me concentrar agora.", en: "I need to focus now.", tags: ["obligation"] },
-    { id: 494, pt: "Ele tem que parar com isso.", en: "He has to stop that.", tags: ["obligation"] },
-    { id: 495, pt: "Eu tenho que sair mais cedo hoje.", en: "I have to leave earlier today.", tags: ["obligation"] },
-    { id: 496, pt: "A gente precisa falar sobre isso.", en: "We need to talk about this.", tags: ["obligation"] },
-    { id: 497, pt: "Você tem que me avisar antes.", en: "You have to let me know beforehand.", tags: ["obligation"] },
-    { id: 498, pt: "Eu preciso terminar isso até amanhã.", en: "I need to finish this by tomorrow.", tags: ["obligation", "future"] },
-    { id: 499, pt: "Ele tem que chegar mais cedo.", en: "He has to arrive earlier.", tags: ["obligation"] },
-    { id: 500, pt: "Ela precisa beber mais água.", en: "She needs to drink more water.", tags: ["obligation"] },
-    { id: 501, pt: "A gente tem que economizar esse mês.", en: "We have to save money this month.", tags: ["obligation"] },
-    { id: 502, pt: "Você precisa fazer isso com calma.", en: "You need to do this calmly.", tags: ["obligation"] },
-    { id: 503, pt: "Eu tenho que organizar minhas coisas.", en: "I have to organize my things.", tags: ["obligation"] },
-    { id: 504, pt: "Ele precisa parar de adiar.", en: "He needs to stop procrastinating.", tags: ["obligation"] },
-    { id: 505, pt: "Ela tem que estudar para a prova.", en: "She has to study for the test.", tags: ["obligation"] },
-    { id: 506, pt: "A gente precisa tomar uma decisão logo.", en: "We need to make a decision soon.", tags: ["obligation"] },
-    { id: 507, pt: "Você tem que ter paciência.", en: "You have to be patient.", tags: ["obligation"] },
-    { id: 508, pt: "Eu preciso descansar um pouco hoje.", en: "I need to rest a bit today.", tags: ["obligation"] },
-    { id: 509, pt: "Ele tem que manter o foco.", en: "He has to stay focused.", tags: ["obligation"] },
+    { 
+        id: 145, 
+        pt: "Eu tenho que sair agora.", 
+        en: [
+            "I have to leave now",
+            "I have to go now"
+        ],
+        tags: ["obligation"] 
+    },
+    { 
+        id: 146, 
+        pt: "Nós precisamos terminar hoje.", 
+        en: "We need to finish (it) today", 
+        tags: ["obligation"] 
+    },
+    { 
+        id: 183, 
+        pt: "Você tem que prestar atenção.", 
+        en: "You have to pay attention", 
+        tags: ["obligation"] 
+    },
+    { 
+        id: 184, 
+        pt: "Eu preciso acordar cedo amanhã.", 
+        en: [
+            "I need to wake up early tomorrow",
+            "I need to get up early tomorrow"
+        ],
+        tags: ["obligation"] 
+    },
+    { 
+        id: 185, 
+        pt: "A gente tem que resolver isso hoje.", 
+        en: [
+            "We have to solve this today",
+            "We have to fix this today",
+            "We have to resolve this today"
+        ],
+        tags: ["obligation"] 
+    },
+    { 
+        id: 465, 
+        pt: "Eu preciso estudar hoje.", 
+        en: "I need to study today", 
+        tags: ["obligation"] 
+    },
+    { 
+        id: 466, 
+        pt: "Eu tenho que trabalhar amanhã.", 
+        en: "I have to work tomorrow", 
+        tags: ["obligation"] 
+    },
+    { 
+        id: 467, 
+        pt: "A gente precisa sair agora.", 
+        en: [
+            "We need to leave now",
+            "We need to go now"
+        ],
+        tags: ["obligation"] 
+    },
+    { 
+        id: 468, 
+        pt: "Você tem que fazer isso hoje.", 
+        en: "You have to do this/it today", 
+        tags: ["obligation"] 
+    },
+    { 
+        id: 469, 
+        pt: "Eu preciso comprar comida.", 
+        en: "I need to buy food", 
+        tags: ["obligation"] 
+    },
+    { 
+        id: 470, 
+        pt: "Ele tem que ligar pra ela.", 
+        en: [
+            "He has to call her",
+            "He has to phone her"
+        ],
+        tags: ["obligation"] 
+    },
+    { 
+        id: 471, 
+        pt: "Ela precisa tomar esse remédio.", 
+        en: "She needs to take this medicine/medication", 
+        tags: ["obligation"] 
+    },
+    { 
+        id: 472, 
+        pt: "Eu tenho que limpar meu quarto.", 
+        en: "I have to clean my room/bedroom", 
+        tags: ["obligation"] 
+    },
+    { 
+        id: 473, 
+        pt: "A gente tem que falar com o professor.", 
+        en: [
+            "We have to talk to the teacher",
+            "We have to speak with the teacher"
+        ],
+        tags: ["obligation"] 
+    },
+    { 
+        id: 474, 
+        pt: "Você precisa prestar atenção nisso.", 
+        en: "You need to pay attention to this", 
+        tags: ["obligation"] 
+    },
+    { 
+        id: 475, 
+        pt: "Eu tenho que terminar esse trabalho.", 
+        en: "I have to finish this work/job", 
+        tags: ["obligation"] 
+    },
+    { 
+        id: 476, 
+        pt: "Ele precisa descansar um pouco.", 
+        en: "He needs to rest a little/bit", 
+        tags: ["obligation"] 
+    },
+    { 
+        id: 477, 
+        pt: "Ela tem que acordar cedo.", 
+        en: [
+             "She has to wake up early",
+             "She has to get up early"
+        ],
+        tags: ["obligation"] 
+    },
+    { 
+        id: 478, 
+        pt: "Eu preciso economizar dinheiro.", 
+        en: "I need to save money", 
+        tags: ["obligation"] 
+    },
+    { 
+        id: 479, 
+        pt: "A gente tem que esperar aqui.", 
+        en: "We have to wait here", 
+        tags: ["obligation"] 
+    },
+    { 
+        id: 480, 
+        pt: "Você tem que se organizar melhor.", 
+        en: [
+            "You have to organize yourself better",
+            "You have to get organized better"
+        ],
+        tags: ["obligation"] 
+    },
+    { 
+        id: 481, 
+        pt: "Eu preciso ir ao médico.", 
+        en: "I need to go to the doctor", 
+        tags: ["obligation"] 
+    },
+    { 
+        id: 482, 
+        pt: "Ele tem que estudar mais.", 
+        en: "He has to study more", 
+        tags: ["obligation"] 
+    },
+    { 
+        id: 483, 
+        pt: "Ela precisa chegar no horário.", 
+        en: "She needs to arrive on time", 
+        tags: ["obligation"] 
+    },
+    { 
+        id: 484, 
+        pt: "Eu tenho que pagar essa conta.", 
+        en: "I have to pay this bill", 
+        tags: ["obligation"] 
+    },
+    { 
+        id: 485, 
+        pt: "A gente precisa resolver isso logo.", 
+        en: [
+            "We need to solve this soon",
+            "We need to fix this soon",
+            "We need to resolve this soon"
+        ],
+        tags: ["obligation"] 
+    },
+    { 
+        id: 486, 
+        pt: "Você precisa dormir mais cedo.", 
+        en: [
+            "You need to sleep earlier",
+            "You need to go to bed earlier"
+        ],
+        tags: ["obligation"] 
+    },
+    { 
+        id: 487, 
+        pt: "Eu tenho que responder essa mensagem.", 
+        en: [
+            "I have to reply to this message",
+            "I have to answer this message"
+        ],
+        tags: ["obligation"] 
+    },
+    { 
+        id: 488, 
+        pt: "Ele precisa pedir desculpa.", 
+        en: "He needs to apologize", 
+        tags: ["obligation"] 
+    },
+    { 
+        id: 489, 
+        pt: "Ela tem que praticar mais.", 
+        en: "She has to practice more", 
+        tags: ["obligation"] 
+    },
+    { 
+        id: 490, 
+        pt: "Eu preciso levar isso comigo.", 
+        en: [
+            "I need to take this with me",
+            "I need to bring this with me"
+        ],
+        tags: ["obligation"] 
+    },
+    { 
+        id: 491, 
+        pt: "A gente tem que ter cuidado.", 
+        en: "We have to be careful", 
+        tags: ["obligation"] 
+    },
+    { 
+        id: 492, 
+        pt: "Você tem que fazer sua parte.", 
+        en: "You have to do your part", 
+        tags: ["obligation"] 
+    },
+    { 
+        id: 493, 
+        pt: "Eu preciso me concentrar agora.", 
+        en: "I need to focus/concentrate now", 
+        tags: ["obligation"] 
+    },
+    { 
+        id: 494, 
+        pt: "Ele tem que parar com isso.", 
+        en: [
+            "He has to stop that",
+            "He has to stop this"
+        ],
+        tags: ["obligation"] 
+    },
+    { 
+        id: 495, 
+        pt: "Eu tenho que sair mais cedo hoje.", 
+        en: "I have to leave earlier today", 
+        tags: ["obligation"] 
+    },
+    { 
+        id: 496, 
+        pt: "A gente precisa falar sobre isso.", 
+        en: [
+            "We need to talk about this/it",
+            "We need to speak about this/it"
+        ],
+        tags: ["obligation"] 
+    },
+    { 
+        id: 497, 
+        pt: "Você tem que me avisar antes.", 
+        en: [
+            "You have to let me know beforehand",
+            "You have to tell me before"
+        ],
+        tags: ["obligation"] 
+    },
+    { 
+        id: 498, 
+        pt: "Eu preciso terminar isso até amanhã.", 
+        en: "I need to finish this by tomorrow", 
+        tags: ["obligation"] 
+    },
+    { 
+        id: 499, 
+        pt: "Ele tem que chegar mais cedo.", 
+        en: "He has to arrive earlier", 
+        tags: ["obligation"] 
+    },
+    { 
+        id: 500, 
+        pt: "Ela precisa beber mais água.", 
+        en: "She needs to drink more water", 
+        tags: ["obligation"] 
+    },
+    { 
+        id: 501, 
+        pt: "A gente tem que economizar esse mês.", 
+        en: "We have to save (money) this month", 
+        tags: ["obligation"] 
+    },
+    { 
+        id: 502, 
+        pt: "Você precisa fazer isso com calma.", 
+        en: "You need to do this calmly", 
+        tags: ["obligation"] 
+    },
+    { 
+        id: 503, 
+        pt: "Eu tenho que organizar minhas coisas.", 
+        en: "I have to organize my things/stuff", 
+        tags: ["obligation"] 
+    },
+    { 
+        id: 504, 
+        pt: "Ele precisa parar de adiar.", 
+        en: "He needs to stop procrastinating", 
+        tags: ["obligation"] 
+    },
+    { 
+        id: 505, 
+        pt: "Ela tem que estudar para a prova.", 
+        en: "She has to study for the test/exam", 
+        tags: ["obligation"] 
+    },
+    { 
+        id: 506, 
+        pt: "A gente precisa tomar uma decisão logo.", 
+        en: "We need to make a decision soon", 
+        tags: ["obligation"] 
+    },
+    { 
+        id: 507, 
+        pt: "Você tem que ter paciência.", 
+        en: [
+            "You have to be patient",
+            "You have to have patience"
+        ],
+        tags: ["obligation"] 
+    },
+    { 
+        id: 508, 
+        pt: "Eu preciso descansar um pouco hoje.", 
+        en: "I need to rest a bit/little today", 
+        tags: ["obligation"] 
+    },
+    { 
+        id: 509, 
+        pt: "Ele tem que manter o foco.", 
+        en: [
+            "He has to stay focused",
+            "He has to keep focused"
+        ],
+        tags: ["obligation"] 
+    },
 
     // Conselho
-    { id: 147, pt: "Você deveria descansar mais.", en: "You should rest more.", tags: ["advice"] },
-    { id: 148, pt: "Se eu fosse você, eu falaria com ela.", en: "If I were you, I would talk to her.", tags: ["advice", "conditional"] },
-    { id: 186, pt: "Você deveria beber mais água.", en: "You should drink more water.", tags: ["advice"] },
-    { id: 187, pt: "Se eu fosse você, eu não faria isso.", en: "If I were you, I wouldn't do that.", tags: ["advice", "conditional"] },
-    { id: 188, pt: "É melhor você sair mais cedo.", en: "You'd better leave earlier.", tags: ["advice"] },
-    { id: 495, pt: "Você deveria estudar um pouco todo dia.", en: "You should study a little every day.", tags: ["advice"] },
-    { id: 496, pt: "Você deveria dormir mais cedo.", en: "You should go to bed earlier.", tags: ["advice"] },
-    { id: 497, pt: "Você deveria comer melhor.", en: "You should eat better.", tags: ["advice"] },
-    { id: 498, pt: "Você deveria fazer mais exercícios.", en: "You should exercise more.", tags: ["advice"] },
-    { id: 499, pt: "Você deveria praticar sua pronúncia.", en: "You should practice your pronunciation.", tags: ["advice"] },
-    { id: 500, pt: "Você deveria tentar de novo.", en: "You should try again.", tags: ["advice"] },
-    { id: 501, pt: "É melhor você se organizar antes de começar.", en: "You'd better get organized before you start.", tags: ["advice"] },
-    { id: 502, pt: "É melhor você falar a verdade.", en: "You'd better tell the truth.", tags: ["advice"] },
-    { id: 503, pt: "É melhor você ir com calma.", en: "You'd better take it easy.", tags: ["advice"] },
-    { id: 504, pt: "É melhor você não deixar para depois.", en: "You'd better not leave it for later.", tags: ["advice"] },
-    { id: 505, pt: "É melhor você pedir ajuda.", en: "You'd better ask for help.", tags: ["advice"] },
-    { id: 506, pt: "É melhor você revisar antes da prova.", en: "You'd better review before the test.", tags: ["advice"] },
-    { id: 507, pt: "Se eu fosse você, eu estudaria mais.", en: "If I were you, I would study more.", tags: ["advice", "conditional"] },
-    { id: 508, pt: "Se eu fosse você, eu dormiria cedo hoje.", en: "If I were you, I would go to bed early today.", tags: ["advice", "conditional"] },
-    { id: 509, pt: "Se eu fosse você, eu falaria com ele.", en: "If I were you, I would talk to him.", tags: ["advice", "conditional"] },
-    { id: 510, pt: "Se eu fosse você, eu não desistiria agora.", en: "If I were you, I wouldn't give up now.", tags: ["advice", "conditional"] },
-    { id: 511, pt: "Se eu fosse você, eu pediria desculpa.", en: "If I were you, I would apologize.", tags: ["advice", "conditional"] },
-    { id: 512, pt: "Se eu fosse você, eu não falaria isso.", en: "If I were you, I wouldn't say that.", tags: ["advice", "conditional"] },
-    { id: 513, pt: "Você deveria tomar mais cuidado.", en: "You should be more careful.", tags: ["advice"] },
-    { id: 514, pt: "Você deveria respirar fundo antes de falar.", en: "You should take a deep breath before speaking.", tags: ["advice"] },
-    { id: 515, pt: "Você deveria beber mais água hoje.", en: "You should drink more water today.", tags: ["advice"] },
-    { id: 516, pt: "Você deveria tentar entender antes de responder.", en: "You should try to understand before replying.", tags: ["advice"] },
-    { id: 517, pt: "Você deveria fazer uma pausa.", en: "You should take a break.", tags: ["advice"] },
-    { id: 518, pt: "Você deveria praticar com frases curtas.", en: "You should practice with short sentences.", tags: ["advice"] },
-    { id: 519, pt: "É melhor você não se comparar com os outros.", en: "You'd better not compare yourself to others.", tags: ["advice"] },
-    { id: 520, pt: "É melhor você economizar seu dinheiro.", en: "You'd better save your money.", tags: ["advice"] },
-    { id: 521, pt: "É melhor você falar devagar.", en: "You'd better speak slowly.", tags: ["advice"] },
-    { id: 522, pt: "Se eu fosse você, eu faria isso com calma.", en: "If I were you, I would do it calmly.", tags: ["advice", "conditional"] },
-    { id: 523, pt: "Se eu fosse você, eu não iria agora.", en: "If I were you, I wouldn't go now.", tags: ["advice", "conditional"] },
-    { id: 524, pt: "Se eu fosse você, eu tentaria de outro jeito.", en: "If I were you, I would try a different way.", tags: ["advice", "conditional"] },
-    { id: 525, pt: "Você deveria revisar isso com calma.", en: "You should review this calmly.", tags: ["advice"] },
-    { id: 526, pt: "Você deveria tentar dormir mais cedo hoje.", en: "You should try to go to bed earlier today.", tags: ["advice"] },
-    { id: 527, pt: "É melhor você desligar o celular um pouco.", en: "You'd better turn off your phone for a while.", tags: ["advice"] },
-    { id: 528, pt: "É melhor você fazer isso agora, antes que esqueça.", en: "You'd better do it now before you forget.", tags: ["advice"] },
-    { id: 529, pt: "Você deveria ouvir com mais atenção.", en: "You should listen more carefully.", tags: ["advice"] },
-    { id: 530, pt: "Você deveria praticar um pouco todo dia.", en: "You should practice a little every day.", tags: ["advice"] },
-    { id: 531, pt: "Você deveria beber água antes de dormir.", en: "You should drink water before going to bed.", tags: ["advice"] },
-    { id: 532, pt: "É melhor você se preparar com antecedência.", en: "You'd better prepare in advance.", tags: ["advice"] },
-    { id: 533, pt: "É melhor você não fazer isso com pressa.", en: "You'd better not do this in a hurry.", tags: ["advice"] },
-    { id: 534, pt: "Você deveria manter a calma antes de responder.", en: "You should stay calm before replying.", tags: ["advice"] },
-    { id: 535, pt: "Você deveria pedir ajuda quando precisar.", en: "You should ask for help when you need it.", tags: ["advice"] },
-    { id: 536, pt: "Você deveria fazer pequenas pausas durante o estudo.", en: "You should take small breaks while studying.", tags: ["advice"] },
-    { id: 537, pt: "É melhor você escrever isso para lembrar depois.", en: "You'd better write this down to remember later.", tags: ["advice"] },
-    { id: 538, pt: "Você deveria se cobrar menos.", en: "You should be less hard on yourself.", tags: ["advice"] },
-    { id: 539, pt: "Você deveria começar pelo mais fácil.", en: "You should start with the easiest part.", tags: ["advice"] },
+    { 
+        id: 147, 
+        pt: "Você deveria descansar mais.", 
+        en: "You should rest more", 
+        tags: ["advice"] 
+    },
+    { 
+        id: 148, 
+        pt: "Se eu fosse você, eu falaria com ela.", 
+        en: [
+            "If I were you, I would talk to her",
+            "If I were you, I would speak to her"
+        ],
+        tags: ["advice", "conditional"] 
+    },
+    { 
+        id: 186, 
+        pt: "Você deveria beber mais água.", 
+        en: "You should drink more water", 
+        tags: ["advice"] 
+    },
+    { 
+        id: 187, 
+        pt: "Se eu fosse você, eu não faria isso.", 
+        en: "If I were you, I would not/wouldn't do that/this", 
+        tags: ["advice", "conditional"] 
+    },
+    { 
+        id: 188, 
+        pt: "É melhor você sair mais cedo.", 
+        en: "You had/You'd better leave earlier", 
+        tags: ["advice"] 
+    },
+    { 
+        id: 495, 
+        pt: "Você deveria estudar um pouco todo dia.", 
+        en: "You should study a little (bit) every day", 
+        tags: ["advice"] 
+    },
+    { 
+        id: 496, 
+        pt: "Você deveria dormir mais cedo.", 
+        en: [
+            "You should go to bed earlier",
+            "You should sleep earlier"
+        ],
+        tags: ["advice"] 
+    },
+    { 
+        id: 497, 
+        pt: "Você deveria comer melhor.", 
+        en: "You should eat better", 
+        tags: ["advice"] 
+    },
+    { 
+        id: 498, 
+        pt: "Você deveria fazer mais exercícios.", 
+        en: [
+            "You should exercise more",
+            "You should work out more"
+        ],
+        tags: ["advice"] 
+    },
+    { 
+        id: 499, 
+        pt: "Você deveria praticar sua pronúncia.", 
+        en: "You should practice your pronunciation", 
+        tags: ["advice"] 
+    },
+    { 
+        id: 500, 
+        pt: "Você deveria tentar de novo.", 
+        en: "You should try again", 
+        tags: ["advice"] 
+    },
+    { 
+        id: 501, 
+        pt: "É melhor você se organizar antes de começar.", 
+        en: "You had/You'd better get organized before you start", 
+        tags: ["advice"] 
+    },
+    { 
+        id: 502, 
+        pt: "É melhor você falar a verdade.", 
+        en: "You had/You'd better tell the truth", 
+        tags: ["advice"] 
+    },
+    { 
+        id: 503, 
+        pt: "É melhor você ir com calma.", 
+        en: "You had/You'd better take it easy", 
+        tags: ["advice"] 
+    },
+    { 
+        id: 504, 
+        pt: "É melhor você não deixar para depois.", 
+        en: "You had/You'd better not leave it for later", 
+        tags: ["advice"] 
+    },
+    { 
+        id: 505, 
+        pt: "É melhor você pedir ajuda.", 
+        en: "You had/You'd better ask for help", 
+        tags: ["advice"] 
+    },
+    { 
+        id: 506, 
+        pt: "É melhor você revisar antes da prova.", 
+        en: "You had/You'd better review before the test/exam", 
+        tags: ["advice"] 
+    },
+    { 
+        id: 507, 
+        pt: "Se eu fosse você, eu estudaria mais.", 
+        en: "If I were you, I would/'d study more", 
+        tags: ["advice", "conditional"] 
+    },
+    { 
+        id: 508, 
+        pt: "Se eu fosse você, eu dormiria cedo hoje.", 
+        en: [
+            "If I were you, I would go to bed early today",
+            "If I were you, I would sleep early today"
+        ],
+        tags: ["advice", "conditional"] 
+    },
+    { 
+        id: 509, 
+        pt: "Se eu fosse você, eu falaria com ele.", 
+        en: [
+            "If I were you, I would talk to him",
+            "If I were you, I would speak with him"
+        ],
+        tags: ["advice", "conditional"] 
+    },
+    { 
+        id: 510, 
+        pt: "Se eu fosse você, eu não desistiria agora.", 
+        en: "If I were you, I would not/wouldn't give up now", 
+        tags: ["advice", "conditional"] 
+    },
+    { 
+        id: 511, 
+        pt: "Se eu fosse você, eu pediria desculpa.", 
+        en: "If I were you, I would/'d apologize", 
+        tags: ["advice", "conditional"] 
+    },
+    { 
+        id: 512, 
+        pt: "Se eu fosse você, eu não falaria isso.", 
+        en: [
+            "If I were you, I would not say that",
+            "If I were you, I wouldn't say that"
+        ],
+        tags: ["advice", "conditional"] 
+    },
+    { 
+        id: 513, 
+        pt: "Você deveria tomar mais cuidado.", 
+        en: "You should be more careful", 
+        tags: ["advice"] 
+    },
+    { 
+        id: 514, 
+        pt: "Você deveria respirar fundo antes de falar.", 
+        en: "You should take a deep breath before speaking/talking", 
+        tags: ["advice"] 
+    },
+    { 
+        id: 515, 
+        pt: "Você deveria beber mais água hoje.", 
+        en: "You should drink more water today", 
+        tags: ["advice"] 
+    },
+    { 
+        id: 516, 
+        pt: "Você deveria tentar entender antes de responder.", 
+        en: [
+            "You should try to understand before replying",
+            "You should try to understand before answering"
+        ],
+        tags: ["advice"] 
+    },
+    { 
+        id: 517, 
+        pt: "Você deveria fazer uma pausa.", 
+        en: "You should take a break", 
+        tags: ["advice"] 
+    },
+    { 
+        id: 518, 
+        pt: "Você deveria praticar com frases curtas.", 
+        en: "You should practice with short sentences", 
+        tags: ["advice"] 
+    },
+    { 
+        id: 519, 
+        pt: "É melhor você não se comparar com os outros.", 
+        en: "You had/You'd better not compare yourself to others", 
+        tags: ["advice"] 
+    },
+    { 
+        id: 520, 
+        pt: "É melhor você economizar seu dinheiro.", 
+        en: "You had/You'd better save your money", 
+        tags: ["advice"] 
+    },
+    { 
+        id: 521, 
+        pt: "É melhor você falar devagar.", 
+        en: [
+            "You had better speak slowly",
+            "You'd better speak slowly"
+        ],
+        tags: ["advice"] 
+    },
+    { 
+        id: 522, 
+        pt: "Se eu fosse você, eu faria isso com calma.", 
+        en: "If I were you, I would/'d do it/this calmly", 
+        tags: ["advice", "conditional"] 
+    },
+    { 
+        id: 523, 
+        pt: "Se eu fosse você, eu não iria agora.", 
+        en: "If I were you, I would not/wouldn't go now", 
+        tags: ["advice", "conditional"] 
+    },
+    { 
+        id: 524, 
+        pt: "Se eu fosse você, eu tentaria de outro jeito.", 
+        en: [
+            "If I were you, I would try a different way",
+            "If I were you, I would try another way"
+        ],
+        tags: ["advice", "conditional"] 
+    },
+    { 
+        id: 525, 
+        pt: "Você deveria revisar isso com calma.", 
+        en: "You should review this calmly", 
+        tags: ["advice"] 
+    },
+    { 
+        id: 526, 
+        pt: "Você deveria tentar dormir mais cedo hoje.", 
+        en: [
+            "You should try to go to bed earlier today",
+            "You should try to sleep earlier today"
+        ],
+        tags: ["advice"] 
+    },
+    { 
+        id: 527, 
+        pt: "É melhor você desligar o celular um pouco.", 
+        en: "You had/You'd better turn off your phone for a while", 
+        tags: ["advice"] 
+    },
+    { 
+        id: 528, 
+        pt: "É melhor você fazer isso agora, antes que esqueça.", 
+        en: "You had/You'd better do it now before you forget", 
+        tags: ["advice"] 
+    },
+    { 
+        id: 529, 
+        pt: "Você deveria ouvir com mais atenção.", 
+        en: "You should listen more carefully", 
+        tags: ["advice"] 
+    },
+    { 
+        id: 530, 
+        pt: "Você deveria praticar um pouco todo dia.", 
+        en: "You should practice a little (bit) every day", 
+        tags: ["advice"] 
+    },
+    { 
+        id: 531, 
+        pt: "Você deveria beber água antes de dormir.", 
+        en: [
+            "You should drink water before going to bed",
+            "You should drink water before sleeping"
+        ],
+        tags: ["advice"] 
+    },
+    { 
+        id: 532, 
+        pt: "É melhor você se preparar com antecedência.", 
+        en: "You had/You'd better prepare in advance", 
+        tags: ["advice"] 
+    },
+    { 
+        id: 533, 
+        pt: "É melhor você não fazer isso com pressa.", 
+        en: "You had/You'd better not do this in a hurry", 
+        tags: ["advice"] 
+    },
+    { 
+        id: 534, 
+        pt: "Você deveria manter a calma antes de responder.", 
+        en: [
+            "You should stay calm before replying",
+            "You should keep calm before answering"
+        ],
+        tags: ["advice"] 
+    },
+    { 
+        id: 535, 
+        pt: "Você deveria pedir ajuda quando precisar.", 
+        en: "You should ask for help when you need (it)", 
+        tags: ["advice"] 
+    },
+    { 
+        id: 536, 
+        pt: "Você deveria fazer pequenas pausas durante o estudo.", 
+        en: "You should take small/short breaks while studying", 
+        tags: ["advice"] 
+    },
+    { 
+        id: 537, 
+        pt: "É melhor você escrever isso para lembrar depois.", 
+        en: "You had/You'd better write this down to remember later", 
+        tags: ["advice"] 
+    },
+    { 
+        id: 538, 
+        pt: "Você deveria se cobrar menos.", 
+        en: "You should be less hard on yourself", 
+        tags: ["advice"] 
+    },
+    { 
+        id: 539, 
+        pt: "Você deveria começar pelo mais fácil.", 
+        en: [
+            "You should start with the easiest part",
+            "You should start with the easiest thing"
+        ],
+        tags: ["advice"] 
+    },
 
     // Sugestão
-    { id: 149, pt: "Que tal pedir ajuda?", en: ["Why don't you ask for help?", "How about asking for help?"], tags: ["suggestion"] },
-    { id: 150, pt: "Vamos sair mais cedo?", en: "Shall we leave earlier?", tags: ["suggestion"] },
-    { id: 189, pt: "Que tal a gente tentar de novo?", en: ["How about we try again?", "Why don't we try again?"], tags: ["suggestion"] },
-    { id: 190, pt: "Vamos fazer isso depois?", en: "Shall we do this later?", tags: ["suggestion"] },
-    { id: 191, pt: "Podemos pedir comida hoje.", en: "We could order food today.", tags: ["suggestion"] },
-    { id: 525, pt: "Que tal a gente sair agora?", en: ["How about we go out now?", "Why don't we go out now?"], tags: ["suggestion"] },
-    { id: 526, pt: "Vamos tomar um café?", en: "Shall we have a coffee?", tags: ["suggestion"] },
-    { id: 527, pt: "Que tal assistir um filme hoje?", en: ["How about watching a movie today?", "Why don't we watch a movie today?"], tags: ["suggestion"] },
-    { id: 528, pt: "Vamos começar por essa parte?", en: "Shall we start with this part?", tags: ["suggestion"] },
-    { id: 529, pt: "Que tal você descansar um pouco?", en: ["How about you rest a little?", "Why don't you rest a little?"], tags: ["suggestion"] },
-    { id: 530, pt: "Vamos fazer isso juntos?", en: "Shall we do this together?", tags: ["suggestion"] },
-    { id: 531, pt: "Que tal a gente estudar agora?", en: ["How about we study now?", "Why don't we study now?"], tags: ["suggestion"] },
-    { id: 532, pt: "Vamos praticar inglês um pouco?", en: "Shall we practice English a little?", tags: ["suggestion"] },
-    { id: 533, pt: "Que tal você tentar de novo?", en: ["How about you try again?", "Why don't you try again?"], tags: ["suggestion"] },
-    { id: 534, pt: "Vamos sair mais cedo amanhã?", en: "Shall we leave earlier tomorrow?", tags: ["suggestion"] },
-    { id: 535, pt: "Que tal pedir mais um tempo?", en: ["How about asking for more time?", "Why don't you ask for more time?"], tags: ["suggestion"] },
-    { id: 536, pt: "Vamos marcar para depois?", en: "Shall we schedule it for later?", tags: ["suggestion"] },
-    { id: 537, pt: "Que tal a gente comer algo?", en: ["How about we eat something?", "Why don't we eat something?"], tags: ["suggestion"] },
-    { id: 538, pt: "Vamos pedir comida hoje?", en: "Shall we order food today?", tags: ["suggestion"] },
-    { id: 539, pt: "Que tal você beber água?", en: ["How about you drink some water?", "Why don't you drink some water?"], tags: ["suggestion"] },
-    { id: 540, pt: "Vamos fazer uma pausa?", en: "Shall we take a break?", tags: ["suggestion"] },
-    { id: 541, pt: "Que tal você anotar isso?", en: ["How about writing this down?", "Why don't you write this down?"], tags: ["suggestion"] },
-    { id: 542, pt: "Vamos repetir essa frase?", en: "Shall we repeat this sentence?", tags: ["suggestion"] },
-    { id: 543, pt: "Que tal a gente caminhar um pouco?", en: ["How about we go for a walk?", "Why don't we go for a walk?"], tags: ["suggestion"] },
-    { id: 544, pt: "Vamos conversar depois?", en: "Shall we talk later?", tags: ["suggestion"] },
-    { id: 545, pt: "Que tal você mandar uma mensagem pra ele?", en: ["How about you text him?", "Why don't you text him?"], tags: ["suggestion"] },
-    { id: 546, pt: "Vamos fazer isso de outro jeito?", en: "Shall we do it another way?", tags: ["suggestion"] },
-    { id: 547, pt: "Que tal assistir uma aula curta?", en: ["How about watching a short lesson?", "Why don't you watch a short lesson?"], tags: ["suggestion"] },
-    { id: 548, pt: "Vamos tentar mais uma vez?", en: "Shall we try one more time?", tags: ["suggestion"] },
-    { id: 549, pt: "Que tal a gente ir de ônibus?", en: ["How about we take the bus?", "Why don't we take the bus?"], tags: ["suggestion"] },
-    { id: 550, pt: "Vamos comprar isso depois?", en: "Shall we buy it later?", tags: ["suggestion"] },
-    { id: 551, pt: "Que tal você falar com calma?", en: ["How about speaking calmly?", "Why don't you speak calmly?"], tags: ["suggestion"] },
-    { id: 552, pt: "Vamos focar no mais importante primeiro?", en: "Shall we focus on the most important thing first?", tags: ["suggestion"] },
-    { id: 553, pt: "Que tal a gente revisar isso juntos?", en: ["How about we review this together?", "Why don't we review this together?"], tags: ["suggestion"] },
-    { id: 554, pt: "Vamos resolver isso agora?", en: "Shall we solve this now?", tags: ["suggestion"] },
-    { id: 555, pt: "Que tal a gente descansar um pouco agora?", en: ["How about we rest a little now?", "Why don't we rest a little now?"], tags: ["suggestion"] },
-    { id: 556, pt: "Vamos começar por uma parte mais fácil?", en: "Shall we start with an easier part?", tags: ["suggestion"] },
-    { id: 557, pt: "Que tal você revisar isso rapidinho?", en: ["How about you review this quickly?", "Why don't you review this quickly?"], tags: ["suggestion"] },
-    { id: 558, pt: "Vamos fazer um plano antes de começar?", en: "Shall we make a plan before we start?", tags: ["suggestion"] },
-    { id: 559, pt: "Podemos tentar de novo amanhã.", en: "We could try again tomorrow.", tags: ["suggestion"] },
-    { id: 560, pt: "Que tal a gente estudar só mais 10 minutos?", en: ["How about we study for just 10 more minutes?", "Why don't we study for 10 more minutes?"], tags: ["suggestion"] },
-    { id: 561, pt: "Vamos deixar isso pra depois?", en: "Shall we leave this for later?", tags: ["suggestion"] },
-    { id: 562, pt: "Que tal você beber um chá?", en: ["How about you have some tea?", "Why don't you drink some tea?"], tags: ["suggestion"] },
-    { id: 563, pt: "Vamos caminhar um pouco pra relaxar?", en: "Shall we go for a walk to relax?", tags: ["suggestion"] },
-    { id: 564, pt: "Podemos assistir outro episódio.", en: "We could watch another episode.", tags: ["suggestion"] },
-    { id: 565, pt: "Que tal você desligar o celular por um tempo?", en: ["How about turning off your phone for a while?", "Why don't you turn off your phone for a while?"], tags: ["suggestion"] },
-    { id: 566, pt: "Vamos organizar isso antes de continuar?", en: "Shall we organize this before we continue?", tags: ["suggestion"] },
-    { id: 567, pt: "Que tal a gente fazer uma pausa rápida?", en: ["How about we take a quick break?", "Why don't we take a quick break?"], tags: ["suggestion"] },
-    { id: 568, pt: "Vamos tentar explicar de um jeito diferente?", en: "Shall we try to explain it in a different way?", tags: ["suggestion"] },
-    { id: 569, pt: "Podemos marcar isso para amanhã.", en: "We could schedule this for tomorrow.", tags: ["suggestion"] },
+    { 
+        id: 149, 
+        pt: "Que tal pedir ajuda?", 
+        en: [
+            "Why don't you ask for help?",
+            "How about asking for help?"
+        ],
+        tags: ["suggestion"] 
+    },
+    { 
+        id: 150, 
+        pt: "Vamos sair mais cedo?", 
+        en: [
+            "Shall we leave earlier?",
+            "Let's leave earlier"
+        ],
+        tags: ["suggestion"] 
+    },
+    { 
+        id: 189, 
+        pt: "Que tal a gente tentar de novo?", 
+        en: [
+            "How about we try again?",
+            "Why don't we try again?",
+            "How about trying again?"
+        ],
+        tags: ["suggestion"] 
+    },
+    { 
+        id: 190, 
+        pt: "Vamos fazer isso depois?", 
+        en: [
+            "Shall we do this later?",
+            "Let's do this later"
+        ],
+        tags: ["suggestion"] 
+    },
+    { 
+        id: 191, 
+        pt: "Podemos pedir comida hoje.", 
+        en: "We could order food today", 
+        tags: ["suggestion"] 
+    },
+    { 
+        id: 525, 
+        pt: "Que tal a gente sair agora?", 
+        en: [
+            "How about we go out now?",
+            "Why don't we go out now?",
+            "How about going out now?"
+        ],
+        tags: ["suggestion"] 
+    },
+    { 
+        id: 526, 
+        pt: "Vamos tomar um café?", 
+        en: [
+            "Shall we have a coffee?",
+            "Let's have a coffee",
+            "Let's get some coffee"
+        ],
+        tags: ["suggestion"] 
+    },
+    { 
+        id: 527, 
+        pt: "Que tal assistir um filme hoje?", 
+        en: [
+            "How about watching a movie today?",
+            "Why don't we watch a movie today?"
+        ],
+        tags: ["suggestion"] 
+    },
+    { 
+        id: 528, 
+        pt: "Vamos começar por essa parte?", 
+        en: [
+            "Shall we start with this part?",
+            "Let's start with this part"
+        ],
+        tags: ["suggestion"] 
+    },
+    { 
+        id: 529, 
+        pt: "Que tal você descansar um pouco?", 
+        en: [
+            "How about you rest a little?",
+            "Why don't you rest a little?"
+        ],
+        tags: ["suggestion"] 
+    },
+    { 
+        id: 530, 
+        pt: "Vamos fazer isso juntos?", 
+        en: [
+            "Shall we do this together?",
+            "Let's do this together"
+        ],
+        tags: ["suggestion"] 
+    },
+    { 
+        id: 531, 
+        pt: "Que tal a gente estudar agora?", 
+        en: [
+            "How about we study now?",
+            "Why don't we study now?",
+            "How about studying now?"
+        ],
+        tags: ["suggestion"] 
+    },
+    { 
+        id: 532, 
+        pt: "Vamos praticar inglês um pouco?", 
+        en: [
+            "Shall we practice English a little?",
+            "Let's practice English a little"
+        ],
+        tags: ["suggestion"] 
+    },
+    { 
+        id: 533, 
+        pt: "Que tal você tentar de novo?", 
+        en: [
+            "How about you try again?",
+            "Why don't you try again?"
+        ],
+        tags: ["suggestion"] 
+    },
+    { 
+        id: 534, 
+        pt: "Vamos sair mais cedo amanhã?", 
+        en: [
+            "Shall we leave earlier tomorrow?",
+            "Let's leave earlier tomorrow"
+        ],
+        tags: ["suggestion"] 
+    },
+    { 
+        id: 535, 
+        pt: "Que tal pedir mais um tempo?", 
+        en: [
+            "How about asking for more time?",
+            "Why don't you ask for more time?"
+        ],
+        tags: ["suggestion"] 
+    },
+    { 
+        id: 536, 
+        pt: "Vamos marcar para depois?", 
+        en: [
+            "Shall we schedule it for later?",
+            "Let's schedule it for later"
+        ],
+        tags: ["suggestion"] 
+    },
+    { 
+        id: 537, 
+        pt: "Que tal a gente comer algo?", 
+        en: [
+            "How about we eat something?",
+            "Why don't we eat something?"
+        ],
+        tags: ["suggestion"] 
+    },
+    { 
+        id: 538, 
+        pt: "Vamos pedir comida hoje?", 
+        en: [
+            "Shall we order food today?",
+            "Let's order food today"
+        ],
+        tags: ["suggestion"] 
+    },
+    { 
+        id: 539, 
+        pt: "Que tal você beber água?", 
+        en: [
+            "How about you drink some water?",
+            "Why don't you drink some water?",
+            "How about drinking some water?"
+        ],
+        tags: ["suggestion"] 
+    },
+    { 
+        id: 540, 
+        pt: "Vamos fazer uma pausa?", 
+        en: [
+            "Shall we take a break?",
+            "Let's take a break"
+        ],
+        tags: ["suggestion"] 
+    },
+    { 
+        id: 541, 
+        pt: "Que tal você anotar isso?", 
+        en: [
+            "How about writing this down?",
+            "Why don't you write this down?"
+        ],
+        tags: ["suggestion"] 
+    },
+    { 
+        id: 542, 
+        pt: "Vamos repetir essa frase?", 
+        en: [
+            "Shall we repeat this sentence?",
+            "Let's repeat this sentence"
+        ],
+        tags: ["suggestion"] 
+    },
+    { 
+        id: 543, 
+        pt: "Que tal a gente caminhar um pouco?", 
+        en: [
+            "How about we go for a walk?",
+            "Why don't we go for a walk?"
+        ],
+        tags: ["suggestion"] 
+    },
+    { 
+        id: 544, 
+        pt: "Vamos conversar depois?", 
+        en: [
+            "Shall we talk later?",
+            "Let's talk later"
+        ],
+        tags: ["suggestion"] 
+    },
+    { 
+        id: 545, 
+        pt: "Que tal você mandar uma mensagem pra ele?", 
+        en: [
+            "How about you text him?",
+            "Why don't you text him?"
+        ],
+        tags: ["suggestion"] 
+    },
+    { 
+        id: 546, 
+        pt: "Vamos fazer isso de outro jeito?", 
+        en: [
+            "Shall we do it another way?",
+            "Let's do it another way"
+        ],
+        tags: ["suggestion"] 
+    },
+    { 
+        id: 547, 
+        pt: "Que tal assistir uma aula curta?", 
+        en: [
+            "How about watching a short lesson?",
+            "Why don't you watch a short lesson?"
+        ],
+        tags: ["suggestion"] 
+    },
+    { 
+        id: 548, 
+        pt: "Vamos tentar mais uma vez?", 
+        en: [
+            "Shall we try one more time?",
+            "Let's try one more time"
+        ],
+        tags: ["suggestion"] 
+    },
+    { 
+        id: 549, 
+        pt: "Que tal a gente ir de ônibus?", 
+        en: [
+            "How about we take the bus?",
+            "Why don't we take the bus?"
+        ],
+        tags: ["suggestion"] 
+    },
+    { 
+        id: 550, 
+        pt: "Vamos comprar isso depois?", 
+        en: [
+            "Shall we buy it later?",
+            "Let's buy it later"
+        ],
+        tags: ["suggestion"] 
+    },
+    { 
+        id: 551, 
+        pt: "Que tal você falar com calma?", 
+        en: [
+            "How about speaking calmly?",
+            "Why don't you speak calmly?"
+        ],
+        tags: ["suggestion"] 
+    },
+    { 
+        id: 552, 
+        pt: "Vamos focar no mais importante primeiro?", 
+        en: [
+            "Shall we focus on the most important thing first?",
+            "Let's focus on the most important thing first"
+        ],
+        tags: ["suggestion"] 
+    },
+    { 
+        id: 553, 
+        pt: "Que tal a gente revisar isso juntos?", 
+        en: [
+            "How about we review this together?",
+            "Why don't we review this together?"
+        ],
+        tags: ["suggestion"] 
+    },
+    { 
+        id: 554, 
+        pt: "Vamos resolver isso agora?", 
+        en: [
+            "Shall we solve this now?",
+            "Let's solve this now",
+            "Let's fix this now"
+        ],
+        tags: ["suggestion"] 
+    },
+    { 
+        id: 555, 
+        pt: "Que tal a gente descansar um pouco agora?", 
+        en: [
+            "How about we rest a little now?",
+            "Why don't we rest a little now?"
+        ],
+        tags: ["suggestion"] 
+    },
+    { 
+        id: 556, 
+        pt: "Vamos começar por uma parte mais fácil?", 
+        en: [
+            "Shall we start with an easier part?",
+            "Let's start with an easier part"
+        ],
+        tags: ["suggestion"] 
+    },
+    { 
+        id: 557, 
+        pt: "Que tal você revisar isso rapidinho?", 
+        en: [
+            "How about you review this quickly?",
+            "Why don't you review this quickly?"
+        ],
+        tags: ["suggestion"] 
+    },
+    { 
+        id: 558, 
+        pt: "Vamos fazer um plano antes de começar?", 
+        en: [
+            "Shall we make a plan before we start?",
+            "Let's make a plan before we start"
+        ],
+        tags: ["suggestion"] 
+    },
+    { 
+        id: 559, 
+        pt: "Podemos tentar de novo amanhã.", 
+        en: "We could try again tomorrow", 
+        tags: ["suggestion"] 
+    },
+    { 
+        id: 560, 
+        pt: "Que tal a gente estudar só mais 10 minutos?", 
+        en: [
+            "How about we study for just 10 more minutes?",
+            "Why don't we study for just 10 more minutes?"
+        ],
+        tags: ["suggestion"] 
+    },
+    { 
+        id: 561, 
+        pt: "Vamos deixar isso pra depois?", 
+        en: [
+            "Shall we leave this for later?",
+            "Let's leave this for later"
+        ],
+        tags: ["suggestion"] 
+    },
+    { 
+        id: 562, 
+        pt: "Que tal você beber um chá?", 
+        en: [
+            "How about you have some tea?",
+            "Why don't you drink some tea?",
+            "How about having some tea?"
+        ],
+        tags: ["suggestion"] 
+    },
+    { 
+        id: 563, 
+        pt: "Vamos caminhar um pouco pra relaxar?", 
+        en: [
+            "Shall we go for a walk to relax?",
+            "Let's go for a walk to relax"
+        ],
+        tags: ["suggestion"] 
+    },
+    { 
+        id: 564, 
+        pt: "Podemos assistir outro episódio.", 
+        en: "We could watch another episode", 
+        tags: ["suggestion"] 
+    },
+    { 
+        id: 565, 
+        pt: "Que tal você desligar o celular por um tempo?", 
+        en: [
+            "How about turning off your phone for a while?",
+            "Why don't you turn off your phone for a while?"
+        ],
+        tags: ["suggestion"] 
+    },
+    { 
+        id: 566, 
+        pt: "Vamos organizar isso antes de continuar?", 
+        en: [
+            "Shall we organize this before we continue?",
+            "Let's organize this before we continue"
+        ],
+        tags: ["suggestion"] 
+    },
+    { 
+        id: 567, 
+        pt: "Que tal a gente fazer uma pausa rápida?", 
+        en: [
+            "How about we take a quick break?",
+            "Why don't we take a quick break?"
+        ],
+        tags: ["suggestion"] 
+    },
+    { 
+        id: 568, 
+        pt: "Vamos tentar explicar de um jeito diferente?", 
+        en: [
+            "Shall we try to explain it in a different way?",
+            "Let's try to explain it in a different way"
+        ],
+        tags: ["suggestion"] 
+    },
+    { 
+        id: 569, 
+        pt: "Podemos marcar isso para amanhã.", 
+        en: "We could schedule this for tomorrow", 
+        tags: ["suggestion"] 
+    },
 
     // Possibilidade
-    { id: 151, pt: "Talvez ele chegue tarde.", en: "Maybe he arrives late.", tags: ["possibility"] },
-    { id: 152, pt: "Pode ser que eu me atrase.", en: ["I might be late.", "I may be late."], tags: ["possibility"] },
-    { id: 192, pt: "Acho que ele não vem hoje.", en: ["I think he isn't coming today.", "I don't think he's coming today."], tags: ["possibility"] },
-    { id: 193, pt: "Talvez eu vá mais tarde.", en: "Maybe I'll go later.", tags: ["possibility", "future"] },
-    { id: 194, pt: "Pode ser que chova à noite.", en: ["It might rain at night.", "It may rain tonight."], tags: ["possibility"] },
-    { id: 555, pt: "Talvez ele esteja ocupado.", en: "Maybe he's busy.", tags: ["possibility"] },
-    { id: 556, pt: "Pode ser que ela chegue mais cedo.", en: ["She might arrive earlier.", "She may arrive earlier."], tags: ["possibility"] },
-    { id: 557, pt: "Acho que vai chover hoje.", en: "I think it's going to rain today.", tags: ["possibility"] },
-    { id: 558, pt: "Talvez eu não consiga ir.", en: "Maybe I won't be able to go.", tags: ["possibility"] },
-    { id: 559, pt: "Pode ser que ele esteja dormindo.", en: ["He might be sleeping.", "He may be sleeping."], tags: ["possibility"] },
-    { id: 560, pt: "Talvez a gente saia mais tarde.", en: "Maybe we'll go out later.", tags: ["possibility"] },
-    { id: 561, pt: "Pode ser que eu esqueça.", en: ["I might forget.", "I may forget."], tags: ["possibility"] },
-    { id: 562, pt: "Talvez ela não goste.", en: "Maybe she doesn't like it.", tags: ["possibility"] },
-    { id: 563, pt: "Acho que ele já foi embora.", en: "I think he already left.", tags: ["possibility"] },
-    { id: 564, pt: "Pode ser que isso demore.", en: ["This might take a while.", "This may take a while."], tags: ["possibility"] },
-    { id: 565, pt: "Talvez ele não responda agora.", en: "Maybe he won't reply now.", tags: ["possibility"] },
-    { id: 566, pt: "Pode ser que eu esteja errado.", en: ["I might be wrong.", "I may be wrong."], tags: ["possibility"] },
-    { id: 567, pt: "Talvez a internet caia de novo.", en: "Maybe the internet will go down again.", tags: ["possibility"] },
-    { id: 568, pt: "Pode ser que ela esteja ocupada.", en: ["She might be busy.", "She may be busy."], tags: ["possibility"] },
-    { id: 569, pt: "Acho que ele não entendeu.", en: "I think he didn't understand.", tags: ["possibility"] },
-    { id: 570, pt: "Talvez eu precise de ajuda.", en: "Maybe I'll need help.", tags: ["possibility"] },
-    { id: 571, pt: "Pode ser que a gente se atrase.", en: ["We might be late.", "We may be late."], tags: ["possibility"] },
-    { id: 572, pt: "Talvez isso seja verdade.", en: "Maybe that's true.", tags: ["possibility"] },
-    { id: 573, pt: "Pode ser que ele esteja no trabalho.", en: ["He might be at work.", "He may be at work."], tags: ["possibility"] },
-    { id: 574, pt: "Talvez ela esteja doente.", en: "Maybe she's sick.", tags: ["possibility"] },
-    { id: 575, pt: "Acho que a loja já fechou.", en: "I think the store is already closed.", tags: ["possibility"] },
-    { id: 576, pt: "Pode ser que ele esteja com fome.", en: ["He might be hungry.", "He may be hungry."], tags: ["possibility"] },
-    { id: 577, pt: "Talvez eu vá amanhã.", en: "Maybe I'll go tomorrow.", tags: ["possibility"] },
-    { id: 578, pt: "Pode ser que ela não venha hoje.", en: ["She might not come today.", "She may not come today."], tags: ["possibility"] },
-    { id: 579, pt: "Talvez a gente consiga resolver hoje.", en: "Maybe we can solve it today.", tags: ["possibility"] },
-    { id: 580, pt: "Pode ser que eu não tenha tempo.", en: ["I might not have time.", "I may not have time."], tags: ["possibility"] },
-    { id: 581, pt: "Acho que ele vai chegar atrasado.", en: "I think he's going to arrive late.", tags: ["possibility"] },
-    { id: 582, pt: "Talvez eu esteja cansado demais.", en: "Maybe I'm too tired.", tags: ["possibility"] },
-    { id: 583, pt: "Pode ser que isso dê certo.", en: ["This might work.", "This may work."], tags: ["possibility"] },
-    { id: 584, pt: "Talvez a gente precise tentar de novo.", en: "Maybe we need to try again.", tags: ["possibility"] },
-    { id: 585, pt: "Talvez eu chegue um pouco mais tarde.", en: "Maybe I'll arrive a little later.", tags: ["possibility", "future"] },
-    { id: 586, pt: "Pode ser que ele não tenha visto a mensagem.", en: ["He might not have seen the message.", "He may not have seen the message."], tags: ["possibility"] },
-    { id: 587, pt: "Acho que a gente vai precisar de mais tempo.", en: "I think we'll need more time.", tags: ["possibility"] },
-    { id: 588, pt: "Talvez ela esteja no caminho agora.", en: "Maybe she's on the way now.", tags: ["possibility"] },
-    { id: 589, pt: "Pode ser que eu tenha entendido errado.", en: ["I might have understood it wrong.", "I may have misunderstood."], tags: ["possibility", "past"] },
-    { id: 590, pt: "Talvez o problema seja mais simples do que parece.", en: "Maybe the problem is simpler than it looks.", tags: ["possibility"] },
-    { id: 591, pt: "Pode ser que ele esteja sem internet.", en: ["He might not have internet.", "He may be without internet."], tags: ["possibility"] },
-    { id: 592, pt: "Acho que ela vai gostar da ideia.", en: "I think she'll like the idea.", tags: ["possibility", "future"] },
-    { id: 593, pt: "Talvez eu precise sair mais cedo hoje.", en: "Maybe I need to leave earlier today.", tags: ["possibility"] },
-    { id: 594, pt: "Pode ser que a gente não consiga hoje.", en: ["We might not be able to do it today.", "We may not be able to do it today."], tags: ["possibility"] },
-    { id: 595, pt: "Talvez ele esteja de mau humor.", en: "Maybe he's in a bad mood.", tags: ["possibility"] },
-    { id: 596, pt: "Pode ser que isso aconteça de novo.", en: ["This might happen again.", "This may happen again."], tags: ["possibility"] }
+    { 
+        id: 151, 
+        pt: "Talvez ele chegue tarde.", 
+        en: "Maybe he arrives late", 
+        tags: ["possibility"] 
+    },
+    { 
+        id: 152, 
+        pt: "Pode ser que eu me atrase.", 
+        en: [
+            "I might be late",
+            "I may be late"
+        ],
+        tags: ["possibility"] 
+    },
+    { 
+        id: 192, 
+        pt: "Acho que ele não vem hoje.", 
+        en: [
+            "I do not/don't think he is/he's coming today",
+            "I think he is not/isn't coming today"
+        ],
+        tags: ["possibility"] 
+    },
+    { 
+        id: 193, 
+        pt: "Talvez eu vá mais tarde.", 
+        en: [
+            "Maybe I will/I'll go later",
+            "Perhaps I will/I'll go later"
+        ],
+        tags: ["possibility", "future"] 
+    },
+    { 
+        id: 194, 
+        pt: "Pode ser que chova à noite.", 
+        en: [
+            "It might rain at night",
+            "It may rain tonight",
+            "It might rain tonight"
+        ],
+        tags: ["possibility"] 
+    },
+    { 
+        id: 555, 
+        pt: "Talvez ele esteja ocupado.", 
+        en: "Maybe he is/he's busy", 
+        tags: ["possibility"] 
+    },
+    { 
+        id: 556, 
+        pt: "Pode ser que ela chegue mais cedo.", 
+        en: [
+            "She might arrive earlier",
+            "She may arrive earlier"
+        ],
+        tags: ["possibility"] 
+    },
+    { 
+        id: 557, 
+        pt: "Acho que vai chover hoje.", 
+        en: [
+            "I think it is/it's going to rain today",
+            "I think it will/it'll rain today"
+        ],
+        tags: ["possibility"] 
+    },
+    { 
+        id: 558, 
+        pt: "Talvez eu não consiga ir.", 
+        en: [
+            "Maybe I will not/won't be able to go",
+            "Maybe I cannot/can't go"
+        ],
+        tags: ["possibility"] 
+    },
+    { 
+        id: 559, 
+        pt: "Pode ser que ele esteja dormindo.", 
+        en: [
+            "He might be sleeping",
+            "He may be sleeping"
+        ],
+        tags: ["possibility"] 
+    },
+    { 
+        id: 560, 
+        pt: "Talvez a gente saia mais tarde.", 
+        en: [
+            "Maybe we will/we'll go out later",
+            "Perhaps we will/we'll go out later"
+        ],
+        tags: ["possibility"] 
+    },
+    { 
+        id: 561, 
+        pt: "Pode ser que eu esqueça.", 
+        en: [
+            "I might forget",
+            "I may forget"
+        ],
+        tags: ["possibility"] 
+    },
+    { 
+        id: 562, 
+        pt: "Talvez ela não goste.", 
+        en: "Maybe she does not/doesn't like it", 
+        tags: ["possibility"] 
+    },
+    { 
+        id: 563, 
+        pt: "Acho que ele já foi embora.", 
+        en: [
+            "I think he already left",
+            "I think he has/he's already left"
+        ],
+        tags: ["possibility"] 
+    },
+    { 
+        id: 564, 
+        pt: "Pode ser que isso demore.", 
+        en: [
+            "This might take a while",
+            "This may take a while"
+        ],
+        tags: ["possibility"] 
+    },
+    { 
+        id: 565, 
+        pt: "Talvez ele não responda agora.", 
+        en: [
+            "Maybe he will not/won't reply now",
+            "Maybe he will not/won't answer now"
+        ],
+        tags: ["possibility"] 
+    },
+    { 
+        id: 566, 
+        pt: "Pode ser que eu esteja errado.", 
+        en: [
+            "I might be wrong",
+            "I may be wrong"
+        ],
+        tags: ["possibility"] 
+    },
+    { 
+        id: 567, 
+        pt: "Talvez a internet caia de novo.", 
+        en: [
+            "Maybe the internet will go down again",
+            "Maybe the internet goes down again"
+        ],
+        tags: ["possibility"] 
+    },
+    { 
+        id: 568, 
+        pt: "Pode ser que ela esteja ocupada.", 
+        en: [
+            "She might be busy",
+            "She may be busy"
+        ],
+        tags: ["possibility"] 
+    },
+    { 
+        id: 569, 
+        pt: "Acho que ele não entendeu.", 
+        en: "I think he did not/didn't understand", 
+        tags: ["possibility"] 
+    },
+    { 
+        id: 570, 
+        pt: "Talvez eu precise de ajuda.", 
+        en: [
+            "Maybe I will/I'll need help",
+            "Maybe I need help"
+        ],
+        tags: ["possibility"] 
+    },
+    { 
+        id: 571, 
+        pt: "Pode ser que a gente se atrase.", 
+        en: [
+            "We might be late",
+            "We may be late",
+            "We might get late"
+        ],
+        tags: ["possibility"] 
+    },
+    { 
+        id: 572, 
+        pt: "Talvez isso seja verdade.", 
+        en: "Maybe that is/that's true", 
+        tags: ["possibility"] 
+    },
+    { 
+        id: 573, 
+        pt: "Pode ser que ele esteja no trabalho.", 
+        en: [
+            "He might be at work",
+            "He may be at work"
+        ],
+        tags: ["possibility"] 
+    },
+    { 
+        id: 574, 
+        pt: "Talvez ela esteja doente.", 
+        en: "Maybe she is/she's sick/ill", 
+        tags: ["possibility"] 
+    },
+    { 
+        id: 575, 
+        pt: "Acho que a loja já fechou.", 
+        en: [
+            "I think the store/shop is already closed",
+            "I think the store/shop has/shop's already closed"
+        ],
+        tags: ["possibility"] 
+    },
+    { 
+        id: 576, 
+        pt: "Pode ser que ele esteja com fome.", 
+        en: [
+            "He might be hungry",
+            "He may be hungry"
+        ],
+        tags: ["possibility"] 
+    },
+    { 
+        id: 577, 
+        pt: "Talvez eu vá amanhã.", 
+        en: "Maybe I will/I'll go tomorrow", 
+        tags: ["possibility"] 
+    },
+    { 
+        id: 578, 
+        pt: "Pode ser que ela não venha hoje.", 
+        en: [
+            "She might not come today",
+            "She may not come today"
+        ],
+        tags: ["possibility"] 
+    },
+    { 
+        id: 579, 
+        pt: "Talvez a gente consiga resolver hoje.", 
+        en: [
+            "Maybe we can solve (it/this) today",
+            "Maybe we can fix (it/this) today"
+        ],
+        tags: ["possibility"] 
+    },
+    { 
+        id: 580, 
+        pt: "Pode ser que eu não tenha tempo.", 
+        en: [
+            "I might not have time",
+            "I may not have time"
+        ],
+        tags: ["possibility"] 
+    },
+    { 
+        id: 581, 
+        pt: "Acho que ele vai chegar atrasado.", 
+        en: [
+            "I think he is/he's going to arrive late",
+            "I think he will/he'll arrive late"
+        ],
+        tags: ["possibility"] 
+    },
+    { 
+        id: 582, 
+        pt: "Talvez eu esteja cansado demais.", 
+        en: "Maybe I am/I'm too tired", 
+        tags: ["possibility"] 
+    },
+    { 
+        id: 583, 
+        pt: "Pode ser que isso dê certo.", 
+        en: [
+            "This might work (out)",
+            "This may work (out)"
+        ],
+        tags: ["possibility"] 
+    },
+    { 
+        id: 584, 
+        pt: "Talvez a gente precise tentar de novo.", 
+        en: "Maybe we need to try again", 
+        tags: ["possibility"] 
+    },
+    { 
+        id: 585, 
+        pt: "Talvez eu chegue um pouco mais tarde.", 
+        en: [
+            "Maybe I will/I'll arrive a little later",
+            "Maybe I will/I'll be a little late"
+        ],
+        tags: ["possibility", "future"] 
+    },
+    { 
+        id: 586, 
+        pt: "Pode ser que ele não tenha visto a mensagem.", 
+        en: [
+            "He might not have seen the message",
+            "He may not have seen the message"
+        ],
+        tags: ["possibility"] 
+    },
+    { 
+        id: 587, 
+        pt: "Acho que a gente vai precisar de mais tempo.", 
+        en: [
+            "I think we will/we'll need more time",
+            "I think we are/we're going to need more time"
+        ],
+        tags: ["possibility"] 
+    },
+    { 
+        id: 588, 
+        pt: "Talvez ela esteja no caminho agora.", 
+        en: "Maybe she is/she's on the way now", 
+        tags: ["possibility"] 
+    },
+    { 
+        id: 589, 
+        pt: "Pode ser que eu tenha entendido errado.", 
+        en: [
+            "I might have understood (it) wrong",
+            "I may have understood (it) wrong",
+            "I might have misunderstood"
+        ],
+        tags: ["possibility"] 
+    },
+    { 
+        id: 590, 
+        pt: "Talvez o problema seja mais simples do que parece.", 
+        en: "Maybe the problem is simpler than it looks/seems", 
+        tags: ["possibility"] 
+    },
+    { 
+        id: 591, 
+        pt: "Pode ser que ele esteja sem internet.", 
+        en: [
+            "He might be without internet",
+            "He may be without internet",
+            "He might not have internet"
+        ],
+        tags: ["possibility"] 
+    },
+    { 
+        id: 592, 
+        pt: "Acho que ela vai gostar da ideia.", 
+        en: [
+            "I think she will/she'll like the idea",
+            "I think she is/she's going to like the idea"
+        ],
+        tags: ["possibility", "future"] 
+    },
+    { 
+        id: 593, 
+        pt: "Talvez eu precise sair mais cedo hoje.", 
+        en: "Maybe I need to leave earlier today", 
+        tags: ["possibility"] 
+    },
+    { 
+        id: 594, 
+        pt: "Pode ser que a gente não consiga hoje.", 
+        en: [
+            "We might not be able to do it today",
+            "We may not be able to do it today",
+            "We might not make it today"
+        ],
+        tags: ["possibility"] 
+    },
+    { 
+        id: 595, 
+        pt: "Talvez ele esteja de mau humor.", 
+        en: "Maybe he is/he's in a bad mood", 
+        tags: ["possibility"] 
+    },
+    { 
+        id: 596, 
+        pt: "Pode ser que isso aconteça de novo.", 
+        en: [
+            "This might happen again",
+            "This may happen again"
+        ],
+        tags: ["possibility"] 
+    },
   ]
 };
 //#endregion
