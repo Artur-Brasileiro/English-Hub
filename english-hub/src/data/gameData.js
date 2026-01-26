@@ -8832,9 +8832,6 @@ export const TRANSLATION_DATA = {
     { id: 14018, pt: "Pode ser perigoso?", en: ["Can it be dangerous?", "Could it be dangerous?"] },
     { id: 14019, pt: "Nós poderíamos tentar outra vez?", en: ["Could we try again?", "Can we try again?"] },
     { id: 14020, pt: "Sonhos podem se tornar realidade?", en: ["Can dreams come true?", "Could dreams come true?"] },
-
-    // Present perfect
-    
   ],
 };
 //#endregion

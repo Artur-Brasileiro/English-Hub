@@ -343,7 +343,7 @@ const VocabularyGame = ({ onBack }) => {
       <div className="min-h-screen bg-slate-50 py-12 px-4 animate-fade-in">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-8">
-            <div className="bg-blue-100 p-4 rounded-full inline-flex mb-4 text-blue-600 shadow-sm">
+            <div className="bg-rose-100 p-4 rounded-full inline-flex mb-4 text-rose-600 shadow-sm">
               <BookOpen className="w-10 h-10 md:w-12 md:h-12" />
             </div>
             <h1 className="text-3xl md:text-4xl font-extrabold text-slate-800 mb-3">
@@ -366,11 +366,11 @@ const VocabularyGame = ({ onBack }) => {
               <div
                 key={levelId}
                 onClick={() => enterLevel(levelId)}
-                className="group bg-white rounded-xl border border-slate-200 p-5 hover:shadow-lg hover:border-blue-300 transition-all duration-300 cursor-pointer relative overflow-hidden"
+                className="group bg-white rounded-xl border border-slate-200 p-5 hover:shadow-lg hover:border-rose-300 transition-all duration-300 cursor-pointer relative overflow-hidden"
               >
                 <div className="relative z-10 flex justify-between items-center">
                   <div>
-                    <span className="bg-blue-50 text-blue-700 text-xs font-bold px-2 py-1 rounded mb-2 inline-block uppercase tracking-wider">
+                    <span className="bg-rose-50 text-rose-700 text-xs font-bold px-2 py-1 rounded mb-2 inline-block uppercase tracking-wider">
                       Nível {levelId}
                     </span>
                     <p className="text-slate-500 text-xs font-medium">
@@ -378,7 +378,7 @@ const VocabularyGame = ({ onBack }) => {
                       {Math.min(levelId * WORDS_PER_LEVEL, VOCABULARY_DATA.length)}
                     </p>
                   </div>
-                  <div className="w-10 h-10 rounded-full bg-slate-100 flex items-center justify-center group-hover:bg-blue-600 group-hover:text-white transition-colors">
+                  <div className="w-10 h-10 rounded-full bg-slate-100 flex items-center justify-center group-hover:bg-rose-600 group-hover:text-white transition-colors">
                     <PlayCircle className="w-5 h-5" />
                   </div>
                 </div>
@@ -417,7 +417,7 @@ const VocabularyGame = ({ onBack }) => {
             {currentLevelId < totalLevels && (
               <button
                 onClick={() => enterLevel(currentLevelId + 1)}
-                className="w-full py-3.5 bg-blue-600 text-white font-bold rounded-xl hover:bg-blue-700 transition-colors shadow-lg shadow-blue-200 flex items-center justify-center gap-2"
+                className="w-full py-3.5 bg-rose-600 text-white font-bold rounded-xl hover:bg-rose-700 transition-colors shadow-lg shadow-rose-200 flex items-center justify-center gap-2"
               >
                 Próximo Nível <ArrowRight className="w-4 h-4" />
               </button>
@@ -462,13 +462,13 @@ const VocabularyGame = ({ onBack }) => {
         <div className="bg-white rounded-3xl shadow-xl border border-slate-100 overflow-hidden relative">
           <div className="w-full bg-slate-100 h-2">
             <div
-              className="bg-blue-600 h-2 transition-all duration-500 ease-out"
+              className="bg-rose-600 h-2 transition-all duration-500 ease-out"
               style={{ width: `${progressPercentage}%` }}
             />
           </div>
 
           <div className="p-8 md:p-12 text-center">
-            <span className="inline-flex items-center gap-1 px-3 py-1 bg-blue-50 text-blue-600 text-xs font-bold uppercase tracking-widest rounded-full mb-8">
+            <span className="inline-flex items-center gap-1 px-3 py-1 bg-rose-50 text-rose-600 text-xs font-bold uppercase tracking-widest rounded-full mb-8">
               <PlayCircle className="w-3 h-3" /> Palavra {currentWordIndex + 1} /{' '}
               {currentLevelWords.length}
             </span>
@@ -510,14 +510,14 @@ const VocabularyGame = ({ onBack }) => {
                 <button
                   type="button"
                   onClick={startPronunciationCheck}
-                  className="px-4 py-2 rounded-lg bg-blue-600 text-white text-sm font-bold hover:bg-blue-700 transition-colors disabled:opacity-50 flex items-center gap-2"
+                  className="px-4 py-2 rounded-lg bg-rose-600 text-white text-sm font-bold hover:bg-rose-700 transition-colors disabled:opacity-50 flex items-center gap-2"
                   disabled={isListening}
                 >
                   <span>{isListening ? 'Ouvindo...' : 'Repetir pronuncia'}</span>
                   
-                  {/* BOLINHA INDICADORA */}
+                  {/* BOLINHA INDICADORA - Adicionada borda branca */}
                   <div 
-                    className={`w-3 h-3 rounded-full transition-all duration-300
+                    className={`w-3 h-3 rounded-full transition-all duration-300 border border-white
                       ${
                         // Estado: Ouvindo (Piscando Amarelo/Branco)
                         isListening 
@@ -529,7 +529,7 @@ const VocabularyGame = ({ onBack }) => {
                           pronunciationFeedback === 'wrong'
                           ? 'bg-red-500 shadow-[0_0_8px_rgba(239,68,68,0.8)]'
                           : // Estado: Padrão (Cinza Claro)
-                          'bg-blue-400/50' 
+                          'bg-rose-400/50' 
                       }
                     `}
                   />
@@ -549,7 +549,7 @@ const VocabularyGame = ({ onBack }) => {
                         min-h-17.5 w-full bg-white border-2 rounded-xl flex flex-wrap items-center gap-2 p-3 cursor-text transition-all shadow-sm
                         ${feedback 
                             ? (feedback === 'correct' ? 'border-green-500 bg-green-50' : 'border-red-500 bg-red-50') 
-                            : (isFocused ? 'border-blue-500 shadow-md' : 'border-slate-200 hover:border-slate-300')
+                            : (isFocused ? 'border-rose-500 shadow-md' : 'border-slate-200 hover:border-slate-300')
                         }
                     `}
                     onClick={() => !feedback && inputRef.current?.focus()}
@@ -603,7 +603,7 @@ const VocabularyGame = ({ onBack }) => {
                     {!feedback && (typingText || tags.length > 0) && (
                          <button
                          onClick={checkAnswer}
-                         className="bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors shadow-md p-2 ml-auto"
+                         className="bg-rose-600 text-white rounded-lg hover:bg-rose-700 transition-colors shadow-md p-2 ml-auto"
                          title="Enviar respostas"
                        >
                          <ArrowRight className="w-5 h-5" />
