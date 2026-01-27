@@ -17,6 +17,8 @@ export default function App() {
         <Route path="/" element={<HubPage />} />
 
         <Route path="/vocabulary" element={<VocabularyGame />} />
+        <Route path="/vocabulary/level/:levelId" element={<VocabularyGame />} /> 
+        
         <Route path="/irregular" element={<IrregularVerbsGame />} />
         <Route path="/phrasal" element={<PhrasalVerbsGame />} />
         <Route path="/translation" element={<TranslationGame />} />

@@ -1,5 +1,5 @@
 import React, { useState, useMemo, useRef, useEffect } from 'react';
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { VOCABULARY_DATA } from '../data/gameData';
 import {
   ArrowRight,
@@ -9,7 +9,8 @@ import {
   ArrowLeft,
   BookOpen,
   PlayCircle,
-  CornerDownLeft
+  CornerDownLeft,
+  Heart
 } from 'lucide-react';
 
 const WORDS_PER_LEVEL = 30;
@@ -85,17 +86,58 @@ const shuffleWords = (words) => {
   return shuffled;
 };
 
+// --- COMPONENTE DE ANÚNCIO (AD UNIT) ---
+const AdUnit = ({ slotId, format = "auto", label = "Publicidade", width, height }) => {
+  useEffect(() => {
+    try {
+      (window.adsbygoogle = window.adsbygoogle || []).push({});
+    } catch (e) {
+      console.error("AdSense Error", e);
+    }
+  }, []);
+
+  const style = width && height ? { display: 'inline-block', width, height } : { display: 'block' };
+
+  return (
+    <div className="flex flex-col items-center justify-center my-4">
+      <div className="text-[10px] text-slate-300 uppercase tracking-widest mb-1">{label}</div>
+      <div className="bg-slate-100 border border-slate-200 border-dashed flex items-center justify-center overflow-hidden relative"
+           style={{ width: width || '100%', height: height || 'auto', minHeight: height || '100px' }}>
+        
+        {/* Placeholder visual (Remova este span quando estiver rodando com anúncios reais para limpar o visual) */}
+        <span className="text-slate-300 text-xs font-bold p-4 text-center absolute pointer-events-none">
+             AdSense<br/>{width || 'Auto'} x {height || 'Auto'}
+        </span>
+
+        <ins className="adsbygoogle"
+             style={style}
+             data-ad-client="ca-pub-SEU_ID_DO_CLIENTE" // <--- COLOQUE SEU ID AQUI
+             data-ad-slot={slotId || "1234567890"}     // <--- E AQUI (Slot padrão)
+             data-ad-format={format}
+             data-full-width-responsive="true"></ins>
+      </div>
+    </div>
+  );
+};
+
+
 // --- COMPONENTE PRINCIPAL ---
 
 const VocabularyGame = ({ onBack }) => {
   const navigate = useNavigate();
-  const [view, setView] = useState('menu');
+  const { levelId } = useParams();
+
+  const urlLevel = levelId ? parseInt(levelId) : null;
+
+  const [view, setView] = useState(urlLevel ? 'game' : 'menu');
+  const [currentLevelId, setCurrentLevelId] = useState(urlLevel || 1);
+
+  // Estados para controlar a tela de Anúncio
+  const [showAdScreen, setShowAdScreen] = useState(false);
+  const [pendingAction, setPendingAction] = useState(null); 
 
   // Estados do Jogo
-  const [currentLevelId, setCurrentLevelId] = useState(1);
   const [currentWordIndex, setCurrentWordIndex] = useState(0);
-
-  // Estados de Input (Tags + Texto)
   const [tags, setTags] = useState([]); 
   const [typingText, setTypingText] = useState('');
   
@@ -107,7 +149,7 @@ const VocabularyGame = ({ onBack }) => {
   // Voz e Pronúncia
   const [isSpeaking, setIsSpeaking] = useState(false);
   const [isListening, setIsListening] = useState(false);
-  const [pronunciationFeedback, setPronunciationFeedback] = useState(null); // null, 'correct', 'wrong'
+  const [pronunciationFeedback, setPronunciationFeedback] = useState(null); 
   const [pronunciationError, setPronunciationError] = useState(null);
   const [speechRate, setSpeechRate] = useState(1);
 
@@ -115,6 +157,43 @@ const VocabularyGame = ({ onBack }) => {
   const [isFocused, setIsFocused] = useState(false);
   const inputRef = useRef(null);
   const recognitionRef = useRef(null);
+
+  // UseEffect de Roteamento
+  useEffect(() => {
+    if (urlLevel) {
+      setCurrentLevelId(urlLevel);
+      setView('game');
+      restartInternalState();
+      window.scrollTo(0, 0);
+    } else {
+      setView('menu');
+      stopListening();
+    }
+    
+    // Garante que a tela de anúncio fecha ao completar a navegação
+    setShowAdScreen(false); 
+
+  }, [urlLevel]);
+
+  // UseEffect para carregar anúncio na tela de Interstitial
+  useEffect(() => {
+    if (showAdScreen) {
+      try {
+        (window.adsbygoogle = window.adsbygoogle || []).push({});
+      } catch (e) {
+        console.error("Erro no AdSense (Tela Apoio):", e);
+      }
+    }
+  }, [showAdScreen]);
+
+  const restartInternalState = () => {
+    stopListening();
+    setCurrentWordIndex(0);
+    setStats({ correct: 0, wrong: 0 });
+    setSpeechRate(1);
+    setLevelShuffleKey((prev) => prev + 1);
+    resetInputsAndFeedback();
+  };
 
   const totalLevels = Math.ceil(VOCABULARY_DATA.length / WORDS_PER_LEVEL);
 
@@ -127,12 +206,12 @@ const VocabularyGame = ({ onBack }) => {
 
   const currentWord = currentLevelWords[currentWordIndex];
 
-  // Focar no input ao mudar a palavra
+  // Focar no input
   useEffect(() => {
-    if (!feedback && view === 'game') {
+    if (!feedback && view === 'game' && !showAdScreen) {
       inputRef.current?.focus();
     }
-  }, [currentWordIndex, feedback, view]);
+  }, [currentWordIndex, feedback, view, showAdScreen]);
 
   // --- FUNÇÕES DE CONTROLE ---
 
@@ -150,30 +229,35 @@ const VocabularyGame = ({ onBack }) => {
     setFeedback(null);
     setAnswerReport(null);
     setIsFocused(false);
-    
-    // Reseta estado de pronúncia
     setPronunciationFeedback(null);
     setPronunciationError(null);
   };
 
-  const enterLevel = (levelId) => {
-    stopListening();
-    setCurrentLevelId(levelId);
-    setLevelShuffleKey((prev) => prev + 1);
-    setCurrentWordIndex(0);
-    setStats({ correct: 0, wrong: 0 });
-    setSpeechRate(1);
-    resetInputsAndFeedback();
-    setView('game');
+  // --- INTERCEPTADORES DE NAVEGAÇÃO ---
+  
+  const requestNavigation = (type, payload) => {
+    setPendingAction({ type, payload }); 
+    setShowAdScreen(true);
+  };
+
+  const confirmNavigation = () => {
+    if (pendingAction) {
+      if (pendingAction.type === 'navigate') {
+        navigate(pendingAction.payload); 
+        // Não fechamos setShowAdScreen aqui para evitar o "flash". 
+        // O useEffect do urlLevel fará isso quando a rota mudar.
+      } else if (pendingAction.type === 'restart') {
+        setView('game'); // Garante sair da tela de result
+        restartLevelInternal(); 
+        setShowAdScreen(false); // Fecha manual pois a URL não muda
+      }
+    }
+    setPendingAction(null);
+  };
+
+  const restartLevelInternal = () => {
+    restartInternalState();
     window.scrollTo(0, 0);
-  };
-
-  const returnToMenu = () => {
-    stopListening();
-    setPronunciationFeedback(null);
-    setPronunciationError(null);
-    setSpeechRate(1);
-    setView('menu');
   };
 
   const nextWord = () => {
@@ -185,7 +269,7 @@ const VocabularyGame = ({ onBack }) => {
     }
   };
 
-  // --- LÓGICA DE TAGS ---
+  // --- LÓGICA DE TAGS E JOGO ---
 
   const addTag = (text) => {
     if (feedback) return;
@@ -310,13 +394,13 @@ const VocabularyGame = ({ onBack }) => {
 
     recognition.onstart = () => {
       setPronunciationError(null);
-      setPronunciationFeedback(null); // Reseta a bolinha para cinza/amarelo
+      setPronunciationFeedback(null); 
       setIsListening(true);
     };
     recognition.onend = () => setIsListening(false);
     recognition.onerror = () => {
       setIsListening(false);
-      setPronunciationFeedback('wrong'); // Erro técnico conta como falha visualmente ou pode ser tratado diferente
+      setPronunciationFeedback('wrong');
       setPronunciationError('Erro');
     };
     recognition.onresult = (event) => {
@@ -336,6 +420,51 @@ const VocabularyGame = ({ onBack }) => {
 
   // --- RENDERIZAÇÃO ---
 
+  // 1. TELA DE ANÚNCIO (Interstitial - Prioridade Alta)
+  if (showAdScreen) {
+    return (
+      <div className="min-h-screen bg-slate-900/95 flex items-center justify-center p-4 animate-fade-in z-50 fixed inset-0">
+        <div className="bg-white rounded-3xl shadow-2xl p-6 md:p-8 text-center max-w-md w-full relative overflow-hidden">
+          
+          <div className="absolute top-0 left-0 w-full h-2 bg-linear-to-r from-indigo-500 via-purple-500 to-pink-500" />
+          
+          <div className="mb-6">
+             <div className="w-16 h-16 bg-rose-100 text-rose-500 rounded-full flex items-center justify-center mx-auto mb-4 animate-bounce-slow">
+                <Heart className="w-8 h-8 fill-current" />
+             </div>
+             <h2 className="text-2xl font-bold text-slate-800">Apoie o EnglishUp!</h2>
+             <p className="text-slate-500 text-sm mt-2 leading-relaxed">
+               Manter o site online e gratuito tem custos. 
+               <br/>Obrigado por visualizar nossos patrocinadores.
+             </p>
+          </div>
+
+          {/* Espaço do Anúncio (Retângulo Médio 300x250) */}
+          <div className="bg-slate-100 border-2 border-slate-200 border-dashed rounded-xl w-full h-62.5 flex items-center justify-center mb-6 relative overflow-hidden">
+            <div className="absolute top-0 right-0 bg-slate-200 text-[9px] text-slate-500 px-2 py-0.5 rounded-bl-lg z-10">Publicidade</div>
+            <ins className="adsbygoogle"
+                 style={{ display: 'inline-block', width: '300px', height: '250px' }}
+                 data-ad-client="ca-pub-SEU_ID_DO_CLIENTE"
+                 data-ad-slot="SEU_ID_DO_BLOCO" // Slot específico para esse interstitial
+                 ></ins>
+          </div>
+
+          <button
+            onClick={confirmNavigation}
+            className="w-full py-4 bg-slate-900 text-white font-bold rounded-xl hover:bg-slate-800 transition-all transform hover:scale-[1.02] shadow-lg shadow-slate-300 flex items-center justify-center gap-2 group"
+          >
+            Continuar para o Jogo <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+          </button>
+
+          <p className="text-[10px] text-slate-400 mt-4">
+            Ao clicar em continuar, você será redirecionado.
+          </p>
+        </div>
+      </div>
+    );
+  }
+
+  // 2. MENU DE NÍVEIS
   if (view === 'menu') {
     const levelsArray = Array.from({ length: totalLevels }, (_, i) => i + 1);
 
@@ -365,7 +494,7 @@ const VocabularyGame = ({ onBack }) => {
             {levelsArray.map((levelId) => (
               <div
                 key={levelId}
-                onClick={() => enterLevel(levelId)}
+                onClick={() => navigate(`/vocabulary/level/${levelId}`)} 
                 className="group bg-white rounded-xl border border-slate-200 p-5 hover:shadow-lg hover:border-rose-300 transition-all duration-300 cursor-pointer relative overflow-hidden"
               >
                 <div className="relative z-10 flex justify-between items-center">
@@ -390,6 +519,7 @@ const VocabularyGame = ({ onBack }) => {
     );
   }
 
+  // 3. TELA DE RESULTADO (Com interceptadores)
   if (view === 'result') {
     return (
       <div className="min-h-screen bg-slate-50 flex items-center justify-center p-4 animate-fade-in">
@@ -416,7 +546,7 @@ const VocabularyGame = ({ onBack }) => {
           <div className="flex flex-col gap-3">
             {currentLevelId < totalLevels && (
               <button
-                onClick={() => enterLevel(currentLevelId + 1)}
+                onClick={() => requestNavigation('navigate', `/vocabulary/level/${currentLevelId + 1}`)}
                 className="w-full py-3.5 bg-rose-600 text-white font-bold rounded-xl hover:bg-rose-700 transition-colors shadow-lg shadow-rose-200 flex items-center justify-center gap-2"
               >
                 Próximo Nível <ArrowRight className="w-4 h-4" />
@@ -424,14 +554,14 @@ const VocabularyGame = ({ onBack }) => {
             )}
 
             <button
-              onClick={() => enterLevel(currentLevelId)}
+              onClick={() => requestNavigation('restart', null)}
               className="w-full py-3.5 bg-white border-2 border-slate-100 text-slate-600 font-bold rounded-xl hover:border-slate-300 transition-colors"
             >
               Repetir Nível
             </button>
 
             <button
-              onClick={returnToMenu}
+              onClick={() => requestNavigation('navigate', '/vocabulary')}
               className="text-slate-400 hover:text-slate-600 text-sm font-medium mt-2"
             >
               Voltar ao Menu de Níveis
@@ -442,228 +572,272 @@ const VocabularyGame = ({ onBack }) => {
     );
   }
 
+  // 4. JOGO PRINCIPAL (Com Layout de Anúncios Responsivos)
   const progressPercentage = (currentWordIndex / currentLevelWords.length) * 100;
 
   return (
-    <div className="min-h-screen bg-slate-50 p-4 font-sans text-slate-800 flex flex-col items-center">
-      <div className="w-full max-w-2xl">
-        <div className="flex items-center justify-between mb-8 pt-4">
-          <button
-            onClick={returnToMenu}
-            className="flex items-center gap-2 text-slate-400 hover:text-slate-600 font-bold transition-colors text-sm uppercase tracking-wide"
-          >
-            <ArrowLeft className="w-4 h-4" /> Menu
-          </button>
-          <span className="text-slate-400 font-bold text-sm uppercase tracking-wide">
-            Nível {currentLevelId}
-          </span>
-        </div>
+    <div className="min-h-screen bg-slate-50 p-4 font-sans text-slate-800 flex flex-col xl:justify-center">
+      
+      {/* --- ANÚNCIO MOBILE (TOPO) --- */}
+      {/* Só aparece em telas pequenas (< 1280px) */}
+      <div className="block xl:hidden w-full mb-4">
+          <AdUnit 
+             key={`mobile-top-${currentLevelId}`} // Chave única força recarregamento no novo nível
+             slotId="SEU_SLOT_MOBILE_TOP" 
+             width="320px" 
+             height="50px" 
+             label="Patrocinado"
+          />
+      </div>
 
-        <div className="bg-white rounded-3xl shadow-xl border border-slate-100 overflow-hidden relative">
-          <div className="w-full bg-slate-100 h-2">
-            <div
-              className="bg-rose-600 h-2 transition-all duration-500 ease-out"
-              style={{ width: `${progressPercentage}%` }}
-            />
+      <div className="flex flex-row justify-center items-start gap-6">
+          
+          {/* --- ANÚNCIO DESKTOP (ESQUERDA) --- */}
+          {/* Só aparece em telas XL (>= 1280px) */}
+          <div className="hidden xl:block w-75 sticky top-4">
+             <AdUnit 
+                key={`desktop-left-${currentLevelId}`} 
+                slotId="SEU_SLOT_DESKTOP_LEFT" 
+                width="300px" 
+                height="250px" 
+             />
+             {/* Dica: Você pode duplicar o componente AdUnit aqui para ter 2 banners verticais */}
           </div>
 
-          <div className="p-8 md:p-12 text-center">
-            <span className="inline-flex items-center gap-1 px-3 py-1 bg-rose-50 text-rose-600 text-xs font-bold uppercase tracking-widest rounded-full mb-8">
-              <PlayCircle className="w-3 h-3" /> Palavra {currentWordIndex + 1} /{' '}
-              {currentLevelWords.length}
-            </span>
-
-            <div className="mb-10">
-              <h1 className="text-4xl md:text-5xl font-black text-slate-800 tracking-tight mb-2 wrap-break-word">
-                {currentWord?.en}
-              </h1>
-              <p className="text-slate-400 text-sm font-medium italic">Como se diz isso em português?</p>
+          {/* --- ÁREA DO JOGO (CENTRO) --- */}
+          <div className="w-full max-w-2xl shrink-0">
+            <div className="flex items-center justify-between mb-8 pt-4">
+              <button
+                onClick={() => navigate('/vocabulary')}
+                className="flex items-center gap-2 text-slate-400 hover:text-slate-600 font-bold transition-colors text-sm uppercase tracking-wide"
+              >
+                <ArrowLeft className="w-4 h-4" /> Menu
+              </button>
+              <span className="text-slate-400 font-bold text-sm uppercase tracking-wide">
+                Nível {currentLevelId}
+              </span>
             </div>
 
-            {/* CONTROLES DE ÁUDIO COM "BOLINHA" */}
-            <div className="flex flex-col items-center gap-3 mb-8">
-              <div className="flex flex-wrap items-center justify-center gap-3">
-                <label className="flex items-center gap-2 text-xs font-bold text-slate-500 uppercase tracking-wide">
-                  Velocidade
-                  <select
-                    value={speechRate}
-                    onChange={(e) => setSpeechRate(Number(e.target.value))}
-                    className="border border-slate-200 rounded-md px-2 py-1 text-slate-700 bg-white text-xs font-bold"
-                  >
-                    <option value={0.5}>0.5x</option>
-                    <option value={0.75}>0.75x</option>
-                    <option value={1}>1x</option>
-                    <option value={1.25}>1.25x</option>
-                  </select>
-                </label>
-
-                <button
-                  type="button"
-                  onClick={speakCurrentWord}
-                  className="px-4 py-2 rounded-lg bg-slate-900 text-white text-sm font-bold hover:bg-slate-800 transition-colors disabled:opacity-50"
-                  disabled={isSpeaking}
-                >
-                  {isSpeaking ? 'Reproduzindo...' : 'Ouvir pronuncia'}
-                </button>
-
-                {/* BOTÃO COM STATUS DE PRONÚNCIA EM BOLINHA */}
-                <button
-                  type="button"
-                  onClick={startPronunciationCheck}
-                  className="px-4 py-2 rounded-lg bg-rose-600 text-white text-sm font-bold hover:bg-rose-700 transition-colors disabled:opacity-50 flex items-center gap-2"
-                  disabled={isListening}
-                >
-                  <span>{isListening ? 'Ouvindo...' : 'Repetir pronuncia'}</span>
-                  
-                  {/* BOLINHA INDICADORA - Adicionada borda branca */}
-                  <div 
-                    className={`w-3 h-3 rounded-full transition-all duration-300 border border-white
-                      ${
-                        // Estado: Ouvindo (Piscando Amarelo/Branco)
-                        isListening 
-                          ? 'bg-yellow-300 animate-pulse shadow-[0_0_8px_rgba(253,224,71,0.8)]'
-                          : // Estado: Correto (Verde)
-                          pronunciationFeedback === 'correct'
-                          ? 'bg-green-400 shadow-[0_0_8px_rgba(74,222,128,1)] scale-110'
-                          : // Estado: Errado (Vermelho)
-                          pronunciationFeedback === 'wrong'
-                          ? 'bg-red-500 shadow-[0_0_8px_rgba(239,68,68,0.8)]'
-                          : // Estado: Padrão (Cinza Claro)
-                          'bg-rose-400/50' 
-                      }
-                    `}
-                  />
-                </button>
+            <div className="bg-white rounded-3xl shadow-xl border border-slate-100 overflow-hidden relative">
+              <div className="w-full bg-slate-100 h-2">
+                <div
+                  className="bg-rose-600 h-2 transition-all duration-500 ease-out"
+                  style={{ width: `${progressPercentage}%` }}
+                />
               </div>
 
-              {/* Mensagem de erro técnica (só aparece se o navegador falhar, não se o usuário errar a pronúncia) */}
-              {pronunciationError && (
-                <p className="text-xs text-red-500 font-medium">{pronunciationError}</p>
-              )}
-            </div>
+              <div className="p-8 md:p-12 text-center">
+                <span className="inline-flex items-center gap-1 px-3 py-1 bg-rose-50 text-rose-600 text-xs font-bold uppercase tracking-widest rounded-full mb-8">
+                  <PlayCircle className="w-3 h-3" /> Palavra {currentWordIndex + 1} /{' '}
+                  {currentLevelWords.length}
+                </span>
 
-            {/* ÁREA DE RESPOSTA (TAGS) */}
-            <div className="max-w-3xl mx-auto mb-8">
-                <div 
-                    className={`
-                        min-h-17.5 w-full bg-white border-2 rounded-xl flex flex-wrap items-center gap-2 p-3 cursor-text transition-all shadow-sm
-                        ${feedback 
-                            ? (feedback === 'correct' ? 'border-green-500 bg-green-50' : 'border-red-500 bg-red-50') 
-                            : (isFocused ? 'border-rose-500 shadow-md' : 'border-slate-200 hover:border-slate-300')
-                        }
-                    `}
-                    onClick={() => !feedback && inputRef.current?.focus()}
-                >
-                    {/* Tags */}
-                    {tags.map((tag, idx) => {
-                        let tagStyle = "bg-slate-100 border-slate-300 text-slate-700";
-                        let icon = null;
+                <div className="mb-10">
+                  <h1 className="text-4xl md:text-5xl font-black text-slate-800 tracking-tight mb-2 wrap-break-word">
+                    {currentWord?.en}
+                  </h1>
+                  <p className="text-slate-400 text-sm font-medium italic">Como se diz isso em português?</p>
+                </div>
 
-                        if (feedback && answerReport) {
-                            const result = answerReport.provided.find(p => p.text === tag);
-                            if (result?.ok) {
-                                tagStyle = "bg-green-100 border-green-400 text-green-800";
-                                icon = <Check className="w-3 h-3 ml-1" />;
-                            } else {
-                                tagStyle = "bg-red-100 border-red-400 text-red-800 opacity-70 line-through decoration-red-500";
+                {/* CONTROLES DE ÁUDIO */}
+                <div className="flex flex-col items-center gap-3 mb-8">
+                  <div className="flex flex-wrap items-center justify-center gap-3">
+                    <label className="flex items-center gap-2 text-xs font-bold text-slate-500 uppercase tracking-wide">
+                      Velocidade
+                      <select
+                        value={speechRate}
+                        onChange={(e) => setSpeechRate(Number(e.target.value))}
+                        className="border border-slate-200 rounded-md px-2 py-1 text-slate-700 bg-white text-xs font-bold"
+                      >
+                        <option value={0.5}>0.5x</option>
+                        <option value={0.75}>0.75x</option>
+                        <option value={1}>1x</option>
+                        <option value={1.25}>1.25x</option>
+                      </select>
+                    </label>
+
+                    <button
+                      type="button"
+                      onClick={speakCurrentWord}
+                      className="px-4 py-2 rounded-lg bg-slate-900 text-white text-sm font-bold hover:bg-slate-800 transition-colors disabled:opacity-50"
+                      disabled={isSpeaking}
+                    >
+                      {isSpeaking ? 'Reproduzindo...' : 'Ouvir pronuncia'}
+                    </button>
+
+                    <button
+                      type="button"
+                      onClick={startPronunciationCheck}
+                      className="px-4 py-2 rounded-lg bg-rose-600 text-white text-sm font-bold hover:bg-rose-700 transition-colors disabled:opacity-50 flex items-center gap-2"
+                      disabled={isListening}
+                    >
+                      <span>{isListening ? 'Ouvindo...' : 'Repetir pronuncia'}</span>
+                      
+                      <div 
+                        className={`w-3 h-3 rounded-full transition-all duration-300 border border-white
+                          ${
+                            isListening 
+                              ? 'bg-yellow-300 animate-pulse shadow-[0_0_8px_rgba(253,224,71,0.8)]'
+                              : pronunciationFeedback === 'correct'
+                              ? 'bg-green-400 shadow-[0_0_8px_rgba(74,222,128,1)] scale-110'
+                              : pronunciationFeedback === 'wrong'
+                              ? 'bg-red-500 shadow-[0_0_8px_rgba(239,68,68,0.8)]'
+                              : 'bg-rose-400/50' 
+                          }
+                        `}
+                      />
+                    </button>
+                  </div>
+
+                  {pronunciationError && (
+                    <p className="text-xs text-red-500 font-medium">{pronunciationError}</p>
+                  )}
+                </div>
+
+                {/* ÁREA DE RESPOSTA (TAGS) */}
+                <div className="max-w-3xl mx-auto mb-8">
+                    <div 
+                        className={`
+                            min-h-17.5 w-full bg-white border-2 rounded-xl flex flex-wrap items-center gap-2 p-3 cursor-text transition-all shadow-sm
+                            ${feedback 
+                                ? (feedback === 'correct' ? 'border-green-500 bg-green-50' : 'border-red-500 bg-red-50') 
+                                : (isFocused ? 'border-rose-500 shadow-md' : 'border-slate-200 hover:border-slate-300')
                             }
-                        }
+                        `}
+                        onClick={() => !feedback && inputRef.current?.focus()}
+                    >
+                        {tags.map((tag, idx) => {
+                            let tagStyle = "bg-slate-100 border-slate-300 text-slate-700";
+                            let icon = null;
 
-                        return (
-                            <span key={idx} className={`px-3 py-1.5 rounded-lg text-lg font-medium border flex items-center animate-scale-in ${tagStyle}`}>
-                                {tag}
-                                {icon}
-                                {!feedback && (
-                                    <button 
-                                        onClick={(e) => { e.stopPropagation(); removeTag(idx); }}
-                                        className="ml-2 text-slate-400 hover:text-slate-600"
-                                    >
-                                        <X className="w-3 h-3" />
-                                    </button>
-                                )}
-                            </span>
-                        );
-                    })}
+                            if (feedback && answerReport) {
+                                const result = answerReport.provided.find(p => p.text === tag);
+                                if (result?.ok) {
+                                    tagStyle = "bg-green-100 border-green-400 text-green-800";
+                                    icon = <Check className="w-3 h-3 ml-1" />;
+                                } else {
+                                    tagStyle = "bg-red-100 border-red-400 text-red-800 opacity-70 line-through decoration-red-500";
+                                }
+                            }
+
+                            return (
+                                <span key={idx} className={`px-3 py-1.5 rounded-lg text-lg font-medium border flex items-center animate-scale-in ${tagStyle}`}>
+                                    {tag}
+                                    {icon}
+                                    {!feedback && (
+                                        <button 
+                                            onClick={(e) => { e.stopPropagation(); removeTag(idx); }}
+                                            className="ml-2 text-slate-400 hover:text-slate-600"
+                                        >
+                                            <X className="w-3 h-3" />
+                                        </button>
+                                    )}
+                                </span>
+                            );
+                        })}
+
+                        {!feedback && (
+                            <input
+                                ref={inputRef}
+                                type="text"
+                                value={typingText}
+                                onChange={(e) => setTypingText(e.target.value)}
+                                onKeyDown={handleKeyDown}
+                                onFocus={() => setIsFocused(true)}
+                                onBlur={() => setIsFocused(false)}
+                                className="grow bg-transparent outline-none text-lg font-medium text-slate-800 placeholder:text-slate-300 min-w-35 text-left"
+                                placeholder={tags.length === 0 ? "Digite a tradução..." : "Digite outra..."}
+                                autoComplete="off"
+                            />
+                        )}
+
+                        {!feedback && (typingText || tags.length > 0) && (
+                             <button
+                             onClick={checkAnswer}
+                             className="bg-rose-600 text-white rounded-lg hover:bg-rose-700 transition-colors shadow-md p-2 ml-auto"
+                             title="Enviar respostas"
+                           >
+                             <ArrowRight className="w-5 h-5" />
+                           </button>
+                        )}
+                    </div>
 
                     {!feedback && (
-                        <input
-                            ref={inputRef}
-                            type="text"
-                            value={typingText}
-                            onChange={(e) => setTypingText(e.target.value)}
-                            onKeyDown={handleKeyDown}
-                            onFocus={() => setIsFocused(true)}
-                            onBlur={() => setIsFocused(false)}
-                            className="grow bg-transparent outline-none text-lg font-medium text-slate-800 placeholder:text-slate-300 min-w-35 text-left"
-                            placeholder={tags.length === 0 ? "Digite a tradução..." : "Digite outra..."}
-                            autoComplete="off"
-                        />
-                    )}
-
-                    {!feedback && (typingText || tags.length > 0) && (
-                         <button
-                         onClick={checkAnswer}
-                         className="bg-rose-600 text-white rounded-lg hover:bg-rose-700 transition-colors shadow-md p-2 ml-auto"
-                         title="Enviar respostas"
-                       >
-                         <ArrowRight className="w-5 h-5" />
-                       </button>
+                        <div className="flex justify-center mt-2 text-xs text-slate-400 gap-1 items-center">
+                            <span>Pressione</span> 
+                            <span className="border border-slate-200 rounded px-1 py-0.5 bg-white font-mono flex items-center shadow-sm"><CornerDownLeft className="w-3 h-3"/></span>
+                            <span>para adicionar sinônimos</span>
+                        </div>
                     )}
                 </div>
 
-                {!feedback && (
-                    <div className="flex justify-center mt-2 text-xs text-slate-400 gap-1 items-center">
-                        <span>Pressione</span> 
-                        <span className="border border-slate-200 rounded px-1 py-0.5 bg-white font-mono flex items-center shadow-sm"><CornerDownLeft className="w-3 h-3"/></span>
-                        <span>para adicionar sinônimos</span>
-                    </div>
-                )}
-            </div>
-
-            {feedback && (
-              <div className="animate-fade-in-up">
-                {feedback === 'correct' ? (
-                  <div className="flex flex-col items-center text-green-600 mb-6">
-                    <div className="flex items-center gap-2 bg-green-100 px-4 py-2 rounded-full mb-2">
-                      <Check className="w-5 h-5" />
-                      <span className="font-bold">Correto!</span>
-                    </div>
-                    {answerReport?.missing?.length > 0 && (
-                        <p className="text-xs text-slate-500 mt-2 text-center">
-                          Outras opções: <strong>{answerReport.missing.join(', ')}</strong>
+                {feedback && (
+                  <div className="animate-fade-in-up">
+                    {feedback === 'correct' ? (
+                      <div className="flex flex-col items-center text-green-600 mb-6">
+                        <div className="flex items-center gap-2 bg-green-100 px-4 py-2 rounded-full mb-2">
+                          <Check className="w-5 h-5" />
+                          <span className="font-bold">Correto!</span>
+                        </div>
+                        {answerReport?.missing?.length > 0 && (
+                            <p className="text-xs text-slate-500 mt-2 text-center">
+                              Outras opções: <strong>{answerReport.missing.join(', ')}</strong>
+                            </p>
+                          )}
+                      </div>
+                    ) : (
+                      <div className="flex flex-col items-center text-red-600 mb-6">
+                        <div className="flex items-center gap-2 bg-red-100 px-4 py-2 rounded-full mb-2">
+                          <X className="w-5 h-5" />
+                          <span className="font-bold">Ops! Não foi dessa vez.</span>
+                        </div>
+                        <p className="text-slate-500 text-sm mt-1">
+                            Respostas corretas: <strong className="text-slate-700">{currentWord.pt.join(', ')}</strong>
                         </p>
-                      )}
-                  </div>
-                ) : (
-                  <div className="flex flex-col items-center text-red-600 mb-6">
-                    <div className="flex items-center gap-2 bg-red-100 px-4 py-2 rounded-full mb-2">
-                      <X className="w-5 h-5" />
-                      <span className="font-bold">Ops! Não foi dessa vez.</span>
-                    </div>
-                    <p className="text-slate-500 text-sm mt-1">
-                        Respostas corretas: <strong className="text-slate-700">{currentWord.pt.join(', ')}</strong>
-                    </p>
+                      </div>
+                    )}
+
+                    <button
+                      onClick={nextWord}
+                      autoFocus
+                      className={`w-full md:w-auto px-8 py-3 rounded-xl font-bold text-white shadow-lg transition transform hover:scale-105 active:scale-95 flex items-center justify-center gap-2 mx-auto
+                        ${
+                          feedback === 'correct'
+                            ? 'bg-green-600 hover:bg-green-700 shadow-green-200'
+                            : 'bg-slate-800 hover:bg-slate-900 shadow-slate-300'
+                        }`}
+                    >
+                      {currentWordIndex + 1 === currentLevelWords.length ? 'Ver Resultado' : 'Próxima Palavra'}{' '}
+                      <ArrowRight className="w-5 h-5" />
+                    </button>
                   </div>
                 )}
-
-                <button
-                  onClick={nextWord}
-                  autoFocus
-                  className={`w-full md:w-auto px-8 py-3 rounded-xl font-bold text-white shadow-lg transition transform hover:scale-105 active:scale-95 flex items-center justify-center gap-2 mx-auto
-                    ${
-                      feedback === 'correct'
-                        ? 'bg-green-600 hover:bg-green-700 shadow-green-200'
-                        : 'bg-slate-800 hover:bg-slate-900 shadow-slate-300'
-                    }`}
-                >
-                  {currentWordIndex + 1 === currentLevelWords.length ? 'Ver Resultado' : 'Próxima Palavra'}{' '}
-                  <ArrowRight className="w-5 h-5" />
-                </button>
               </div>
-            )}
+            </div>
           </div>
-        </div>
+
+          {/* --- ANÚNCIO DESKTOP (DIREITA) --- */}
+          <div className="hidden xl:block w-75 sticky top-4">
+             <AdUnit 
+                key={`desktop-right-${currentLevelId}`} 
+                slotId="SEU_SLOT_DESKTOP_RIGHT" 
+                width="300px" 
+                height="250px" 
+             />
+          </div>
       </div>
+
+      {/* --- ANÚNCIO MOBILE (BASE) --- */}
+      <div className="block xl:hidden w-full mt-4">
+          <AdUnit 
+             key={`mobile-bottom-${currentLevelId}`} 
+             slotId="SEU_SLOT_MOBILE_BOTTOM" 
+             width="320px" 
+             height="50px" 
+             label="Patrocinado"
+          />
+      </div>
+
     </div>
   );
 };
