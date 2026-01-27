@@ -8816,7 +8816,7 @@ export const TRANSLATION_DATA = {
     { id: 14002, pt: "Você pode me encontrar mais tarde?", en: ["Can you meet me later?", "Could you meet me later?"] },
     { id: 14003, pt: "Isso poderia ser verdade?", en: ["Could this be true?", "Might this be true?", "Can this be true?"] },
     { id: 14004, pt: "Pode chover hoje à noite?", en: ["Can it rain tonight?", "Could it rain tonight?", "Might it rain tonight?"] },
-    { id: 14005, pt: "Nós podemos ir lá de ônibus?", en: "Can we go there by bus?" },
+    { id: 14005, pt: "Nós podemos ir lá de ônibus?", en: "Can we go there by bus?" }, 
     { id: 14006, pt: "É possível consertar isso?", en: ["Is it possible to fix this/it?", "Is it possible to repair this/it?"] },
     { id: 14007, pt: "Ele poderia estar mentindo?", en: ["Could he be lying?", "Might he be lying?"] },
     { id: 14008, pt: "Você acha que eles podem ganhar?", en: ["Do you think they can win?", "Do you think they could win?"] },
