@@ -86,35 +86,64 @@ const shuffleWords = (words) => {
   return shuffled;
 };
 
-// --- COMPONENTE DE ANÚNCIO (AD UNIT) ---
-const AdUnit = ({ slotId, format = "auto", label = "Publicidade", width, height }) => {
-  useEffect(() => {
-    try {
-      (window.adsbygoogle = window.adsbygoogle || []).push({});
-    } catch (e) {
-      console.error("AdSense Error", e);
-    }
-  }, []);
+// --- COMPONENTE DE ANÚNCIO OTIMIZADO (COMPLIANCE ADSENSE) ---
+// Refatorado para evitar CLS e erros de execução em SPA
+const AdUnit = ({ slotId, width, height, label = "Publicidade" }) => {
+  const adRef = useRef(null);
 
-  const style = width && height ? { display: 'inline-block', width, height } : { display: 'block' };
+  useEffect(() => {
+    // Implementação segura com Try-Catch e Delay para garantir que o DOM existe
+    try {
+      if (window.adsbygoogle) {
+         // Pequeno delay (100ms) ajuda a evitar race conditions no React
+        setTimeout(() => {
+          // Verifica se a div não tem conteúdo antes de dar push para evitar 'TagError'
+          if (adRef.current && adRef.current.innerHTML === "") {
+             (window.adsbygoogle = window.adsbygoogle || []).push({});
+          }
+        }, 100);
+      }
+    } catch (e) {
+      console.error("AdSense Push Error", e);
+    }
+  }, []); // Executa apenas na montagem
+
+  // Estilos rígidos para reservar espaço (Minimizar CLS)
+  const containerStyle = {
+    width: width || '100%',
+    height: height || 'auto',
+    minHeight: height || '250px', // Reserva espaço vertical crítico
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'center',
+    margin: '16px 0',
+  };
 
   return (
-    <div className="flex flex-col items-center justify-center my-4">
-      <div className="text-[10px] text-slate-300 uppercase tracking-widest mb-1">{label}</div>
+    <div style={containerStyle} className="ad-container">
+      {/* Rótulo discreto conforme políticas de identificação de anúncios */}
+      <div className="text-[10px] text-slate-400 uppercase tracking-widest mb-1 w-full text-center">
+        {label}
+      </div>
+      
+      {/* Container "Skeleton" visual enquanto carrega */}
       <div className="bg-slate-100 border border-slate-200 border-dashed flex items-center justify-center overflow-hidden relative"
-           style={{ width: width || '100%', height: height || 'auto', minHeight: height || '100px' }}>
+           style={{ width: width || '100%', height: height || 'auto' }}>
         
-        {/* Placeholder visual (Remova este span quando estiver rodando com anúncios reais para limpar o visual) */}
-        <span className="text-slate-300 text-xs font-bold p-4 text-center absolute pointer-events-none">
-             AdSense<br/>{width || 'Auto'} x {height || 'Auto'}
+        {/* Placeholder visual temporário */}
+        <span className="text-slate-300 text-[10px] font-bold absolute pointer-events-none opacity-50">
+             Carregando Anúncio...
         </span>
 
         <ins className="adsbygoogle"
-             style={style}
+             ref={adRef}
+             style={{ display: 'inline-block', width: width || 'auto', height: height || 'auto' }}
              data-ad-client="ca-pub-SEU_ID_DO_CLIENTE" // <--- COLOQUE SEU ID AQUI
-             data-ad-slot={slotId || "1234567890"}     // <--- E AQUI (Slot padrão)
-             data-ad-format={format}
-             data-full-width-responsive="true"></ins>
+             data-ad-slot={slotId}
+             // Removemos 'data-ad-format="auto"' quando temos tamanho fixo para garantir CPM alto (ex: 300x250)
+             data-full-width-responsive={!width ? "true" : "false"}
+        ></ins>
       </div>
     </div>
   );
@@ -135,6 +164,11 @@ const VocabularyGame = ({ onBack }) => {
   // Estados para controlar a tela de Anúncio
   const [showAdScreen, setShowAdScreen] = useState(false);
   const [pendingAction, setPendingAction] = useState(null); 
+  
+  // --- ALTERAÇÃO AQUI: CRONÔMETRO DE SEGURANÇA ---
+  // Substituímos o contador de níveis por um marcador de tempo.
+  // Isso protege contra "cliques rápidos" e bots.
+  const levelStartTimeRef = useRef(Date.now());
 
   // Estados do Jogo
   const [currentWordIndex, setCurrentWordIndex] = useState(0);
@@ -192,6 +226,11 @@ const VocabularyGame = ({ onBack }) => {
     setStats({ correct: 0, wrong: 0 });
     setSpeechRate(1);
     setLevelShuffleKey((prev) => prev + 1);
+    
+    // --- RESET DO CRONÔMETRO ---
+    // Reinicia a contagem sempre que o nível começa/reinicia
+    levelStartTimeRef.current = Date.now();
+    
     resetInputsAndFeedback();
   };
 
@@ -233,26 +272,47 @@ const VocabularyGame = ({ onBack }) => {
     setPronunciationError(null);
   };
 
-  // --- INTERCEPTADORES DE NAVEGAÇÃO ---
+  // --- INTERCEPTADORES DE NAVEGAÇÃO (CORRIGIDOS) ---
   
+  // Função Auxiliar que executa a ação final (Navegar ou Reiniciar)
+  // É crucial que esta função exista para os botões funcionarem no 'else' abaixo.
+  const executeNavigation = (type, payload) => {
+      if (type === 'navigate') {
+        navigate(payload); 
+      } else if (type === 'restart') {
+        setView('game'); 
+        restartLevelInternal(); 
+      }
+  };
+
   const requestNavigation = (type, payload) => {
-    setPendingAction({ type, payload }); 
-    setShowAdScreen(true);
+    // 1. Calcula o tempo de permanência no nível atual
+    const timeSpentMs = Date.now() - levelStartTimeRef.current;
+    
+    // 2. Define o limite de segurança (1,5 minutos = 90.000 ms)
+    // Se o usuário terminar antes disso, o sistema assume que foi muito rápido 
+    // e não mostra anúncio para evitar risco de clique inválido.
+    const MIN_TIME_FOR_AD = 90000; 
+
+    const isEngagementValid = timeSpentMs > MIN_TIME_FOR_AD;
+
+    if (isEngagementValid) {
+        // Se jogou tempo suficiente, prepara o interstitial
+        setPendingAction({ type, payload }); 
+        setShowAdScreen(true);
+    } else {
+        // Se foi rápido demais, executa a ação direta sem anúncio
+        executeNavigation(type, payload);
+    }
   };
 
   const confirmNavigation = () => {
     if (pendingAction) {
-      if (pendingAction.type === 'navigate') {
-        navigate(pendingAction.payload); 
-        // Não fechamos setShowAdScreen aqui para evitar o "flash". 
-        // O useEffect do urlLevel fará isso quando a rota mudar.
-      } else if (pendingAction.type === 'restart') {
-        setView('game'); // Garante sair da tela de result
-        restartLevelInternal(); 
-        setShowAdScreen(false); // Fecha manual pois a URL não muda
-      }
+      executeNavigation(pendingAction.type, pendingAction.payload);
     }
     setPendingAction(null);
+    // Se a ação for reiniciar, fechamos a tela manualmente (pois a URL não muda)
+    if (pendingAction?.type === 'restart') setShowAdScreen(false);
   };
 
   const restartLevelInternal = () => {
@@ -424,7 +484,13 @@ const VocabularyGame = ({ onBack }) => {
   if (showAdScreen) {
     return (
       <div className="min-h-screen bg-slate-900/95 flex items-center justify-center p-4 animate-fade-in z-50 fixed inset-0">
-        <div className="bg-white rounded-3xl shadow-2xl p-6 md:p-8 text-center max-w-md w-full relative overflow-hidden">
+        
+        {/* ALTERAÇÃO AQUI: 
+            Troquei "p-6 md:p-8" por "py-10 px-6 md:py-14 md:px-8".
+            - py-10/py-14: Aumenta muito o espaço em CIMA e em BAIXO (Vertical).
+            - px-6/px-8: Mantém a largura interna equilibrada.
+        */}
+        <div className="bg-white rounded-3xl shadow-2xl py-10 px-6 md:py-14 md:px-8 text-center max-w-md w-full relative overflow-hidden">
           
           <div className="absolute top-0 left-0 w-full h-2 bg-linear-to-r from-indigo-500 via-purple-500 to-pink-500" />
           
@@ -439,14 +505,15 @@ const VocabularyGame = ({ onBack }) => {
              </p>
           </div>
 
-          {/* Espaço do Anúncio (Retângulo Médio 300x250) */}
-          <div className="bg-slate-100 border-2 border-slate-200 border-dashed rounded-xl w-full h-62.5 flex items-center justify-center mb-6 relative overflow-hidden">
-            <div className="absolute top-0 right-0 bg-slate-200 text-[9px] text-slate-500 px-2 py-0.5 rounded-bl-lg z-10">Publicidade</div>
-            <ins className="adsbygoogle"
-                 style={{ display: 'inline-block', width: '300px', height: '250px' }}
-                 data-ad-client="ca-pub-SEU_ID_DO_CLIENTE"
-                 data-ad-slot="SEU_ID_DO_BLOCO" // Slot específico para esse interstitial
-                 ></ins>
+          {/* Espaço do Anúncio Interstitial (300x250) */}
+          {/* Aumentei levemente a margem inferior aqui (mb-8) para afastar do botão */}
+          <div className="flex items-center justify-center mb-8">
+             <AdUnit 
+                slotId="SEU_ID_INTERSTITIAL" 
+                width="300px" 
+                height="250px" 
+                label="Publicidade"
+             />
           </div>
 
           <button
@@ -456,7 +523,7 @@ const VocabularyGame = ({ onBack }) => {
             Continuar para o Jogo <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
           </button>
 
-          <p className="text-[10px] text-slate-400 mt-4">
+          <p className="text-[10px] text-slate-400 mt-6">
             Ao clicar em continuar, você será redirecionado.
           </p>
         </div>
@@ -572,17 +639,17 @@ const VocabularyGame = ({ onBack }) => {
     );
   }
 
-  // 4. JOGO PRINCIPAL (Com Layout de Anúncios Responsivos)
+  // 4. JOGO PRINCIPAL (Com Layout de Anúncios Otimizado e Seguro)
   const progressPercentage = (currentWordIndex / currentLevelWords.length) * 100;
 
   return (
     <div className="min-h-screen bg-slate-50 p-4 font-sans text-slate-800 flex flex-col xl:justify-center">
       
       {/* --- ANÚNCIO MOBILE (TOPO) --- */}
-      {/* Só aparece em telas pequenas (< 1280px) */}
-      <div className="block xl:hidden w-full mb-4">
+      {/* Usamos tamanho fixo (320x50 ou 320x100) para Mobile Banner */}
+      <div className="block xl:hidden w-full mb-4 justify-center">
           <AdUnit 
-             key={`mobile-top-${currentLevelId}`} // Chave única força recarregamento no novo nível
+             key={`mobile-top-${currentLevelId}`} 
              slotId="SEU_SLOT_MOBILE_TOP" 
              width="320px" 
              height="50px" 
@@ -593,15 +660,15 @@ const VocabularyGame = ({ onBack }) => {
       <div className="flex flex-row justify-center items-start gap-6">
           
           {/* --- ANÚNCIO DESKTOP (ESQUERDA) --- */}
-          {/* Só aparece em telas XL (>= 1280px) */}
+          {/* Usamos 300x250 (Retângulo Médio) ou 300x600 (Half Page - Maior CPM) */}
           <div className="hidden xl:block w-75 sticky top-4">
              <AdUnit 
                 key={`desktop-left-${currentLevelId}`} 
                 slotId="SEU_SLOT_DESKTOP_LEFT" 
                 width="300px" 
                 height="250px" 
+                label="Patrocinado"
              />
-             {/* Dica: Você pode duplicar o componente AdUnit aqui para ter 2 banners verticais */}
           </div>
 
           {/* --- ÁREA DO JOGO (CENTRO) --- */}
@@ -823,17 +890,27 @@ const VocabularyGame = ({ onBack }) => {
                 slotId="SEU_SLOT_DESKTOP_RIGHT" 
                 width="300px" 
                 height="250px" 
+                label="Patrocinado"
              />
           </div>
       </div>
 
-      {/* --- ANÚNCIO MOBILE (BASE) --- */}
-      <div className="block xl:hidden w-full mt-4">
+      {/* --- ANÚNCIO MOBILE (BASE) - COM ZONA DE SEGURANÇA --- */}
+      <div className="xl:hidden w-full mt-4 flex flex-col items-center">
+          
+          {/* OBRIGATÓRIO: ESPAÇADOR DE SEGURANÇA (150px) 
+              Isso impede que o usuário clique no anúncio por erro ao tentar clicar em "Próxima Palavra" 
+              Evita banimento por "Confirmed Click".
+          */}
+          <div className="h-37.5 w-full flex items-center justify-center text-[10px] text-slate-300 pointer-events-none select-none">
+             --- Zona Segura de Scroll ---
+          </div>
+
           <AdUnit 
              key={`mobile-bottom-${currentLevelId}`} 
              slotId="SEU_SLOT_MOBILE_BOTTOM" 
-             width="320px" 
-             height="50px" 
+             width="300px" 
+             height="250px" 
              label="Patrocinado"
           />
       </div>
