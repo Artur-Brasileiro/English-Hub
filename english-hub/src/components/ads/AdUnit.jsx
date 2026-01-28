@@ -4,48 +4,68 @@ const AdUnit = ({
   slotId, 
   width, 
   height, 
-  client = "ca-pub-5263755641231811", // Seu ID padrão
+  client = "ca-pub-5263755641231811", 
   label = "Publicidade", 
   format = "auto",
   responsive = "true",
   className = "" 
 }) => {
   const adRef = useRef(null);
-  // Flag "Secret Weapon" do PDF: Garante execução única independente de re-renders do React [cite: 154, 187]
   const adsPushed = useRef(false); 
   const [isAdLoaded, setIsAdLoaded] = useState(false);
+  // Estado para controlar se o componente está visível na tela
+  const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
-    // 1. Verificações de Segurança [cite: 158]
-    // Se não há window (SSR), ou ref nula, ou se já fizemos push neste componente: PARAR.
-    if (typeof window === 'undefined' || !adRef.current || adsPushed.current) {
+    // Implementação de Lazy Loading com IntersectionObserver [cite: 197, 201]
+    // Isso impede que anúncios ocultos (ex: versão desktop rodando no mobile) disparem erros
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        // Só ativa se estiver visível e tiver tamanho real (>0px)
+        if (entry.isIntersecting && entry.boundingClientRect.width > 0) {
+          setIsVisible(true);
+          observer.disconnect(); // Para de observar assim que ficar visível
+        }
+      },
+      { rootMargin: '100px' } // Carrega um pouco antes de aparecer na tela
+    );
+
+    if (adRef.current) {
+      observer.observe(adRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
+    // Só executa o push se: 
+    // 1. Estiver visível (passou pelo observer)
+    // 2. Ainda não tiver sido carregado (adsPushed.current)
+    if (!isVisible || typeof window === 'undefined' || !adRef.current || adsPushed.current) {
       return;
     }
 
-    // 2. Proteção contra Slot já preenchido (Defesa contra Strict Mode) [cite: 159]
+    // Proteção extra: Verifica novamente se o slot está vazio
     if (adRef.current.innerHTML.replace(/\s/g, '').length > 0) {
-       console.warn(`AdUnit ${slotId}: Slot já preenchido, abortando.`);
        return;
     }
 
     try {
-      // 3. O Push Único [cite: 163]
       (window.adsbygoogle = window.adsbygoogle || []).push({});
-      adsPushed.current = true; // Marca como processado para sempre
+      adsPushed.current = true;
       setIsAdLoaded(true);
     } catch (e) {
       console.error("AdSense Push Error:", e);
     }
 
-  }, [slotId]); // Só recria se o slotId mudar, ignorando outros re-renders [cite: 170]
+  }, [isVisible, slotId]); // Dependência em isVisible ativa o efeito no momento certo
 
-  // Estilização defensiva para evitar CLS (Cumulative Layout Shift) e erro de width=0 [cite: 190]
   const containerStyle = {
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
     justifyContent: 'center',
-    minHeight: height || '280px', // Altura mínima obrigatória
+    minHeight: height || '280px',
     width: width || '100%',
     minWidth: '250px',
     margin: '20px 0',
@@ -53,38 +73,38 @@ const AdUnit = ({
   };
 
   return (
-    <div style={containerStyle} className={`ad-unit-wrapper ${className}`}>
-      {/* Rótulo de Publicidade */}
+    <div style={containerStyle} className={`ad-unit-wrapper ${className}`} ref={adRef}>
       <div className="text-[10px] text-slate-400 uppercase tracking-widest mb-1 w-full text-center font-semibold">
         {label}
       </div>
 
-      {/* Container do anúncio */}
       <div className="relative bg-slate-50 border border-slate-100 flex items-center justify-center"
            style={{ width: width || 'auto', height: height || 'auto', minHeight: height || '250px' }}>
         
-        {/* Placeholder visual */}
-        {!isAdLoaded && (
+        {/* Só renderiza o <ins> se estiver visível. Isso resolve o erro de width=0 [cite: 218] */}
+        {isVisible ? (
+          <ins 
+            className="adsbygoogle"
+            style={{ display: 'block', minWidth: width || '250px', minHeight: height || '250px' }}
+            data-ad-client={client}
+            data-ad-slot={slotId}
+            data-ad-format={format}
+            data-full-width-responsive={responsive}
+            // data-adtest="on" // Descomente para testes locais
+          />
+        ) : (
+          // Placeholder enquanto não está visível (evita CLS)
+          <div style={{ width: width || '100%', height: height || '100%' }} />
+        )}
+
+        {!isAdLoaded && isVisible && (
              <span className="absolute text-slate-300 text-[10px] font-bold animate-pulse">
                 Carregando...
              </span>
         )}
-
-        <ins 
-          ref={adRef}
-          className="adsbygoogle"
-          style={{ display: 'block', minWidth: width || '250px', minHeight: height || '250px' }}
-          data-ad-client={client} // Deve ser ca-pub- [cite: 179]
-          data-ad-slot={slotId}
-          data-ad-format={format}
-          data-full-width-responsive={responsive}
-          data-adtest="on"
-        />
       </div>
     </div>
   );
 };
 
-// React.memo impede que o componente re-renderize se as props (slotId) não mudarem
-// Isso é vital dentro do seu jogo onde o usuário digita e atualiza o estado constantemente [cite: 191]
 export default React.memo(AdUnit);
