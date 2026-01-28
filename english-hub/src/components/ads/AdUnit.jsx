@@ -108,9 +108,6 @@ const AdUnit = ({
             data-ad-slot={slotId}
             data-ad-format={format}
             data-full-width-responsive={responsive}
-            // MODO DE TESTE ATIVADO: Isso ajuda a ver banners de teste (escrito Test Ad)
-            // IMPORTANTE: Remova ou comente esta linha antes de publicar na Vercel final!
-            data-adtest="on" 
           />
         ) : (
           <div style={{ width: width || '100%', height: height || '100%' }} />

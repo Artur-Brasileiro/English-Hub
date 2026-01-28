@@ -501,23 +501,33 @@ const VocabularyGame = ({ onBack }) => {
           <div className="flex flex-col gap-3">
             {currentLevelId < totalLevels && (
               <button
-                // Aqui chamamos o H5 Ad Break antes de navegar
-                onClick={() => triggerAdBreak('next', `level_complete_${currentLevelId}`, () => {
-                   navigate(`/vocabulary/level/${currentLevelId + 1}`);
-                })}
-                className="w-full py-3.5 bg-rose-600 text-white font-bold rounded-xl hover:bg-rose-700 transition-colors shadow-lg shadow-rose-200 flex items-center justify-center gap-2"
+                // CORRIGIDO: Passando stopAllAudio como 4º argumento (onMute)
+                onClick={() => triggerAdBreak(
+                    'next', 
+                    `level_complete_${currentLevelId}`, 
+                    () => navigate(`/vocabulary/level/${currentLevelId + 1}`),
+                    stopAllAudio, // onMute: Para tudo antes do anúncio abrir
+                    null          // onUnmute: Não precisa, pois vamos navegar para outra página
+                )}
+                className="..." // (suas classes mantidas)
               >
                 Próximo Nível <ArrowRight className="w-4 h-4" />
               </button>
             )}
 
             <button
-              // H5 Ad Break ao repetir
-              onClick={() => triggerAdBreak('next', 'level_retry', () => {
-                  setView('game'); 
-                  restartLevelInternal();
-              })}
-              className="w-full py-3.5 bg-white border-2 border-slate-100 text-slate-600 font-bold rounded-xl hover:border-slate-300 transition-colors"
+              // CORRIGIDO: Passando stopAllAudio
+              onClick={() => triggerAdBreak(
+                  'next', 
+                  'level_retry', 
+                  () => {
+                      setView('game'); 
+                      restartLevelInternal();
+                  },
+                  stopAllAudio, // onMute
+                  null          // onUnmute: O restartLevelInternal já reseta o estado, então ok
+              )}
+              className="..." // (suas classes mantidas)
             >
               Repetir Nível
             </button>
@@ -539,6 +549,17 @@ const VocabularyGame = ({ onBack }) => {
   // 3. JOGO PRINCIPAL
   const progressPercentage = (currentWordIndex / currentLevelWords.length) * 100;
 
+  const stopAllAudio = () => {
+    // 1. Para a síntese de fala (TTS)
+    if (window.speechSynthesis) {
+        window.speechSynthesis.cancel();
+    }
+    setIsSpeaking(false);
+
+    // 2. Para o reconhecimento de voz (se estiver ativo)
+    stopListening();
+  };
+
   return (
     <div className="min-h-screen bg-slate-50 font-sans text-slate-800 flex flex-col items-center">
       {/* SEO Dinâmico para o Nível */}
@@ -549,8 +570,7 @@ const VocabularyGame = ({ onBack }) => {
       </Helmet>
       
       {/* --- HEADER DE ANÚNCIO (STICKY) --- */}
-      <div className="w-full bg-white border-b border-slate-200 py-2 flex flex-col items-center justify-center sticky top-0 z-20 shadow-sm min-h-25 md:min-h-27.5">
-         <div className="block md:hidden">
+         <div className="w-full bg-white border-b border-slate-200 py-2 flex flex-col items-center justify-center relative z-20 shadow-sm min-h-25 md:min-h-27.5">         <div className="block md:hidden">
             <AdUnit key={`mobile-top-${currentLevelId}`} slotId="8330331714" width="320px" height="100px" label="Patrocinado"/>
          </div>
          <div className="hidden md:block">
@@ -558,15 +578,14 @@ const VocabularyGame = ({ onBack }) => {
          </div>
       </div>
 
-      <div className="w-full max-w-7xl mx-auto flex flex-col xl:flex-row justify-center items-start gap-8 p-4 mt-4">
-          
+      <div className="w-full max-w-360 mx-auto flex flex-col xl:flex-row justify-center items-start gap-5 p-4 mt-4">          
           {/* --- SIDEBAR ESQUERDA (DESKTOP) --- */}
           <div className="hidden xl:flex w-80 shrink-0 flex-col gap-4 sticky top-36">
              <AdUnit key={`desktop-left-${currentLevelId}`} slotId="5118244396" width="300px" height="600px" label="Patrocinado"/>
           </div>
 
           {/* --- ÁREA CENTRAL DO JOGO --- */}
-          <div className="w-full max-w-2xl shrink-0 flex flex-col">
+          <div className="w-full max-w-2xl flex flex-col">
             
             <div className="flex items-center justify-between mb-4 px-2">
               <button

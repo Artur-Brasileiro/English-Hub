@@ -1,36 +1,59 @@
-import { useCallback } from 'react';
+import { useCallback, useRef } from 'react';
 
 export const useH5Ads = () => {
-  const triggerAdBreak = useCallback((type = 'next', name = 'level_complete', onComplete) => {
-    // Verifica se a API do AdSense para jogos está carregada
+  const isNavigatingRef = useRef(false);
+
+  // ADICIONADO: novos parâmetros onMute e onUnmute
+  const triggerAdBreak = useCallback((type = 'next', name = 'level_complete', onComplete, onMute, onUnmute) => {
+    isNavigatingRef.current = false;
+
+    const safeComplete = () => {
+      if (!isNavigatingRef.current) {
+        isNavigatingRef.current = true;
+        // Se o jogo for continuar (ex: replay), precisamos desmutar
+        if (onUnmute) onUnmute(); 
+        if (onComplete) onComplete();
+      }
+    };
+
     if (typeof window.adConfig !== 'function') {
-      console.warn("H5 Games API não detectada. Pulando anúncio.");
-      if (onComplete) onComplete();
+      console.warn("H5 Games API ausente. Navegando direto.");
+      safeComplete();
       return;
     }
 
-    // Chama o adBreak nativo do Google 
-    window.adConfig({
-      preloadAdBreaks: 'on', // Garante pre-loading para evitar latência [cite: 21]
-      sound: 'on', // O Google gerencia o mudo automaticamente [cite: 63]
-      onReady: () => {
-        console.log("AdSense H5 API Ready");
-      },
-    });
+    const safetyTimer = setTimeout(() => {
+      console.log("Timeout do AdSense: Forçando navegação.");
+      safeComplete();
+    }, 800); 
 
-    window.adConfig({
-      name: name,
-      type: type, // 'start', 'next', 'browse', 'reward'
-      beforeAd: () => {
-        // Pause o jogo ou pare sons aqui se necessário
-        console.log("Anúncio vai começar");
-      },
-      afterAd: () => {
-        // Retome o jogo
-        console.log("Anúncio terminou ou foi pulado");
-        if (onComplete) onComplete();
-      },
-    });
+    try {
+      // Configuração inicial
+      window.adConfig({
+        preloadAdBreaks: 'on', 
+        sound: 'on', 
+        onReady: () => console.log("AdSense H5 API Ready"),
+      });
+
+      // Chamada do anúncio
+      window.adConfig({
+        name: name,
+        type: type, 
+        beforeAd: () => {
+          console.log("Anúncio vai começar - Mutando áudio");
+          // CORREÇÃO CRÍTICA: Parar o som aqui
+          if (onMute) onMute(); 
+          clearTimeout(safetyTimer);
+        },
+        afterAd: () => {
+          console.log("Anúncio terminou/fechou.");
+          safeComplete();
+        },
+      });
+    } catch (error) {
+      console.error("Erro ao chamar adConfig:", error);
+      safeComplete();
+    }
   }, []);
 
   return { triggerAdBreak };

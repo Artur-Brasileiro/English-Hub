@@ -22,9 +22,9 @@
     </script>
 
     <script>
-       window.adsbygoogle = window.adsbygoogle || [];
-       // Mantemos apenas o Shim para a API de Jogos (H5) funcionar com o seu hook
-       window.adConfig = function(o) { window.adsbygoogle.push(o); };
+      // O Shim oficial da API H5 deve definir adBreak E adConfig
+      window.adsbygoogle = window.adsbygoogle || [];
+      window.adBreak = window.adConfig = function(o) { window.adsbygoogle.push(o); };
     </script>
 </head>
   <body>
