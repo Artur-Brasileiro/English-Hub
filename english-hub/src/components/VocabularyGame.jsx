@@ -492,7 +492,7 @@ const VocabularyGame = ({ onBack }) => {
           key={`mobile-top-${currentLevelId}`} 
           slotId="SEU_SLOT_MOBILE_TOP" 
           width="320px" 
-          height="50px" 
+          height="100px" 
           label="Patrocinado"
         />
       </div>
