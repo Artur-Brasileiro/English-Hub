@@ -13,21 +13,18 @@ const AdUnit = ({
   const adRef = useRef(null);
   const adsPushed = useRef(false); 
   const [isAdLoaded, setIsAdLoaded] = useState(false);
-  // Estado para controlar se o componente está visível na tela
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
-    // Implementação de Lazy Loading com IntersectionObserver [cite: 197, 201]
-    // Isso impede que anúncios ocultos (ex: versão desktop rodando no mobile) disparem erros
+    // 1. Lazy Loading (Mantido pois resolveu os erros 400)
     const observer = new IntersectionObserver(
       ([entry]) => {
-        // Só ativa se estiver visível e tiver tamanho real (>0px)
         if (entry.isIntersecting && entry.boundingClientRect.width > 0) {
           setIsVisible(true);
-          observer.disconnect(); // Para de observar assim que ficar visível
+          observer.disconnect();
         }
       },
-      { rootMargin: '100px' } // Carrega um pouco antes de aparecer na tela
+      { rootMargin: '100px' }
     );
 
     if (adRef.current) {
@@ -38,27 +35,49 @@ const AdUnit = ({
   }, []);
 
   useEffect(() => {
-    // Só executa o push se: 
-    // 1. Estiver visível (passou pelo observer)
-    // 2. Ainda não tiver sido carregado (adsPushed.current)
-    if (!isVisible || typeof window === 'undefined' || !adRef.current || adsPushed.current) {
+    // Se não estiver visível ou sem referência, não faz nada
+    if (!isVisible || typeof window === 'undefined' || !adRef.current) {
       return;
     }
 
-    // Proteção extra: Verifica novamente se o slot está vazio
+    // VERIFICAÇÃO DE SEGURANÇA 1: Já foi processado?
+    if (adsPushed.current) {
+      setIsAdLoaded(true); // Garante que o texto suma
+      return;
+    }
+
+    // VERIFICAÇÃO DE SEGURANÇA 2: O slot já tem algo dentro (iframe/script)?
+    // O problema anterior era aqui: ele retornava mas não setava o estado.
     if (adRef.current.innerHTML.replace(/\s/g, '').length > 0) {
+       console.log(`Slot ${slotId} já populado. Marcando como carregado.`);
+       adsPushed.current = true;
+       setIsAdLoaded(true);
        return;
     }
 
     try {
+      console.log(`Solicitando anúncio para slot ${slotId}...`);
       (window.adsbygoogle = window.adsbygoogle || []).push({});
       adsPushed.current = true;
       setIsAdLoaded(true);
     } catch (e) {
       console.error("AdSense Push Error:", e);
+      // Mesmo com erro, removemos o "Carregando" para não quebrar o layout visualmente
+      setIsAdLoaded(true); 
     }
 
-  }, [isVisible, slotId]); // Dependência em isVisible ativa o efeito no momento certo
+  }, [isVisible, slotId]);
+
+  // Timeout de Segurança (Fallback)
+  // Se por algum motivo o script travar, em 2 segundos removemos o "Carregando..."
+  useEffect(() => {
+    if (isVisible && !isAdLoaded) {
+      const timer = setTimeout(() => {
+        setIsAdLoaded(true);
+      }, 2000);
+      return () => clearTimeout(timer);
+    }
+  }, [isVisible, isAdLoaded]);
 
   const containerStyle = {
     display: 'flex',
@@ -81,7 +100,6 @@ const AdUnit = ({
       <div className="relative bg-slate-50 border border-slate-100 flex items-center justify-center"
            style={{ width: width || 'auto', height: height || 'auto', minHeight: height || '250px' }}>
         
-        {/* Só renderiza o <ins> se estiver visível. Isso resolve o erro de width=0 [cite: 218] */}
         {isVisible ? (
           <ins 
             className="adsbygoogle"
@@ -90,15 +108,17 @@ const AdUnit = ({
             data-ad-slot={slotId}
             data-ad-format={format}
             data-full-width-responsive={responsive}
-            // data-adtest="on" // Descomente para testes locais
+            // MODO DE TESTE ATIVADO: Isso ajuda a ver banners de teste (escrito Test Ad)
+            // IMPORTANTE: Remova ou comente esta linha antes de publicar na Vercel final!
+            data-adtest="on" 
           />
         ) : (
-          // Placeholder enquanto não está visível (evita CLS)
           <div style={{ width: width || '100%', height: height || '100%' }} />
         )}
 
+        {/* Só mostra "Carregando" se não estiver carregado E estiver visível */}
         {!isAdLoaded && isVisible && (
-             <span className="absolute text-slate-300 text-[10px] font-bold animate-pulse">
+             <span className="absolute text-slate-300 text-[10px] font-bold animate-pulse pointer-events-none">
                 Carregando...
              </span>
         )}
