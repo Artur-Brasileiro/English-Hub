@@ -561,7 +561,7 @@ const VocabularyGame = ({ onBack }) => {
       <div className="w-full max-w-7xl mx-auto flex flex-col xl:flex-row justify-center items-start gap-8 p-4 mt-4">
           
           {/* --- SIDEBAR ESQUERDA (DESKTOP) --- */}
-          <div className="hidden xl:flex w-75 shrink-0 flex-col gap-4 sticky top-36">
+          <div className="hidden xl:flex w-[300px] shrink-0 flex-col gap-4 sticky top-36">
              <AdUnit key={`desktop-left-${currentLevelId}`} slotId="5118244396" width="300px" height="600px" label="Patrocinado"/>
           </div>
 

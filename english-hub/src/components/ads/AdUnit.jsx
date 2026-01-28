@@ -78,6 +78,7 @@ const AdUnit = ({
           data-ad-slot={slotId}
           data-ad-format={format}
           data-full-width-responsive={responsive}
+          data-adtest="on"
         />
       </div>
     </div>
