@@ -1,5 +1,6 @@
 import React, { useState, useMemo, useRef, useEffect } from 'react';
 import { useNavigate, useParams } from "react-router-dom";
+import { Helmet } from 'react-helmet-async'; // <--- NOVO: SEO Dinâmico
 import { VOCABULARY_DATA } from '../data/gameData';
 import {
   ArrowRight,
@@ -9,17 +10,18 @@ import {
   ArrowLeft,
   BookOpen,
   PlayCircle,
-  CornerDownLeft
+  CornerDownLeft,
+  Info,
+  ShieldCheck
 } from 'lucide-react';
 
-// --- IMPORTS DOS NOVOS COMPONENTES E HOOK ---
-import AdUnit from '../components/ads/AdUnit';
-import InterstitialAd from '../components/ads/InterstitialAd';
-import { useSafeNavigation } from '../hooks/useSafeNavigation';
+// --- IMPORTS DOS COMPONENTES DE ANÚNCIOS E HOOK ---
+import AdUnit from './ads/AdUnit'; 
+import { useH5Ads } from '../hooks/useH5Ads'; // <--- NOVO: Hook da API H5
 
 const WORDS_PER_LEVEL = 30;
 
-// --- FUNÇÕES UTILITÁRIAS (Mantidas iguais) ---
+// --- FUNÇÕES UTILITÁRIAS ---
 const normalize = (text) => {
   return String(text ?? '')
     .toLowerCase()
@@ -43,7 +45,7 @@ const buildAcceptedAnswers = (ptArray) => {
   return accepted;
 };
 
-// --- ALGORITMOS DE TEXTO (Mantidos iguais) ---
+// --- ALGORITMOS DE TEXTO ---
 const levenshtein = (a, b) => {
   const m = a.length;
   const n = b.length;
@@ -90,6 +92,48 @@ const shuffleWords = (words) => {
   return shuffled;
 };
 
+// --- COMPONENTE: CONTEXTO EDUCACIONAL (SEO & COMPLIANCE) ---
+const EducationalContext = () => (
+  <section className="w-full mt-12 px-6 py-8 bg-white rounded-3xl border border-slate-200 shadow-sm text-slate-600">
+    <div className="flex items-center gap-3 mb-6">
+      <div className="bg-indigo-100 p-2 rounded-lg text-indigo-600">
+        <BookOpen className="w-6 h-6" />
+      </div>
+      <h2 className="text-xl md:text-2xl font-bold text-slate-800">
+        Como o Vocabulary Game Acelera seu Aprendizado
+      </h2>
+    </div>
+    
+    <div className="prose prose-slate max-w-none grid md:grid-cols-2 gap-8 text-left">
+      <div>
+        <h3 className="text-lg font-bold text-slate-800 mb-2 flex items-center gap-2">
+          <ShieldCheck className="w-4 h-4 text-green-500" /> Retenção Ativa (Active Recall)
+        </h3>
+        <p className="text-sm leading-relaxed mb-4">
+          Diferente de apenas ler uma lista de palavras, este jogo utiliza o conceito de 
+          <strong> Recuperação Ativa</strong>. Ao forçar seu cérebro a buscar a tradução 
+          correta para termos técnicos em inglês, você fortalece as conexões neurais 
+          responsáveis pela memória de longo prazo.
+        </p>
+        <p className="text-sm leading-relaxed">
+          Estudos indicam que a gamificação no ensino de línguas pode aumentar a retenção 
+          de vocabulário significativamente comparado a métodos passivos de leitura.
+        </p>
+      </div>
+      
+      <div>
+        <h3 className="text-lg font-bold text-slate-800 mb-2 flex items-center gap-2">
+          <Info className="w-4 h-4 text-blue-500" /> Dicas de Estudo
+        </h3>
+        <ul className="text-sm space-y-2 list-disc pl-4 marker:text-rose-500">
+          <li><strong>Repetição Espaçada:</strong> Jogue o mesmo nível em dias diferentes para fixar o conteúdo.</li>
+          <li><strong>Pronúncia:</strong> Use o botão de áudio para associar a grafia ao som correto.</li>
+          <li><strong>Contexto:</strong> Tente criar uma frase mentalmente com cada palavra que você acerta.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+);
 
 // --- COMPONENTE PRINCIPAL ---
 
@@ -102,8 +146,8 @@ const VocabularyGame = ({ onBack }) => {
   const [view, setView] = useState(urlLevel ? 'game' : 'menu');
   const [currentLevelId, setCurrentLevelId] = useState(urlLevel || 1);
 
-  // --- USO DO HOOK DE NAVEGAÇÃO SEGURA (ADS) ---
-  const { showAdScreen, requestNavigation, confirmNavigation, resetTimer } = useSafeNavigation();
+  // --- HOOK DA H5 GAMES API ---
+  const { triggerAdBreak } = useH5Ads();
 
   // Estados do Jogo
   const [currentWordIndex, setCurrentWordIndex] = useState(0);
@@ -132,7 +176,7 @@ const VocabularyGame = ({ onBack }) => {
     if (urlLevel) {
       setCurrentLevelId(urlLevel);
       setView('game');
-      restartInternalState(); // Reinicia o jogo e o timer
+      restartInternalState();
       window.scrollTo(0, 0);
     } else {
       setView('menu');
@@ -146,10 +190,6 @@ const VocabularyGame = ({ onBack }) => {
     setStats({ correct: 0, wrong: 0 });
     setSpeechRate(1);
     setLevelShuffleKey((prev) => prev + 1);
-    
-    // --- RESET DO CRONÔMETRO VIA HOOK ---
-    resetTimer();
-    
     resetInputsAndFeedback();
   };
 
@@ -166,10 +206,10 @@ const VocabularyGame = ({ onBack }) => {
 
   // Focar no input
   useEffect(() => {
-    if (!feedback && view === 'game' && !showAdScreen) {
+    if (!feedback && view === 'game') {
       inputRef.current?.focus();
     }
-  }, [currentWordIndex, feedback, view, showAdScreen]);
+  }, [currentWordIndex, feedback, view]);
 
   // --- FUNÇÕES DE CONTROLE ---
 
@@ -356,22 +396,18 @@ const VocabularyGame = ({ onBack }) => {
 
   // --- RENDERIZAÇÃO ---
 
-  // 1. TELA DE ANÚNCIO (Interstitial - Prioridade Alta)
-  if (showAdScreen) {
-    return (
-      <InterstitialAd 
-        onConfirm={confirmNavigation} 
-        slotId="SEU_ID_INTERSTITIAL" 
-      />
-    );
-  }
-
-  // 2. MENU DE NÍVEIS
+  // 1. MENU DE NÍVEIS
   if (view === 'menu') {
     const levelsArray = Array.from({ length: totalLevels }, (_, i) => i + 1);
 
     return (
       <div className="min-h-screen bg-slate-50 py-12 px-4 animate-fade-in">
+        {/* SEO Dinâmico para o Menu */}
+        <Helmet>
+          <title>Vocabulary Builder - Treine Inglês Técnico | EnglishUp</title>
+          <meta name="description" content={`Expanda seu vocabulário com ${VOCABULARY_DATA.length} palavras técnicas divididas em ${totalLevels} níveis. Jogo de Active Recall gratuito.`} />
+        </Helmet>
+
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-8">
             <div className="bg-rose-100 p-4 rounded-full inline-flex mb-4 text-rose-600 shadow-sm">
@@ -391,8 +427,10 @@ const VocabularyGame = ({ onBack }) => {
               <ArrowLeft className="w-4 h-4" /> Voltar ao Hub Principal
             </button>
           </div>
+          
           <hr className="border-slate-200 mb-8" />
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 mb-16">
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 mb-12">
             {levelsArray.map((levelId) => (
               <div
                 key={levelId}
@@ -416,16 +454,31 @@ const VocabularyGame = ({ onBack }) => {
               </div>
             ))}
           </div>
+
+          <EducationalContext />
         </div>
       </div>
     );
   }
 
-  // 3. TELA DE RESULTADO (Com interceptadores do Hook)
+  // 2. TELA DE RESULTADO (Com AdSense no Topo)
   if (view === 'result') {
     return (
-      <div className="min-h-screen bg-slate-50 flex items-center justify-center p-4 animate-fade-in">
-        <div className="bg-white rounded-3xl shadow-xl border border-slate-100 p-8 md:p-12 text-center max-w-lg w-full">
+      <div className="min-h-screen bg-slate-50 flex flex-col items-center justify-center p-4 animate-fade-in">
+        {/* SEO Dinâmico para Resultado */}
+        <Helmet>
+          {/* CORREÇÃO AQUI TAMBÉM */}
+          <title>{`Resultado Nível ${currentLevelId} - EnglishUp`}</title>
+          
+          <meta name="description" content={`Você completou o nível ${currentLevelId} com ${stats.correct} acertos. Continue praticando para melhorar seu inglês técnico.`} />
+        </Helmet>
+        
+        {/* AdUnit Topo do Resultado - Mantido pois é Display Ad, não Interstitial */}
+        <div className="mb-6">
+          <AdUnit slotId="2492081057" width="300px" height="250px" label="Publicidade" />
+        </div>
+
+        <div className="bg-white rounded-3xl shadow-xl border border-slate-100 p-8 md:p-12 text-center max-w-lg w-full mb-8">
           <div className="w-24 h-24 bg-yellow-100 text-yellow-500 rounded-full flex items-center justify-center mx-auto mb-6 shadow-sm">
             <Trophy className="w-12 h-12" />
           </div>
@@ -448,8 +501,10 @@ const VocabularyGame = ({ onBack }) => {
           <div className="flex flex-col gap-3">
             {currentLevelId < totalLevels && (
               <button
-                // Substitui navegação direta pelo requestNavigation do Hook
-                onClick={() => requestNavigation(() => navigate(`/vocabulary/level/${currentLevelId + 1}`))}
+                // Aqui chamamos o H5 Ad Break antes de navegar
+                onClick={() => triggerAdBreak('next', `level_complete_${currentLevelId}`, () => {
+                   navigate(`/vocabulary/level/${currentLevelId + 1}`);
+                })}
                 className="w-full py-3.5 bg-rose-600 text-white font-bold rounded-xl hover:bg-rose-700 transition-colors shadow-lg shadow-rose-200 flex items-center justify-center gap-2"
               >
                 Próximo Nível <ArrowRight className="w-4 h-4" />
@@ -457,8 +512,8 @@ const VocabularyGame = ({ onBack }) => {
             )}
 
             <button
-              // Ação de reiniciar usando o Hook
-              onClick={() => requestNavigation(() => {
+              // H5 Ad Break ao repetir
+              onClick={() => triggerAdBreak('next', 'level_retry', () => {
                   setView('game'); 
                   restartLevelInternal();
               })}
@@ -468,50 +523,52 @@ const VocabularyGame = ({ onBack }) => {
             </button>
 
             <button
-              onClick={() => requestNavigation(() => navigate('/vocabulary'))}
+              onClick={() => navigate('/vocabulary')}
               className="text-slate-400 hover:text-slate-600 text-sm font-medium mt-2"
             >
               Voltar ao Menu de Níveis
             </button>
           </div>
         </div>
+
+        <EducationalContext />
       </div>
     );
   }
 
-  // 4. JOGO PRINCIPAL (Com Componentes de Anúncios Otimizados)
+  // 3. JOGO PRINCIPAL
   const progressPercentage = (currentWordIndex / currentLevelWords.length) * 100;
 
   return (
-    <div className="min-h-screen bg-slate-50 p-4 font-sans text-slate-800 flex flex-col xl:justify-center">
+    <div className="min-h-screen bg-slate-50 font-sans text-slate-800 flex flex-col items-center">
+      {/* SEO Dinâmico para o Nível */}
+      <Helmet>
+        <title>{`Nível ${currentLevelId} - EnglishUp`}</title> 
+        
+        <meta name="description" content={`Pratique a palavra "${currentWord?.en || 'técnica'}" e outras do nível ${currentLevelId}. Aprenda inglês técnico com Active Recall.`} />
+      </Helmet>
       
-      {/* --- ANÚNCIO MOBILE (TOPO) --- */}
-      <div className="flex xl:hidden w-full mb-4 justify-center">
-        <AdUnit 
-          key={`mobile-top-${currentLevelId}`} 
-          slotId="SEU_SLOT_MOBILE_TOP" 
-          width="320px" 
-          height="100px" 
-          label="Patrocinado"
-        />
+      {/* --- HEADER DE ANÚNCIO (STICKY) --- */}
+      <div className="w-full bg-white border-b border-slate-200 py-2 flex flex-col items-center justify-center sticky top-0 z-20 shadow-sm min-h-25 md:min-h-27.5">
+         <div className="block md:hidden">
+            <AdUnit key={`mobile-top-${currentLevelId}`} slotId="8330331714" width="320px" height="100px" label="Patrocinado"/>
+         </div>
+         <div className="hidden md:block">
+            <AdUnit slotId="5673552248" width="728px" height="90px" label="Patrocinado"/>
+         </div>
       </div>
 
-      <div className="flex flex-row justify-center items-start gap-6">
+      <div className="w-full max-w-7xl mx-auto flex flex-col xl:flex-row justify-center items-start gap-8 p-4 mt-4">
           
-          {/* --- ANÚNCIO DESKTOP (ESQUERDA) --- */}
-          <div className="hidden xl:block w-75 sticky top-4">
-             <AdUnit 
-                key={`desktop-left-${currentLevelId}`} 
-                slotId="SEU_SLOT_DESKTOP_LEFT" 
-                width="300px" 
-                height="600px" 
-                label="Patrocinado"
-             />
+          {/* --- SIDEBAR ESQUERDA (DESKTOP) --- */}
+          <div className="hidden xl:flex w-75 shrink-0 flex-col gap-4 sticky top-36">
+             <AdUnit key={`desktop-left-${currentLevelId}`} slotId="5118244396" width="300px" height="600px" label="Patrocinado"/>
           </div>
 
-          {/* --- ÁREA DO JOGO (CENTRO) --- */}
-          <div className="w-full max-w-2xl shrink-0">
-            <div className="flex items-center justify-between mb-8 pt-4">
+          {/* --- ÁREA CENTRAL DO JOGO --- */}
+          <div className="w-full max-w-2xl shrink-0 flex flex-col">
+            
+            <div className="flex items-center justify-between mb-4 px-2">
               <button
                 onClick={() => navigate('/vocabulary')}
                 className="flex items-center gap-2 text-slate-400 hover:text-slate-600 font-bold transition-colors text-sm uppercase tracking-wide"
@@ -523,7 +580,7 @@ const VocabularyGame = ({ onBack }) => {
               </span>
             </div>
 
-            <div className="bg-white rounded-3xl shadow-xl border border-slate-100 overflow-hidden relative">
+            <div className="bg-white rounded-3xl shadow-xl border border-slate-100 overflow-hidden relative mb-8">
               <div className="w-full bg-slate-100 h-2">
                 <div
                   className="bg-rose-600 h-2 transition-all duration-500 ease-out"
@@ -531,7 +588,7 @@ const VocabularyGame = ({ onBack }) => {
                 />
               </div>
 
-              <div className="p-8 md:p-12 text-center">
+              <div className="p-6 md:p-12 text-center">
                 <span className="inline-flex items-center gap-1 px-3 py-1 bg-rose-50 text-rose-600 text-xs font-bold uppercase tracking-widest rounded-full mb-8">
                   <PlayCircle className="w-3 h-3" /> Palavra {currentWordIndex + 1} /{' '}
                   {currentLevelWords.length}
@@ -544,7 +601,7 @@ const VocabularyGame = ({ onBack }) => {
                   <p className="text-slate-400 text-sm font-medium italic">Como se diz isso em português?</p>
                 </div>
 
-                {/* CONTROLES DE ÁUDIO */}
+                {/* CONTROLES DE ÁUDIO (Mantidos sem alteração) */}
                 <div className="flex flex-col items-center gap-3 mb-8">
                   <div className="flex flex-wrap items-center justify-center gap-3">
                     <label className="flex items-center gap-2 text-xs font-bold text-slate-500 uppercase tracking-wide">
@@ -577,7 +634,6 @@ const VocabularyGame = ({ onBack }) => {
                       disabled={isListening}
                     >
                       <span>{isListening ? 'Ouvindo...' : 'Repetir pronuncia'}</span>
-                      
                       <div 
                         className={`w-3 h-3 rounded-full transition-all duration-300 border border-white
                           ${
@@ -593,13 +649,12 @@ const VocabularyGame = ({ onBack }) => {
                       />
                     </button>
                   </div>
-
                   {pronunciationError && (
                     <p className="text-xs text-red-500 font-medium">{pronunciationError}</p>
                   )}
                 </div>
 
-                {/* ÁREA DE RESPOSTA (TAGS) */}
+                {/* ÁREA DE RESPOSTA (Mantida sem alteração) */}
                 <div className="max-w-3xl mx-auto mb-8">
                     <div 
                         className={`
@@ -719,36 +774,35 @@ const VocabularyGame = ({ onBack }) => {
                 )}
               </div>
             </div>
+
+            <EducationalContext />
+
+            <div className="mt-8 hidden md:flex justify-center">
+               <AdUnit slotId="4391086704" width="336px" height="280px" label="Publicidade"/>
+            </div>
           </div>
 
-          {/* --- ANÚNCIO DESKTOP (DIREITA) --- */}
-          <div className="hidden xl:block w-75 sticky top-4">
-             <AdUnit 
-                key={`desktop-right-${currentLevelId}`} 
-                slotId="SEU_SLOT_DESKTOP_RIGHT" 
-                width="300px" 
-                height="600px" 
-                label="Patrocinado"
-             />
+          {/* --- SIDEBAR DIREITA (DESKTOP) --- */}
+          <div className="hidden xl:flex w-75 shrink-0 flex-col gap-4 sticky top-36">
+             <AdUnit key={`desktop-right-${currentLevelId}`} slotId="3805162724" width="300px" height="250px" label="Patrocinado"/>
+             
+             <div className="bg-amber-50 rounded-xl p-6 border border-amber-100">
+                <h3 className="font-bold text-amber-800 mb-2 flex items-center gap-2">
+                   <Trophy className="w-4 h-4" /> Dica Pro
+                </h3>
+                <p className="text-sm text-amber-700/80">
+                   Tente usar sinônimos quando possível! Isso aumenta sua pontuação oculta de fluência.
+                </p>
+             </div>
           </div>
       </div>
 
-      {/* --- ANÚNCIO MOBILE (BASE) - COM ZONA DE SEGURANÇA --- */}
-      <div className="xl:hidden w-full mt-4 flex flex-col items-center">
-          
-          <div className="h-37.5 w-full flex items-center justify-center text-[10px] text-slate-300 pointer-events-none select-none">
-             --- Zona Segura de Scroll ---
+      <div className="xl:hidden w-full flex flex-col items-center pb-8 bg-slate-50 mt-4">
+          <div className="h-24 w-full flex items-center justify-center pointer-events-none">
+             <span className="text-[10px] text-slate-300 uppercase tracking-widest">--- Publicidade abaixo ---</span>
           </div>
-
-          <AdUnit 
-             key={`mobile-bottom-${currentLevelId}`} 
-             slotId="SEU_SLOT_MOBILE_BOTTOM" 
-             width="300px" 
-             height="250px" 
-             label="Patrocinado"
-          />
+          <AdUnit key={`mobile-bottom-${currentLevelId}`} slotId="3477859667" width="300px" height="250px" label="Patrocinado"/>
       </div>
-
     </div>
   );
 };

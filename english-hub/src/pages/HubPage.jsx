@@ -267,9 +267,45 @@ const HubPage = () => {
         </div>
       </main>
 
-      <footer className="py-8 text-center text-slate-400 text-sm bg-white/70 backdrop-blur border-t border-slate-200">
-        © 2026 {brandName} •{" "}
-        <a href="https://github.com/Artur-Brasileiro">Artur Brasileiro</a>
+      <footer className="bg-white/80 backdrop-blur border-t border-slate-200 pt-10 pb-6">
+        <div className="max-w-6xl mx-auto px-4 flex flex-col md:flex-row justify-between items-center gap-6">
+          
+          {/* Lado Esquerdo: Copyright */}
+          <div className="text-center md:text-left">
+            <p className="text-slate-900 font-bold text-lg">{brandName}</p>
+            <p className="text-slate-500 text-sm mt-1">
+              © 2026 Artur Brasileiro. Todos os direitos reservados.
+            </p>
+          </div>
+
+          {/* Lado Direito: Links Institucionais (Exigência AdSense) */}
+          <div className="flex flex-wrap justify-center gap-6 text-sm font-medium text-slate-500">
+            <button onClick={() => navigate('/about')} className="hover:text-indigo-600 transition-colors">
+              Sobre Nós
+            </button>
+            <button onClick={() => navigate('/privacy')} className="hover:text-indigo-600 transition-colors">
+              Política de Privacidade
+            </button>
+            <button onClick={() => navigate('/contact')} className="hover:text-indigo-600 transition-colors">
+              Contato
+            </button>
+            <a 
+              href="https://github.com/Artur-Brasileiro" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="hover:text-indigo-600 transition-colors"
+            >
+              GitHub
+            </a>
+          </div>
+        </div>
+        
+        {/* Disclamerzinho extra que o Google gosta */}
+        <div className="max-w-6xl mx-auto px-4 mt-8 pt-6 border-t border-slate-100 text-center md:text-left">
+           <p className="text-[10px] text-slate-400 uppercase tracking-wider">
+             Feito com ❤️ em Minas Gerais, Brasil.
+           </p>
+        </div>
       </footer>
     </div>
   );
