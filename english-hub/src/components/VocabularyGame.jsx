@@ -468,7 +468,6 @@ const VocabularyGame = ({ onBack }) => {
             </button>
 
             <button
-              // Voltar ao menu usando o Hook
               onClick={() => requestNavigation(() => navigate('/vocabulary'))}
               className="text-slate-400 hover:text-slate-600 text-sm font-medium mt-2"
             >
