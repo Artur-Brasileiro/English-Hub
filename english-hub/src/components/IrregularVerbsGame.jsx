@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import {
   Gamepad2,
   ToggleLeft,
@@ -10,27 +10,64 @@ import {
   CheckCircle,
   XCircle,
   ArrowRight as ArrowRightIcon,
+  // --- NOVOS ÍCONES IMPORTADOS ---
+  BookOpen,
+  Zap,
+  Target,
+  Trophy
 } from 'lucide-react';
 import { IRREGULAR_VERBS_DATA } from '../data/gameData';
-
-// --- IMPORTS ADICIONADOS ---
 import AdUnit from './ads/AdUnit';
 import { useH5Ads } from '../hooks/useH5Ads';
 
 const ITEMS_PER_PHASE = 10;
 
+// --- NOVO COMPONENTE: CONTEXTO EDUCACIONAL (SEO & VALOR) ---
+const EducationalContext = () => (
+  <section className="w-full mt-12 px-6 py-8 bg-white rounded-3xl border border-slate-200 shadow-sm text-slate-600 animate-fadeIn">
+    <div className="flex items-center gap-3 mb-6">
+      <div className="bg-orange-100 p-2 rounded-lg text-orange-600">
+        <BookOpen className="w-6 h-6" />
+      </div>
+      <h2 className="text-xl md:text-2xl font-bold text-slate-800">
+        Dominando os Verbos Irregulares
+      </h2>
+    </div>
+    
+    <div className="prose prose-slate max-w-none grid md:grid-cols-2 gap-8 text-left">
+      <div>
+        <h3 className="text-lg font-bold text-slate-800 mb-2 flex items-center gap-2">
+          <Zap className="w-4 h-4 text-amber-500" /> O Poder dos Padrões
+        </h3>
+        <p className="text-sm leading-relaxed mb-4">
+          Embora sejam chamados de "irregulares", muitos verbos seguem padrões fonéticos claros (ex: <em>sing/sang/sung</em>, <em>ring/rang/rung</em>). 
+          Ao praticar digitando as três formas juntas, seu cérebro começa a internalizar esses "ritmos" linguísticos automaticamente, tornando a fala mais natural.
+        </p>
+      </div>
+      
+      <div>
+        <h3 className="text-lg font-bold text-slate-800 mb-2 flex items-center gap-2">
+          <Target className="w-4 h-4 text-rose-500" /> Por que as 3 colunas?
+        </h3>
+        <ul className="text-sm space-y-2 list-disc pl-4 marker:text-orange-500">
+          <li><strong>Passado:</strong> Essencial para contar histórias e relatar fatos terminados (ex: "I <em>went</em> there").</li>
+          <li><strong>Particípio:</strong> A chave para tempos compostos como o Present Perfect e para a Voz Passiva (ex: "It was <em>written</em>").</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+);
+
 const IrregularVerbsGame = ({ onBack }) => {
   const navigate = useNavigate();
+  const { levelId } = useParams();
   
-  // --- HOOK ADSENSE ---
   const { triggerAdBreak } = useH5Ads();
-  // Função placeholder para silenciar áudio (se houver no futuro)
   const stopAllAudio = () => { console.log("Silence audio"); };
 
   const [gameState, setGameState] = useState('config');
   const [activePhase, setActivePhase] = useState(1);
 
-  // "presente" começa como true
   const [selectedModes, setSelectedModes] = useState({
     presente: true,
     passado: true,
@@ -41,7 +78,6 @@ const IrregularVerbsGame = ({ onBack }) => {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [phaseQuestions, setPhaseQuestions] = useState([]);
 
-  // respostas do usuário por campo
   const [userAnswers, setUserAnswers] = useState({
     presente: '',
     passado: '',
@@ -51,6 +87,20 @@ const IrregularVerbsGame = ({ onBack }) => {
   const [feedback, setFeedback] = useState(null);
   const firstInputRef = useRef(null);
   const totalPhases = Math.ceil(IRREGULAR_VERBS_DATA.length / ITEMS_PER_PHASE);
+
+  useEffect(() => {
+    if (levelId) {
+      const phaseNum = parseInt(levelId, 10);
+      if (!isNaN(phaseNum) && phaseNum > 0 && phaseNum <= totalPhases) {
+          startGame(phaseNum);
+      } else {
+          alert("Fase inválida!");
+          navigate('/irregular');
+      }
+    } else {
+      setGameState('config');
+    }
+  }, [levelId]);
 
   const toggleMode = (mode) => {
     setSelectedModes((prev) => ({ ...prev, [mode]: !prev[mode] }));
@@ -62,15 +112,16 @@ const IrregularVerbsGame = ({ onBack }) => {
   };
 
   const startGame = (phaseNumber) => {
-    if (!selectedModes.presente && !selectedModes.passado && !selectedModes.participio) {
-      alert('Selecione pelo menos um tempo verbal para treinar!');
-      return;
-    }
-
     setActivePhase(phaseNumber);
     const startIndex = (phaseNumber - 1) * ITEMS_PER_PHASE;
     const endIndex = startIndex + ITEMS_PER_PHASE;
     const originalQuestions = IRREGULAR_VERBS_DATA.slice(startIndex, endIndex);
+    
+    if (originalQuestions.length === 0) {
+        navigate('/irregular');
+        return;
+    }
+
     const shuffledQuestions = [...originalQuestions].sort(() => 0.5 - Math.random());
 
     setPhaseQuestions(shuffledQuestions);
@@ -78,6 +129,15 @@ const IrregularVerbsGame = ({ onBack }) => {
     setScore(0);
     initializeInputs();
     setGameState('playing');
+    window.scrollTo(0,0);
+  };
+
+  const goToLevel = (phaseNum) => {
+      if (!selectedModes.presente && !selectedModes.passado && !selectedModes.participio) {
+        alert('Selecione pelo menos um tempo verbal para treinar!');
+        return;
+      }
+      navigate(`/irregular/level/${phaseNum}`);
   };
 
   useEffect(() => {
@@ -114,11 +174,14 @@ const IrregularVerbsGame = ({ onBack }) => {
       initializeInputs();
       setCurrentQuestionIndex((prev) => prev + 1);
     } else {
-      // --- INTERSTITIAL AD BREAK ---
       triggerAdBreak('next', 'phase_complete', () => {
           setGameState('result');
       }, stopAllAudio);
     }
+  };
+
+  const restartLevel = () => {
+     startGame(activePhase); 
   };
 
   const getInputStatus = (modeKey, correctValue) => {
@@ -132,22 +195,24 @@ const IrregularVerbsGame = ({ onBack }) => {
 
   const renderInputField = (modeKey, label, correctValue, isFirst) => {
     const status = getInputStatus(modeKey, correctValue);
-    let borderClass = 'border-slate-200 focus:border-orange-500 focus:ring-4 focus:ring-orange-50';
+    
+    // Configuração com bordas de 2px (Estilo Vocabulary Game)
+    let borderClass = 'border-2 border-slate-200 bg-white focus:border-orange-400 focus:ring-4 focus:ring-orange-50';
     let icon = null;
 
     if (feedback) {
       if (status === 'correct') {
-        borderClass = 'border-green-500 bg-green-50 text-green-700';
+        borderClass = 'border-2 border-green-500 bg-green-50 text-green-700';
         icon = <CheckCircle className="absolute right-4 top-1/2 -translate-y-1/2 w-5 h-5 text-green-500" />;
       } else if (status === 'wrong' || status === 'empty') {
-        borderClass = 'border-red-300 bg-red-50 text-red-700';
+        borderClass = 'border-2 border-red-300 bg-red-50 text-red-700';
         icon = <XCircle className="absolute right-4 top-1/2 -translate-y-1/2 w-5 h-5 text-red-400" />;
       }
     }
 
     return (
       <div key={`${modeKey}-${currentQuestionIndex}`} className="relative mb-4 animate-fadeIn">
-        <label className="block text-xs font-bold text-slate-400 uppercase tracking-wider mb-1 ml-1">
+        <label className="block text-xs font-bold text-slate-400 uppercase tracking-wider mb-2 ml-1">
           {label}
         </label>
         <div className="relative">
@@ -156,15 +221,15 @@ const IrregularVerbsGame = ({ onBack }) => {
             type="text"
             value={userAnswers[modeKey]}
             onChange={(e) => handleInputChange(modeKey, e.target.value)}
-            placeholder="Digite a tradução..."
-            className={`w-full p-4 text-center text-xl font-medium border-2 rounded-xl outline-none transition-all shadow-sm focus:placeholder-transparent ${borderClass}`}
+            placeholder="Digite..."
+            className={`w-full p-4 text-center text-lg font-medium rounded-xl outline-none transition-all shadow-sm focus:placeholder-transparent ${borderClass}`}
             disabled={feedback !== null}
           />
           {icon}
         </div>
         {feedback && (status === 'wrong' || status === 'empty') && (
-          <div className="text-xs text-red-500 font-bold mt-1 ml-1">
-            Resposta: {correctValue}
+          <div className="text-xs text-red-500 font-bold mt-2 ml-1 flex items-center gap-1 animate-fadeIn">
+             <span>Resposta:</span> <span className="text-red-600">{correctValue}</span>
           </div>
         )}
       </div>
@@ -172,33 +237,49 @@ const IrregularVerbsGame = ({ onBack }) => {
   };
 
   // ===========================
-  // TELA CONFIG (Mantida simples, sem anúncios intrusivos)
+  // TELA CONFIG
   // ===========================
   if (gameState === 'config') {
     return (
-      <div className="flex flex-col h-full py-8 px-4 animate-fadeIn max-w-4xl mx-auto">
-        <div className="text-center mb-8">
-          <div className="bg-orange-100 p-4 rounded-full inline-flex mb-4 text-orange-600">
-            <Gamepad2 className="w-12 h-12" />
+      <div className="min-h-screen bg-slate-50 py-12 px-4 animate-fadeIn">
+        <div className="max-w-6xl mx-auto">
+          <div className="text-center mb-8">
+            <div className="bg-orange-100 p-4 rounded-full inline-flex mb-4 text-orange-600 shadow-sm">
+              <Gamepad2 className="w-10 h-10 md:w-12 md:h-12" />
+            </div>
+            
+            <h1 className="text-3xl md:text-4xl font-extrabold text-slate-800 mb-3">
+              Irregular Verbs Challenge
+            </h1>
+            
+            <p className="text-slate-600 text-lg max-w-2xl mx-auto mb-6">
+               Treine os verbos irregulares. Configure seu treino selecionando os tempos verbais abaixo.
+            </p>
+  
+            <button
+              onClick={() => navigate("/")}
+              className="bg-white border border-slate-300 text-slate-600 hover:bg-slate-100 hover:text-slate-800 px-6 py-2 rounded-full font-bold text-sm transition-all shadow-sm flex items-center justify-center gap-2 mx-auto"
+            >
+              <ArrowLeft className="w-4 h-4" /> Voltar ao Hub Principal
+            </button>
           </div>
-          <h2 className="text-3xl font-bold text-slate-800 mb-2">Irregular Verbs Challenge</h2>
-          <p className="text-slate-600 max-w-lg mx-auto mb-6">
-            Configure seu treino. Digite as formas verbais corretas para vencer.
-          </p>
-
-          <div className="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm max-w-lg mx-auto mb-8">
-            <h3 className="text-sm font-bold text-slate-400 uppercase tracking-widest mb-4">
-              Quais formas treinar?
+  
+          {/* Divisória idêntica ao Vocabulary Game */}
+          <hr className="border-slate-200 mb-8" />
+  
+          <div className="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm max-w-lg mx-auto mb-12">
+            <h3 className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-4">
+              Modos de Treino
             </h3>
-            <div className="flex flex-wrap justify-center gap-4">
+            <div className="flex flex-wrap justify-center gap-3">
               {['presente', 'passado', 'participio'].map((mode) => (
                 <button
                   key={mode}
                   onClick={() => toggleMode(mode)}
-                  className={`flex items-center gap-2 px-4 py-2 rounded-lg font-bold transition-all ${
+                  className={`flex items-center gap-2 px-4 py-2.5 rounded-lg font-bold text-sm transition-all ${
                     selectedModes[mode]
-                      ? 'bg-orange-100 text-orange-700 border-2 border-orange-500'
-                      : 'bg-slate-50 text-slate-400 border-2 border-slate-200'
+                      ? 'bg-orange-50 text-orange-700 border border-orange-400 shadow-sm'
+                      : 'bg-white text-slate-400 border border-slate-200 hover:bg-slate-50'
                   }`}
                 >
                   {selectedModes[mode] ? <ToggleRight className="w-5 h-5" /> : <ToggleLeft className="w-5 h-5" />}
@@ -210,45 +291,40 @@ const IrregularVerbsGame = ({ onBack }) => {
               <p className="text-red-500 text-xs mt-3 font-bold">Selecione pelo menos um!</p>
             )}
           </div>
-        </div>
-
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mb-8">
-          {totalPhases > 0 ? (
-            Array.from({ length: totalPhases }).map((_, idx) => {
-              const phaseNum = idx + 1;
-              return (
-                <button
-                  key={phaseNum}
-                  onClick={() => startGame(phaseNum)}
-                  className="group relative bg-white border-2 border-slate-200 rounded-2xl p-6 hover:border-orange-500 hover:shadow-lg transition-all text-left"
-                >
-                  <div className="flex justify-between items-start mb-4">
-                    <div className="bg-orange-100 p-2 rounded-lg group-hover:bg-orange-200 transition-colors">
-                      <Layers className="w-6 h-6 text-orange-600" />
+  
+          {/* GRADE DE NÍVEIS */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mb-12">
+            {totalPhases > 0 ? (
+              Array.from({ length: totalPhases }).map((_, idx) => {
+                const phaseNum = idx + 1;
+                return (
+                  <button
+                    key={phaseNum}
+                    onClick={() => goToLevel(phaseNum)}
+                    className="group relative bg-white border border-slate-200 rounded-2xl p-6 hover:border-orange-400 hover:shadow-lg transition-all text-left"
+                  >
+                    <div className="flex justify-between items-start mb-4">
+                      <div className="bg-orange-50 p-2.5 rounded-lg group-hover:bg-orange-100 transition-colors text-orange-600">
+                        <Layers className="w-5 h-5" />
+                      </div>
+                      <span className="text-xs font-bold text-slate-400 uppercase tracking-wider bg-slate-50 px-2 py-1 rounded-md">
+                        {ITEMS_PER_PHASE} Verbs
+                      </span>
                     </div>
-                    <span className="text-xs font-bold text-slate-400 uppercase tracking-wider">
-                      {ITEMS_PER_PHASE} Verbs
-                    </span>
-                  </div>
-                  <h3 className="text-xl font-bold text-slate-800 mb-1">Fase {phaseNum}</h3>
-                  <p className="text-sm text-slate-500">
-                    Verbos {(phaseNum - 1) * ITEMS_PER_PHASE + 1} - {phaseNum * ITEMS_PER_PHASE}
-                  </p>
-                </button>
-              );
-            })
-          ) : (
-            <div className="col-span-full text-center py-10 text-slate-400">Adicione mais verbos!</div>
-          )}
-        </div>
-
-        <div className="text-center">
-          <button
-            onClick={() => navigate("/")}
-            className="bg-white border border-slate-300 text-slate-600 hover:bg-slate-100 hover:text-slate-800 px-6 py-2 rounded-full font-bold text-sm transition-all shadow-sm flex items-center justify-center gap-2 mx-auto"
-          >
-            <ArrowLeft className="w-4 h-4" /> Voltar ao Hub Principal
-          </button>
+                    <h3 className="text-lg font-bold text-slate-800 mb-1">Fase {phaseNum}</h3>
+                    <p className="text-sm text-slate-500">
+                      Verbos {(phaseNum - 1) * ITEMS_PER_PHASE + 1} - {phaseNum * ITEMS_PER_PHASE}
+                    </p>
+                  </button>
+                );
+              })
+            ) : (
+              <div className="col-span-full text-center py-10 text-slate-400">Adicione mais verbos!</div>
+            )}
+          </div>
+          
+          {/* --- NOVO: Contexto Educacional no Menu --- */}
+          <EducationalContext />
         </div>
       </div>
     );
@@ -263,8 +339,6 @@ const IrregularVerbsGame = ({ onBack }) => {
 
     return (
       <div className="flex flex-col items-center justify-center min-h-[60vh] py-12 px-4 animate-fadeIn">
-        
-        {/* AdUnit Topo Resultado */}
         <div className="mb-6">
           <AdUnit slotId="2492081057" width="300px" height="250px" label="Publicidade" />
         </div>
@@ -278,17 +352,17 @@ const IrregularVerbsGame = ({ onBack }) => {
 
           <div className="flex gap-4 flex-col">
             <button
-              onClick={() => triggerAdBreak('next', 'phase_retry', () => startGame(activePhase), stopAllAudio)}
+              onClick={() => triggerAdBreak('next', 'phase_retry', restartLevel, stopAllAudio)}
               className="bg-orange-500 text-white px-6 py-3.5 rounded-xl font-bold hover:bg-orange-600 transition-colors flex items-center justify-center gap-2 shadow-lg shadow-orange-200"
             >
               <RefreshCw className="w-5 h-5" /> Repetir Fase
             </button>
 
             <button
-              onClick={() => triggerAdBreak('next', 'config_return', () => setGameState('config'), stopAllAudio)}
-              className="bg-slate-50 text-slate-600 px-6 py-3.5 rounded-xl font-bold hover:bg-slate-100 transition-colors border border-slate-200"
+              onClick={() => triggerAdBreak('next', 'config_return', () => navigate('/irregular'), stopAllAudio)}
+              className="bg-white border-2 border-slate-200 text-slate-600 px-6 py-3.5 rounded-xl font-bold hover:bg-slate-50 transition-colors"
             >
-              Alterar Configurações
+              Escolher Outra Fase
             </button>
           </div>
         </div>
@@ -297,9 +371,10 @@ const IrregularVerbsGame = ({ onBack }) => {
   }
 
   // ===========================
-  // TELA JOGO (COM LAYOUT PADRONIZADO)
+  // TELA JOGO
   // ===========================
   const currentVerb = phaseQuestions[currentQuestionIndex];
+  if (!currentVerb) return <div>Carregando...</div>; 
 
   return (
     <div className="min-h-screen bg-slate-50 font-sans text-slate-800 flex flex-col items-center">
@@ -327,8 +402,8 @@ const IrregularVerbsGame = ({ onBack }) => {
              
              {/* Header do Jogo */}
              <div className="flex justify-between items-center mb-6 px-2">
-                <button onClick={() => setGameState('config')} className="text-slate-400 hover:text-slate-600">
-                  <ArrowLeft className="w-6 h-6" />
+                <button onClick={() => navigate('/irregular')} className="text-slate-400 hover:text-slate-600 flex items-center gap-1">
+                  <ArrowLeft className="w-5 h-5" /> <span className="text-sm font-bold uppercase tracking-wide">Menu</span>
                 </button>
                 <div className="text-right">
                   <span className="text-xs font-bold text-orange-600 bg-orange-50 px-2 py-0.5 rounded-full mb-1 inline-block">
@@ -341,16 +416,16 @@ const IrregularVerbsGame = ({ onBack }) => {
               </div>
 
               {/* Card do Jogo */}
-              <div className="bg-white rounded-3xl shadow-xl border border-slate-100 overflow-hidden flex flex-col animate-fade-in-up">
+              <div className="bg-white rounded-3xl shadow-xl border border-slate-100 overflow-hidden flex flex-col animate-fade-in-up mb-8">
                 <div className="bg-orange-500 p-8 text-center relative overflow-hidden">
                   <div className="absolute top-0 left-0 w-full h-full opacity-10 bg-[radial-gradient(ellipse_at_top,var(--tw-gradient-stops))] from-white via-transparent to-transparent"></div>
                   <span className="relative z-10 text-orange-100 uppercase tracking-widest text-xs font-bold mb-2 block">
-                    Verbo em Português
+                    Traduzir
                   </span>
                   <h2 className="relative z-10 text-4xl font-black text-white capitalize">{currentVerb.pt}</h2>
                 </div>
 
-                <div className="p-8">
+                <div className="p-6 md:p-8">
                   <form onSubmit={checkAnswer}>
                     {selectedModes.presente && renderInputField('presente', 'Presente', currentVerb.presente, true)}
                     {selectedModes.passado && renderInputField('passado', 'Passado', currentVerb.passado, !selectedModes.presente)}
@@ -379,6 +454,9 @@ const IrregularVerbsGame = ({ onBack }) => {
                 </div>
               </div>
 
+             {/* --- NOVO: Contexto Educacional no Jogo --- */}
+             <EducationalContext />
+
              {/* Anúncio Quadrado (Desktop) */}
              <div className="mt-8 hidden md:flex justify-center">
                 <AdUnit slotId="4391086704" width="336px" height="280px" label="Publicidade"/>
@@ -388,6 +466,16 @@ const IrregularVerbsGame = ({ onBack }) => {
           {/* SIDEBAR DIREITA */}
           <div className="hidden xl:flex w-80 shrink-0 flex-col gap-4 sticky top-36">
              <AdUnit key={`desktop-right-irregular`} slotId="3805162724" width="300px" height="250px" label="Patrocinado"/>
+             
+             {/* --- NOVO: Dica Pro (Widget) --- */}
+             <div className="bg-amber-50 rounded-xl p-6 border border-amber-100 shadow-sm">
+                <h3 className="font-bold text-amber-800 mb-2 flex items-center gap-2">
+                   <Trophy className="w-4 h-4" /> Dica Pro
+                </h3>
+                <p className="text-sm text-amber-700/80 leading-relaxed">
+                   Alguns verbos repetem o Passado e Particípio. Foque nesses padrões e aprenda o dobro na metade do tempo!
+                </p>
+             </div>
           </div>
       </div>
 

@@ -14,7 +14,7 @@ import { useH5Ads } from '../hooks/useH5Ads';
 
 const ITEMS_PER_LEVEL = 10; 
 
-// --- ÍCONE CUSTOMIZADO (Definido no topo para evitar erros) ---
+// --- ÍCONE CUSTOMIZADO ---
 const BrainCircuitIcon = ({className}) => (
   <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 5a3 3 0 1 0-5.997.125 4 4 0 0 0-2.526 5.77 4 4 0 0 0 .556 6.588A4 4 0 1 0 12 18Z"/><path d="M12 5a3 3 0 1 1 5.997.125 4 4 0 0 1 2.526 5.77 4 4 0 0 1-.556 6.588A4 4 0 1 1 12 18Z"/><path d="M15 13a4.5 4.5 0 0 1-3-4 4.5 4.5 0 0 1-3 4"/><path d="M17.599 6.5a3 3 0 0 0 .399-1.375"/><path d="M6.003 5.125A3 3 0 0 0 6.401 6.5"/><path d="M3.477 10.896a4 4 0 0 1 .585-.396"/><path d="M19.938 10.5a4 4 0 0 1 .585.396"/><path d="M6 18a4 4 0 0 1-1.97-3.284"/><path d="M17.97 14.716A4 4 0 0 1 16 18"/></svg>
 );
@@ -92,7 +92,9 @@ const TranslationGame = ({ onBack }) => {
   const grammarMeta = {
     present_perfect: { label: 'Present Perfect', color: 'bg-blue-500' },
     present_perfect_continuous: { label: 'Present Perfect Cont.', color: 'bg-blue-700' },
-    past_perfect: { label: 'Past Perfect', color: 'bg-purple-500' },
+    past_perfect: { label: 'Past Perfect', color: 'bg-purple-500' }, 
+    future_perfect: { label: 'Future Perfect', color: 'bg-indigo-600' }, 
+    all_tenses: { label: 'All Tenses', color: 'bg-slate-800' },          
     questions: { label: 'Perguntas', color: 'bg-cyan-600' }
   };
 
@@ -185,11 +187,13 @@ const TranslationGame = ({ onBack }) => {
             dataToUse = taggedItems.filter(item => item.tags && item.tags.includes(mode));
         } else if (TRANSLATION_DATA[mode]) {
             dataToUse = toArray(TRANSLATION_DATA[mode]);
+        } else if (mode === 'all_tenses') {
+             dataToUse = allTranslationItems;
         } else {
              dataToUse = allTranslationItems.slice(0, ITEMS_PER_LEVEL);
         }
     }
-
+    
     if (dataToUse.length === 0) {
       alert(`Nível vazio ou não encontrado.`);
       navigate('/translation');
@@ -200,7 +204,7 @@ const TranslationGame = ({ onBack }) => {
     setShuffledQuestions(shuffled);
     setCurrentQuestionIndex(0);
     setScore(0);
-    setView('game');
+    setView('game'); 
     resetTurn();
     window.scrollTo(0, 0);
   };
@@ -259,9 +263,10 @@ const TranslationGame = ({ onBack }) => {
             <title>Translation Master - EnglishUp</title>
          </Helmet>
 
-         <div className="max-w-5xl mx-auto text-center">
-            {/* Header */}
-            <div className="mb-10">
+         {/* 1. LAYOUT PADRONIZADO: max-w-6xl (antes era 5xl) */}
+         <div className="max-w-6xl mx-auto text-center">
+            
+            <div className="mb-8">
                 <div className="bg-emerald-100 p-4 rounded-full inline-flex mb-4 text-emerald-600 shadow-sm">
                     <Languages className="w-10 h-10 md:w-12 md:h-12" />
                 </div>
@@ -275,11 +280,14 @@ const TranslationGame = ({ onBack }) => {
                     onClick={() => navigate("/")}
                     className="bg-white border border-slate-300 text-slate-600 hover:bg-slate-100 px-6 py-2 rounded-full font-bold text-sm transition-all shadow-sm flex items-center justify-center gap-2 mx-auto"
                 >
-                    <ArrowLeft className="w-4 h-4" /> Voltar ao Hub
+                    <ArrowLeft className="w-4 h-4" /> Voltar ao Hub Principal
                 </button>
             </div>
 
-            {/* LISTA DE MODOS (SEM NÍVEIS NUMÉRICOS) */}
+            {/* 2. LINHA DIVISÓRIA (Igual aos outros jogos) */}
+            <hr className="border-slate-200 mb-8" />
+
+            {/* LISTA DE MODOS */}
             <h3 className="text-slate-500 font-bold uppercase tracking-wider text-sm mb-4 text-left pl-2 border-l-4 border-emerald-500">
                Modos de Treino
             </h3>
@@ -306,9 +314,22 @@ const TranslationGame = ({ onBack }) => {
                       <div className="p-3 rounded-lg text-white bg-blue-500 group-hover:scale-110 transition-transform"><CheckCircle className="w-6 h-6" /></div>
                       <div className="text-left"><h4 className="font-bold text-slate-800">Present Perfect</h4></div>
                  </div>
+                 <div onClick={() => navigate(`/translation/level/past_perfect`)} className="bg-white border border-slate-200 p-5 rounded-xl cursor-pointer hover:shadow-lg hover:border-purple-400 transition-all flex items-center gap-4 group">
+                      <div className="p-3 rounded-lg text-white bg-purple-500 group-hover:scale-110 transition-transform"><Clock className="w-6 h-6" /></div>
+                      <div className="text-left"><h4 className="font-bold text-slate-800">Past Perfect</h4></div>
+                 </div>
+
+                 <div onClick={() => navigate(`/translation/level/future_perfect`)} className="bg-white border border-slate-200 p-5 rounded-xl cursor-pointer hover:shadow-lg hover:border-indigo-400 transition-all flex items-center gap-4 group">
+                      <div className="p-3 rounded-lg text-white bg-indigo-600 group-hover:scale-110 transition-transform"><Sparkles className="w-6 h-6" /></div>
+                      <div className="text-left"><h4 className="font-bold text-slate-800">Future Perfect</h4></div>
+                 </div>
                  <div onClick={() => navigate(`/translation/level/questions`)} className="bg-white border border-slate-200 p-5 rounded-xl cursor-pointer hover:shadow-lg hover:border-cyan-400 transition-all flex items-center gap-4 group">
                       <div className="p-3 rounded-lg text-white bg-cyan-600 group-hover:scale-110 transition-transform"><HelpCircle className="w-6 h-6" /></div>
                       <div className="text-left"><h4 className="font-bold text-slate-800">Perguntas</h4></div>
+                 </div>
+                 <div onClick={() => navigate(`/translation/level/all_tenses`)} className="bg-white border border-slate-200 p-5 rounded-xl cursor-pointer hover:shadow-lg hover:border-slate-600 transition-all flex items-center gap-4 group">
+                      <div className="p-3 rounded-lg text-white bg-slate-800 group-hover:scale-110 transition-transform"><Flame className="w-6 h-6" /></div>
+                      <div className="text-left"><h4 className="font-bold text-slate-800">All Tenses</h4></div>
                  </div>
             </div>
 
@@ -353,10 +374,9 @@ const TranslationGame = ({ onBack }) => {
     );
   }
 
-  // --- TELA 3: JOGO (COM ANÚNCIOS LATERAIS + CARD ORIGINAL) ---
+  // --- TELA 3: JOGO ---
   const currentItem = shuffledQuestions[currentQuestionIndex];
   
-  // *** TRAVA DE SEGURANÇA *** // Evita o erro de "Cannot read properties of undefined" se o React renderizar antes do state atualizar
   if (!currentItem) {
       return (
         <div className="min-h-screen flex items-center justify-center text-slate-500 font-bold animate-pulse">
@@ -370,19 +390,19 @@ const TranslationGame = ({ onBack }) => {
   const questionType = shouldResolveGrammar && !primaryTag ? getGrammarType(currentItem.en) : (typeof currentMode === 'string' ? currentMode : 'mix');
 
   let headerColor = 'bg-emerald-500';
-  let HeaderIcon = Languages; // Letra Maiúscula
+  let HeaderIcon = Languages; 
   let headerTitle = 'Traduza';
   
   if (tagMeta[questionType]) {
       headerColor = tagMeta[questionType].color;
-      HeaderIcon = tagMeta[questionType].icon; // Letra Maiúscula
+      HeaderIcon = tagMeta[questionType].icon; 
       headerTitle = tagMeta[questionType].label;
   } else if (grammarMeta[questionType]) {
       headerColor = grammarMeta[questionType].color;
       headerTitle = grammarMeta[questionType].label;
   } else if (primaryTag && tagMeta[primaryTag]) {
       headerColor = tagMeta[primaryTag].color;
-      HeaderIcon = tagMeta[primaryTag].icon; // Letra Maiúscula
+      HeaderIcon = tagMeta[primaryTag].icon;
       headerTitle = tagMeta[primaryTag].label;
   }
 
@@ -401,7 +421,7 @@ const TranslationGame = ({ onBack }) => {
       {/* WRAPPER DE 3 COLUNAS */}
       <div className="w-full max-w-360 mx-auto flex flex-col xl:flex-row justify-center items-start gap-5 p-4 mt-4">
           
-          {/* ANÚNCIO ESQUERDA (Desktop) */}
+          {/* ANÚNCIO ESQUERDA */}
           <div className="hidden xl:flex w-80 shrink-0 flex-col gap-4 sticky top-36">
              <AdUnit key={`desk-left`} slotId="5118244396" width="300px" height="600px" label="Patrocinado"/>
           </div>
@@ -422,7 +442,6 @@ const TranslationGame = ({ onBack }) => {
             <div className="bg-white rounded-3xl shadow-xl border border-slate-100 overflow-hidden relative mb-8">
               <div className={`${headerColor} p-8 text-center min-h-40 flex flex-col items-center justify-center transition-colors duration-500`}>
                 <span className="text-white/80 uppercase tracking-widest text-xs font-bold mb-3 flex items-center gap-2 justify-center">
-                  {/* AQUI ESTAVA O ERRO: Agora usamos a variável com Maiúscula */}
                   <HeaderIcon className="w-4 h-4" /> {headerTitle}
                 </span>
                 <h2 className="text-2xl md:text-3xl font-extrabold text-white leading-tight max-w-lg mx-auto">
@@ -433,17 +452,18 @@ const TranslationGame = ({ onBack }) => {
               <div className="p-6 md:p-10">
                 <label className="block text-xs font-bold text-slate-400 uppercase tracking-widest mb-2 ml-1">Sua Tradução</label>
                 <div className="flex gap-2 mb-6">
-                  <div className="relative grow">
+                  <div className="relative grow" key={currentQuestionIndex}>
                     <textarea 
                       value={userAnswer}
                       onChange={(e) => setUserAnswer(e.target.value)}
                       disabled={answerStatus !== null}
                       placeholder="Digite em inglês..."
                       rows={2}
+                      // 3. ESTILO DE INPUT PADRONIZADO (Border-2 + Focus Ring Emerald)
                       className={`w-full p-4 rounded-xl border-2 outline-none font-medium text-lg resize-none transition-all ${
                           answerStatus === 'correct' ? "border-green-500 bg-green-50 text-green-700" :
                           answerStatus === 'incorrect' ? "border-red-500 bg-red-50 text-red-700" :
-                          "border-slate-300 focus:border-emerald-500"
+                          "border-slate-300 focus:border-emerald-500 focus:ring-4 focus:ring-emerald-50"
                       }`}
                       onKeyDown={(e) => { if (e.key === 'Enter' && !e.shiftKey && !answerStatus) { e.preventDefault(); checkAnswer(); } }}
                     />
@@ -491,23 +511,23 @@ const TranslationGame = ({ onBack }) => {
 
           </div>
 
-          {/* ANÚNCIO DIREITA (Desktop) */}
+          {/* ANÚNCIO DIREITA */}
           <div className="hidden xl:flex w-80 shrink-0 flex-col gap-4 sticky top-36">
              <AdUnit key={`desk-right`} slotId="3805162724" width="300px" height="250px" label="Patrocinado"/>
              
-             {/* --- COLE ISSO AQUI --- */}
+             {/* Dica Pro */}
              <div className="bg-amber-50 rounded-xl p-6 border border-amber-100 shadow-sm">
                 <h3 className="font-bold text-amber-800 mb-2 flex items-center gap-2">
                    <Trophy className="w-4 h-4" /> Dica Pro
                 </h3>
                 <p className="text-sm text-amber-700/80 leading-relaxed">
-                   O sistema aceita <strong>contrações</strong> e variações! Você pode escrever <em>"I'm"</em> ou <em>"I am"</em>, <em>"don't"</em> ou <em>"do not"</em>. O importante é acertar a estrutura gramatical.
+                   Não desanime ao errar! Foque em entender a estrutura da frase e o porquê da correção para aprimorar sua fluência.
                 </p>
              </div>
           </div>
       </div>
 
-      {/* MOBILE AD (Rodapé) */}
+      {/* MOBILE AD */}
       <div className="xl:hidden w-full flex flex-col items-center pb-8 bg-slate-50 mt-4">
           <AdUnit key={`mob-bot`} slotId="3477859667" width="300px" height="250px" label="Patrocinado"/>
       </div>

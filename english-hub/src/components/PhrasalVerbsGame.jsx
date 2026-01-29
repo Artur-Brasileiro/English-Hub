@@ -1,7 +1,20 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { BrainCircuit, Layers, ArrowLeft, RefreshCw, CheckCircle, XCircle, ArrowRight, HelpCircle } from 'lucide-react';
+import { useNavigate, useParams } from "react-router-dom";
+import { 
+  BrainCircuit, 
+  Layers, 
+  ArrowLeft, 
+  RefreshCw, 
+  CheckCircle, 
+  XCircle, 
+  ArrowRight, 
+  HelpCircle,
+  // Novos ícones
+  Puzzle,
+  Lightbulb,
+  BookOpen
+} from 'lucide-react';
 import { PHRASAL_VERBS_DATA } from '../data/gameData';
-import { useNavigate } from "react-router-dom";
 
 // --- IMPORTS ADSENSE ---
 import AdUnit from './ads/AdUnit';
@@ -9,8 +22,45 @@ import { useH5Ads } from '../hooks/useH5Ads';
 
 const ITEMS_PER_PHASE = 10;
 
+// --- NOVO COMPONENTE: CONTEXTO EDUCACIONAL ---
+const EducationalContext = () => (
+  <section className="w-full mt-12 px-6 py-8 bg-white rounded-3xl border border-slate-200 shadow-sm text-slate-600 animate-fadeIn">
+    <div className="flex items-center gap-3 mb-6">
+      <div className="bg-indigo-100 p-2 rounded-lg text-indigo-600">
+        <BookOpen className="w-6 h-6" />
+      </div>
+      <h2 className="text-xl md:text-2xl font-bold text-slate-800">
+        O Segredo dos Phrasal Verbs
+      </h2>
+    </div>
+    
+    <div className="prose prose-slate max-w-none grid md:grid-cols-2 gap-8 text-left">
+      <div>
+        <h3 className="text-lg font-bold text-slate-800 mb-2 flex items-center gap-2">
+          <Puzzle className="w-4 h-4 text-rose-500" /> A Lógica do "Bloco"
+        </h3>
+        <p className="text-sm leading-relaxed mb-4">
+          O maior erro é tentar traduzir palavra por palavra. <em>"Give"</em> significa dar, mas <em>"Give up"</em> significa desistir. 
+          Encare o Phrasal Verb como <strong>uma única palavra nova</strong>, um bloco indivisível de significado.
+        </p>
+      </div>
+      
+      <div>
+        <h3 className="text-lg font-bold text-slate-800 mb-2 flex items-center gap-2">
+          <BrainCircuit className="w-4 h-4 text-amber-500" /> Contexto é Tudo
+        </h3>
+        <ul className="text-sm space-y-2 list-disc pl-4 marker:text-indigo-500">
+          <li><strong>Polissemia:</strong> O mesmo phrasal verb pode ter vários sentidos. <em>"Take off"</em> pode ser "decolar" (avião) ou "tirar" (roupa).</li>
+          <li><strong>Intuição:</strong> Com a prática, você para de traduzir e começa a "sentir" o significado pelo contexto da frase.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+);
+
 const PhrasalVerbsGame = ({ onBack }) => {
   const navigate = useNavigate();
+  const { levelId } = useParams();
 
   // --- HOOK ADSENSE ---
   const { triggerAdBreak } = useH5Ads();
@@ -27,11 +77,32 @@ const PhrasalVerbsGame = ({ onBack }) => {
   const firstInputRef = useRef(null);
   const totalPhases = Math.ceil(PHRASAL_VERBS_DATA.length / ITEMS_PER_PHASE);
 
+  // --- EFEITO DE ROTEAMENTO ---
+  useEffect(() => {
+    if (levelId) {
+      const phaseNum = parseInt(levelId, 10);
+      if (!isNaN(phaseNum) && phaseNum > 0 && phaseNum <= totalPhases) {
+          startGame(phaseNum);
+      } else {
+          alert("Fase inválida!");
+          navigate('/phrasal');
+      }
+    } else {
+      setGameState('start');
+    }
+  }, [levelId]);
+
   const startGame = (phaseNumber) => {
     setActivePhase(phaseNumber);
     const startIndex = (phaseNumber - 1) * ITEMS_PER_PHASE;
     const endIndex = startIndex + ITEMS_PER_PHASE;
     const originalQuestions = PHRASAL_VERBS_DATA.slice(startIndex, endIndex);
+    
+    if (originalQuestions.length === 0) {
+      navigate('/phrasal');
+      return;
+    }
+
     const shuffledQuestions = [...originalQuestions].sort(() => 0.5 - Math.random());
     
     setPhaseQuestions(shuffledQuestions);
@@ -42,6 +113,11 @@ const PhrasalVerbsGame = ({ onBack }) => {
     if (shuffledQuestions.length > 0) {
       initializeInputs(shuffledQuestions[0]);
     }
+    window.scrollTo(0,0);
+  };
+
+  const goToLevel = (phaseNum) => {
+    navigate(`/phrasal/level/${phaseNum}`);
   };
 
   const initializeInputs = (verbData) => {
@@ -52,7 +128,9 @@ const PhrasalVerbsGame = ({ onBack }) => {
 
   useEffect(() => {
     if (gameState === 'playing' && !feedback && firstInputRef.current) {
-      firstInputRef.current.focus();
+      setTimeout(() => {
+        firstInputRef.current?.focus();
+      }, 50);
     }
   }, [currentQuestionIndex, gameState, feedback]);
 
@@ -81,7 +159,6 @@ const PhrasalVerbsGame = ({ onBack }) => {
       setCurrentQuestionIndex(nextIndex);
       initializeInputs(phaseQuestions[nextIndex]);
     } else {
-      // --- INTERSTITIAL AD BREAK ---
       triggerAdBreak('next', 'phase_complete', () => {
         setGameState('result');
       }, stopAllAudio);
@@ -96,63 +173,71 @@ const PhrasalVerbsGame = ({ onBack }) => {
     return 'wrong';
   };
 
-  // --- TELA MENU (SIMPLES) ---
+  // --- TELA MENU ---
   if (gameState === 'start') {
     return (
-      <div className="flex flex-col h-full py-8 px-4 animate-fadeIn max-w-4xl mx-auto">
-        <div className="text-center mb-10">
-          <div className="bg-indigo-100 p-5 rounded-full inline-flex mb-4 text-indigo-600 shadow-sm">
-            <BrainCircuit className="w-12 h-12" />
-          </div>
-          <h2 className="text-3xl font-extrabold text-slate-800 mb-3">Phrasal Verbs Master</h2>
-          <p className="text-slate-600 text-lg max-w-lg mx-auto leading-relaxed">
-            Escreva os significados corretos. Se um verbo tiver múltiplos sentidos, você precisará acertar todos!
-          </p>
-        </div>
-
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5 mb-8">
-          {totalPhases > 0 ? (
-            Array.from({ length: totalPhases }).map((_, idx) => {
-              const phaseNum = idx + 1;
-              return (
-                <button 
-                  key={phaseNum} 
-                  onClick={() => startGame(phaseNum)} 
-                  className="group relative bg-white border border-slate-200 rounded-2xl p-6 hover:border-indigo-500 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 text-left"
-                >
-                  <div className="flex justify-between items-start mb-4">
-                    <div className="bg-slate-50 p-2.5 rounded-xl group-hover:bg-indigo-50 transition-colors">
-                      <Layers className="w-6 h-6 text-slate-400 group-hover:text-indigo-600" />
-                    </div>
-                    <span className="text-xs font-bold text-slate-400 uppercase tracking-wider bg-slate-100 px-2 py-1 rounded-md">
-                      {ITEMS_PER_PHASE} Verbs
-                    </span>
-                  </div>
-                  <h3 className="text-xl font-bold text-slate-800 mb-1 group-hover:text-indigo-600 transition-colors">
-                    Fase {phaseNum}
-                  </h3>
-                  <p className="text-sm text-slate-500 font-medium">
-                    Verbos {((phaseNum - 1) * ITEMS_PER_PHASE) + 1} - {phaseNum * ITEMS_PER_PHASE}
-                  </p>
-                </button>
-              );
-            })
-          ) : (
-            <div className="col-span-full text-center py-10">
-              <p className="text-slate-400 font-medium flex items-center justify-center gap-2">
-                <HelpCircle className="w-5 h-5" /> Adicione verbos ao arquivo de dados.
-              </p>
+      <div className="min-h-screen bg-slate-50 py-12 px-4 animate-fadeIn">
+        <div className="max-w-6xl mx-auto">
+          <div className="text-center mb-8">
+            <div className="bg-indigo-100 p-4 rounded-full inline-flex mb-4 text-indigo-600 shadow-sm">
+              <BrainCircuit className="w-10 h-10 md:w-12 md:h-12" />
             </div>
-          )}
-        </div>
+            
+            <h1 className="text-3xl md:text-4xl font-extrabold text-slate-800 mb-3">
+              Phrasal Verbs Master
+            </h1>
+            
+            <p className="text-slate-600 text-lg max-w-2xl mx-auto mb-6">
+              Escreva os significados corretos. Se um verbo tiver múltiplos sentidos, você precisará acertar todos!
+            </p>
 
-        <div className="text-center mt-auto">
-          <button
-            onClick={() => navigate("/")}
-            className="bg-white border border-slate-300 text-slate-600 hover:bg-slate-100 hover:text-slate-800 px-6 py-2 rounded-full font-bold text-sm transition-all shadow-sm flex items-center justify-center gap-2 mx-auto"
-          >
-            <ArrowLeft className="w-4 h-4" /> Voltar ao Hub Principal
-          </button>
+            <button
+              onClick={() => navigate("/")}
+              className="bg-white border border-slate-300 text-slate-600 hover:bg-slate-100 hover:text-slate-800 px-6 py-2 rounded-full font-bold text-sm transition-all shadow-sm flex items-center justify-center gap-2 mx-auto"
+            >
+              <ArrowLeft className="w-4 h-4" /> Voltar ao Hub Principal
+            </button>
+          </div>
+
+          <hr className="border-slate-200 mb-8" />
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mb-12">
+            {totalPhases > 0 ? (
+              Array.from({ length: totalPhases }).map((_, idx) => {
+                const phaseNum = idx + 1;
+                return (
+                  <button 
+                    key={phaseNum} 
+                    onClick={() => goToLevel(phaseNum)} 
+                    className="group relative bg-white border border-slate-200 rounded-2xl p-6 hover:border-indigo-500 hover:shadow-xl transition-all duration-300 text-left"
+                  >
+                    <div className="flex justify-between items-start mb-4">
+                      <div className="bg-slate-50 p-2.5 rounded-xl group-hover:bg-indigo-50 transition-colors">
+                        <Layers className="w-6 h-6 text-slate-400 group-hover:text-indigo-600" />
+                      </div>
+                      <span className="text-xs font-bold text-slate-400 uppercase tracking-wider bg-slate-100 px-2 py-1 rounded-md">
+                        {ITEMS_PER_PHASE} Verbs
+                      </span>
+                    </div>
+                    <h3 className="text-lg font-bold text-slate-800 mb-1 group-hover:text-indigo-600 transition-colors">
+                      Fase {phaseNum}
+                    </h3>
+                    <p className="text-sm text-slate-500 font-medium">
+                      Verbos {((phaseNum - 1) * ITEMS_PER_PHASE) + 1} - {phaseNum * ITEMS_PER_PHASE}
+                    </p>
+                  </button>
+                );
+              })
+            ) : (
+              <div className="col-span-full text-center py-10">
+                <p className="text-slate-400 font-medium flex items-center justify-center gap-2">
+                  <HelpCircle className="w-5 h-5" /> Adicione verbos ao arquivo de dados.
+                </p>
+              </div>
+            )}
+          </div>
+
+          <EducationalContext />
         </div>
       </div>
     );
@@ -168,37 +253,27 @@ const PhrasalVerbsGame = ({ onBack }) => {
 
     return (
       <div className="flex flex-col items-center justify-center min-h-[60vh] py-12 px-4 animate-fadeIn">
-        
-        {/* Top Ad */}
         <div className="mb-6">
           <AdUnit slotId="2492081057" width="300px" height="250px" label="Publicidade" />
         </div>
 
-        <div className="text-center bg-white p-10 rounded-3xl shadow-xl border border-slate-100 max-w-md w-full">
+        <div className="bg-white p-10 rounded-3xl shadow-xl border border-slate-100 max-w-md w-full text-center">
           <h2 className="text-3xl font-bold text-slate-800 mb-2">{message}</h2>
+          <div className="text-5xl font-black text-indigo-600 mb-2">
+            {score} <span className="text-2xl text-slate-300">/ {maxScore}</span>
+          </div>
           <p className="text-slate-500 mb-8 font-medium">Você concluiu a Fase {activePhase}</p>
           
-          <div className="relative w-40 h-40 mx-auto mb-8 flex items-center justify-center">
-            <svg className="w-full h-full -rotate-90" viewBox="0 0 36 36">
-              <path className="text-slate-100" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="currentColor" strokeWidth="3" />
-              <path className="text-indigo-600" strokeDasharray={`${percentage}, 100`} d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="currentColor" strokeWidth="3" />
-            </svg>
-            <div className="absolute flex flex-col items-center">
-              <span className="text-4xl font-black text-indigo-600">{score}</span>
-              <span className="text-xs font-bold text-slate-400 uppercase">de {maxScore} pts</span>
-            </div>
-          </div>
-
           <div className="flex flex-col gap-3">
             <button 
               onClick={() => triggerAdBreak('next', 'phase_retry', () => startGame(activePhase), stopAllAudio)} 
-              className="w-full bg-indigo-600 text-white py-3.5 rounded-xl font-bold hover:bg-indigo-700 transition-all shadow-lg shadow-indigo-200 flex items-center justify-center gap-2"
+              className="bg-indigo-600 text-white px-6 py-3.5 rounded-xl font-bold hover:bg-indigo-700 transition-colors flex items-center justify-center gap-2 shadow-lg shadow-indigo-200"
             >
               <RefreshCw className="w-5 h-5" /> Tentar Novamente
             </button>
             <button 
-              onClick={() => triggerAdBreak('next', 'menu_return', () => setGameState('start'), stopAllAudio)} 
-              className="w-full bg-slate-50 text-slate-600 py-3.5 rounded-xl font-bold hover:bg-slate-100 transition-colors border border-slate-200"
+              onClick={() => triggerAdBreak('next', 'menu_return', () => navigate('/phrasal'), stopAllAudio)} 
+              className="bg-white border-2 border-slate-200 text-slate-600 px-6 py-3.5 rounded-xl font-bold hover:bg-slate-100 transition-colors"
             >
               Escolher Outra Fase
             </button>
@@ -208,8 +283,11 @@ const PhrasalVerbsGame = ({ onBack }) => {
     );
   }
 
-  // --- TELA JOGO (LAYOUT PADRONIZADO) ---
+  // --- TELA JOGO ---
   const currentVerb = phaseQuestions[currentQuestionIndex];
+  // Segurança para evitar crash se o array estiver vazio por algum motivo
+  if (!currentVerb) return <div>Carregando...</div>;
+  
   const correctMeaningsLower = currentVerb.definitions.map(d => d.meaning.toLowerCase().trim());
 
   return (
@@ -237,27 +315,27 @@ const PhrasalVerbsGame = ({ onBack }) => {
           <div className="w-full max-w-xl flex flex-col">
              
              {/* Header Interno */}
-             <div className="flex justify-between items-center mb-8">
+             <div className="flex justify-between items-center mb-6 px-2">
                 <button 
-                  onClick={() => setGameState('start')} 
-                  className="text-slate-400 hover:text-slate-600 transition-colors p-2 hover:bg-slate-100 rounded-full"
+                  onClick={() => navigate('/phrasal')} 
+                  className="text-slate-400 hover:text-slate-600 flex items-center gap-1"
                 >
-                  <ArrowLeft className="w-6 h-6" />
+                  <ArrowLeft className="w-5 h-5" /> <span className="text-sm font-bold uppercase tracking-wide">Menu</span>
                 </button>
-                <div className="flex flex-col items-end">
-                  <span className="text-xs font-bold text-indigo-600 bg-indigo-50 px-3 py-1 rounded-full uppercase tracking-wider mb-1">
+                <div className="text-right">
+                  <span className="text-xs font-bold text-indigo-600 bg-indigo-50 px-2 py-0.5 rounded-full mb-1 inline-block">
                     Fase {activePhase}
                   </span>
-                  <span className="text-slate-400 text-xs font-bold tracking-widest">
+                  <span className="block text-slate-400 text-xs font-bold tracking-widest">
                     {currentQuestionIndex + 1} / {phaseQuestions.length}
                   </span>
                 </div>
              </div>
 
              {/* Card do Jogo */}
-             <div className="bg-white rounded-3xl shadow-xl border border-slate-100 overflow-hidden flex flex-col relative animate-fade-in-up">
+             <div className="bg-white rounded-3xl shadow-xl border border-slate-100 overflow-hidden flex flex-col relative animate-fade-in-up mb-8">
                 <div className="bg-indigo-600 p-10 text-center relative overflow-hidden">
-                  <div className="absolute top-0 left-0 w-full h-full opacity-10 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')]"></div>
+                  <div className="absolute top-0 left-0 w-full h-full opacity-10 bg-[radial-gradient(ellipse_at_top,var(--tw-gradient-stops))] from-white via-transparent to-transparent"></div>
                   <span className="relative z-10 text-indigo-200 uppercase tracking-widest text-xs font-bold mb-3 block">
                     Traduza o Phrasal Verb
                   </span>
@@ -276,23 +354,25 @@ const PhrasalVerbsGame = ({ onBack }) => {
                     <div className="space-y-4 mb-8">
                       {userAnswers.map((answer, index) => {
                         const status = getInputStatus(answer, correctMeaningsLower);
-                        let borderClass = "border-slate-200 focus:border-indigo-500 focus:ring-4 focus:ring-indigo-50";
+                        
+                        // --- ESTILO DE BORDA 2PX (Igual aos outros jogos) ---
+                        let borderClass = "border-2 border-slate-200 focus:border-indigo-500 focus:ring-4 focus:ring-indigo-50";
                         let icon = null;
 
                         if (feedback) {
                           if (status === 'correct') {
-                            borderClass = "border-green-500 bg-green-50 text-green-700";
+                            borderClass = "border-2 border-green-500 bg-green-50 text-green-700";
                             icon = <CheckCircle className="absolute right-4 top-1/2 -translate-y-1/2 w-6 h-6 text-green-500" />;
                           } else if (status === 'wrong') {
-                            borderClass = "border-red-300 bg-red-50 text-red-700 decoration-wavy";
+                            borderClass = "border-2 border-red-300 bg-red-50 text-red-700 decoration-wavy";
                             icon = <XCircle className="absolute right-4 top-1/2 -translate-y-1/2 w-6 h-6 text-red-400" />;
                           } else {
-                            borderClass = "border-slate-200 bg-slate-50";
+                            borderClass = "border-2 border-slate-200 bg-slate-50";
                           }
                         }
 
                         return (
-                          <div key={index} className="relative group">
+                          <div key={index} className="relative group animate-fadeIn">
                             <span className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-300 font-bold text-sm">
                               {index + 1}.
                             </span>
@@ -302,7 +382,7 @@ const PhrasalVerbsGame = ({ onBack }) => {
                               value={answer}
                               onChange={(e) => handleInputChange(index, e.target.value)}
                               disabled={!!feedback}
-                              className={`w-full pl-10 pr-12 py-4 rounded-xl border-2 outline-none font-semibold text-lg transition-all ${borderClass}`}
+                              className={`w-full pl-10 pr-12 py-4 rounded-xl outline-none font-semibold text-lg transition-all ${borderClass}`}
                               placeholder={`Significado ${index + 1}`}
                               autoComplete="off"
                             />
@@ -353,6 +433,8 @@ const PhrasalVerbsGame = ({ onBack }) => {
                 </div>
              </div>
 
+             <EducationalContext />
+
              {/* Quadrado Ad (Desktop) */}
              <div className="mt-8 hidden md:flex justify-center">
                 <AdUnit slotId="4391086704" width="336px" height="280px" label="Publicidade"/>
@@ -362,6 +444,16 @@ const PhrasalVerbsGame = ({ onBack }) => {
           {/* SIDEBAR DIREITA */}
           <div className="hidden xl:flex w-80 shrink-0 flex-col gap-4 sticky top-36">
              <AdUnit key={`desktop-right-phrasal`} slotId="3805162724" width="300px" height="250px" label="Patrocinado"/>
+             
+             {/* --- DICA PRO --- */}
+             <div className="bg-indigo-50 rounded-xl p-6 border border-indigo-100 shadow-sm">
+                <h3 className="font-bold text-indigo-800 mb-2 flex items-center gap-2">
+                   <Lightbulb className="w-4 h-4" /> Dica Pro
+                </h3>
+                <p className="text-sm text-indigo-700/80 leading-relaxed">
+                   Alguns phrasal verbs são separáveis! Você pode dizer <em>"Turn off the lights"</em> ou <em>"Turn the lights off"</em>. O sentido é o mesmo.
+                </p>
+             </div>
           </div>
       </div>
 

@@ -30,7 +30,10 @@ export default function App() {
         <Route path="/vocabulary/level/:levelId" element={<VocabularyGame />} /> 
         
         <Route path="/irregular" element={<IrregularVerbsGame />} />
+        <Route path="/irregular/level/:levelId" element={<IrregularVerbsGame />} />
+
         <Route path="/phrasal" element={<PhrasalVerbsGame />} />
+        <Route path="/phrasal/level/:levelId" element={<PhrasalVerbsGame />} />
         
         {/* --- NOVO: Rotas para o Translation --- */}
         <Route path="/translation" element={<TranslationGame />} />
