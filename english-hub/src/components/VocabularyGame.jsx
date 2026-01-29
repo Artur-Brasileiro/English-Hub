@@ -404,8 +404,11 @@ const VocabularyGame = ({ onBack }) => {
       <div className="min-h-screen bg-slate-50 py-12 px-4 animate-fade-in">
         {/* SEO Dinâmico para o Menu */}
         <Helmet>
-          <title>Vocabulary Builder | EnglishUp</title>
-          <meta name="description" content={`Expanda seu vocabulário com ${VOCABULARY_DATA.length} palavras técnicas divididas em ${totalLevels} níveis. Jogo de Active Recall gratuito.`} />
+          <title>Treinar Vocabulário e Palavras Mais Usadas | EnglishUp</title>
+          <meta 
+            name="description" 
+            content={`Jogo gratuito para aprender as palavras mais usadas do inglês. Expanda seu vocabulário e melhore sua leitura com ${VOCABULARY_DATA.length} termos essenciais.`} 
+          />
         </Helmet>
 
         <div className="max-w-6xl mx-auto">
@@ -417,8 +420,8 @@ const VocabularyGame = ({ onBack }) => {
               Vocabulary Builder
             </h1>
             <p className="text-slate-600 text-lg max-w-2xl mx-auto mb-6">
-              Expanda seu vocabulário. {VOCABULARY_DATA.length} palavras divididas em {totalLevels}{' '}
-              níveis.
+              O jogo ideal para treinar seu vocabulário e aprender as <strong>palavras mais usadas do inglês</strong>. 
+              São {VOCABULARY_DATA.length} termos essenciais divididos em {totalLevels} níveis.
             </p>
             <button
               onClick={() => navigate("/")}

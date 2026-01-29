@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate, useParams } from "react-router-dom";
+import { Helmet } from 'react-helmet-async';
 import {
   Gamepad2,
   ToggleLeft,
@@ -92,10 +93,6 @@ const IrregularVerbsGame = ({ onBack }) => {
   const [feedback, setFeedback] = useState(null);
   const firstInputRef = useRef(null);
   const totalPhases = Math.ceil(IRREGULAR_VERBS_DATA.length / ITEMS_PER_PHASE);
-
-  useEffect(() => {
-    document.title = "Irregular Verbs | EnglishUp";
-  }, []);
 
   useEffect(() => {
     if (levelId) {
@@ -262,7 +259,8 @@ const IrregularVerbsGame = ({ onBack }) => {
             </h1>
             
             <p className="text-slate-600 text-lg max-w-2xl mx-auto mb-6">
-               Treine os verbos irregulares. Configure seu treino selecionando os tempos verbais abaixo.
+              Decore a <strong>tabela de verbos irregulares</strong> de uma vez por todas. 
+              Treine Past Simple e Participle e pare de travar na hora de falar.
             </p>
   
             <button
@@ -387,7 +385,14 @@ const IrregularVerbsGame = ({ onBack }) => {
 
   return (
     <div className="min-h-screen bg-slate-50 font-sans text-slate-800 flex flex-col items-center">
-      
+      <Helmet>
+        <title>Tabela de Verbos Irregulares e Exercícios | EnglishUp</title>
+        <meta 
+          name="description" 
+          content="Memorize a tabela de verbos irregulares jogando. Exercícios de Past Simple e Participle para aprender inglês sozinho e de graça." 
+        />
+      </Helmet>
+
       {/* 1. HEADER AD */}
       <div className="w-full bg-white border-b border-slate-200 py-2 flex flex-col items-center justify-center relative z-20 shadow-sm min-h-25 md:min-h-27.5">
          <div className="block md:hidden">

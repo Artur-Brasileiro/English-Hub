@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate, useParams } from "react-router-dom";
+import { Helmet } from 'react-helmet-async';
 import { 
   BrainCircuit, 
   Layers, 
@@ -82,10 +83,6 @@ const PhrasalVerbsGame = ({ onBack }) => {
   const [feedback, setFeedback] = useState(null); 
   const firstInputRef = useRef(null);
   const totalPhases = Math.ceil(PHRASAL_VERBS_DATA.length / ITEMS_PER_PHASE);
-
-  useEffect(() => {
-    document.title = "Phrasal Verbs | EnglishUp";
-  }, []);
 
   useEffect(() => {
     if (levelId) {
@@ -197,7 +194,8 @@ const PhrasalVerbsGame = ({ onBack }) => {
             </h1>
             
             <p className="text-slate-600 text-lg max-w-2xl mx-auto mb-6">
-              Escreva os significados corretos. Se um verbo tiver múltiplos sentidos, você precisará acertar todos!
+              Pare de traduzir ao pé da letra. Aprenda os <strong>phrasal verbs</strong> essenciais 
+              para entender filmes, séries e conversas reais em inglês.
             </p>
 
             <button
@@ -302,6 +300,14 @@ const PhrasalVerbsGame = ({ onBack }) => {
   return (
     <div className="min-h-screen bg-slate-50 font-sans text-slate-800 flex flex-col items-center">
       
+      <Helmet>
+        <title>Exercícios de Phrasal Verbs com Significado | EnglishUp</title>
+        <meta 
+          name="description" 
+          content="Aprenda o significado dos phrasal verbs mais usados em conversas. Jogos gratuitos para memorizar expressões como get up, look for e give up." 
+        />
+      </Helmet>
+
       {/* 1. HEADER AD */}
       <div className="w-full bg-white border-b border-slate-200 py-2 flex flex-col items-center justify-center relative z-20 shadow-sm min-h-25 md:min-h-27.5">
          <div className="block md:hidden">

@@ -27,28 +27,28 @@ const EducationalContext = () => (
         <PenTool className="w-6 h-6" />
       </div>
       <h2 className="text-xl md:text-2xl font-bold text-slate-800">
-        Active Construction: O Segredo da Fluência
+        Como esse treino ajuda a falar?
       </h2>
     </div>
     
     <div className="prose prose-slate max-w-none grid md:grid-cols-2 gap-8 text-left">
       <div>
         <h3 className="text-lg font-bold text-slate-800 mb-2 flex items-center gap-2">
-          <BrainCircuitIcon className="w-4 h-4 text-emerald-500" /> Por que traduzir?
+          <BrainCircuitIcon className="w-4 h-4 text-emerald-500" /> Pare de traduzir mentalmente
         </h3>
         <p className="text-sm leading-relaxed mb-4">
-          Diferente de apenas "ler" (passivo), traduzir para o inglês obriga seu cérebro a <strong>construir a frase do zero</strong> (ativo). 
-          Isso cria conexões neurais mais fortes e simula a pressão da fala real.
+          Parece contraditório, mas treinar tradução é o melhor jeito de parar de traduzir na hora de falar. 
+          Você se acostuma tanto a <strong>montar as frases</strong> que o processo vira automático.
         </p>
       </div>
       
       <div>
         <h3 className="text-lg font-bold text-slate-800 mb-2 flex items-center gap-2">
-          <Sparkles className="w-4 h-4 text-amber-500" /> Gramática Contextual
+          <Sparkles className="w-4 h-4 text-amber-500" /> Gramática na prática
         </h3>
         <ul className="text-sm space-y-2 list-disc pl-4 marker:text-emerald-500">
-          <li><strong>Padrões Reais:</strong> Você aprende <i>Present Perfect</i> ou <i>Conditionals</i> usando-os para resolver problemas, não decorando tabelas.</li>
-          <li><strong>Thinking Time:</strong> O esforço agora reduz o tempo que você leva para pensar antes de falar no futuro.</li>
+          <li><strong>Sem decorar regras:</strong> Você aprende a usar o <i>Present Perfect</i> ou condicionais porque precisa deles para resolver o desafio.</li>
+          <li><strong>Confiança:</strong> Quanto mais frases você acerta aqui, menos medo você tem de errar na vida real.</li>
         </ul>
       </div>
     </div>
@@ -260,7 +260,11 @@ const TranslationGame = ({ onBack }) => {
     return (
       <div className="min-h-screen bg-slate-50 py-12 px-4 animate-fadeIn">
          <Helmet>
-            <title>Translation Master | EnglishUp</title>
+            <title>Treino de Tradução e Montagem de Frases | EnglishUp</title>
+            <meta 
+              name="description" 
+              content="Exercícios de tradução para destravar a fala. Aprenda a montar frases em inglês, pensar no idioma e dominar a gramática de forma prática." 
+            />
          </Helmet>
 
          {/* 1. LAYOUT PADRONIZADO: max-w-6xl (antes era 5xl) */}
@@ -274,7 +278,7 @@ const TranslationGame = ({ onBack }) => {
                     Translation Master
                 </h1>
                 <p className="text-slate-600 text-lg max-w-2xl mx-auto mb-6">
-                    Selecione um tópico específico para treinar agora.
+                    O treino definitivo para você parar de travar. Aprenda a <strong>pensar em inglês</strong> traduzindo frases reais do dia a dia.
                 </p>
                 <button
                     onClick={() => navigate("/")}

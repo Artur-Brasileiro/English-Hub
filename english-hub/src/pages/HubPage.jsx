@@ -23,7 +23,7 @@ const HubPage = () => {
     {
       id: "vocabulary",
       title: "Daily Vocabulary",
-      description: "30 palavras novas por dia para expandir seu vocabulário com consistência.",
+      description: "Aprenda 30 palavras novas por dia. O exercício ideal para expandir seu vocabulário e estudar inglês sozinho.",
       category: "Vocabulary",
       difficulty: "Essencial",
       icon: <BookOpen className="w-6 h-6" />,
@@ -35,7 +35,7 @@ const HubPage = () => {
     {
       id: "irregular",
       title: "Irregular Verbs",
-      description: "Domine os 3 tempos dos verbos irregulares: Past, Present e Future.",
+      description: "Resolva sua dificuldade com verbos irregulares. Treine Past e Participle usando nosso método de memorização.",
       category: "Grammar",
       difficulty: "Essencial",
       icon: <Gamepad2 className="w-6 h-6" />,
@@ -47,7 +47,7 @@ const HubPage = () => {
     {
       id: "phrasal",
       title: "Phrasal Verbs Master",
-      description: "Aprenda e memorize os phrasal verbs mais usados em fases organizadas.",
+      description: "Domine os phrasal verbs mais usados em conversas e filmes. Entenda o sentido real jogando de graça.",
       category: "Vocabulary",
       difficulty: "Intermediário",
       icon: <BrainCircuit className="w-6 h-6" />,
@@ -59,7 +59,7 @@ const HubPage = () => {
     {
       id: "translation",
       title: "Translation Challenge",
-      description: "Traduza frases do dia a dia e treine escrita (digitação ou voz).",
+      description: "Exercícios de tradução para destravar a montagem de frases. Teste seu inglês do básico ao avançado.",
       category: "Writing & Speaking",
       difficulty: "Avançado",
       icon: <Languages className="w-6 h-6" />,
@@ -144,8 +144,8 @@ const HubPage = () => {
                 </h2>
 
                 <p className="text-slate-600 text-base md:text-lg max-w-2xl mt-3">
-                  Escolha um treino abaixo e pratique um pouco todos os dias.
-                  Simples, direto e feito pra evolução constante.
+                  Exercícios rápidos para aprender inglês de graça. Domine a gramática e verbos essenciais com jogos de repetição espaçada.
+                   Simples, direto e sem cadastro.
                 </p>
 
                 <div className="flex flex-wrap items-center gap-3 mt-5 text-sm text-slate-600">

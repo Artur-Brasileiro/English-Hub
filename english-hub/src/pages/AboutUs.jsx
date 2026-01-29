@@ -19,11 +19,23 @@ const AboutUs = () => {
         
         <div className="space-y-6 text-slate-600 leading-relaxed">
           <p className="text-lg font-medium text-slate-800">
-            O EnglishUp é uma plataforma de educação gamificada focada em tornar o aprendizado de inglês técnico e cotidiano acessível, rápido e divertido.
+            O EnglishUp é a ferramenta perfeita para você <strong>aprender inglês sozinho</strong>. 
+            Uma plataforma 100% gratuita para quem quer evoluir o idioma sem pagar cursos caros.
           </p>
 
           <p>
-            Nossa missão é combater a "curva do esquecimento" através de mecânicas de <strong>Active Recall</strong> (Recuperação Ativa) e Repetição Espaçada. Acreditamos que 15 minutos de prática diária valem mais do que horas de estudo passivo.
+            Nosso objetivo é simples: oferecer <strong>exercícios de inglês online</strong> rápidos e diretos. 
+            Sabemos que a parte mais difícil é decorar gramática e palavras novas, por isso criamos jogos focados em resolver suas maiores dificuldades:
+          </p>
+
+          <ul className="list-disc pl-5 space-y-2 text-slate-700">
+            <li>Dominar os temidos <strong>verbos irregulares</strong>;</li>
+            <li>Entender de vez os <strong>phrasal verbs</strong>;</li>
+            <li>Expandir seu <strong>vocabulário</strong> diário.</li>
+          </ul>
+
+          <p>
+            Sem teorias complicadas e sem cadastro. É só entrar e praticar 15 minutos por dia.
           </p>
 
           <hr className="border-slate-100 my-6" />
@@ -49,7 +61,7 @@ const AboutUs = () => {
           </div>
 
           <p className="text-sm mt-4">
-            Este projeto nasceu da necessidade de unir tecnologia web moderna com metodologias de ensino eficazes.
+            Criei este projeto para ajudar quem, assim como eu, buscava uma forma prática e gratuita de treinar inglês pela internet.
           </p>
         </div>
       </div>
