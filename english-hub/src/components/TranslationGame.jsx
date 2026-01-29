@@ -419,7 +419,7 @@ const TranslationGame = ({ onBack }) => {
       </div>
 
       {/* WRAPPER DE 3 COLUNAS */}
-      <div className="w-full max-w-360 mx-auto flex flex-col xl:flex-row justify-center items-start gap-5 p-4 mt-4">
+      <div className="w-full max-w-360 mx-auto flex flex-col xl:flex-row justify-center items-start gap-11 p-4 mt-4">
           
           {/* ANÚNCIO ESQUERDA */}
           <div className="hidden xl:flex w-80 shrink-0 flex-col gap-4 sticky top-36">
@@ -505,9 +505,9 @@ const TranslationGame = ({ onBack }) => {
 
             <EducationalContext />
             
-            <div className="mt-8 hidden md:flex justify-center">
-               <AdUnit slotId="4391086704" width="336px" height="280px" label="Publicidade"/>
-            </div>
+            <div className="mt-40 pointer-events-auto">
+                  <AdUnit slotId="4391086704" width="336px" height="280px" label="Publicidade"/>
+               </div>
 
           </div>
 

@@ -63,7 +63,12 @@ const IrregularVerbsGame = ({ onBack }) => {
   const { levelId } = useParams();
   
   const { triggerAdBreak } = useH5Ads();
-  const stopAllAudio = () => { console.log("Silence audio"); };
+  const stopAllAudio = () => { 
+    if (window.speechSynthesis) {
+      window.speechSynthesis.cancel();
+    }
+    console.log("Audio silenced for Ad"); 
+  };
 
   const [gameState, setGameState] = useState('config');
   const [activePhase, setActivePhase] = useState(1);
@@ -390,7 +395,7 @@ const IrregularVerbsGame = ({ onBack }) => {
       </div>
 
       {/* 2. LAYOUT WRAPPER (3 COLUNAS) */}
-      <div className="w-full max-w-360 mx-auto flex flex-col xl:flex-row justify-center items-start gap-5 p-4 mt-4">
+      <div className="w-full max-w-360 mx-auto flex flex-col xl:flex-row justify-center items-start gap-11 p-4 mt-4">
           
           {/* SIDEBAR ESQUERDA */}
           <div className="hidden xl:flex w-80 shrink-0 flex-col gap-4 sticky top-36">
@@ -458,7 +463,7 @@ const IrregularVerbsGame = ({ onBack }) => {
              <EducationalContext />
 
              {/* Anúncio Quadrado (Desktop) */}
-             <div className="mt-8 hidden md:flex justify-center">
+             <div className="mt-40 pointer-events-auto">
                 <AdUnit slotId="4391086704" width="336px" height="280px" label="Publicidade"/>
              </div>
           </div>

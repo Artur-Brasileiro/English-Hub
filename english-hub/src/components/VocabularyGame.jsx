@@ -533,7 +533,12 @@ const VocabularyGame = ({ onBack }) => {
             </button>
 
             <button
-              onClick={() => navigate('/vocabulary')}
+              onClick={() => triggerAdBreak(
+                  'next', 
+                  'return_menu', 
+                  () => navigate('/vocabulary'), // Só navega depois que o anúncio fechar (ou se não carregar)
+                  stopAllAudio // Muta o som se o anúncio abrir
+              )}
               className="text-slate-400 hover:text-slate-600 text-sm font-medium mt-2"
             >
               Voltar ao Menu de Níveis
@@ -578,7 +583,7 @@ const VocabularyGame = ({ onBack }) => {
          </div>
       </div>
 
-      <div className="w-full max-w-360 mx-auto flex flex-col xl:flex-row justify-center items-start gap-5 p-4 mt-4">          
+      <div className="w-full max-w-360 mx-auto flex flex-col xl:flex-row justify-center items-start gap-11 p-4 mt-4">          
           {/* --- SIDEBAR ESQUERDA (DESKTOP) --- */}
           <div className="hidden xl:flex w-80 shrink-0 flex-col gap-4 sticky top-36">
              <AdUnit key={`desktop-left-${currentLevelId}`} slotId="5118244396" width="300px" height="600px" label="Patrocinado"/>
@@ -796,8 +801,8 @@ const VocabularyGame = ({ onBack }) => {
 
             <EducationalContext />
 
-            <div className="mt-8 hidden md:flex justify-center">
-               <AdUnit slotId="4391086704" width="336px" height="280px" label="Publicidade"/>
+            <div className="mt-40 pointer-events-auto">
+              <AdUnit slotId="4391086704" width="336px" height="280px" label="Publicidade"/>
             </div>
           </div>
 

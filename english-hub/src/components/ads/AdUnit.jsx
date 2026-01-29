@@ -97,7 +97,7 @@ const AdUnit = ({
         {label}
       </div>
 
-      <div className="relative bg-slate-50 border border-slate-100 flex items-center justify-center"
+      <div className="relative bg-slate-50 border border-slate-100 flex items-center justify-center overflow-hidden"
            style={{ width: width || 'auto', height: height || 'auto', minHeight: height || '250px' }}>
         
         {isVisible ? (
