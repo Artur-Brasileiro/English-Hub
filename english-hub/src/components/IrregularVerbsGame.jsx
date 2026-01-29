@@ -248,6 +248,13 @@ const IrregularVerbsGame = ({ onBack }) => {
   if (gameState === 'config') {
     return (
       <div className="min-h-screen bg-slate-50 py-12 px-4 animate-fadeIn">
+        <Helmet>
+          <title>Tabela de Verbos Irregulares e Exercícios | EnglishUp</title>
+          <meta 
+            name="description" 
+            content="Memorize a tabela de verbos irregulares jogando. Exercícios de Past Simple e Participle para aprender inglês sozinho e de graça." 
+          />
+        </Helmet>
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-8">
             <div className="bg-orange-100 p-4 rounded-full inline-flex mb-4 text-orange-600 shadow-sm">

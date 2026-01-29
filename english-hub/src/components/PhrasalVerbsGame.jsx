@@ -183,6 +183,13 @@ const PhrasalVerbsGame = ({ onBack }) => {
   if (gameState === 'start') {
     return (
       <div className="min-h-screen bg-slate-50 py-12 px-4 animate-fadeIn">
+        <Helmet>
+          <title>Exercícios de Phrasal Verbs com Significado | EnglishUp</title>
+          <meta 
+            name="description" 
+            content="Aprenda o significado dos phrasal verbs mais usados em conversas. Jogos gratuitos para memorizar expressões como get up, look for e give up." 
+          />
+        </Helmet>
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-8">
             <div className="bg-indigo-100 p-4 rounded-full inline-flex mb-4 text-indigo-600 shadow-sm">
