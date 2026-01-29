@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import {
   Gamepad2,
@@ -90,6 +90,10 @@ const HubPage = () => {
         return "bg-slate-400";
     }
   };
+
+  useEffect(() => {
+    document.title = "English Up - Aprenda Inglês Jogando";
+  }, []);
 
   return (
     <div className="min-h-screen text-slate-900 font-sans bg-linear-to-b from-slate-50 via-white to-slate-50 relative overflow-hidden">

@@ -21,12 +21,14 @@ const Contact = () => {
           Entre em contato diretamente com nossa equipe de desenvolvimento.
         </p>
 
-        <div className="bg-slate-50 p-8 rounded-2xl border border-slate-200 inline-block">
+        {/* MUDANÇA AQUI: Adicionado 'w-full max-w-full' para respeitar a largura da tela */}
+        <div className="bg-slate-50 p-8 rounded-2xl border border-slate-200 inline-block w-full max-w-full">
             <Mail className="w-8 h-8 text-slate-400 mx-auto mb-3" />
             <p className="text-sm text-slate-500 font-bold uppercase tracking-wide mb-1">E-mail para suporte</p>
             <a 
               href="mailto:arturbrasileiro00@gmail.com" 
-              className="text-xl md:text-2xl font-black text-indigo-600 hover:text-indigo-700 transition-colors"
+              // MUDANÇA AQUI: Adicionado 'break-all' para quebrar o texto em telas pequenas
+              className="text-xl md:text-2xl font-black text-indigo-600 hover:text-indigo-700 transition-colors break-all"
             >
               arturbrasileiro00@gmail.com
             </a>

@@ -94,6 +94,10 @@ const IrregularVerbsGame = ({ onBack }) => {
   const totalPhases = Math.ceil(IRREGULAR_VERBS_DATA.length / ITEMS_PER_PHASE);
 
   useEffect(() => {
+    document.title = "Irregular Verbs | EnglishUp";
+  }, []);
+
+  useEffect(() => {
     if (levelId) {
       const phaseNum = parseInt(levelId, 10);
       if (!isNaN(phaseNum) && phaseNum > 0 && phaseNum <= totalPhases) {

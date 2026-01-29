@@ -404,7 +404,7 @@ const VocabularyGame = ({ onBack }) => {
       <div className="min-h-screen bg-slate-50 py-12 px-4 animate-fade-in">
         {/* SEO Dinâmico para o Menu */}
         <Helmet>
-          <title>Vocabulary Builder - Treine Inglês Técnico | EnglishUp</title>
+          <title>Vocabulary Builder | EnglishUp</title>
           <meta name="description" content={`Expanda seu vocabulário com ${VOCABULARY_DATA.length} palavras técnicas divididas em ${totalLevels} níveis. Jogo de Active Recall gratuito.`} />
         </Helmet>
 

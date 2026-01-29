@@ -83,7 +83,10 @@ const PhrasalVerbsGame = ({ onBack }) => {
   const firstInputRef = useRef(null);
   const totalPhases = Math.ceil(PHRASAL_VERBS_DATA.length / ITEMS_PER_PHASE);
 
-  // --- EFEITO DE ROTEAMENTO ---
+  useEffect(() => {
+    document.title = "Phrasal Verbs | EnglishUp";
+  }, []);
+
   useEffect(() => {
     if (levelId) {
       const phaseNum = parseInt(levelId, 10);

@@ -260,7 +260,7 @@ const TranslationGame = ({ onBack }) => {
     return (
       <div className="min-h-screen bg-slate-50 py-12 px-4 animate-fadeIn">
          <Helmet>
-            <title>Translation Master - EnglishUp</title>
+            <title>Translation Master | EnglishUp</title>
          </Helmet>
 
          {/* 1. LAYOUT PADRONIZADO: max-w-6xl (antes era 5xl) */}
