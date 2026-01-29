@@ -1,16 +1,68 @@
-import React, { useState } from 'react';
-import { useNavigate } from "react-router-dom";
+import React, { useState, useRef, useEffect, useMemo } from 'react';
+import { useNavigate, useParams } from "react-router-dom";
+import { Helmet } from 'react-helmet-async';
 import { 
-  Languages, RefreshCw, ArrowLeft, CheckCircle, XCircle, Mic, 
-  Clock, History, Layers, FastForward, 
-  GitBranch, Shield, ArrowLeftRight, Flame, Target, Scale, Heart, Lock, Lightbulb, Sparkles, HelpCircle, Skull
+  Languages, RefreshCw, ArrowLeft, ArrowRight, CheckCircle, XCircle, Mic, 
+  Clock, GitBranch, Shield, ArrowLeftRight, Flame, Target, Scale, Heart, Lock, Lightbulb, Sparkles, HelpCircle,
+  PenTool, Trophy
 } from 'lucide-react';
 import { TRANSLATION_DATA } from '../data/gameData';
 
+// --- IMPORTS DO ADSENSE E HOOK ---
+import AdUnit from './ads/AdUnit'; 
+import { useH5Ads } from '../hooks/useH5Ads'; 
+
+const ITEMS_PER_LEVEL = 10; 
+
+// --- ÍCONE CUSTOMIZADO (Definido no topo para evitar erros) ---
+const BrainCircuitIcon = ({className}) => (
+  <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 5a3 3 0 1 0-5.997.125 4 4 0 0 0-2.526 5.77 4 4 0 0 0 .556 6.588A4 4 0 1 0 12 18Z"/><path d="M12 5a3 3 0 1 1 5.997.125 4 4 0 0 1 2.526 5.77 4 4 0 0 1-.556 6.588A4 4 0 1 1 12 18Z"/><path d="M15 13a4.5 4.5 0 0 1-3-4 4.5 4.5 0 0 1-3 4"/><path d="M17.599 6.5a3 3 0 0 0 .399-1.375"/><path d="M6.003 5.125A3 3 0 0 0 6.401 6.5"/><path d="M3.477 10.896a4 4 0 0 1 .585-.396"/><path d="M19.938 10.5a4 4 0 0 1 .585.396"/><path d="M6 18a4 4 0 0 1-1.97-3.284"/><path d="M17.97 14.716A4 4 0 0 1 16 18"/></svg>
+);
+
+// --- COMPONENTE: CONTEXTO EDUCACIONAL ---
+const EducationalContext = () => (
+  <section className="w-full mt-12 px-6 py-8 bg-white rounded-3xl border border-slate-200 shadow-sm text-slate-600 animate-fadeIn">
+    <div className="flex items-center gap-3 mb-6">
+      <div className="bg-emerald-100 p-2 rounded-lg text-emerald-600">
+        <PenTool className="w-6 h-6" />
+      </div>
+      <h2 className="text-xl md:text-2xl font-bold text-slate-800">
+        Active Construction: O Segredo da Fluência
+      </h2>
+    </div>
+    
+    <div className="prose prose-slate max-w-none grid md:grid-cols-2 gap-8 text-left">
+      <div>
+        <h3 className="text-lg font-bold text-slate-800 mb-2 flex items-center gap-2">
+          <BrainCircuitIcon className="w-4 h-4 text-emerald-500" /> Por que traduzir?
+        </h3>
+        <p className="text-sm leading-relaxed mb-4">
+          Diferente de apenas "ler" (passivo), traduzir para o inglês obriga seu cérebro a <strong>construir a frase do zero</strong> (ativo). 
+          Isso cria conexões neurais mais fortes e simula a pressão da fala real.
+        </p>
+      </div>
+      
+      <div>
+        <h3 className="text-lg font-bold text-slate-800 mb-2 flex items-center gap-2">
+          <Sparkles className="w-4 h-4 text-amber-500" /> Gramática Contextual
+        </h3>
+        <ul className="text-sm space-y-2 list-disc pl-4 marker:text-emerald-500">
+          <li><strong>Padrões Reais:</strong> Você aprende <i>Present Perfect</i> ou <i>Conditionals</i> usando-os para resolver problemas, não decorando tabelas.</li>
+          <li><strong>Thinking Time:</strong> O esforço agora reduz o tempo que você leva para pensar antes de falar no futuro.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+);
+
 const TranslationGame = ({ onBack }) => {
   const navigate = useNavigate();
+  const { levelId } = useParams();
 
-  const [gameState, setGameState] = useState('start'); 
+  const { triggerAdBreak } = useH5Ads();
+  const recognitionRef = useRef(null);
+
+  const [view, setView] = useState('menu'); 
   const [score, setScore] = useState(0);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [shuffledQuestions, setShuffledQuestions] = useState([]);
@@ -21,57 +73,51 @@ const TranslationGame = ({ onBack }) => {
   const [isListening, setIsListening] = useState(false);
 
   // --- CONFIGURAÇÃO VISUAL DOS MODOS ---
-  const tagMeta = {
-    conditional: { label: 'Condicionais', sub: 'If/Se', color: 'bg-amber-500', desc: 'If I had...', example: 'If it rained...', icon: GitBranch },
-    concessive: { label: 'Concessivas', sub: 'Even/Embora', color: 'bg-teal-600', desc: 'Even if...', example: 'Even if I go...', icon: Shield },
-    temporal: { label: 'Temporais', sub: 'While/When', color: 'bg-cyan-600', desc: 'While/When...', example: 'While he...', icon: Clock },
-    contrast: { label: 'Contraste', sub: 'Mas/Porém', color: 'bg-rose-500', desc: '..., but ...', example: 'I wanted, but...', icon: ArrowLeftRight },
-    cause: { label: 'Causa', sub: 'Porque', color: 'bg-lime-600', desc: 'Because/As', example: 'Because I...', icon: Flame },
-    purpose: { label: 'Finalidade', sub: 'Para que', color: 'bg-emerald-600', desc: 'So that/In order to', example: 'So that...', icon: Target },
-    result: { label: 'Resultado', sub: 'Então', color: 'bg-blue-600', desc: 'So/Therefore', example: 'So we...', icon: CheckCircle },
-    comparison: { label: 'Comparação', sub: 'Igual a', color: 'bg-violet-600', desc: 'As...as', example: 'As good as...', icon: Scale },
-    desire: { label: 'Desejo', sub: 'Quero/Espero', color: 'bg-fuchsia-500', desc: 'I wish/hope', example: 'I wish...', icon: Heart },
-    obligation: { label: 'Obrigação', sub: 'Tenho que', color: 'bg-orange-600', desc: 'Have to/Must', example: 'I have to...', icon: Lock },
-    advice: { label: 'Conselho', sub: 'Deveria', color: 'bg-sky-600', desc: 'Should/Ought to', example: 'You should...', icon: Lightbulb },
-    suggestion: { label: 'Sugestão', sub: 'Que tal', color: 'bg-indigo-600', desc: 'Why don’t we...?', example: 'Why don’t we...', icon: Sparkles },
-    possibility: { label: 'Possibilidade', sub: 'Talvez', color: 'bg-slate-600', desc: 'Maybe/It might', example: 'It might...', icon: HelpCircle }
-  };
-
-  const tagModes = Object.keys(tagMeta);
-  const tagModeList = Object.entries(tagMeta).map(([id, meta]) => ({
-    id,
-    label: meta.label,
-    sub: meta.sub,
-    icon: meta.icon || Layers,
-    color: meta.color,
-    desc: meta.desc
-  }));
+  const tagMeta = useMemo(() => ({
+    conditional: { label: 'Condicionais', sub: 'If/Se', color: 'bg-amber-500', desc: 'If I had...', icon: GitBranch },
+    concessive: { label: 'Concessivas', sub: 'Even/Embora', color: 'bg-teal-600', desc: 'Even if...', icon: Shield },
+    temporal: { label: 'Temporais', sub: 'While/When', color: 'bg-cyan-600', desc: 'While/When...', icon: Clock },
+    contrast: { label: 'Contraste', sub: 'Mas/Porém', color: 'bg-rose-500', desc: '..., but ...', icon: ArrowLeftRight },
+    cause: { label: 'Causa', sub: 'Porque', color: 'bg-lime-600', desc: 'Because/As', icon: Flame },
+    purpose: { label: 'Finalidade', sub: 'Para que', color: 'bg-emerald-600', desc: 'So that', icon: Target },
+    result: { label: 'Resultado', sub: 'Então', color: 'bg-blue-600', desc: 'Therefore', icon: CheckCircle },
+    comparison: { label: 'Comparação', sub: 'Igual a', color: 'bg-violet-600', desc: 'As...as', icon: Scale },
+    desire: { label: 'Desejo', sub: 'Quero/Espero', color: 'bg-fuchsia-500', desc: 'I wish', icon: Heart },
+    obligation: { label: 'Obrigação', sub: 'Tenho que', color: 'bg-orange-600', desc: 'Must/Have to', icon: Lock },
+    advice: { label: 'Conselho', sub: 'Deveria', color: 'bg-sky-600', desc: 'Should', icon: Lightbulb },
+    suggestion: { label: 'Sugestão', sub: 'Que tal', color: 'bg-indigo-600', desc: 'Why don’t we?', icon: Sparkles },
+    possibility: { label: 'Possibilidade', sub: 'Talvez', color: 'bg-slate-600', desc: 'Might/Maybe', icon: HelpCircle }
+  }), []);
 
   const grammarMeta = {
     present_perfect: { label: 'Present Perfect', color: 'bg-blue-500' },
-    present_perfect_continuous: { label: 'Present Perfect Continuous', color: 'bg-blue-700' },
+    present_perfect_continuous: { label: 'Present Perfect Cont.', color: 'bg-blue-700' },
     past_perfect: { label: 'Past Perfect', color: 'bg-purple-500' },
-    past_perfect_continuous: { label: 'Past Perfect Continuous', color: 'bg-purple-700' },
-    future_perfect: { label: 'Future Perfect', color: 'bg-orange-500' },
-    future_perfect_continuous: { label: 'Future Perfect Continuous', color: 'bg-orange-700' },
     questions: { label: 'Perguntas', color: 'bg-cyan-600' }
   };
 
-  const grammarModeList = [
-    { id: 'present_perfect', label: 'Present Perfect', sub: 'Simple + Continuous', icon: CheckCircle, color: grammarMeta.present_perfect.color, desc: 'I have eaten / been eating' },
-    { id: 'past_perfect', label: 'Past Perfect', sub: 'Simple + Continuous', icon: History, color: grammarMeta.past_perfect.color, desc: 'I had eaten / been eating' },
-    { id: 'future_perfect', label: 'Future Perfect', sub: 'Simple', icon: FastForward, color: grammarMeta.future_perfect.color, desc: 'I will have eaten' },
-    { id: 'questions', label: 'Perguntas', sub: 'Todas em forma de pergunta', icon: HelpCircle, color: grammarMeta.questions.color, desc: 'Have you... ? / Why... ?' }
-  ];
-
-  // --- HELPERS ---
   const toArray = (value) => Array.isArray(value) ? value : [];
-  const taggedItems = toArray(TRANSLATION_DATA.tagged);
-  const allTranslationItems = Object.values(TRANSLATION_DATA).flatMap(toArray);
+  const taggedItems = useMemo(() => toArray(TRANSLATION_DATA.tagged), []);
+  const allTranslationItems = useMemo(() => Object.values(TRANSLATION_DATA).flatMap(toArray), []);
+  
+  useEffect(() => {
+    if (levelId) {
+      const isNumeric = /^\d+$/.test(levelId);
+      startGame(isNumeric ? parseInt(levelId) : levelId);
+    } else {
+      setView('menu');
+      stopAllAudio();
+    }
+  }, [levelId]);
 
-  const getPrimaryTag = (tags = []) => tags.find((tag) => tagModes.includes(tag));
+  const stopAllAudio = () => {
+    setIsListening(false);
+    if (recognitionRef.current) recognitionRef.current.abort();
+    if (window.speechSynthesis) window.speechSynthesis.cancel();
+  };
 
-  // --- LÓGICA DE DETECÇÃO GRAMATICAL ---
+  const getPrimaryTag = (tags = []) => tags.find((tag) => Object.keys(tagMeta).includes(tag));
+
   const getGrammarType = (englishSentence) => {
     const sampleSentence = Array.isArray(englishSentence) ? englishSentence[0] : englishSentence;
     if (!sampleSentence || typeof sampleSentence !== 'string') return 'present_perfect';
@@ -85,81 +131,38 @@ const TranslationGame = ({ onBack }) => {
     return 'present_perfect';
   };
 
-  const isQuestionSentence = (englishSentence) => {
-    const samples = Array.isArray(englishSentence) ? englishSentence : [englishSentence];
-    return samples.some((sample) => {
-      if (!sample || typeof sample !== 'string') return false;
-      const trimmed = sample.trim();
-      if (trimmed.endsWith('?')) return true;
-      return /^(what|where|when|why|how|who|which|have|has|had|will|do|does|did|is|are|was|were|can|could|would|should|may|might)\b/i.test(trimmed);
-    });
-  };
-
-  // --- SISTEMA DE CORREÇÃO FLEXÍVEL (REGEX) ---
-
-  // 1. Normaliza a resposta do usuário (remove pontuação, espaços extras, lowercase)
-  const normalizeUserAnswer = (text) => {
-    return text.toLowerCase()
-      .replace(/[.,!?;:]/g, '') // Remove pontuação
-      .replace(/\s+/g, ' ')     // Remove espaços duplos
-      .trim();
-  };
-
-  // 2. Transforma o gabarito em uma expressão regular inteligente
+  const normalizeUserAnswer = (text) => text.toLowerCase().replace(/[.,!?;:]/g, '').replace(/\s+/g, ' ').trim();
+  
   const createFlexibleRegex = (correctAnswer) => {
-    // Limpa a resposta correta base
     const clean = correctAnswer.toLowerCase().replace(/[.,!?;:]/g, '').trim();
-    
-    // Divide por espaços para analisar token por token
     const tokens = clean.split(/\s+/);
-    
     const regexParts = tokens.map((token, index) => {
       let processedToken = token;
       let isOptional = false;
-
-      // Verifica se é opcional: (word)
       if (token.startsWith('(') && token.endsWith(')')) {
-        processedToken = token.slice(1, -1); // remove ( )
-        isOptional = true;
+        processedToken = token.slice(1, -1); isOptional = true;
       }
-
-      // Verifica alternativas: word/other
       if (processedToken.includes('/')) {
         processedToken = `(?:${processedToken.replace(/\//g, '|')})`;
       } else {
-        // Escapa caracteres especiais de regex se não for alternativa
         processedToken = processedToken.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
       }
-
-      // Constrói a parte da regex para este token
-      if (index === 0) {
-        // Se for a primeira palavra
-        return isOptional ? `(?:${processedToken}\\s+)?` : `${processedToken}`;
-      } else {
-        // Se for palavra subsequente (precisa de espaço antes)
-        return isOptional ? `(?:\\s+${processedToken})?` : `\\s+${processedToken}`;
-      }
+      return index === 0 
+        ? (isOptional ? `(?:${processedToken}\\s+)?` : `${processedToken}`) 
+        : (isOptional ? `(?:\\s+${processedToken})?` : `\\s+${processedToken}`);
     });
-
-    // Junta tudo. ^ = início, $ = fim.
     return new RegExp(`^${regexParts.join('')}$`, 'i');
   };
 
   const checkAnswer = () => {
     const currentItem = shuffledQuestions[currentQuestionIndex];
-    // Garante que é sempre array para poder iterar
     const possibleAnswers = Array.isArray(currentItem.en) ? currentItem.en : [currentItem.en];
-    
     const normalizedUser = normalizeUserAnswer(userAnswer);
 
-    // Verifica se ALGUMA das respostas possíveis bate
     const isCorrect = possibleAnswers.some((correctAnswer) => {
       try {
-        const regex = createFlexibleRegex(correctAnswer);
-        return regex.test(normalizedUser);
+        return createFlexibleRegex(correctAnswer).test(normalizedUser);
       } catch (e) {
-        // Fallback de segurança: comparação exata simples
-        console.error("Regex error:", e);
         return normalizedUser === normalizeUserAnswer(correctAnswer);
       }
     });
@@ -168,26 +171,28 @@ const TranslationGame = ({ onBack }) => {
     if (isCorrect) setScore(s => s + 1);
   };
 
-  // --- FIM DO SISTEMA DE CORREÇÃO ---
+  const startGame = (modeOrLevel) => {
+    setCurrentMode(modeOrLevel);
+    let dataToUse = [];
 
-  const startGame = (mode) => {
-    setCurrentMode(mode);
-    let dataToUse = allTranslationItems;
-    
-    if (tagModes.includes(mode)) {
-      dataToUse = taggedItems.filter(item => item.tags && item.tags.includes(mode));
-    } else if (mode === 'present_perfect') {
-      dataToUse = toArray(TRANSLATION_DATA.present_perfect);
-    } else if (mode === 'past_perfect') {
-      dataToUse = toArray(TRANSLATION_DATA.past_perfect);
-    } else if (mode === 'questions') {
-      dataToUse = toArray(TRANSLATION_DATA.questions);
-    } else if (mode !== 'mix' && TRANSLATION_DATA[mode]) {
-      dataToUse = toArray(TRANSLATION_DATA[mode]);
+    if (typeof modeOrLevel === 'number') {
+        const startIndex = (modeOrLevel - 1) * ITEMS_PER_LEVEL;
+        const endIndex = startIndex + ITEMS_PER_LEVEL;
+        dataToUse = allTranslationItems.slice(startIndex, endIndex);
+    } else {
+        const mode = modeOrLevel;
+        if (tagMeta[mode]) {
+            dataToUse = taggedItems.filter(item => item.tags && item.tags.includes(mode));
+        } else if (TRANSLATION_DATA[mode]) {
+            dataToUse = toArray(TRANSLATION_DATA[mode]);
+        } else {
+             dataToUse = allTranslationItems.slice(0, ITEMS_PER_LEVEL);
+        }
     }
 
     if (dataToUse.length === 0) {
-      alert(`Ops! Não encontrei frases suficientes para o modo: ${mode.replace(/_/g, ' ')}. Adicione mais frases desse tipo no seu arquivo de dados.`);
+      alert(`Nível vazio ou não encontrado.`);
+      navigate('/translation');
       return;
     }
 
@@ -195,8 +200,9 @@ const TranslationGame = ({ onBack }) => {
     setShuffledQuestions(shuffled);
     setCurrentQuestionIndex(0);
     setScore(0);
-    setGameState('playing');
+    setView('game');
     resetTurn();
+    window.scrollTo(0, 0);
   };
 
   const resetTurn = () => {
@@ -207,31 +213,21 @@ const TranslationGame = ({ onBack }) => {
 
   const handleSpeech = () => {
     const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
-    if (!SpeechRecognition) {
-      alert("Seu navegador não suporta reconhecimento de voz.");
-      return;
-    }
+    if (!SpeechRecognition) return alert("Seu navegador não suporta voz.");
 
     setIsListening(true);
     const recognition = new SpeechRecognition();
+    recognitionRef.current = recognition;
     recognition.lang = 'en-US';
     recognition.interimResults = false;
     recognition.maxAlternatives = 1;
 
-    recognition.onresult = (event) => {
-      const transcript = event.results[0][0].transcript;
-      setUserAnswer(transcript); // A regex vai limpar a pontuação depois
+    recognition.onresult = (e) => {
+      setUserAnswer(e.results[0][0].transcript); 
       setIsListening(false);
     };
-
-    recognition.onerror = () => {
-      setIsListening(false);
-    };
-
-    recognition.onend = () => {
-      setIsListening(false);
-    };
-
+    recognition.onerror = () => setIsListening(false);
+    recognition.onend = () => setIsListening(false);
     recognition.start();
   };
 
@@ -240,178 +236,280 @@ const TranslationGame = ({ onBack }) => {
       setCurrentQuestionIndex(prev => prev + 1);
       resetTurn();
     } else {
-      setGameState('result');
+      triggerAdBreak('next', 'game_complete', () => {
+        setView('result');
+      }, stopAllAudio);
     }
   };
 
-  // --- RENDERS ---
+  const restartLevel = () => {
+      if (levelId) {
+          const isNumeric = /^\d+$/.test(levelId);
+          startGame(isNumeric ? parseInt(levelId) : levelId);
+      } else {
+          startGame(currentMode);
+      }
+  };
 
-  if (gameState === 'start') {
-    const modes = [
-      ...tagModeList,
-      ...grammarModeList,
-      { id: 'mix', label: 'Desafio Total', sub: 'All Tenses', icon: Skull, color: 'bg-emerald-500', desc: 'Mistura tudo!' },
-    ];
-
+  // --- TELA 1: MENU ---
+  if (view === 'menu') {
     return (
-      <div className="flex flex-col h-full py-8 px-4 animate-fadeIn max-w-5xl mx-auto items-center justify-center">
-        <div className="text-center mb-6 w-full">
-          <div className="bg-emerald-100 p-4 rounded-full inline-flex mb-4 text-emerald-600">
-            <Languages className="w-12 h-12" />
-          </div>
-          <h2 className="text-3xl font-bold text-slate-800 mb-2">Translation Master</h2>
-          <p className="text-slate-600 mb-8">Treine tempos perfeitos e frases do dia a dia por tipo.</p>
+      <div className="min-h-screen bg-slate-50 py-12 px-4 animate-fadeIn">
+         <Helmet>
+            <title>Translation Master - EnglishUp</title>
+         </Helmet>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 max-w-4xl mx-auto mb-8">
-            {modes.map((mode) => (
-              <button
-                key={mode.id}
-                onClick={() => startGame(mode.id)}
-                className="bg-white p-5 rounded-xl shadow-sm border-2 border-slate-100 hover:border-emerald-400 hover:shadow-md transition-all flex items-center gap-4 text-left group relative overflow-hidden"
-              >
-                <div className={`absolute top-0 left-0 w-1 h-full ${mode.color}`}></div>
-                <div className={`${mode.color} p-3 rounded-lg text-white shadow-sm group-hover:scale-110 transition-transform`}>
-                  <mode.icon className="w-5 h-5" />
+         <div className="max-w-5xl mx-auto text-center">
+            {/* Header */}
+            <div className="mb-10">
+                <div className="bg-emerald-100 p-4 rounded-full inline-flex mb-4 text-emerald-600 shadow-sm">
+                    <Languages className="w-10 h-10 md:w-12 md:h-12" />
                 </div>
-                <div>
-                  <h3 className="font-bold text-slate-800 text-base">{mode.label} <span className="font-normal text-slate-500 text-xs block">{mode.sub}</span></h3>
-                  <p className="text-slate-400 text-xs italic mt-1">{mode.desc}</p>
-                </div>
-              </button>
-            ))}
-          </div>
+                <h1 className="text-3xl md:text-4xl font-extrabold text-slate-800 mb-3">
+                    Translation Master
+                </h1>
+                <p className="text-slate-600 text-lg max-w-2xl mx-auto mb-6">
+                    Selecione um tópico específico para treinar agora.
+                </p>
+                <button
+                    onClick={() => navigate("/")}
+                    className="bg-white border border-slate-300 text-slate-600 hover:bg-slate-100 px-6 py-2 rounded-full font-bold text-sm transition-all shadow-sm flex items-center justify-center gap-2 mx-auto"
+                >
+                    <ArrowLeft className="w-4 h-4" /> Voltar ao Hub
+                </button>
+            </div>
 
-          <button
-            onClick={() => navigate("/")}
-            className="bg-white border border-slate-300 text-slate-600 hover:bg-slate-100 hover:text-slate-800 px-6 py-2 rounded-full font-bold text-sm transition-all shadow-sm flex items-center justify-center gap-2 mx-auto"
-          >
-            <ArrowLeft className="w-4 h-4" /> Voltar ao Hub Principal
-          </button>
+            {/* LISTA DE MODOS (SEM NÍVEIS NUMÉRICOS) */}
+            <h3 className="text-slate-500 font-bold uppercase tracking-wider text-sm mb-4 text-left pl-2 border-l-4 border-emerald-500">
+               Modos de Treino
+            </h3>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-12">
+                 {/* Modos do TagMeta */}
+                 {Object.entries(tagMeta).map(([key, meta]) => (
+                     <div 
+                        key={key} 
+                        onClick={() => navigate(`/translation/level/${key}`)}
+                        className="bg-white border border-slate-200 p-5 rounded-xl cursor-pointer hover:shadow-lg hover:border-emerald-400 transition-all flex items-center gap-4 group"
+                     >
+                        <div className={`p-3 rounded-lg text-white ${meta.color} group-hover:scale-110 transition-transform`}>
+                           <meta.icon className="w-6 h-6" />
+                        </div>
+                        <div className="text-left">
+                           <h4 className="font-bold text-slate-800 text-lg">{meta.label}</h4>
+                           <span className="text-xs text-slate-400 font-medium uppercase tracking-wider">{meta.sub}</span>
+                        </div>
+                    </div>
+                 ))}
+                 
+                 {/* Modos Extras */}
+                 <div onClick={() => navigate(`/translation/level/present_perfect`)} className="bg-white border border-slate-200 p-5 rounded-xl cursor-pointer hover:shadow-lg hover:border-blue-400 transition-all flex items-center gap-4 group">
+                      <div className="p-3 rounded-lg text-white bg-blue-500 group-hover:scale-110 transition-transform"><CheckCircle className="w-6 h-6" /></div>
+                      <div className="text-left"><h4 className="font-bold text-slate-800">Present Perfect</h4></div>
+                 </div>
+                 <div onClick={() => navigate(`/translation/level/questions`)} className="bg-white border border-slate-200 p-5 rounded-xl cursor-pointer hover:shadow-lg hover:border-cyan-400 transition-all flex items-center gap-4 group">
+                      <div className="p-3 rounded-lg text-white bg-cyan-600 group-hover:scale-110 transition-transform"><HelpCircle className="w-6 h-6" /></div>
+                      <div className="text-left"><h4 className="font-bold text-slate-800">Perguntas</h4></div>
+                 </div>
+            </div>
+
+            <EducationalContext />
+         </div>
+      </div>
+    );
+  }
+
+  // --- TELA 2: RESULTADO ---
+  if (view === 'result') {
+    return (
+      <div className="flex flex-col items-center justify-center min-h-screen bg-slate-50 py-12 px-4 animate-fadeIn">
+        <Helmet><title>Resultado - EnglishUp</title></Helmet>
+        
+        <div className="mb-6">
+          <AdUnit slotId="2492081057" width="300px" height="250px" label="Publicidade" />
+        </div>
+
+        <div className="bg-white p-10 rounded-3xl shadow-xl border border-slate-100 max-w-md w-full text-center">
+            <h2 className="text-4xl font-bold text-slate-800 mb-2">Treino Concluído!</h2>
+            <div className="text-6xl font-black text-emerald-500 mb-4">{score}/{shuffledQuestions.length}</div>
+            <p className="text-slate-400 font-medium mb-6 uppercase tracking-wider text-xs">
+                 {typeof currentMode === 'number' ? `Nível ${currentMode}` : `Modo: ${currentMode}`}
+            </p>
+            <div className="flex gap-3 flex-col w-full">
+               <button 
+                  onClick={() => triggerAdBreak('next', 'game_retry', restartLevel, stopAllAudio)} 
+                  className="bg-emerald-500 text-white px-6 py-3.5 rounded-xl font-bold hover:bg-emerald-600 transition-colors flex items-center justify-center gap-2 shadow-lg shadow-emerald-200"
+               >
+                  <RefreshCw className="w-4 h-4" /> Jogar Novamente
+               </button>
+               <button 
+                  onClick={() => triggerAdBreak('next', 'back_menu', () => navigate('/translation'), stopAllAudio)} 
+                  className="border-2 border-slate-200 text-slate-600 px-6 py-3.5 rounded-xl font-bold hover:bg-slate-50 transition-colors"
+               >
+                  Escolher Outro Nível
+               </button>
+            </div>
         </div>
       </div>
     );
   }
-  
-  if (gameState === 'result') {
-    return (
-      <div className="flex flex-col items-center justify-center h-full py-12 px-4 animate-fadeIn">
-        <h2 className="text-4xl font-bold text-slate-800 mb-2">Treino Concluído!</h2>
-        <div className="text-6xl font-black text-emerald-500 mb-4">{score}/{shuffledQuestions.length}</div>
-        <div className="bg-emerald-50 text-emerald-800 px-4 py-2 rounded-full font-bold mb-6 text-sm uppercase tracking-wider">
-          {currentMode.replace(/_/g, ' ')}
-        </div>
-        <div className="flex gap-4">
-          <button onClick={onBack} className="border-2 border-slate-200 text-slate-600 px-6 py-2 rounded-full font-bold hover:bg-slate-50 transition-colors">Sair</button>
-          <button onClick={() => startGame(currentMode)} className="bg-emerald-500 text-white px-6 py-2 rounded-full font-bold hover:bg-emerald-600 transition-colors flex items-center gap-2"><RefreshCw className="w-4 h-4" /> Jogar Novamente</button>
-        </div>
-      </div>
-    );
-  }
 
+  // --- TELA 3: JOGO (COM ANÚNCIOS LATERAIS + CARD ORIGINAL) ---
   const currentItem = shuffledQuestions[currentQuestionIndex];
+  
+  // *** TRAVA DE SEGURANÇA *** // Evita o erro de "Cannot read properties of undefined" se o React renderizar antes do state atualizar
+  if (!currentItem) {
+      return (
+        <div className="min-h-screen flex items-center justify-center text-slate-500 font-bold animate-pulse">
+           Carregando nível...
+        </div>
+      );
+  }
+
   const primaryTag = getPrimaryTag(currentItem.tags);
-  const shouldResolveGrammar = currentMode === 'mix' || currentMode === 'present_perfect' || currentMode === 'past_perfect';
-  const questionType = shouldResolveGrammar && !primaryTag ? getGrammarType(currentItem.en) : currentMode;
+  const shouldResolveGrammar = ['mix', 'present_perfect', 'past_perfect'].includes(currentMode) || typeof currentMode === 'number';
+  const questionType = shouldResolveGrammar && !primaryTag ? getGrammarType(currentItem.en) : (typeof currentMode === 'string' ? currentMode : 'mix');
 
-  let headerColorClass = 'bg-emerald-500';
-  let typeLabel = 'Traduza';
-
-  if (primaryTag && currentMode === 'mix') {
-    headerColorClass = tagMeta[primaryTag]?.color ?? headerColorClass;
-    typeLabel = tagMeta[primaryTag]?.label ?? typeLabel;
+  let headerColor = 'bg-emerald-500';
+  let HeaderIcon = Languages; // Letra Maiúscula
+  let headerTitle = 'Traduza';
+  
+  if (tagMeta[questionType]) {
+      headerColor = tagMeta[questionType].color;
+      HeaderIcon = tagMeta[questionType].icon; // Letra Maiúscula
+      headerTitle = tagMeta[questionType].label;
+  } else if (grammarMeta[questionType]) {
+      headerColor = grammarMeta[questionType].color;
+      headerTitle = grammarMeta[questionType].label;
+  } else if (primaryTag && tagMeta[primaryTag]) {
+      headerColor = tagMeta[primaryTag].color;
+      HeaderIcon = tagMeta[primaryTag].icon; // Letra Maiúscula
+      headerTitle = tagMeta[primaryTag].label;
   }
-  const questionMeta = tagMeta[questionType] || grammarMeta[questionType];
-  if (questionMeta && !(primaryTag && currentMode === 'mix')) {
-    headerColorClass = questionMeta.color ?? headerColorClass;
-    typeLabel = questionMeta.label ?? typeLabel;
-  }
-
-  let inputBorderClass = "border-slate-300 focus:border-emerald-500";
-  if (answerStatus === 'correct') inputBorderClass = "border-green-500 bg-green-50 text-green-700";
-  else if (answerStatus === 'incorrect') inputBorderClass = "border-red-500 bg-red-50 text-red-700";
 
   return (
-    <div className="max-w-2xl mx-auto py-8 px-4">
-      <div className="flex justify-between items-center mb-8">
-        <button onClick={() => setGameState('start')} className="text-slate-400 hover:text-slate-600 flex items-center gap-1">
-          <ArrowLeft className="w-5 h-5" /> <span className="text-sm font-bold">Modos</span>
-        </button>
-        <span className="text-slate-400 text-sm font-bold uppercase tracking-widest">
-          {currentQuestionIndex + 1} / {shuffledQuestions.length}
-        </span>
-        <div className="w-6"></div>
+    <div className="min-h-screen bg-slate-50 font-sans text-slate-800 flex flex-col items-center">
+      <Helmet>
+        <title>{typeof currentMode === 'number' ? `Nível ${currentMode}` : 'Treino'} - EnglishUp</title>
+      </Helmet>
+
+      {/* HEADER AD */}
+      <div className="w-full bg-white border-b border-slate-200 py-2 flex flex-col items-center justify-center relative z-20 shadow-sm min-h-25 md:min-h-27.5">
+         <div className="block md:hidden"><AdUnit key={`mob-top`} slotId="8330331714" width="320px" height="100px" label="Patrocinado"/></div>
+         <div className="hidden md:block"><AdUnit slotId="5673552248" width="728px" height="90px" label="Patrocinado"/></div>
       </div>
 
-      <div className="bg-white rounded-3xl shadow-xl border border-slate-100 overflow-hidden mb-6">
-        <div className={`${headerColorClass} p-8 text-center min-h-40 flex flex-col items-center justify-center transition-colors duration-500`}>
-          <span className="text-white/80 uppercase tracking-widest text-xs font-bold mb-3 flex items-center gap-2 justify-center">
-            <Clock className="w-4 h-4" /> {typeLabel}
-          </span>
-          <h2 className="text-2xl md:text-3xl font-extrabold text-white leading-tight max-w-lg mx-auto">
-            "{currentItem.pt}"
-          </h2>
-        </div>
+      {/* WRAPPER DE 3 COLUNAS */}
+      <div className="w-full max-w-360 mx-auto flex flex-col xl:flex-row justify-center items-start gap-5 p-4 mt-4">
+          
+          {/* ANÚNCIO ESQUERDA (Desktop) */}
+          <div className="hidden xl:flex w-80 shrink-0 flex-col gap-4 sticky top-36">
+             <AdUnit key={`desk-left`} slotId="5118244396" width="300px" height="600px" label="Patrocinado"/>
+          </div>
 
-        <div className="p-6">
-          <label className="block text-xs font-bold text-slate-400 uppercase tracking-widest mb-2 ml-1">Sua Tradução</label>
-          <div className="flex gap-2 mb-6">
-            <div className="relative grow">
-              <textarea 
-                value={userAnswer}
-                onChange={(e) => setUserAnswer(e.target.value)}
-                disabled={answerStatus !== null}
-                placeholder="Digite em inglês..."
-                rows={2}
-                className={`w-full p-4 rounded-xl border-2 outline-none font-medium text-lg resize-none transition-all ${inputBorderClass}`}
-                onKeyDown={(e) => {
-                   if (e.key === 'Enter' && !e.shiftKey && !answerStatus) {
-                     e.preventDefault(); checkAnswer();
-                   }
-                }}
-              />
-              {answerStatus && (
-                <div className="absolute right-3 top-3">
-                  {answerStatus === 'correct' ? <CheckCircle className="w-6 h-6 text-green-500" /> : <XCircle className="w-6 h-6 text-red-500" />}
-                </div>
-              )}
+          {/* ÁREA CENTRAL DO JOGO */}
+          <div className="w-full max-w-2xl flex flex-col">
+            
+            <div className="flex justify-between items-center mb-4 px-2">
+               <button onClick={() => navigate('/translation')} className="text-slate-400 hover:text-slate-600 flex items-center gap-1">
+                 <ArrowLeft className="w-5 h-5" /> <span className="text-sm font-bold uppercase tracking-wide">Menu</span>
+               </button>
+               <span className="text-slate-400 text-sm font-bold uppercase tracking-widest">
+                 {currentQuestionIndex + 1} / {shuffledQuestions.length}
+               </span>
             </div>
-            <button 
-              onClick={handleSpeech} disabled={answerStatus !== null}
-              className={`p-4 rounded-xl border-2 transition-all h-22 w-22 flex items-center justify-center ${isListening ? 'bg-red-500 border-red-500 text-white animate-pulse' : 'bg-white border-slate-200 text-slate-400'}`}
-            >
-              <Mic className="w-8 h-8" />
-            </button>
+
+            {/* CARD DO JOGO */}
+            <div className="bg-white rounded-3xl shadow-xl border border-slate-100 overflow-hidden relative mb-8">
+              <div className={`${headerColor} p-8 text-center min-h-40 flex flex-col items-center justify-center transition-colors duration-500`}>
+                <span className="text-white/80 uppercase tracking-widest text-xs font-bold mb-3 flex items-center gap-2 justify-center">
+                  {/* AQUI ESTAVA O ERRO: Agora usamos a variável com Maiúscula */}
+                  <HeaderIcon className="w-4 h-4" /> {headerTitle}
+                </span>
+                <h2 className="text-2xl md:text-3xl font-extrabold text-white leading-tight max-w-lg mx-auto">
+                  "{currentItem.pt}"
+                </h2>
+              </div>
+
+              <div className="p-6 md:p-10">
+                <label className="block text-xs font-bold text-slate-400 uppercase tracking-widest mb-2 ml-1">Sua Tradução</label>
+                <div className="flex gap-2 mb-6">
+                  <div className="relative grow">
+                    <textarea 
+                      value={userAnswer}
+                      onChange={(e) => setUserAnswer(e.target.value)}
+                      disabled={answerStatus !== null}
+                      placeholder="Digite em inglês..."
+                      rows={2}
+                      className={`w-full p-4 rounded-xl border-2 outline-none font-medium text-lg resize-none transition-all ${
+                          answerStatus === 'correct' ? "border-green-500 bg-green-50 text-green-700" :
+                          answerStatus === 'incorrect' ? "border-red-500 bg-red-50 text-red-700" :
+                          "border-slate-300 focus:border-emerald-500"
+                      }`}
+                      onKeyDown={(e) => { if (e.key === 'Enter' && !e.shiftKey && !answerStatus) { e.preventDefault(); checkAnswer(); } }}
+                    />
+                    {answerStatus && (
+                      <div className="absolute right-3 top-3">
+                        {answerStatus === 'correct' ? <CheckCircle className="w-6 h-6 text-green-500" /> : <XCircle className="w-6 h-6 text-red-500" />}
+                      </div>
+                    )}
+                  </div>
+                  <button 
+                    onClick={handleSpeech} disabled={answerStatus !== null}
+                    className={`p-4 rounded-xl border-2 transition-all h-22 w-22 flex items-center justify-center ${isListening ? 'bg-red-500 border-red-500 text-white animate-pulse' : 'bg-white border-slate-200 text-slate-400'}`}
+                  >
+                    <Mic className="w-8 h-8" />
+                  </button>
+                </div>
+
+                <div className="pt-2">
+                  {!answerStatus ? (
+                    <button onClick={checkAnswer} disabled={!userAnswer.trim()} className={`w-full py-4 rounded-xl font-bold text-lg transition-all shadow-lg ${!userAnswer.trim() ? 'bg-slate-200 text-slate-400' : 'bg-slate-800 text-white'}`}>Verificar</button>
+                  ) : (
+                    <div className="animate-fadeIn">
+                       {answerStatus === 'incorrect' && (
+                          <div className="mb-4 bg-red-50 p-4 rounded-xl border border-red-100">
+                            <span className="block text-red-400 text-xs font-bold uppercase tracking-wider mb-1">Resposta Correta:</span>
+                            <p className="text-red-700 font-bold text-lg">
+                                "{Array.isArray(currentItem.en) ? currentItem.en[0].replace(/[()]/g, '') : currentItem.en.replace(/[()]/g, '')}"
+                            </p>            
+                          </div>
+                       )}
+                       <button onClick={nextQuestion} className={`w-full text-white py-4 rounded-xl font-bold text-lg transition-colors shadow-lg ${answerStatus === 'correct' ? 'bg-emerald-500' : 'bg-slate-800'}`}>
+                        {currentQuestionIndex < shuffledQuestions.length - 1 ? 'Próxima' : 'Ver Resultados'}
+                      </button>
+                    </div>
+                  )}
+                </div>
+              </div>
+            </div>
+
+            <EducationalContext />
+            
+            <div className="mt-8 hidden md:flex justify-center">
+               <AdUnit slotId="4391086704" width="336px" height="280px" label="Publicidade"/>
+            </div>
+
           </div>
 
-          <div className="pt-2">
-            {!answerStatus ? (
-              <button onClick={checkAnswer} disabled={!userAnswer.trim()} className={`w-full py-4 rounded-xl font-bold text-lg transition-all shadow-lg ${!userAnswer.trim() ? 'bg-slate-200 text-slate-400' : 'bg-slate-800 text-white'}`}>Verificar</button>
-            ) : (
-              <div className="animate-fadeIn">
-                 {answerStatus === 'incorrect' && (
-                    <div className="mb-4 bg-red-50 p-4 rounded-xl border border-red-100">
-                      <span className="block text-red-400 text-xs font-bold uppercase tracking-wider mb-1">Resposta Correta:</span>
-                      {Array.isArray(currentItem.en) ? (
-                        <ul className="text-red-700 font-bold text-lg space-y-1">
-                          {currentItem.en.map((answer) => (
-                            <li key={answer}>
-                              {/* Remove os códigos da exibição visual para ficar mais limpo para o usuário */}
-                              "{answer.replace(/[()]/g, '').replace(/\//g, ' ou ')}"
-                            </li>
-                          ))}
-                        </ul>
-                      ) : (
-                         <p className="text-red-700 font-bold text-lg">"{currentItem.en.replace(/[()]/g, '').replace(/\//g, ' ou ')}"</p>
-                      )}                
-                      </div>
-                 )}
-                 <button onClick={nextQuestion} className={`w-full text-white py-4 rounded-xl font-bold text-lg transition-colors shadow-lg ${answerStatus === 'correct' ? 'bg-emerald-500' : 'bg-slate-800'}`}>
-                  {currentQuestionIndex < shuffledQuestions.length - 1 ? 'Próxima' : 'Ver Resultados'}
-                </button>
-              </div>
-            )}
+          {/* ANÚNCIO DIREITA (Desktop) */}
+          <div className="hidden xl:flex w-80 shrink-0 flex-col gap-4 sticky top-36">
+             <AdUnit key={`desk-right`} slotId="3805162724" width="300px" height="250px" label="Patrocinado"/>
+             
+             {/* --- COLE ISSO AQUI --- */}
+             <div className="bg-amber-50 rounded-xl p-6 border border-amber-100 shadow-sm">
+                <h3 className="font-bold text-amber-800 mb-2 flex items-center gap-2">
+                   <Trophy className="w-4 h-4" /> Dica Pro
+                </h3>
+                <p className="text-sm text-amber-700/80 leading-relaxed">
+                   O sistema aceita <strong>contrações</strong> e variações! Você pode escrever <em>"I'm"</em> ou <em>"I am"</em>, <em>"don't"</em> ou <em>"do not"</em>. O importante é acertar a estrutura gramatical.
+                </p>
+             </div>
           </div>
-        </div>
+      </div>
+
+      {/* MOBILE AD (Rodapé) */}
+      <div className="xl:hidden w-full flex flex-col items-center pb-8 bg-slate-50 mt-4">
+          <AdUnit key={`mob-bot`} slotId="3477859667" width="300px" height="250px" label="Patrocinado"/>
       </div>
     </div>
   );
