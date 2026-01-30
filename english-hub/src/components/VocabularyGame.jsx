@@ -250,7 +250,10 @@ const VocabularyGame = ({ onBack }) => {
   // Focar no input
   useEffect(() => {
     if (!feedback && view === 'game') {
-      inputRef.current?.focus();
+      // Só foca se a tela for maior que 768px
+      if (window.innerWidth >= 768) {
+        inputRef.current?.focus();
+      }
     }
   }, [currentWordIndex, feedback, view]);
 

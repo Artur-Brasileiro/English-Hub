@@ -150,9 +150,9 @@ const HubPage = () => {
                   <span className="text-indigo-600"> Inglês pra vida.</span>
                 </h2>
 
-                <p className="text-slate-600 text-base md:text-lg max-w-2xl mt-3">
+                <p className="text-center md:text-left text-slate-600 text-base md:text-lg max-w-2xl mt-3">
                   Exercícios rápidos para aprender inglês de graça. Domine a gramática e verbos essenciais com jogos de repetição espaçada.
-                   Simples, direto e sem cadastro.
+                  Simples, direto e sem cadastro.
                 </p>
 
                 <div className="flex flex-wrap items-center gap-3 mt-5 text-sm text-slate-600">

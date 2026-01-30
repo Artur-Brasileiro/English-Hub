@@ -208,7 +208,10 @@ const IrregularVerbsGame = ({ onBack }) => {
   useEffect(() => {
     if (gameState === 'playing' && !feedback && firstInputRef.current) {
       setTimeout(() => {
-        firstInputRef.current?.focus();
+        // Só foca se a tela for maior que 768px (Tablet/PC)
+        if (window.innerWidth >= 768) {
+          firstInputRef.current?.focus();
+        }
       }, 50);
     }
   }, [currentQuestionIndex, gameState, feedback]);

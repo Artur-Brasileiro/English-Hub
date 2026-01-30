@@ -109,6 +109,8 @@ const TranslationGame = ({ onBack }) => {
   const { triggerAdBreak } = useH5Ads();
   const recognitionRef = useRef(null);
 
+  const inputRef = useRef(null);
+
   const [view, setView] = useState('menu'); 
   const [score, setScore] = useState(0);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
@@ -149,6 +151,16 @@ const TranslationGame = ({ onBack }) => {
   const taggedItems = useMemo(() => toArray(TRANSLATION_DATA.tagged), []);
   const allTranslationItems = useMemo(() => Object.values(TRANSLATION_DATA).flatMap(toArray), []);
   
+  useEffect(() => {
+    if (view === 'game' && !answerStatus) {
+      setTimeout(() => {
+        if (window.innerWidth >= 768) {
+          inputRef.current?.focus();
+        }
+      }, 50);
+    }
+  }, [currentQuestionIndex, view, answerStatus]);
+
   useEffect(() => {
     if (levelId) {
       const isNumeric = /^\d+$/.test(levelId);
@@ -505,6 +517,7 @@ const TranslationGame = ({ onBack }) => {
                 <div className="flex gap-2 mb-6">
                   <div className="relative grow" key={currentQuestionIndex}>
                     <textarea 
+                      ref={inputRef}
                       value={userAnswer}
                       onChange={(e) => setUserAnswer(e.target.value)}
                       disabled={answerStatus !== null}
