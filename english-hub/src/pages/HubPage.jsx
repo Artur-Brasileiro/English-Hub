@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 import {
   Gamepad2,
   BrainCircuit,
@@ -91,12 +92,18 @@ const HubPage = () => {
     }
   };
 
-  useEffect(() => {
-    document.title = "English Up - Aprenda Inglês Jogando";
-  }, []);
-
   return (
     <div className="min-h-screen text-slate-900 font-sans bg-linear-to-b from-slate-50 via-white to-slate-50 relative overflow-hidden">
+      
+      {/* --- SEO E METADADOS --- */}
+      <Helmet>
+        <title>EnglishUp - Aprenda Inglês Jogando | Exercícios Grátis</title>
+        <meta 
+          name="description" 
+          content="Plataforma gratuita para aprender inglês jogando. Exercícios de vocabulário, verbos irregulares, phrasal verbs e tradução. Estude sozinho com Active Recall." 
+        />
+      </Helmet>
+
       {/* Blobs leves no fundo */}
       <div className="pointer-events-none absolute -top-24 -left-24 w-72 h-72 bg-indigo-200/40 rounded-full blur-3xl" />
       <div className="pointer-events-none absolute top-40 -right-28 w-80 h-80 bg-emerald-200/35 rounded-full blur-3xl" />

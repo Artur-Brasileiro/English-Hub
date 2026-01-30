@@ -1,4 +1,5 @@
 import React from 'react';
+import { Helmet } from 'react-helmet-async';
 import { ArrowLeft, Mail } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 
@@ -7,6 +8,16 @@ const Contact = () => {
 
   return (
     <div className="min-h-screen bg-slate-50 py-12 px-4 font-sans text-slate-800">
+      
+      {/* --- SEO E METADADOS --- */}
+      <Helmet>
+        <title>Fale Conosco - EnglishUp | Suporte e Sugestões</title>
+        <meta 
+          name="description" 
+          content="Entre em contato com a equipe do EnglishUp. Tire dúvidas, envie sugestões de jogos ou reporte erros. Estamos aqui para ajudar." 
+        />
+      </Helmet>
+
       <div className="max-w-2xl mx-auto bg-white p-8 md:p-12 rounded-3xl shadow-sm border border-slate-200 text-center">
         <button 
           onClick={() => navigate('/')} 
@@ -21,13 +32,12 @@ const Contact = () => {
           Entre em contato diretamente com nossa equipe de desenvolvimento.
         </p>
 
-        {/* MUDANÇA AQUI: Adicionado 'w-full max-w-full' para respeitar a largura da tela */}
+        {/* Card de E-mail */}
         <div className="bg-slate-50 p-8 rounded-2xl border border-slate-200 inline-block w-full max-w-full">
             <Mail className="w-8 h-8 text-slate-400 mx-auto mb-3" />
             <p className="text-sm text-slate-500 font-bold uppercase tracking-wide mb-1">E-mail para suporte</p>
             <a 
               href="mailto:arturbrasileiro00@gmail.com" 
-              // MUDANÇA AQUI: Adicionado 'break-all' para quebrar o texto em telas pequenas
               className="text-xl md:text-2xl font-black text-indigo-600 hover:text-indigo-700 transition-colors break-all"
             >
               arturbrasileiro00@gmail.com

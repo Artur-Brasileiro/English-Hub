@@ -8,11 +8,12 @@ import {
   X,
   Trophy,
   ArrowLeft,
-  BookOpen,
   PlayCircle,
   CornerDownLeft,
   Info,
-  ShieldCheck
+  BookOpen,
+  BrainCircuit,
+  ShieldCheck,
 } from 'lucide-react';
 
 // --- IMPORTS DOS COMPONENTES DE ANÚNCIOS E HOOK ---
@@ -94,43 +95,85 @@ const shuffleWords = (words) => {
 
 // --- COMPONENTE: CONTEXTO EDUCACIONAL (SEO & COMPLIANCE) ---
 const EducationalContext = () => (
-  <section className="w-full mt-12 px-6 py-8 bg-white rounded-3xl border border-slate-200 shadow-sm text-slate-600">
-    <div className="flex items-center gap-3 mb-6">
-      <div className="bg-indigo-100 p-2 rounded-lg text-indigo-600">
-        <BookOpen className="w-6 h-6" />
+  <section className="w-full mt-12 px-6 py-10 bg-white rounded-3xl border border-slate-200 shadow-sm text-slate-600 animate-fadeIn">
+    {/* Cabeçalho do Artigo */}
+    <div className="flex items-center gap-4 mb-8 border-b border-slate-100 pb-6">
+      <div className="bg-indigo-100 p-3 rounded-xl text-indigo-600 shadow-sm">
+        <BookOpen className="w-8 h-8" />
       </div>
-      <h2 className="text-xl md:text-2xl font-bold text-slate-800">
-        Como o Vocabulary Game Acelera seu Aprendizado
-      </h2>
+      <div>
+        <h2 className="text-2xl md:text-3xl font-black text-slate-800 tracking-tight">
+          Como expandir seu Vocabulário em Inglês
+        </h2>
+        <p className="text-slate-500 font-medium mt-1">
+          A ciência por trás da memorização e o Princípio de Pareto (80/20).
+        </p>
+      </div>
     </div>
     
-    <div className="prose prose-slate max-w-none grid md:grid-cols-2 gap-8 text-left">
-      <div>
-        <h3 className="text-lg font-bold text-slate-800 mb-2 flex items-center gap-2">
-          <ShieldCheck className="w-4 h-4 text-green-500" /> Retenção Ativa (Active Recall)
-        </h3>
-        <p className="text-sm leading-relaxed mb-4">
-          Diferente de apenas ler uma lista de palavras, este jogo utiliza o conceito de 
-          <strong> Recuperação Ativa</strong>. Ao forçar seu cérebro a buscar a tradução 
-          correta para termos técnicos em inglês, você fortalece as conexões neurais 
-          responsáveis pela memória de longo prazo.
-        </p>
-        <p className="text-sm leading-relaxed">
-          Estudos indicam que a gamificação no ensino de línguas pode aumentar a retenção 
-          de vocabulário significativamente comparado a métodos passivos de leitura.
-        </p>
+    <div className="prose prose-slate max-w-none grid md:grid-cols-2 gap-10 text-left">
+      
+      {/* Coluna 1: A Ciência e a Regra 80/20 */}
+      <div className="space-y-6">
+        <div>
+          <h3 className="text-lg font-bold text-slate-800 mb-3 flex items-center gap-2">
+            <ShieldCheck className="w-5 h-5 text-emerald-500" /> 
+            Active Recall: O fim do "decoreba"
+          </h3>
+          <p className="text-sm leading-relaxed text-slate-600">
+            Ler listas de palavras cria apenas uma ilusão de competência. Este jogo força seu cérebro a fazer o oposto: ele exige que você <strong>busque a informação</strong> na memória. É esse esforço cognitivo que move a palavra da memória de curto prazo para a de longo prazo.
+          </p>
+        </div>
+
+        <div className="bg-slate-50 p-5 rounded-2xl border border-slate-200">
+          <h4 className="text-sm font-bold text-slate-700 uppercase tracking-wider mb-3">O que é a Regra 80/20?</h4>
+          <p className="text-sm leading-relaxed text-slate-600 mb-3">
+            O Princípio de Pareto diz que <strong>20% das palavras correspondem a 80% das conversas</strong>. 
+          </p>
+          <ul className="text-sm space-y-3">
+            <li className="flex gap-3">
+              <span className="font-bold text-indigo-500 bg-indigo-50 px-2 py-0.5 rounded text-xs h-fit">Foco</span>
+              <span>
+                Em vez de decorar o dicionário todo, foque nas <strong>1.000 palavras mais frequentes</strong> (Nível Essencial deste jogo). Isso já garante que você entenda a maioria dos diálogos do dia a dia.
+              </span>
+            </li>
+          </ul>
+        </div>
       </div>
       
-      <div>
-        <h3 className="text-lg font-bold text-slate-800 mb-2 flex items-center gap-2">
-          <Info className="w-4 h-4 text-blue-500" /> Dicas de Estudo
-        </h3>
-        <ul className="text-sm space-y-2 list-disc pl-4 marker:text-rose-500">
-          <li><strong>Repetição Espaçada:</strong> Jogue o mesmo nível em dias diferentes para fixar o conteúdo.</li>
-          <li><strong>Pronúncia:</strong> Use o botão de áudio para associar a grafia ao som correto.</li>
-          <li><strong>Contexto:</strong> Tente criar uma frase mentalmente com cada palavra que você acerta.</li>
-        </ul>
+      {/* Coluna 2: Estratégias */}
+      <div className="space-y-6">
+        <div>
+          <h3 className="text-lg font-bold text-slate-800 mb-3 flex items-center gap-2">
+            <Info className="w-5 h-5 text-blue-500" /> 
+            3 Pilares da Memorização
+          </h3>
+          <p className="text-sm leading-relaxed text-slate-600 mb-4">
+            Não adianta jogar uma vez e parar. Para garantir que o vocabulário "grude", siga este roteiro:
+          </p>
+          
+          <ul className="space-y-4">
+            <li className="bg-white border-l-4 border-indigo-400 pl-4 py-1">
+              <span className="block text-xs font-bold text-indigo-600 uppercase mb-1">Associação Sonora</span>
+              <p className="text-sm text-slate-700">Sempre repita a palavra em voz alta após acertar. O cérebro grava melhor o que o ouvido escuta.</p>
+            </li>
+            <li className="bg-white border-l-4 border-rose-400 pl-4 py-1">
+              <span className="block text-xs font-bold text-rose-600 uppercase mb-1">Contextualização</span>
+              <p className="text-sm text-slate-700">A palavra <em>"Run"</em> pode ser "correr" ou "administrar" (run a business). Tente criar frases mentais.</p>
+            </li>
+          </ul>
+        </div>
+
+        <div className="bg-indigo-50 p-4 rounded-xl border border-indigo-100">
+          <h3 className="text-indigo-900 font-bold text-sm mb-2 flex items-center gap-2">
+            <BrainCircuit className="w-4 h-4" /> Dica Pro: Spaced Repetition
+          </h3>
+          <p className="text-xs text-indigo-800/80 leading-relaxed">
+            O cérebro esquece 50% do que aprendeu em 24h. Volte neste jogo amanhã e tente superar seu recorde. Revisitando o conteúdo em intervalos, você combate a "Curva do Esquecimento".
+          </p>
+        </div>
       </div>
+
     </div>
   </section>
 );

@@ -10,10 +10,10 @@ import {
   XCircle, 
   ArrowRight, 
   HelpCircle,
-  // Novos ícones
   Puzzle,
   Lightbulb,
-  BookOpen
+  BookOpen,
+  
 } from 'lucide-react';
 import { PHRASAL_VERBS_DATA } from '../data/gameData';
 
@@ -25,36 +25,101 @@ const ITEMS_PER_PHASE = 10;
 
 // --- NOVO COMPONENTE: CONTEXTO EDUCACIONAL ---
 const EducationalContext = () => (
-  <section className="w-full mt-12 px-6 py-8 bg-white rounded-3xl border border-slate-200 shadow-sm text-slate-600 animate-fadeIn">
-    <div className="flex items-center gap-3 mb-6">
-      <div className="bg-indigo-100 p-2 rounded-lg text-indigo-600">
-        <BookOpen className="w-6 h-6" />
+  <section className="w-full mt-12 px-6 py-10 bg-white rounded-3xl border border-slate-200 shadow-sm text-slate-600 animate-fadeIn">
+    {/* Cabeçalho do Artigo */}
+    <div className="flex items-center gap-4 mb-8 border-b border-slate-100 pb-6">
+      <div className="bg-rose-100 p-3 rounded-xl text-rose-600 shadow-sm">
+        <Puzzle className="w-8 h-8" />
       </div>
-      <h2 className="text-xl md:text-2xl font-bold text-slate-800">
-        O Segredo dos Phrasal Verbs
-      </h2>
-    </div>
-    
-    <div className="prose prose-slate max-w-none grid md:grid-cols-2 gap-8 text-left">
       <div>
-        <h3 className="text-lg font-bold text-slate-800 mb-2 flex items-center gap-2">
-          <Puzzle className="w-4 h-4 text-rose-500" /> A Lógica do "Bloco"
-        </h3>
-        <p className="text-sm leading-relaxed mb-4">
-          O maior erro é tentar traduzir palavra por palavra. <em>"Give"</em> significa dar, mas <em>"Give up"</em> significa desistir. 
-          Encare o Phrasal Verb como <strong>uma única palavra nova</strong>, um bloco indivisível de significado.
+        <h2 className="text-2xl md:text-3xl font-black text-slate-800 tracking-tight">
+          O Segredo dos Phrasal Verbs
+        </h2>
+        <p className="text-slate-500 font-medium mt-1">
+          Como decifrar a lógica por trás das preposições e soar como um nativo.
         </p>
       </div>
+    </div>
+    
+    <div className="prose prose-slate max-w-none grid md:grid-cols-2 gap-10 text-left">
       
-      <div>
-        <h3 className="text-lg font-bold text-slate-800 mb-2 flex items-center gap-2">
-          <BrainCircuit className="w-4 h-4 text-amber-500" /> Contexto é Tudo
-        </h3>
-        <ul className="text-sm space-y-2 list-disc pl-4 marker:text-indigo-500">
-          <li><strong>Polissemia:</strong> O mesmo phrasal verb pode ter vários sentidos. <em>"Take off"</em> pode ser "decolar" (avião) ou "tirar" (roupa).</li>
-          <li><strong>Intuição:</strong> Com a prática, você para de traduzir e começa a "sentir" o significado pelo contexto da frase.</li>
-        </ul>
+      {/* Coluna 1: A Lógica das Partículas */}
+      <div className="space-y-6">
+        <div>
+          <h3 className="text-lg font-bold text-slate-800 mb-3 flex items-center gap-2">
+            <BrainCircuit className="w-5 h-5 text-amber-500" /> 
+            Não traduza, visualize!
+          </h3>
+          <p className="text-sm leading-relaxed text-slate-600">
+            O erro do iniciante é traduzir palavra por palavra. O segredo é entender a <strong>"alma" da preposição</strong>. 
+          </p>
+          <ul className="text-sm space-y-3 mt-3">
+             <li className="flex gap-3">
+              <span className="font-bold text-rose-500 bg-rose-50 px-2 py-0.5 rounded text-xs h-fit">UP</span>
+              <span>
+                 Geralmente indica <strong>conclusão</strong> ou <strong>aumento</strong>. <br/>
+                 Ex: <em>Eat up</em> (comer tudo), <em>Speak up</em> (falar mais alto).
+              </span>
+            </li>
+            <li className="flex gap-3">
+              <span className="font-bold text-indigo-500 bg-indigo-50 px-2 py-0.5 rounded text-xs h-fit">OFF</span>
+              <span>
+                 Indica <strong>separação</strong> ou <strong>saída</strong>. <br/>
+                 Ex: <em>Take off</em> (decolar/sair do chão), <em>Cut off</em> (cortar fora).
+              </span>
+            </li>
+          </ul>
+        </div>
       </div>
+      
+      {/* Coluna 2: Formalidade e Uso */}
+      <div className="space-y-6">
+        <div>
+          <h3 className="text-lg font-bold text-slate-800 mb-3 flex items-center gap-2">
+            <BookOpen className="w-5 h-5 text-indigo-500" /> 
+            Nativo vs. Livro Didático
+          </h3>
+          <p className="text-sm leading-relaxed text-slate-600 mb-4">
+            Em ambientes formais, usamos verbos únicos (latinos). Na rua, usamos Phrasal Verbs. Dominar essa troca é o que define a fluência.
+          </p>
+          
+          <div className="bg-slate-50 rounded-xl overflow-hidden border border-slate-200">
+             <table className="w-full text-sm text-left">
+               <thead className="bg-slate-100 text-slate-700 font-bold uppercase text-xs">
+                 <tr>
+                   <th className="px-4 py-2">Phrasal Verb (Fala)</th>
+                   <th className="px-4 py-2">Formal (Escrita)</th>
+                 </tr>
+               </thead>
+               <tbody className="divide-y divide-slate-200">
+                 <tr>
+                   <td className="px-4 py-2 text-rose-600 font-bold">Give up</td>
+                   <td className="px-4 py-2 text-slate-600">Surrender / Quit</td>
+                 </tr>
+                 <tr>
+                   <td className="px-4 py-2 text-rose-600 font-bold">Find out</td>
+                   <td className="px-4 py-2 text-slate-600">Discover</td>
+                 </tr>
+                 <tr>
+                    <td className="px-4 py-2 text-rose-600 font-bold">Put off</td>
+                    <td className="px-4 py-2 text-slate-600">Postpone</td>
+                 </tr>
+               </tbody>
+             </table>
+          </div>
+        </div>
+
+        <div className="bg-rose-50 p-4 rounded-xl border border-rose-100">
+          <h3 className="text-rose-900 font-bold text-sm mb-2 flex items-center gap-2">
+            <Layers className="w-4 h-4" /> Dica de Ouro: Separáveis
+          </h3>
+          <p className="text-xs text-rose-800/80 leading-relaxed">
+            Alguns phrasal verbs aceitam o objeto no meio! <br/>
+            Você pode dizer <em>"Turn <strong>ON</strong> the light"</em> ou <em>"Turn the light <strong>ON</strong>"</em>. Ambos estão certos. O jogo vai te ajudar a notar quais permitem isso.
+          </p>
+        </div>
+      </div>
+
     </div>
   </section>
 );

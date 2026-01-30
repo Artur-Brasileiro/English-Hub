@@ -1,4 +1,5 @@
 import React from 'react';
+import { Helmet } from 'react-helmet-async';
 import { ArrowLeft } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 
@@ -7,6 +8,16 @@ const PrivacyPolicy = () => {
 
   return (
     <div className="min-h-screen bg-slate-50 py-12 px-4 font-sans text-slate-800">
+      
+      {/* --- SEO E METADADOS --- */}
+      <Helmet>
+        <title>Política de Privacidade - EnglishUp</title>
+        <meta 
+          name="description" 
+          content="Política de Privacidade do EnglishUp. Saiba como coletamos dados, utilizamos cookies e gerenciamos a publicidade via Google AdSense." 
+        />
+      </Helmet>
+
       <div className="max-w-3xl mx-auto bg-white p-8 md:p-12 rounded-3xl shadow-sm border border-slate-200">
         <button 
           onClick={() => navigate('/')} 
@@ -38,7 +49,14 @@ const PrivacyPolicy = () => {
             </li>
             <li>
               Os usuários podem optar por desativar a publicidade personalizada acessando as 
-              <a href="https://www.google.com/settings/ads" target="_blank" rel="nofollow" className="text-indigo-600"> Configurações de Anúncios</a>.
+              <a 
+                href="https://www.google.com/settings/ads" 
+                target="_blank" 
+                rel="noopener noreferrer nofollow" 
+                className="text-indigo-600 hover:underline"
+              >
+                 Configurações de Anúncios
+              </a>.
             </li>
           </ul>
 
