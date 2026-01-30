@@ -570,8 +570,8 @@ const TranslationGame = ({ onBack }) => {
             <EducationalContext />
             
             <div className="mt-40 pointer-events-auto">
-                  <AdUnit slotId="4391086704" width="336px" height="280px" label="Publicidade"/>
-               </div>
+              <AdUnit slotId="4391086704" width="336px" height="280px" label="Publicidade"/>
+            </div>
 
           </div>
 

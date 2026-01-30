@@ -15,7 +15,6 @@ import logoEnglishUp from "../assets/englishup-logo.png";
 const HubPage = () => {
   const navigate = useNavigate();
 
-  const [activeCategory, setActiveCategory] = useState("All");
   const [searchTerm, setSearchTerm] = useState("");
 
   const brandName = "EnglishUp";
@@ -71,12 +70,8 @@ const HubPage = () => {
     }
   ];
 
-  const categories = ["All", "Vocabulary", "Grammar", "Writing & Speaking"];
-
   const filteredGames = games.filter((game) => {
-    const matchesCategory = activeCategory === "All" || game.category === activeCategory;
-    const matchesSearch = game.title.toLowerCase().includes(searchTerm.toLowerCase());
-    return matchesCategory && matchesSearch;
+    return game.title.toLowerCase().includes(searchTerm.toLowerCase());
   });
 
   const difficultyDot = (difficulty) => {
@@ -109,26 +104,25 @@ const HubPage = () => {
       <div className="pointer-events-none absolute top-40 -right-28 w-80 h-80 bg-emerald-200/35 rounded-full blur-3xl" />
       <div className="pointer-events-none absolute bottom-0 left-1/3 w-96 h-96 bg-rose-200/25 rounded-full blur-3xl" />
 
+      {/* --- HEADER COM SLOGAN --- */}
       <nav className="bg-white/70 backdrop-blur border-b border-slate-200 px-4 py-4 shadow-sm sticky top-0 z-10">
-        <div className="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
-          <div className="flex items-center">
-            <img
-              src={logoEnglishUp}
-              alt="EnglishUp"
-              className="h-16 md:h-20 w-auto object-contain"
-            />
-          </div>
+        <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-center md:justify-start gap-3 md:gap-6">
+          
+          {/* Logo */}
+          <img
+            src={logoEnglishUp}
+            alt="EnglishUp"
+            className="h-14 md:h-16 w-auto object-contain"
+          />
 
-          <div className="relative w-full md:w-96">
-            <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 w-5 h-5" />
-            <input
-              type="text"
-              placeholder="Buscar treinos..."
-              className="w-full pl-10 pr-4 py-2.5 bg-white/70 border border-slate-200 rounded-full text-sm focus:ring-2 focus:ring-slate-900/20 focus:border-slate-300 outline-none transition-all shadow-sm"
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-            />
-          </div>
+          {/* Divisória Vertical (apenas desktop) */}
+          <div className="hidden md:block w-px h-8 bg-slate-300 rounded-full"></div>
+
+          {/* Slogan */}
+          <p className="text-slate-500 font-medium text-sm md:text-base tracking-tight text-center md:text-left">
+            Treinar inglês nunca foi tão fácil.
+          </p>
+
         </div>
       </nav>
 
@@ -139,13 +133,16 @@ const HubPage = () => {
             <div className="absolute -top-16 -right-16 w-56 h-56 bg-slate-900/5 rounded-full blur-2xl" />
             <div className="absolute -bottom-24 -left-24 w-72 h-72 bg-indigo-500/10 rounded-full blur-3xl" />
 
-            <div className="flex flex-col md:flex-row gap-8 items-start md:items-center justify-between relative">
-              <div>
+            {/* Ajuste no container principal para centralizar no mobile (items-center) */}
+            <div className="flex flex-col md:flex-row gap-8 items-center justify-between relative">
+              
+              {/* Ajuste no container de texto para centralizar filhos no mobile */}
+              <div className="flex flex-col items-center md:items-start w-full md:w-auto">
                 <div className="inline-flex items-center gap-2 bg-slate-900 text-white px-3 py-1.5 rounded-full text-xs font-bold tracking-wide shadow-sm">
                   TREINO DIÁRIO • LEVE • EFICIENTE
                 </div>
 
-                <h2 className="text-3xl md:text-4xl font-extrabold text-slate-900 mt-4 leading-tight tracking-tight">
+                <h2 className="text-3xl md:text-4xl font-extrabold text-slate-900 mt-4 leading-tight tracking-tight text-center md:text-left">
                   Alguns minutos por dia.
                   <span className="text-indigo-600"> Inglês pra vida.</span>
                 </h2>
@@ -155,7 +152,8 @@ const HubPage = () => {
                   Simples, direto e sem cadastro.
                 </p>
 
-                <div className="flex flex-wrap items-center gap-3 mt-5 text-sm text-slate-600">
+                {/* Ajuste na legenda para centralizar no mobile */}
+                <div className="flex flex-wrap justify-center md:justify-start items-center gap-3 mt-5 text-sm text-slate-600">
                   <div className="flex items-center gap-2">
                     <span className="w-2 h-2 rounded-full bg-emerald-500" />
                     <span>Essencial</span>
@@ -194,22 +192,17 @@ const HubPage = () => {
           </div>
         </section>
 
-        {/* Categorias */}
+        {/* --- BARRA DE PESQUISA --- */}
         <div className="flex justify-center mb-10">
-          <div className="flex flex-wrap justify-center gap-2">
-            {categories.map((category) => (
-              <button
-                key={category}
-                onClick={() => setActiveCategory(category)}
-                className={`px-6 py-2 rounded-full text-sm font-semibold transition-all shadow-sm ${
-                  activeCategory === category
-                    ? "bg-slate-900 text-white"
-                    : "bg-white/70 text-slate-600 border border-slate-200 hover:bg-white"
-                }`}
-              >
-                {category}
-              </button>
-            ))}
+          <div className="relative w-full max-w-lg">
+            <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 w-5 h-5" />
+            <input
+              type="text"
+              placeholder="Buscar treinos..."
+              className="w-full pl-12 pr-4 py-3.5 bg-white backdrop-blur border border-slate-200 rounded-full text-base focus:ring-4 focus:ring-indigo-500/10 focus:border-indigo-500 outline-none transition-all shadow-sm"
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+            />
           </div>
         </div>
 
