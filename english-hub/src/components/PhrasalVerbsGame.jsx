@@ -13,7 +13,6 @@ import {
   Puzzle,
   Lightbulb,
   BookOpen,
-  
 } from 'lucide-react';
 import { PHRASAL_VERBS_DATA } from '../data/gameData';
 
@@ -23,7 +22,18 @@ import { useH5Ads } from '../hooks/useH5Ads';
 
 const ITEMS_PER_PHASE = 10;
 
-// --- NOVO COMPONENTE: CONTEXTO EDUCACIONAL ---
+// --- FUNÇÃO UTILITÁRIA DE NORMALIZAÇÃO (Protocolo de Unificação) ---
+const normalizeLoose = (text) => {
+  return String(text ?? '')
+    .toLowerCase()
+    .trim()
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '') // Remove acentos
+    .replace(/[^\p{L}\p{N}\s-]/gu, '') // Remove caracteres especiais
+    .replace(/\s+/g, ' '); // Remove espaços extras
+};
+
+// --- COMPONENTE: CONTEXTO EDUCACIONAL ---
 const EducationalContext = () => (
   <section className="w-full mt-12 px-6 py-10 bg-white rounded-3xl border border-slate-200 shadow-sm text-slate-600 animate-fadeIn">
     {/* Cabeçalho do Artigo */}
@@ -130,15 +140,21 @@ const PhrasalVerbsGame = ({ onBack }) => {
 
   // --- HOOK ADSENSE ---
   const { triggerAdBreak } = useH5Ads();
+
+  // --- PROTOCOLO DE UNIFICAÇÃO: ÁUDIO ---
   const stopAllAudio = () => {
+    // 1. Para Síntese de Fala (TTS)
     if (window.speechSynthesis) {
       window.speechSynthesis.cancel();
     }
-    // Se houver reconhecimento de voz (isListening), pare-o também:
-    if (typeof stopListening === 'function') stopListening(); 
+    // 2. Para Reconhecimento de Voz (STT) - Safety Check
+    // (Mesmo que este jogo não use STT hoje, mantém compatibilidade)
+    if (typeof window.stopListening === 'function') { 
+        window.stopListening(); 
+    }
   };
 
-  const [gameState, setGameState] = useState('start'); 
+  const [view, setView] = useState('menu'); // Padronizado: 'menu' | 'game' | 'result'
   const [activePhase, setActivePhase] = useState(1);
   const [score, setScore] = useState(0); 
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
@@ -155,13 +171,24 @@ const PhrasalVerbsGame = ({ onBack }) => {
       if (!isNaN(phaseNum) && phaseNum > 0 && phaseNum <= totalPhases) {
           startGame(phaseNum);
       } else {
+          // Redirecionamento seguro se ID inválido
           alert("Fase inválida!");
-          navigate('/phrasal');
+          navigate('/phrasal', { replace: true });
       }
     } else {
-      setGameState('start');
+      setView('menu');
+      stopAllAudio();
     }
   }, [levelId]);
+
+  // --- PROTOCOLO DE UNIFICAÇÃO: ROTEAMENTO ---
+  const handleBackToMenu = () => {
+    triggerAdBreak('next', 'return_menu', () => {
+        stopAllAudio();
+        setView('menu');
+        navigate('/phrasal', { replace: true });
+    }, stopAllAudio);
+  };
 
   const startGame = (phaseNumber) => {
     setActivePhase(phaseNumber);
@@ -170,7 +197,7 @@ const PhrasalVerbsGame = ({ onBack }) => {
     const originalQuestions = PHRASAL_VERBS_DATA.slice(startIndex, endIndex);
     
     if (originalQuestions.length === 0) {
-      navigate('/phrasal');
+      navigate('/phrasal', { replace: true });
       return;
     }
 
@@ -179,7 +206,7 @@ const PhrasalVerbsGame = ({ onBack }) => {
     setPhaseQuestions(shuffledQuestions);
     setCurrentQuestionIndex(0);
     setScore(0);
-    setGameState('playing');
+    setView('game');
     
     if (shuffledQuestions.length > 0) {
       initializeInputs(shuffledQuestions[0]);
@@ -198,7 +225,7 @@ const PhrasalVerbsGame = ({ onBack }) => {
   };
 
   useEffect(() => {
-    if (gameState === 'playing' && !feedback && firstInputRef.current) {
+    if (view === 'game' && !feedback && firstInputRef.current) {
       setTimeout(() => {
         // Só foca se a tela for maior que 768px
         if (window.innerWidth >= 768) {
@@ -206,7 +233,7 @@ const PhrasalVerbsGame = ({ onBack }) => {
         }
       }, 50);
     }
-  }, [currentQuestionIndex, gameState, feedback]);
+  }, [currentQuestionIndex, view, feedback]);
 
   const handleInputChange = (index, value) => {
     const newAnswers = [...userAnswers];
@@ -216,12 +243,17 @@ const PhrasalVerbsGame = ({ onBack }) => {
 
   const checkAnswer = (e) => {
     e.preventDefault();
+    // --- PROTOCOLO DE UNIFICAÇÃO: Proteção de Pontuação ---
+    if (feedback) return;
+
     setFeedback('checked');
     const currentVerb = phaseQuestions[currentQuestionIndex];
-    const correctMeanings = currentVerb.definitions.map(d => d.meaning.trim().toLowerCase());
+    // Validação Inteligente (Normalizada)
+    const correctMeanings = currentVerb.definitions.map(d => normalizeLoose(d.meaning));
+    
     let currentTurnScore = 0;
     userAnswers.forEach(answer => {
-      const normalizedAnswer = answer.trim().toLowerCase();
+      const normalizedAnswer = normalizeLoose(answer);
       if (correctMeanings.includes(normalizedAnswer)) currentTurnScore += 1;
     });
     setScore(prev => prev + currentTurnScore);
@@ -234,21 +266,23 @@ const PhrasalVerbsGame = ({ onBack }) => {
       initializeInputs(phaseQuestions[nextIndex]);
     } else {
       triggerAdBreak('next', 'phase_complete', () => {
-        setGameState('result');
+        setView('result');
       }, stopAllAudio);
     }
   };
 
   const getInputStatus = (userValue, correctMeanings) => {
     if (!feedback) return 'neutral';
-    const normalizedValue = userValue.trim().toLowerCase();
+    const normalizedValue = normalizeLoose(userValue);
+    // Para comparar com os corretos, precisamos normalizar os corretos também
+    // Mas aqui 'correctMeanings' já virá normalizado se passarmos o array certo
     if (!normalizedValue) return 'empty';
     if (correctMeanings.includes(normalizedValue)) return 'correct';
     return 'wrong';
   };
 
   // --- TELA MENU ---
-  if (gameState === 'start') {
+  if (view === 'menu') {
     return (
       <div className="min-h-screen bg-slate-50 py-12 px-4 animate-fadeIn">
         <Helmet>
@@ -273,8 +307,9 @@ const PhrasalVerbsGame = ({ onBack }) => {
               para entender filmes, séries e conversas reais em inglês.
             </p>
 
+            {/* BOTÃO VOLTAR AO HUB (Lógica correta: sai do jogo) */}
             <button
-              onClick={() => navigate("/")}
+              onClick={() => navigate("/", { replace: true })}
               className="bg-white border border-slate-300 text-slate-600 hover:bg-slate-100 hover:text-slate-800 px-6 py-2 rounded-full font-bold text-sm transition-all shadow-sm flex items-center justify-center gap-2 mx-auto"
             >
               <ArrowLeft className="w-4 h-4" /> Voltar ao Hub Principal
@@ -326,7 +361,7 @@ const PhrasalVerbsGame = ({ onBack }) => {
   }
 
   // --- TELA RESULTADO ---
-  if (gameState === 'result') {
+  if (view === 'result') {
     const maxScore = phaseQuestions.reduce((acc, curr) => acc + curr.definitions.length, 0);
     const percentage = Math.round((score / maxScore) * 100);
     let message = "Bom começo!";
@@ -353,8 +388,13 @@ const PhrasalVerbsGame = ({ onBack }) => {
             >
               <RefreshCw className="w-5 h-5" /> Tentar Novamente
             </button>
+            {/* --- CORREÇÃO DE BUG (nnavigate) e PADRONIZAÇÃO --- */}
             <button 
-              onClick={() => triggerAdBreak('next', 'menu_return', () => navigate('/phrasal'), stopAllAudio)} 
+              onClick={() => triggerAdBreak('next', 'menu_return', () => {
+                  stopAllAudio();
+                  setView('menu');
+                  navigate('/phrasal', { replace: true });
+              }, stopAllAudio)} 
               className="bg-white border-2 border-slate-200 text-slate-600 px-6 py-3.5 rounded-xl font-bold hover:bg-slate-100 transition-colors"
             >
               Escolher Outra Fase
@@ -367,10 +407,10 @@ const PhrasalVerbsGame = ({ onBack }) => {
 
   // --- TELA JOGO ---
   const currentVerb = phaseQuestions[currentQuestionIndex];
-  // Segurança para evitar crash se o array estiver vazio por algum motivo
   if (!currentVerb) return <div>Carregando...</div>;
   
-  const correctMeaningsLower = currentVerb.definitions.map(d => d.meaning.toLowerCase().trim());
+  // Lista de respostas corretas NORMALIZADAS
+  const correctMeaningsLower = currentVerb.definitions.map(d => normalizeLoose(d.meaning));
 
   return (
     <div className="min-h-screen bg-slate-50 font-sans text-slate-800 flex flex-col items-center">
@@ -406,8 +446,9 @@ const PhrasalVerbsGame = ({ onBack }) => {
              
              {/* Header Interno */}
              <div className="flex justify-between items-center mb-6 px-2">
+                {/* --- CORREÇÃO PROTOCOLO: handleBackToMenu --- */}
                 <button 
-                  onClick={() => navigate('/phrasal')} 
+                  onClick={handleBackToMenu} 
                   className="text-slate-400 hover:text-slate-600 flex items-center gap-1"
                 >
                   <ArrowLeft className="w-5 h-5" /> <span className="text-sm font-bold uppercase tracking-wide">Menu</span>

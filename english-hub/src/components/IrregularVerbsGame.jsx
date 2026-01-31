@@ -11,7 +11,6 @@ import {
   CheckCircle,
   XCircle,
   ArrowRight as ArrowRightIcon,
-  // --- NOVOS ÍCONES IMPORTADOS ---
   BookOpen,
   Zap,
   Target,
@@ -23,7 +22,18 @@ import { useH5Ads } from '../hooks/useH5Ads';
 
 const ITEMS_PER_PHASE = 10;
 
-// --- NOVO COMPONENTE: CONTEXTO EDUCACIONAL (SEO & VALOR) ---
+// --- FUNÇÃO UTILITÁRIA DE NORMALIZAÇÃO (Protocolo de Unificação) ---
+const normalizeLoose = (text) => {
+  return String(text ?? '')
+    .toLowerCase()
+    .trim()
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '') // Remove acentos
+    .replace(/[^\p{L}\p{N}\s-]/gu, '') // Remove caracteres especiais
+    .replace(/\s+/g, ' '); // Remove espaços extras
+};
+
+// --- COMPONENTE: CONTEXTO EDUCACIONAL ---
 const EducationalContext = () => (
   <section className="w-full mt-12 px-6 py-10 bg-white rounded-3xl border border-slate-200 shadow-sm text-slate-600 animate-fadeIn">
     {/* Cabeçalho do Artigo */}
@@ -118,19 +128,25 @@ const EducationalContext = () => (
     </div>
   </section>
 );
+
 const IrregularVerbsGame = ({ onBack }) => {
   const navigate = useNavigate();
   const { levelId } = useParams();
   
   const { triggerAdBreak } = useH5Ads();
+  
+  // --- PROTOCOLO DE UNIFICAÇÃO: ÁUDIO ---
   const stopAllAudio = () => { 
     if (window.speechSynthesis) {
       window.speechSynthesis.cancel();
     }
-    console.log("Audio silenced for Ad"); 
+    // Safety check para STT
+    if (typeof window.stopListening === 'function') {
+        window.stopListening();
+    }
   };
 
-  const [gameState, setGameState] = useState('config');
+  const [view, setView] = useState('menu'); // Padronizado: 'menu' | 'game' | 'result'
   const [activePhase, setActivePhase] = useState(1);
 
   const [selectedModes, setSelectedModes] = useState({
@@ -160,12 +176,21 @@ const IrregularVerbsGame = ({ onBack }) => {
           startGame(phaseNum);
       } else {
           alert("Fase inválida!");
-          navigate('/irregular');
+          navigate('/irregular', { replace: true });
       }
     } else {
-      setGameState('config');
+      setView('menu');
     }
   }, [levelId]);
+
+  // --- PROTOCOLO DE UNIFICAÇÃO: ROTEAMENTO ---
+  const handleBackToMenu = () => {
+    triggerAdBreak('next', 'return_menu', () => {
+        stopAllAudio();
+        setView('menu');
+        navigate('/irregular', { replace: true });
+    }, stopAllAudio);
+  };
 
   const toggleMode = (mode) => {
     setSelectedModes((prev) => ({ ...prev, [mode]: !prev[mode] }));
@@ -183,7 +208,7 @@ const IrregularVerbsGame = ({ onBack }) => {
     const originalQuestions = IRREGULAR_VERBS_DATA.slice(startIndex, endIndex);
     
     if (originalQuestions.length === 0) {
-        navigate('/irregular');
+        navigate('/irregular', { replace: true });
         return;
     }
 
@@ -193,7 +218,7 @@ const IrregularVerbsGame = ({ onBack }) => {
     setCurrentQuestionIndex(0);
     setScore(0);
     initializeInputs();
-    setGameState('playing');
+    setView('game');
     window.scrollTo(0,0);
   };
 
@@ -206,7 +231,7 @@ const IrregularVerbsGame = ({ onBack }) => {
   };
 
   useEffect(() => {
-    if (gameState === 'playing' && !feedback && firstInputRef.current) {
+    if (view === 'game' && !feedback && firstInputRef.current) {
       setTimeout(() => {
         // Só foca se a tela for maior que 768px (Tablet/PC)
         if (window.innerWidth >= 768) {
@@ -214,7 +239,7 @@ const IrregularVerbsGame = ({ onBack }) => {
         }
       }, 50);
     }
-  }, [currentQuestionIndex, gameState, feedback]);
+  }, [currentQuestionIndex, view, feedback]);
 
   const handleInputChange = (field, value) => {
     setUserAnswers((prev) => ({ ...prev, [field]: value }));
@@ -228,9 +253,10 @@ const IrregularVerbsGame = ({ onBack }) => {
     const currentVerb = phaseQuestions[currentQuestionIndex];
     let pointsGained = 0;
 
-    if (selectedModes.presente && userAnswers.presente.trim().toLowerCase() === currentVerb.presente.toLowerCase()) pointsGained++;
-    if (selectedModes.passado && userAnswers.passado.trim().toLowerCase() === currentVerb.passado.toLowerCase()) pointsGained++;
-    if (selectedModes.participio && userAnswers.participio.trim().toLowerCase() === String(currentVerb.particípio).toLowerCase()) pointsGained++;
+    // --- PROTOCOLO DE UNIFICAÇÃO: Validação Normalizada ---
+    if (selectedModes.presente && normalizeLoose(userAnswers.presente) === normalizeLoose(currentVerb.presente)) pointsGained++;
+    if (selectedModes.passado && normalizeLoose(userAnswers.passado) === normalizeLoose(currentVerb.passado)) pointsGained++;
+    if (selectedModes.participio && normalizeLoose(userAnswers.participio) === normalizeLoose(currentVerb.particípio)) pointsGained++;
 
     setScore((prev) => prev + pointsGained);
   };
@@ -243,7 +269,7 @@ const IrregularVerbsGame = ({ onBack }) => {
       setCurrentQuestionIndex((prev) => prev + 1);
     } else {
       triggerAdBreak('next', 'phase_complete', () => {
-          setGameState('result');
+          setView('result');
       }, stopAllAudio);
     }
   };
@@ -254,8 +280,9 @@ const IrregularVerbsGame = ({ onBack }) => {
 
   const getInputStatus = (modeKey, correctValue) => {
     if (!feedback) return 'neutral';
-    const userValue = (userAnswers[modeKey] ?? '').trim().toLowerCase();
-    const correct = String(correctValue ?? '').toLowerCase();
+    const userValue = normalizeLoose(userAnswers[modeKey]);
+    const correct = normalizeLoose(correctValue);
+    
     if (!userValue) return 'empty';
     if (userValue === correct) return 'correct';
     return 'wrong';
@@ -305,9 +332,9 @@ const IrregularVerbsGame = ({ onBack }) => {
   };
 
   // ===========================
-  // TELA CONFIG
+  // TELA CONFIG (MENU)
   // ===========================
-  if (gameState === 'config') {
+  if (view === 'menu') {
     return (
       <div className="min-h-screen bg-slate-50 py-12 px-4 animate-fadeIn">
         <Helmet>
@@ -332,8 +359,9 @@ const IrregularVerbsGame = ({ onBack }) => {
               Treine Past Simple e Participle e pare de travar na hora de falar.
             </p>
   
+            {/* BOTÃO VOLTAR AO HUB (Lógica correta: sai do jogo) */}
             <button
-              onClick={() => navigate("/")}
+              onClick={() => navigate("/", { replace: true })}
               className="bg-white border border-slate-300 text-slate-600 hover:bg-slate-100 hover:text-slate-800 px-6 py-2 rounded-full font-bold text-sm transition-all shadow-sm flex items-center justify-center gap-2 mx-auto"
             >
               <ArrowLeft className="w-4 h-4" /> Voltar ao Hub Principal
@@ -409,7 +437,7 @@ const IrregularVerbsGame = ({ onBack }) => {
   // ===========================
   // TELA RESULTADO
   // ===========================
-  if (gameState === 'result') {
+  if (view === 'result') {
     const activeModesCount = Object.values(selectedModes).filter(Boolean).length;
     const maxScore = phaseQuestions.length * activeModesCount;
 
@@ -434,8 +462,9 @@ const IrregularVerbsGame = ({ onBack }) => {
               <RefreshCw className="w-5 h-5" /> Repetir Fase
             </button>
 
+            {/* --- CORREÇÃO PROTOCOLO: Roteamento Seguro --- */}
             <button
-              onClick={() => triggerAdBreak('next', 'config_return', () => navigate('/irregular'), stopAllAudio)}
+              onClick={handleBackToMenu}
               className="bg-white border-2 border-slate-200 text-slate-600 px-6 py-3.5 rounded-xl font-bold hover:bg-slate-50 transition-colors"
             >
               Escolher Outra Fase
@@ -485,7 +514,8 @@ const IrregularVerbsGame = ({ onBack }) => {
              
              {/* Header do Jogo */}
              <div className="flex justify-between items-center mb-6 px-2">
-                <button onClick={() => navigate('/irregular')} className="text-slate-400 hover:text-slate-600 flex items-center gap-1">
+                {/* --- CORREÇÃO PROTOCOLO: handleBackToMenu --- */}
+                <button onClick={handleBackToMenu} className="text-slate-400 hover:text-slate-600 flex items-center gap-1">
                   <ArrowLeft className="w-5 h-5" /> <span className="text-sm font-bold uppercase tracking-wide">Menu</span>
                 </button>
                 <div className="text-right">

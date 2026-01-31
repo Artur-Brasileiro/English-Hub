@@ -14,11 +14,6 @@ import { useH5Ads } from '../hooks/useH5Ads';
 
 const ITEMS_PER_LEVEL = 10; 
 
-// --- ÍCONE CUSTOMIZADO ---
-const BrainCircuitIcon = ({className}) => (
-  <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 5a3 3 0 1 0-5.997.125 4 4 0 0 0-2.526 5.77 4 4 0 0 0 .556 6.588A4 4 0 1 0 12 18Z"/><path d="M12 5a3 3 0 1 1 5.997.125 4 4 0 0 1 2.526 5.77 4 4 0 0 1-.556 6.588A4 4 0 1 1 12 18Z"/><path d="M15 13a4.5 4.5 0 0 1-3-4 4.5 4.5 0 0 1-3 4"/><path d="M17.599 6.5a3 3 0 0 0 .399-1.375"/><path d="M6.003 5.125A3 3 0 0 0 6.401 6.5"/><path d="M3.477 10.896a4 4 0 0 1 .585-.396"/><path d="M19.938 10.5a4 4 0 0 1 .585.396"/><path d="M6 18a4 4 0 0 1-1.97-3.284"/><path d="M17.97 14.716A4 4 0 0 1 16 18"/></svg>
-);
-
 // --- COMPONENTE: CONTEXTO EDUCACIONAL ---
 const EducationalContext = () => (
   <section className="w-full mt-12 px-6 py-10 bg-white rounded-3xl border border-slate-200 shadow-sm text-slate-600 animate-fadeIn">
@@ -108,10 +103,9 @@ const TranslationGame = ({ onBack }) => {
 
   const { triggerAdBreak } = useH5Ads();
   const recognitionRef = useRef(null);
-
   const inputRef = useRef(null);
 
-  const [view, setView] = useState('menu'); 
+  const [view, setView] = useState('menu'); // Padronizado: 'menu' | 'game' | 'result'
   const [score, setScore] = useState(0);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [shuffledQuestions, setShuffledQuestions] = useState([]);
@@ -151,6 +145,29 @@ const TranslationGame = ({ onBack }) => {
   const taggedItems = useMemo(() => toArray(TRANSLATION_DATA.tagged), []);
   const allTranslationItems = useMemo(() => Object.values(TRANSLATION_DATA).flatMap(toArray), []);
   
+  // --- PROTOCOLO DE UNIFICAÇÃO: ÁUDIO ---
+  const stopAllAudio = () => {
+    // 1. Para Reconhecimento de Voz (STT)
+    if (recognitionRef.current) {
+      recognitionRef.current.abort();
+    }
+    setIsListening(false);
+    
+    // 2. Para Síntese de Fala (TTS)
+    if (window.speechSynthesis) {
+      window.speechSynthesis.cancel();
+    }
+  };
+
+  // --- PROTOCOLO DE UNIFICAÇÃO: ROTEAMENTO ---
+  const handleBackToMenu = () => {
+    triggerAdBreak('next', 'return_menu', () => {
+        stopAllAudio();
+        setView('menu');
+        navigate('/translation', { replace: true }); // Limpa ID da URL
+    }, stopAllAudio);
+  };
+
   useEffect(() => {
     if (view === 'game' && !answerStatus) {
       setTimeout(() => {
@@ -170,12 +187,6 @@ const TranslationGame = ({ onBack }) => {
       stopAllAudio();
     }
   }, [levelId]);
-
-  const stopAllAudio = () => {
-    setIsListening(false);
-    if (recognitionRef.current) recognitionRef.current.abort();
-    if (window.speechSynthesis) window.speechSynthesis.cancel();
-  };
 
   const getPrimaryTag = (tags = []) => tags.find((tag) => Object.keys(tagMeta).includes(tag));
 
@@ -216,6 +227,9 @@ const TranslationGame = ({ onBack }) => {
   };
 
   const checkAnswer = () => {
+    // --- PROTOCOLO DE UNIFICAÇÃO: Proteção de Submissão ---
+    if (answerStatus) return; 
+
     const currentItem = shuffledQuestions[currentQuestionIndex];
     const possibleAnswers = Array.isArray(currentItem.en) ? currentItem.en : [currentItem.en];
     const normalizedUser = normalizeUserAnswer(userAnswer);
@@ -255,7 +269,8 @@ const TranslationGame = ({ onBack }) => {
     
     if (dataToUse.length === 0) {
       alert(`Nível vazio ou não encontrado.`);
-      navigate('/translation');
+      // Redirecionamento seguro em caso de erro
+      navigate('/translation', { replace: true });
       return;
     }
 
@@ -326,7 +341,7 @@ const TranslationGame = ({ onBack }) => {
             />
          </Helmet>
 
-         {/* 1. LAYOUT PADRONIZADO: max-w-6xl (antes era 5xl) */}
+         {/* 1. LAYOUT PADRONIZADO */}
          <div className="max-w-6xl mx-auto text-center">
             
             <div className="mb-8">
@@ -339,15 +354,15 @@ const TranslationGame = ({ onBack }) => {
                 <p className="text-slate-600 text-lg max-w-2xl mx-auto mb-6">
                     O treino definitivo para você parar de travar. Aprenda a <strong>pensar em inglês</strong> traduzindo frases reais do dia a dia.
                 </p>
+                {/* BOTÃO VOLTAR AO HUB (Lógica correta: sai do jogo) */}
                 <button
-                    onClick={() => navigate("/")}
+                    onClick={() => navigate("/", { replace: true })}
                     className="bg-white border border-slate-300 text-slate-600 hover:bg-slate-100 px-6 py-2 rounded-full font-bold text-sm transition-all shadow-sm flex items-center justify-center gap-2 mx-auto"
                 >
                     <ArrowLeft className="w-4 h-4" /> Voltar ao Hub Principal
                 </button>
             </div>
 
-            {/* 2. LINHA DIVISÓRIA (Igual aos outros jogos) */}
             <hr className="border-slate-200 mb-8" />
 
             {/* LISTA DE MODOS */}
@@ -425,8 +440,13 @@ const TranslationGame = ({ onBack }) => {
                >
                   <RefreshCw className="w-4 h-4" /> Jogar Novamente
                </button>
+               {/* --- CORREÇÃO PROTOCOLO: Roteamento Seguro --- */}
                <button 
-                  onClick={() => triggerAdBreak('next', 'back_menu', () => navigate('/translation'), stopAllAudio)} 
+                  onClick={() => triggerAdBreak('next', 'back_menu', () => {
+                      stopAllAudio();
+                      setView('menu');
+                      navigate('/translation', { replace: true });
+                  }, stopAllAudio)} 
                   className="border-2 border-slate-200 text-slate-600 px-6 py-3.5 rounded-xl font-bold hover:bg-slate-50 transition-colors"
                >
                   Escolher Outro Nível
@@ -493,7 +513,8 @@ const TranslationGame = ({ onBack }) => {
           <div className="w-full max-w-2xl flex flex-col">
             
             <div className="flex justify-between items-center mb-4 px-2">
-               <button onClick={() => navigate('/translation')} className="text-slate-400 hover:text-slate-600 flex items-center gap-1">
+               {/* --- CORREÇÃO PROTOCOLO: handleBackToMenu --- */}
+               <button onClick={handleBackToMenu} className="text-slate-400 hover:text-slate-600 flex items-center gap-1">
                  <ArrowLeft className="w-5 h-5" /> <span className="text-sm font-bold uppercase tracking-wide">Menu</span>
                </button>
                <span className="text-slate-400 text-sm font-bold uppercase tracking-widest">
@@ -523,7 +544,7 @@ const TranslationGame = ({ onBack }) => {
                       disabled={answerStatus !== null}
                       placeholder="Digite em inglês..."
                       rows={2}
-                      // 3. ESTILO DE INPUT PADRONIZADO (Border-2 + Focus Ring Emerald)
+                      // ESTILO DE INPUT PADRONIZADO
                       className={`w-full p-4 rounded-xl border-2 outline-none font-medium text-lg resize-none transition-all ${
                           answerStatus === 'correct' ? "border-green-500 bg-green-50 text-green-700" :
                           answerStatus === 'incorrect' ? "border-red-500 bg-red-50 text-red-700" :

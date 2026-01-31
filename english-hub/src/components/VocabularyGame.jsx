@@ -1,6 +1,6 @@
 import React, { useState, useMemo, useRef, useEffect } from 'react';
 import { useNavigate, useParams } from "react-router-dom";
-import { Helmet } from 'react-helmet-async'; // <--- NOVO: SEO Dinâmico
+import { Helmet } from 'react-helmet-async';
 import { VOCABULARY_DATA } from '../data/gameData';
 import {
   ArrowRight,
@@ -18,11 +18,11 @@ import {
 
 // --- IMPORTS DOS COMPONENTES DE ANÚNCIOS E HOOK ---
 import AdUnit from './ads/AdUnit'; 
-import { useH5Ads } from '../hooks/useH5Ads'; // <--- NOVO: Hook da API H5
+import { useH5Ads } from '../hooks/useH5Ads'; 
 
 const WORDS_PER_LEVEL = 30;
 
-// --- FUNÇÕES UTILITÁRIAS ---
+// --- FUNÇÕES UTILITÁRIAS E ALGORITMOS (MANTIDOS ORIGINAIS) ---
 const normalize = (text) => {
   return String(text ?? '')
     .toLowerCase()
@@ -46,7 +46,7 @@ const buildAcceptedAnswers = (ptArray) => {
   return accepted;
 };
 
-// --- ALGORITMOS DE TEXTO ---
+// Algoritmo de Levenshtein (Distância de edição)
 const levenshtein = (a, b) => {
   const m = a.length;
   const n = b.length;
@@ -93,7 +93,7 @@ const shuffleWords = (words) => {
   return shuffled;
 };
 
-// --- COMPONENTE: CONTEXTO EDUCACIONAL (SEO & COMPLIANCE) ---
+// --- COMPONENTE: CONTEXTO EDUCACIONAL ---
 const EducationalContext = () => (
   <section className="w-full mt-12 px-6 py-10 bg-white rounded-3xl border border-slate-200 shadow-sm text-slate-600 animate-fadeIn">
     {/* Cabeçalho do Artigo */}
@@ -112,8 +112,6 @@ const EducationalContext = () => (
     </div>
     
     <div className="prose prose-slate max-w-none grid md:grid-cols-2 gap-10 text-left">
-      
-      {/* Coluna 1: A Ciência e a Regra 80/20 */}
       <div className="space-y-6">
         <div>
           <h3 className="text-lg font-bold text-slate-800 mb-3 flex items-center gap-2">
@@ -141,7 +139,6 @@ const EducationalContext = () => (
         </div>
       </div>
       
-      {/* Coluna 2: Estratégias */}
       <div className="space-y-6">
         <div>
           <h3 className="text-lg font-bold text-slate-800 mb-3 flex items-center gap-2">
@@ -173,19 +170,18 @@ const EducationalContext = () => (
           </p>
         </div>
       </div>
-
     </div>
   </section>
 );
 
 // --- COMPONENTE PRINCIPAL ---
-
 const VocabularyGame = ({ onBack }) => {
   const navigate = useNavigate();
   const { levelId } = useParams();
 
   const urlLevel = levelId ? parseInt(levelId) : null;
 
+  // View State Padronizado
   const [view, setView] = useState(urlLevel ? 'game' : 'menu');
   const [currentLevelId, setCurrentLevelId] = useState(urlLevel || 1);
 
@@ -214,6 +210,30 @@ const VocabularyGame = ({ onBack }) => {
   const inputRef = useRef(null);
   const recognitionRef = useRef(null);
 
+  // --- PROTOCOLO DE UNIFICAÇÃO: ÁUDIO ---
+  const stopAllAudio = () => {
+    // 1. Para TTS
+    if (window.speechSynthesis) {
+        window.speechSynthesis.cancel();
+    }
+    setIsSpeaking(false);
+
+    // 2. Para STT
+    if (recognitionRef.current) {
+      recognitionRef.current.abort();
+    }
+    setIsListening(false);
+  };
+
+  // --- PROTOCOLO DE UNIFICAÇÃO: ROTEAMENTO ---
+  const handleBackToMenu = () => {
+    triggerAdBreak('next', 'return_menu', () => {
+        stopAllAudio();
+        setView('menu');
+        navigate('/vocabulary', { replace: true });
+    }, stopAllAudio);
+  };
+
   // UseEffect de Roteamento
   useEffect(() => {
     if (urlLevel) {
@@ -223,12 +243,12 @@ const VocabularyGame = ({ onBack }) => {
       window.scrollTo(0, 0);
     } else {
       setView('menu');
-      stopListening();
+      stopAllAudio();
     }
   }, [urlLevel]);
 
   const restartInternalState = () => {
-    stopListening();
+    stopAllAudio();
     setCurrentWordIndex(0);
     setStats({ correct: 0, wrong: 0 });
     setSpeechRate(1);
@@ -250,7 +270,6 @@ const VocabularyGame = ({ onBack }) => {
   // Focar no input
   useEffect(() => {
     if (!feedback && view === 'game') {
-      // Só foca se a tela for maior que 768px
       if (window.innerWidth >= 768) {
         inputRef.current?.focus();
       }
@@ -258,15 +277,6 @@ const VocabularyGame = ({ onBack }) => {
   }, [currentWordIndex, feedback, view]);
 
   // --- FUNÇÕES DE CONTROLE ---
-
-  const stopListening = () => {
-    if (recognitionRef.current) {
-      recognitionRef.current.abort();
-      recognitionRef.current = null;
-    }
-    setIsListening(false);
-  };
-
   const resetInputsAndFeedback = () => {
     setTags([]);
     setTypingText('');
@@ -287,12 +297,14 @@ const VocabularyGame = ({ onBack }) => {
     if (currentWordIndex + 1 < currentLevelWords.length) {
       setCurrentWordIndex((prev) => prev + 1);
     } else {
-      setView('result');
+      // Protocolo: AdBreak ao finalizar nível
+      triggerAdBreak('next', 'level_complete', () => {
+        setView('result');
+      }, stopAllAudio);
     }
   };
 
   // --- LÓGICA DE TAGS E JOGO ---
-
   const addTag = (text) => {
     if (feedback) return;
     const clean = text.trim();
@@ -329,7 +341,7 @@ const VocabularyGame = ({ onBack }) => {
 
   const checkAnswer = (e) => {
     if (e) e.preventDefault();
-    if (feedback) return;
+    if (feedback) return; // Proteção de submissão
     if (!currentWord) return;
 
     const providedRaw = [...tags];
@@ -448,7 +460,6 @@ const VocabularyGame = ({ onBack }) => {
 
     return (
       <div className="min-h-screen bg-slate-50 py-12 px-4 animate-fade-in">
-        {/* SEO Dinâmico para o Menu */}
         <Helmet>
           <title>Treinar Vocabulário e Palavras Mais Usadas | EnglishUp</title>
           <meta 
@@ -469,8 +480,10 @@ const VocabularyGame = ({ onBack }) => {
               O jogo ideal para treinar seu vocabulário e aprender as <strong>palavras mais usadas do inglês</strong>. 
               São {VOCABULARY_DATA.length} termos essenciais divididos em {totalLevels} níveis.
             </p>
+            
+            {/* PROTOCOLO: Roteamento Seguro para sair do jogo */}
             <button
-              onClick={() => navigate("/")}
+              onClick={() => navigate("/", { replace: true })}
               className="bg-white border border-slate-300 text-slate-600 hover:bg-slate-100 hover:text-slate-800 px-6 py-2 rounded-full font-bold text-sm transition-all shadow-sm flex items-center justify-center gap-2 mx-auto"
             >
               <ArrowLeft className="w-4 h-4" /> Voltar ao Hub Principal
@@ -510,19 +523,15 @@ const VocabularyGame = ({ onBack }) => {
     );
   }
 
-  // 2. TELA DE RESULTADO (Com AdSense no Topo)
+  // 2. TELA DE RESULTADO
   if (view === 'result') {
     return (
       <div className="min-h-screen bg-slate-50 flex flex-col items-center justify-center p-4 animate-fade-in">
-        {/* SEO Dinâmico para Resultado */}
         <Helmet>
-          {/* CORREÇÃO AQUI TAMBÉM */}
           <title>{`Resultado Nível ${currentLevelId} - EnglishUp`}</title>
-          
           <meta name="description" content={`Você completou o nível ${currentLevelId} com ${stats.correct} acertos. Continue praticando para melhorar seu inglês técnico.`} />
         </Helmet>
         
-        {/* AdUnit Topo do Resultado - Mantido pois é Display Ad, não Interstitial */}
         <div className="mb-6">
           <AdUnit slotId="2492081057" width="300px" height="250px" label="Publicidade" />
         </div>
@@ -550,22 +559,19 @@ const VocabularyGame = ({ onBack }) => {
           <div className="flex flex-col gap-3">
             {currentLevelId < totalLevels && (
               <button
-                // CORRIGIDO: Passando stopAllAudio como 4º argumento (onMute)
                 onClick={() => triggerAdBreak(
                     'next', 
                     `level_complete_${currentLevelId}`, 
                     () => navigate(`/vocabulary/level/${currentLevelId + 1}`),
-                    stopAllAudio, // onMute: Para tudo antes do anúncio abrir
-                    null          // onUnmute: Não precisa, pois vamos navegar para outra página
+                    stopAllAudio
                 )}
-                className="..." // (suas classes mantidas)
+                className="w-full bg-slate-800 text-white py-3.5 rounded-xl font-bold hover:bg-slate-900 transition-colors shadow-lg flex items-center justify-center gap-2"
               >
                 Próximo Nível <ArrowRight className="w-4 h-4" />
               </button>
             )}
 
             <button
-              // CORRIGIDO: Passando stopAllAudio
               onClick={() => triggerAdBreak(
                   'next', 
                   'level_retry', 
@@ -573,21 +579,16 @@ const VocabularyGame = ({ onBack }) => {
                       setView('game'); 
                       restartLevelInternal();
                   },
-                  stopAllAudio, // onMute
-                  null          // onUnmute: O restartLevelInternal já reseta o estado, então ok
+                  stopAllAudio
               )}
-              className="..." // (suas classes mantidas)
+              className="w-full bg-white border-2 border-slate-200 text-slate-600 py-3.5 rounded-xl font-bold hover:bg-slate-50 transition-colors"
             >
               Repetir Nível
             </button>
 
+            {/* PROTOCOLO: Roteamento Seguro */}
             <button
-              onClick={() => triggerAdBreak(
-                  'next', 
-                  'return_menu', 
-                  () => navigate('/vocabulary'), // Só navega depois que o anúncio fechar (ou se não carregar)
-                  stopAllAudio // Muta o som se o anúncio abrir
-              )}
+              onClick={handleBackToMenu}
               className="text-slate-400 hover:text-slate-600 text-sm font-medium mt-2"
             >
               Voltar ao Menu de Níveis
@@ -603,28 +604,15 @@ const VocabularyGame = ({ onBack }) => {
   // 3. JOGO PRINCIPAL
   const progressPercentage = (currentWordIndex / currentLevelWords.length) * 100;
 
-  const stopAllAudio = () => {
-    // 1. Para a síntese de fala (TTS)
-    if (window.speechSynthesis) {
-        window.speechSynthesis.cancel();
-    }
-    setIsSpeaking(false);
-
-    // 2. Para o reconhecimento de voz (se estiver ativo)
-    stopListening();
-  };
-
   return (
     <div className="min-h-screen bg-slate-50 font-sans text-slate-800 flex flex-col items-center">
-      {/* SEO Dinâmico para o Nível */}
       <Helmet>
         <title>{`Nível ${currentLevelId} - EnglishUp`}</title> 
-        
         <meta name="description" content={`Pratique a palavra "${currentWord?.en || 'técnica'}" e outras do nível ${currentLevelId}. Aprenda inglês técnico com Active Recall.`} />
       </Helmet>
       
-      {/* --- HEADER DE ANÚNCIO (STICKY) --- */}
-         <div className="w-full bg-white border-b border-slate-200 py-2 flex flex-col items-center justify-center relative z-20 shadow-sm min-h-25 md:min-h-27.5">         <div className="block md:hidden">
+      {/* HEADER AD */}
+      <div className="w-full bg-white border-b border-slate-200 py-2 flex flex-col items-center justify-center relative z-20 shadow-sm min-h-25 md:min-h-27.5">         <div className="block md:hidden">
             <AdUnit key={`mobile-top-${currentLevelId}`} slotId="8330331714" width="320px" height="100px" label="Patrocinado"/>
          </div>
          <div className="hidden md:block">
@@ -633,17 +621,18 @@ const VocabularyGame = ({ onBack }) => {
       </div>
 
       <div className="w-full max-w-360 mx-auto flex flex-col xl:flex-row justify-center items-start gap-11 p-4 mt-4">          
-          {/* --- SIDEBAR ESQUERDA (DESKTOP) --- */}
+          {/* SIDEBAR ESQUERDA */}
           <div className="hidden xl:flex w-80 shrink-0 flex-col gap-4 sticky top-36">
              <AdUnit key={`desktop-left-${currentLevelId}`} slotId="5118244396" width="300px" height="600px" label="Patrocinado"/>
           </div>
 
-          {/* --- ÁREA CENTRAL DO JOGO --- */}
+          {/* ÁREA CENTRAL */}
           <div className="w-full max-w-2xl flex flex-col">
             
             <div className="flex items-center justify-between mb-4 px-2">
+              {/* PROTOCOLO: Botão de Voltar Padronizado */}
               <button
-                onClick={() => navigate('/vocabulary')}
+                onClick={handleBackToMenu}
                 className="flex items-center gap-2 text-slate-400 hover:text-slate-600 font-bold transition-colors text-sm uppercase tracking-wide"
               >
                 <ArrowLeft className="w-4 h-4" /> Menu
@@ -674,7 +663,7 @@ const VocabularyGame = ({ onBack }) => {
                   <p className="text-slate-400 text-sm font-medium italic">Como se diz isso em português?</p>
                 </div>
 
-                {/* CONTROLES DE ÁUDIO (Mantidos sem alteração) */}
+                {/* CONTROLES DE ÁUDIO */}
                 <div className="flex flex-col items-center gap-3 mb-8">
                   <div className="flex flex-wrap items-center justify-center gap-3">
                     <label className="flex items-center gap-2 text-xs font-bold text-slate-500 uppercase tracking-wide">
@@ -727,7 +716,7 @@ const VocabularyGame = ({ onBack }) => {
                   )}
                 </div>
 
-                {/* ÁREA DE RESPOSTA (Mantida sem alteração) */}
+                {/* ÁREA DE RESPOSTA */}
                 <div className="max-w-3xl mx-auto mb-8">
                     <div 
                         className={`
@@ -855,7 +844,7 @@ const VocabularyGame = ({ onBack }) => {
             </div>
           </div>
 
-          {/* --- SIDEBAR DIREITA (DESKTOP) --- */}
+          {/* SIDEBAR DIREITA */}
           <div className="hidden xl:flex w-80 shrink-0 flex-col gap-4 sticky top-36">
              <AdUnit key={`desktop-right-${currentLevelId}`} slotId="3805162724" width="300px" height="250px" label="Patrocinado"/>
              
