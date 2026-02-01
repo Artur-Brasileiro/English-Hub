@@ -6,9 +6,6 @@ import {
   CornerDownLeft, BookOpen
 } from 'lucide-react';
 
-// --- REMOVIDO: Import direto ---
-// import { VOCABULARY_DATA } from '../../public/data/gameData';
-
 // --- NOVO: Import do Loader ---
 import { loadGameData } from '../utils/dataLoader';
 
