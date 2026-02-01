@@ -5,13 +5,15 @@ import {
   Languages, ArrowLeft, CheckCircle, XCircle, Mic, 
   Clock, GitBranch, Shield, ArrowLeftRight, Flame, Target, Scale, Heart, Lock, Lightbulb, Sparkles, HelpCircle, Trophy
 } from 'lucide-react';
-import { TRANSLATION_DATA } from '../data/gameData';
 
-// --- IMPORTS DO ADSENSE E HOOK ---
+// --- REMOVIDO: Import direto ---
+// import { TRANSLATION_DATA } from '../../public/data/gameData';
+
+// --- NOVO: Import do Loader ---
+import { loadGameData } from '../utils/dataLoader';
+
 import AdUnit from './ads/AdUnit'; 
 import { useH5Ads } from '../hooks/useH5Ads'; 
-
-// --- NOVOS IMPORTS REFATORADOS ---
 import PageShell from './layout/PageShell';
 import ResultScreen from './shared/ResultScreen';
 import TranslationEducation from '../content/TranslationEducation';
@@ -29,8 +31,13 @@ const TranslationGame = ({ onBack }) => {
   const recognitionRef = useRef(null);
   const inputRef = useRef(null);
 
-  // States
-  const [view, setView] = useState('menu');
+  // States de Dados Assíncronos
+  const [data, setData] = useState(null); // Agora inicia null até carregar
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  // States do Jogo
+  const [view, setView] = useState('loading'); // Começa carregando
   const [score, setScore] = useState(0);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [shuffledQuestions, setShuffledQuestions] = useState([]);
@@ -39,7 +46,7 @@ const TranslationGame = ({ onBack }) => {
   const [answerStatus, setAnswerStatus] = useState(null); 
   const [isListening, setIsListening] = useState(false);
 
-  // --- CONFIGURAÇÃO VISUAL ---
+  // --- CONFIGURAÇÃO VISUAL (Mantida) ---
   const tagMeta = useMemo(() => ({
     conditional: { label: 'Condicionais', sub: 'If/Se', color: 'bg-amber-500', icon: GitBranch },
     concessive: { label: 'Concessivas', sub: 'Even/Embora', color: 'bg-teal-600', icon: Shield },
@@ -65,10 +72,25 @@ const TranslationGame = ({ onBack }) => {
     questions: { label: 'Perguntas', color: 'bg-cyan-600' }
   };
 
-  const taggedItems = useMemo(() => ensureArray(TRANSLATION_DATA.tagged), []);
-  const allTranslationItems = useMemo(() => Object.values(TRANSLATION_DATA).flatMap(ensureArray), []);
+  // --- EFFECT: CARREGAR DADOS ---
+  useEffect(() => {
+    loadGameData('translation.json')
+      .then((jsonData) => {
+        setData(jsonData);
+        setLoading(false);
+      })
+      .catch((err) => {
+        console.error(err);
+        setError("Erro ao carregar traduções.");
+        setLoading(false);
+      });
+  }, []);
+
+  // Helpers derivados dos dados (Memoizados)
+  const taggedItems = useMemo(() => data ? ensureArray(data.tagged) : [], [data]);
+  const allTranslationItems = useMemo(() => data ? Object.values(data).flatMap(ensureArray) : [], [data]);
   
-  // --- HELPERS ---
+  // --- HELPERS (Áudio e Navegação) ---
   const stopAllAudio = () => {
     if (recognitionRef.current) recognitionRef.current.abort();
     setIsListening(false);
@@ -83,23 +105,26 @@ const TranslationGame = ({ onBack }) => {
     }, stopAllAudio);
   };
 
+  // --- LOGICA DE ROTA (Só roda quando 'data' existe e 'loading' acabou) ---
+  useEffect(() => {
+    if (!loading && data) {
+      if (levelId) {
+        const isNumeric = /^\d+$/.test(levelId);
+        startGame(isNumeric ? parseInt(levelId) : levelId);
+      } else {
+        setView('menu');
+        stopAllAudio();
+      }
+    }
+  }, [levelId, loading, data]); // Adicionei dependências cruciais
+
   useEffect(() => {
     if (view === 'game' && !answerStatus && window.innerWidth >= 768) {
       setTimeout(() => inputRef.current?.focus(), 50);
     }
   }, [currentQuestionIndex, view, answerStatus]);
 
-  useEffect(() => {
-    if (levelId) {
-      const isNumeric = /^\d+$/.test(levelId);
-      startGame(isNumeric ? parseInt(levelId) : levelId);
-    } else {
-      setView('menu');
-      stopAllAudio();
-    }
-  }, [levelId]);
-
-  // Lógica de Regex Flexível (Específica deste jogo, mantida local)
+  // Lógica de Regex Flexível
   const createFlexibleRegex = (correctAnswer) => {
     const clean = correctAnswer.toLowerCase().replace(/[.,!?;:]/g, '').trim();
     const tokens = clean.split(/\s+/);
@@ -126,7 +151,6 @@ const TranslationGame = ({ onBack }) => {
     const currentItem = shuffledQuestions[currentQuestionIndex];
     const possibleAnswers = ensureArray(currentItem.en);
     
-    // Usando normalizeSentence do utils para limpar input do usuário
     const normalizedUser = normalizeSentence(userAnswer);
 
     const isCorrect = possibleAnswers.some((correctAnswer) => {
@@ -142,6 +166,8 @@ const TranslationGame = ({ onBack }) => {
   };
 
   const startGame = (modeOrLevel) => {
+    if (!data) return; // Segurança extra
+
     setCurrentMode(modeOrLevel);
     let dataToUse = [];
 
@@ -153,8 +179,8 @@ const TranslationGame = ({ onBack }) => {
         const mode = modeOrLevel;
         if (tagMeta[mode]) {
             dataToUse = taggedItems.filter(item => item.tags && item.tags.includes(mode));
-        } else if (TRANSLATION_DATA[mode]) {
-            dataToUse = ensureArray(TRANSLATION_DATA[mode]);
+        } else if (data[mode]) { // Usa 'data' aqui em vez de TRANSLATION_DATA
+            dataToUse = ensureArray(data[mode]);
         } else if (mode === 'all_tenses') {
              dataToUse = allTranslationItems;
         } else {
@@ -167,7 +193,6 @@ const TranslationGame = ({ onBack }) => {
       return;
     }
 
-    // Usando shuffleArray do utils
     setShuffledQuestions(shuffleArray(dataToUse));
     setCurrentQuestionIndex(0);
     setScore(0);
@@ -220,7 +245,6 @@ const TranslationGame = ({ onBack }) => {
       }
   };
 
-  // Lógica auxiliar para determinar cores e títulos dinâmicos
   const getPrimaryTag = (tags = []) => tags.find((tag) => Object.keys(tagMeta).includes(tag));
   
   const getGrammarType = (englishSentence) => {
@@ -237,6 +261,22 @@ const TranslationGame = ({ onBack }) => {
   };
 
   // ================= RENDER =================
+
+  // 0. LOADING
+  if (loading) {
+    return (
+      <PageShell title="Translation Master" icon={Languages} iconColorClass="bg-emerald-100 text-emerald-600">
+        <div className="flex flex-col items-center justify-center min-h-[50vh]">
+          <div className="h-10 w-10 animate-spin rounded-full border-4 border-emerald-500 border-t-transparent mb-4"></div>
+          <p className="text-slate-500 font-medium">Carregando traduções...</p>
+        </div>
+      </PageShell>
+    );
+  }
+
+  if (error) {
+     return <div className="p-10 text-center text-red-600 font-bold">{error}</div>;
+  }
 
   // 1. MENU
   if (view === 'menu') {
@@ -263,7 +303,7 @@ const TranslationGame = ({ onBack }) => {
                     </div>
                 </div>
              ))}
-             {/* Extra Modes (Hardcoded para manter ordem específica se desejar, ou pode mapear grammarMeta) */}
+             {/* Extra Modes */}
              <div onClick={() => navigate(`/translation/level/present_perfect`)} className="bg-white border border-slate-200 p-5 rounded-xl cursor-pointer hover:shadow-lg hover:border-blue-400 transition-all flex items-center gap-4 group">
                   <div className="p-3 rounded-lg text-white bg-blue-500 group-hover:scale-110 transition-transform"><CheckCircle className="w-6 h-6" /></div>
                   <div className="text-left"><h4 className="font-bold text-slate-800">Present Perfect</h4></div>
@@ -321,7 +361,6 @@ const TranslationGame = ({ onBack }) => {
 
   return (
     <div className="min-h-screen bg-slate-50 font-sans text-slate-800 flex flex-col items-center">
-      {/* CORREÇÃO HELMET: Template string */}
       <Helmet>
         <title>{typeof currentMode === 'number' ? `Nível ${currentMode} - EnglishUp` : 'Treino de Tradução - EnglishUp'}</title>
       </Helmet>

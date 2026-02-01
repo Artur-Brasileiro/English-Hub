@@ -6,11 +6,14 @@ import {
   ArrowRight as ArrowRightIcon, CheckCircle, XCircle, Trophy
 } from 'lucide-react';
 
-import { IRREGULAR_VERBS_DATA } from '../data/gameData';
+// --- REMOVIDO: Import direto ---
+// import { IRREGULAR_VERBS_DATA } from '../../public/data/gameData';
+
+// --- NOVO: Import do Loader ---
+import { loadGameData } from '../utils/dataLoader';
+
 import AdUnit from './ads/AdUnit';
 import { useH5Ads } from '../hooks/useH5Ads';
-
-// --- NOVOS IMPORTS REFATORADOS ---
 import PageShell from './layout/PageShell';
 import ResultScreen from './shared/ResultScreen';
 import IrregularVerbsEducation from '../content/IrregularVerbsEducation';
@@ -26,13 +29,19 @@ const IrregularVerbsGame = ({ onBack }) => {
   
   // --- STATE ---
   const firstInputRef = useRef(null);
+
+  // States de Dados Assíncronos
+  const [data, setData] = useState([]); 
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
   const [view, setView] = useState('menu');
   const [activePhase, setActivePhase] = useState(1);
   const [score, setScore] = useState(0);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [phaseQuestions, setPhaseQuestions] = useState([]);
   
-  // Configuração dos modos (Presente, Passado, Particípio)
+  // Configuração dos modos
   const [selectedModes, setSelectedModes] = useState({
     presente: true,
     passado: true,
@@ -46,7 +55,23 @@ const IrregularVerbsGame = ({ onBack }) => {
   });
 
   const [feedback, setFeedback] = useState(null);
-  const totalPhases = Math.ceil(IRREGULAR_VERBS_DATA.length / ITEMS_PER_PHASE);
+  
+  // Total de fases agora depende do data carregado
+  const totalPhases = data.length > 0 ? Math.ceil(data.length / ITEMS_PER_PHASE) : 0;
+
+  // --- EFFECT: Carregar Dados ---
+  useEffect(() => {
+    loadGameData('irregular-verbs.json')
+      .then((jsonData) => {
+        setData(jsonData);
+        setLoading(false);
+      })
+      .catch((err) => {
+        console.error(err);
+        setError("Erro ao carregar verbos irregulares.");
+        setLoading(false);
+      });
+  }, []);
 
   // --- AUDIO CONTROL ---
   const stopAllAudio = () => { 
@@ -63,18 +88,22 @@ const IrregularVerbsGame = ({ onBack }) => {
     }, stopAllAudio);
   };
 
+  // --- LOGICA DE ROTA ---
   useEffect(() => {
-    if (levelId) {
-      const phaseNum = parseInt(levelId, 10);
-      if (!isNaN(phaseNum) && phaseNum > 0 && phaseNum <= totalPhases) {
-          startGame(phaseNum);
+    // Só processa a rota se os dados já chegaram
+    if (!loading && data.length > 0) {
+      if (levelId) {
+        const phaseNum = parseInt(levelId, 10);
+        if (!isNaN(phaseNum) && phaseNum > 0 && phaseNum <= totalPhases) {
+            startGame(phaseNum);
+        } else {
+            navigate('/irregular', { replace: true });
+        }
       } else {
-          navigate('/irregular', { replace: true });
+        setView('menu');
       }
-    } else {
-      setView('menu');
     }
-  }, [levelId]);
+  }, [levelId, loading, totalPhases]); // Dependências atualizadas
 
   useEffect(() => {
     if (view === 'game' && !feedback && firstInputRef.current && window.innerWidth >= 768) {
@@ -88,17 +117,18 @@ const IrregularVerbsGame = ({ onBack }) => {
   };
 
   const startGame = (phaseNumber) => {
+    if (data.length === 0) return;
+
     setActivePhase(phaseNumber);
     const startIndex = (phaseNumber - 1) * ITEMS_PER_PHASE;
     const endIndex = startIndex + ITEMS_PER_PHASE;
-    const originalQuestions = IRREGULAR_VERBS_DATA.slice(startIndex, endIndex);
+    const originalQuestions = data.slice(startIndex, endIndex); // Usa 'data' aqui
     
     if (originalQuestions.length === 0) {
         navigate('/irregular', { replace: true });
         return;
     }
 
-    // Usando shuffleArray do utils
     setPhaseQuestions(shuffleArray(originalQuestions));
     setCurrentQuestionIndex(0);
     setScore(0);
@@ -132,7 +162,6 @@ const IrregularVerbsGame = ({ onBack }) => {
     const currentVerb = phaseQuestions[currentQuestionIndex];
     let pointsGained = 0;
 
-    // Usando normalizeLoose do utils
     if (selectedModes.presente && normalizeLoose(userAnswers.presente) === normalizeLoose(currentVerb.presente)) pointsGained++;
     if (selectedModes.passado && normalizeLoose(userAnswers.passado) === normalizeLoose(currentVerb.passado)) pointsGained++;
     if (selectedModes.participio && normalizeLoose(userAnswers.participio) === normalizeLoose(currentVerb.particípio)) pointsGained++;
@@ -163,7 +192,6 @@ const IrregularVerbsGame = ({ onBack }) => {
     return 'wrong';
   };
 
-  // Helper de Renderização (mantido local pois tem lógica de UI específica deste jogo)
   const renderInputField = (modeKey, label, correctValue, isFirst) => {
     const status = getInputStatus(modeKey, correctValue);
     
@@ -208,7 +236,23 @@ const IrregularVerbsGame = ({ onBack }) => {
 
   // ================= RENDER =================
 
-  // 1. MENU (Usando PageShell)
+  // 0. LOADING
+  if (loading) {
+    return (
+      <PageShell title="Irregular Verbs Challenge" icon={Gamepad2} iconColorClass="bg-orange-100 text-orange-600">
+        <div className="flex flex-col items-center justify-center min-h-[50vh]">
+          <div className="h-10 w-10 animate-spin rounded-full border-4 border-orange-500 border-t-transparent mb-4"></div>
+          <p className="text-slate-500 font-medium">Carregando verbos...</p>
+        </div>
+      </PageShell>
+    );
+  }
+
+  if (error) {
+     return <div className="p-10 text-center text-red-600 font-bold">{error}</div>;
+  }
+
+  // 1. MENU
   if (view === 'menu') {
     return (
       <PageShell
@@ -279,7 +323,7 @@ const IrregularVerbsGame = ({ onBack }) => {
     );
   }
 
-  // 2. RESULTADO (Usando ResultScreen)
+  // 2. RESULTADO (MANTIDO IGUAL)
   if (view === 'result') {
     const activeModesCount = Object.values(selectedModes).filter(Boolean).length;
     const maxScore = phaseQuestions.length * activeModesCount;
@@ -304,7 +348,6 @@ const IrregularVerbsGame = ({ onBack }) => {
   return (
     <div className="min-h-screen bg-slate-50 font-sans text-slate-800 flex flex-col items-center">
       
-      {/* CORREÇÃO DO HELMET: Usando Template Strings */}
       <Helmet>
         <title>{`Fase ${activePhase} | Irregular Verbs - EnglishUp`}</title>
       </Helmet>

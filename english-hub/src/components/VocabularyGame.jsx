@@ -5,7 +5,12 @@ import {
   ArrowRight, Check, X, Trophy, ArrowLeft, PlayCircle,
   CornerDownLeft, BookOpen
 } from 'lucide-react';
-import { VOCABULARY_DATA } from '../data/gameData';
+
+// --- REMOVIDO: Import direto ---
+// import { VOCABULARY_DATA } from '../../public/data/gameData';
+
+// --- NOVO: Import do Loader ---
+import { loadGameData } from '../utils/dataLoader';
 
 // --- IMPORTS AD & HOOK ---
 import AdUnit from './ads/AdUnit'; 
@@ -51,11 +56,18 @@ const VocabularyGame = ({ onBack }) => {
   const { levelId } = useParams();
   const { triggerAdBreak } = useH5Ads();
 
+  // --- STATES DE DADOS (Assíncrono) ---
+  const [data, setData] = useState([]); // Começa vazio
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
   const urlLevel = levelId ? parseInt(levelId) : null;
-  const totalLevels = Math.ceil(VOCABULARY_DATA.length / WORDS_PER_LEVEL);
+  
+  // Total levels agora depende de 'data'
+  const totalLevels = data.length > 0 ? Math.ceil(data.length / WORDS_PER_LEVEL) : 0;
 
   // States
-  const [view, setView] = useState(urlLevel ? 'game' : 'menu');
+  const [view, setView] = useState('loading'); // Começa carregando
   const [currentLevelId, setCurrentLevelId] = useState(urlLevel || 1);
   const [currentWordIndex, setCurrentWordIndex] = useState(0);
   const [tags, setTags] = useState([]); 
@@ -78,6 +90,20 @@ const VocabularyGame = ({ onBack }) => {
   const inputRef = useRef(null);
   const recognitionRef = useRef(null);
 
+  // --- CARREGAMENTO DE DADOS ---
+  useEffect(() => {
+    loadGameData('vocabulary.json')
+      .then((jsonData) => {
+        setData(jsonData);
+        setLoading(false);
+      })
+      .catch((err) => {
+        console.error(err);
+        setError("Erro ao carregar vocabulário.");
+        setLoading(false);
+      });
+  }, []);
+
   // --- AUDIO HELPER ---
   const stopAllAudio = () => {
     if (window.speechSynthesis) window.speechSynthesis.cancel();
@@ -95,17 +121,23 @@ const VocabularyGame = ({ onBack }) => {
     }, stopAllAudio);
   };
 
+  // --- LOGICA DE ROTA (Segura) ---
   useEffect(() => {
-    if (urlLevel) {
-      setCurrentLevelId(urlLevel);
-      setView('game');
-      restartInternalState();
-      window.scrollTo(0, 0);
-    } else {
-      setView('menu');
-      stopAllAudio();
+    // Só executa se já carregou os dados
+    if (!loading && data.length > 0) {
+      if (urlLevel) {
+        // Garante que o nível é válido
+        const safeLevel = Math.min(Math.max(urlLevel, 1), totalLevels || 1);
+        setCurrentLevelId(safeLevel);
+        setView('game');
+        restartInternalState();
+        window.scrollTo(0, 0);
+      } else {
+        setView('menu');
+        stopAllAudio();
+      }
     }
-  }, [urlLevel]);
+  }, [urlLevel, loading, totalLevels]); // Dependências atualizadas
 
   const restartInternalState = () => {
     stopAllAudio();
@@ -117,12 +149,13 @@ const VocabularyGame = ({ onBack }) => {
   };
 
   const currentLevelWords = useMemo(() => {
+    if (data.length === 0) return []; // Proteção
     const startIndex = (currentLevelId - 1) * WORDS_PER_LEVEL;
     const endIndex = startIndex + WORDS_PER_LEVEL;
-    const levelWords = VOCABULARY_DATA.slice(startIndex, endIndex);
+    const levelWords = data.slice(startIndex, endIndex); // Usa 'data' aqui
     // Usando shuffleArray do utils
     return shuffleArray(levelWords);
-  }, [currentLevelId, levelShuffleKey]);
+  }, [currentLevelId, levelShuffleKey, data]);
 
   const currentWord = currentLevelWords[currentWordIndex];
 
@@ -293,6 +326,22 @@ const VocabularyGame = ({ onBack }) => {
 
   // ================= RENDER =================
 
+  // 0. LOADING
+  if (loading) {
+    return (
+      <PageShell title="Vocabulary Builder" icon={BookOpen} iconColorClass="bg-rose-100 text-rose-600">
+        <div className="flex flex-col items-center justify-center min-h-[50vh]">
+          <div className="h-10 w-10 animate-spin rounded-full border-4 border-rose-500 border-t-transparent mb-4"></div>
+          <p className="text-slate-500 font-medium">Carregando vocabulário...</p>
+        </div>
+      </PageShell>
+    );
+  }
+
+  if (error) {
+     return <div className="p-10 text-center text-red-600 font-bold">{error}</div>;
+  }
+
   // 1. MENU
   if (view === 'menu') {
     const levelsArray = Array.from({ length: totalLevels }, (_, i) => i + 1);
@@ -300,7 +349,7 @@ const VocabularyGame = ({ onBack }) => {
     return (
       <PageShell
         title="Vocabulary Builder"
-        description={`O jogo ideal para treinar seu vocabulário e aprender as palavras mais usadas do inglês. São ${VOCABULARY_DATA.length} termos essenciais divididos em ${totalLevels} níveis.`}
+        description={`O jogo ideal para treinar seu vocabulário e aprender as palavras mais usadas do inglês. São ${data.length} termos essenciais divididos em ${totalLevels} níveis.`}
         icon={BookOpen}
         iconColorClass="bg-rose-100 text-rose-600"
       >
@@ -318,7 +367,7 @@ const VocabularyGame = ({ onBack }) => {
                     </span>
                     <p className="text-slate-500 text-xs font-medium">
                       Palavras {((levelId - 1) * WORDS_PER_LEVEL) + 1} -{' '}
-                      {Math.min(levelId * WORDS_PER_LEVEL, VOCABULARY_DATA.length)}
+                      {Math.min(levelId * WORDS_PER_LEVEL, data.length)}
                     </p>
                   </div>
                   <div className="w-10 h-10 rounded-full bg-slate-100 flex items-center justify-center group-hover:bg-rose-600 group-hover:text-white transition-colors">
@@ -372,7 +421,15 @@ const VocabularyGame = ({ onBack }) => {
 
   // 3. JOGO
   const progressPercentage = (currentWordIndex / currentLevelWords.length) * 100;
-  if (!currentWord) return <div className="min-h-screen flex items-center justify-center">Carregando...</div>;
+  
+  if (!currentWord) {
+      // Pequeno loading interno se o array estiver vazio momentaneamente
+      return (
+          <div className="min-h-screen flex items-center justify-center text-slate-400 font-bold gap-2">
+            <div className="w-4 h-4 rounded-full bg-slate-400 animate-pulse"></div> Carregando nível...
+          </div>
+      );
+  }
 
   return (
     <div className="min-h-screen bg-slate-50 font-sans text-slate-800 flex flex-col items-center">

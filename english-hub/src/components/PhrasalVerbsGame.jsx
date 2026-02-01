@@ -3,15 +3,17 @@ import { useNavigate, useParams } from "react-router-dom";
 import { Helmet } from 'react-helmet-async';
 import { 
   BrainCircuit, Layers, ArrowLeft, ArrowRight, 
-  CheckCircle, XCircle, HelpCircle, Lightbulb,
-  Puzzle
+  CheckCircle, XCircle, HelpCircle, Lightbulb
 } from 'lucide-react';
 
-import { PHRASAL_VERBS_DATA } from '../data/gameData';
+// --- REMOVIDO: Import direto ---
+// import { PHRASAL_VERBS_DATA } from '../../public/data/gameData';
+
+// --- NOVO: Import do Loader ---
+import { loadGameData } from '../utils/dataLoader';
+
 import AdUnit from './ads/AdUnit';
 import { useH5Ads } from '../hooks/useH5Ads';
-
-// --- NOVOS IMPORTS REFATORADOS ---
 import PageShell from './layout/PageShell';
 import ResultScreen from './shared/ResultScreen';
 import PhrasalVerbsEducation from '../content/PhrasalVerbsEducation';
@@ -27,7 +29,13 @@ const PhrasalVerbsGame = ({ onBack }) => {
 
   // --- REFS & STATES ---
   const firstInputRef = useRef(null);
-  const [view, setView] = useState('menu');
+  
+  // States de Dados Assíncronos
+  const [data, setData] = useState([]); // Inicia vazio
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  const [view, setView] = useState('menu'); // 'menu', 'game', 'result'
   const [activePhase, setActivePhase] = useState(1);
   const [score, setScore] = useState(0); 
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
@@ -36,7 +44,22 @@ const PhrasalVerbsGame = ({ onBack }) => {
   const [userAnswers, setUserAnswers] = useState([]);
   const [feedback, setFeedback] = useState(null); 
   
-  const totalPhases = Math.ceil(PHRASAL_VERBS_DATA.length / ITEMS_PER_PHASE);
+  // Total Phases agora depende de 'data'
+  const totalPhases = data.length > 0 ? Math.ceil(data.length / ITEMS_PER_PHASE) : 0;
+
+  // --- EFFECT: Carregar Dados ---
+  useEffect(() => {
+    loadGameData('phrasal-verbs.json')
+      .then((jsonData) => {
+        setData(jsonData);
+        setLoading(false);
+      })
+      .catch((err) => {
+        console.error(err);
+        setError("Erro ao carregar Phrasal Verbs.");
+        setLoading(false);
+      });
+  }, []);
 
   // --- AUDIO CONTROL ---
   const stopAllAudio = () => {
@@ -53,19 +76,22 @@ const PhrasalVerbsGame = ({ onBack }) => {
     }, stopAllAudio);
   };
 
+  // --- LOGICA DE ROTA (Segura) ---
   useEffect(() => {
-    if (levelId) {
-      const phaseNum = parseInt(levelId, 10);
-      if (!isNaN(phaseNum) && phaseNum > 0 && phaseNum <= totalPhases) {
-          startGame(phaseNum);
+    if (!loading && data.length > 0) {
+      if (levelId) {
+        const phaseNum = parseInt(levelId, 10);
+        if (!isNaN(phaseNum) && phaseNum > 0 && phaseNum <= totalPhases) {
+            startGame(phaseNum);
+        } else {
+            navigate('/phrasal', { replace: true });
+        }
       } else {
-          navigate('/phrasal', { replace: true });
+        setView('menu');
+        stopAllAudio();
       }
-    } else {
-      setView('menu');
-      stopAllAudio();
     }
-  }, [levelId]);
+  }, [levelId, loading, totalPhases]); // Dependências atualizadas
 
   useEffect(() => {
     if (view === 'game' && !feedback && firstInputRef.current && window.innerWidth >= 768) {
@@ -75,17 +101,18 @@ const PhrasalVerbsGame = ({ onBack }) => {
 
   // --- GAME LOGIC ---
   const startGame = (phaseNumber) => {
+    if (data.length === 0) return;
+
     setActivePhase(phaseNumber);
     const startIndex = (phaseNumber - 1) * ITEMS_PER_PHASE;
     const endIndex = startIndex + ITEMS_PER_PHASE;
-    const originalQuestions = PHRASAL_VERBS_DATA.slice(startIndex, endIndex);
+    const originalQuestions = data.slice(startIndex, endIndex); // Usa 'data' aqui
     
     if (originalQuestions.length === 0) {
       navigate('/phrasal', { replace: true });
       return;
     }
 
-    // Usando o novo Shuffle Utilitário
     const shuffledQuestions = shuffleArray(originalQuestions);
     
     setPhaseQuestions(shuffledQuestions);
@@ -116,7 +143,6 @@ const PhrasalVerbsGame = ({ onBack }) => {
 
     setFeedback('checked');
     const currentVerb = phaseQuestions[currentQuestionIndex];
-    // Usando normalizeLoose do utils
     const correctMeanings = currentVerb.definitions.map(d => normalizeLoose(d.meaning));
     
     let currentTurnScore = 0;
@@ -145,7 +171,23 @@ const PhrasalVerbsGame = ({ onBack }) => {
 
   // ================= RENDER =================
 
-  // 1. MENU (Usando PageShell)
+  // 0. LOADING
+  if (loading) {
+    return (
+      <PageShell title="Phrasal Verbs Master" icon={BrainCircuit} iconColorClass="bg-indigo-100 text-indigo-600">
+        <div className="flex flex-col items-center justify-center min-h-[50vh]">
+          <div className="h-10 w-10 animate-spin rounded-full border-4 border-indigo-500 border-t-transparent mb-4"></div>
+          <p className="text-slate-500 font-medium">Carregando verbos...</p>
+        </div>
+      </PageShell>
+    );
+  }
+
+  if (error) {
+     return <div className="p-10 text-center text-red-600 font-bold">{error}</div>;
+  }
+
+  // 1. MENU
   if (view === 'menu') {
     return (
       <PageShell
@@ -191,7 +233,7 @@ const PhrasalVerbsGame = ({ onBack }) => {
     );
   }
 
-  // 2. RESULTADO (Usando ResultScreen)
+  // 2. RESULTADO
   if (view === 'result') {
     const maxScore = phaseQuestions.reduce((acc, curr) => acc + curr.definitions.length, 0);
     const percentage = Math.round((score / maxScore) * 100);
@@ -211,15 +253,13 @@ const PhrasalVerbsGame = ({ onBack }) => {
     );
   }
 
-  // 3. JOGO (Layout Específico mantido)
+  // 3. JOGO
   const currentVerb = phaseQuestions[currentQuestionIndex];
   if (!currentVerb) return <div>Carregando...</div>;
   const correctMeaningsLower = currentVerb.definitions.map(d => normalizeLoose(d.meaning));
 
   return (
     <div className="min-h-screen bg-slate-50 font-sans text-slate-800 flex flex-col items-center">
-      
-      {/* --- CORREÇÃO AQUI: Template String para evitar o erro do Helmet --- */}
       <Helmet>
         <title>{`Fase ${activePhase} | Phrasal Verbs - EnglishUp`}</title>
       </Helmet>
@@ -268,7 +308,6 @@ const PhrasalVerbsGame = ({ onBack }) => {
                       {userAnswers.map((answer, index) => {
                         const status = getInputStatus(answer, correctMeaningsLower);
                         
-                        // Lógica de Classes Condicionais para Borda
                         let borderClass = "border-2 border-slate-200 focus:border-indigo-500 focus:ring-4 focus:ring-indigo-50";
                         if (feedback) {
                           if (status === 'correct') borderClass = "border-2 border-green-500 bg-green-50 text-green-700";

@@ -1,0 +1,702 @@
+[
+  {
+    "id": 1,
+    "pt": "beber",
+    "presente": "drink",
+    "passado": "drank",
+    "particípio": "drunk"
+  },
+  {
+    "id": 2,
+    "pt": "comer",
+    "presente": "eat",
+    "passado": "ate",
+    "particípio": "eaten"
+  },
+  {
+    "id": 3,
+    "pt": "ir",
+    "presente": "go",
+    "passado": "went",
+    "particípio": "gone"
+  },
+  {
+    "id": 4,
+    "pt": "ver",
+    "presente": "see",
+    "passado": "saw",
+    "particípio": "seen"
+  },
+  {
+    "id": 5,
+    "pt": "escrever",
+    "presente": "write",
+    "passado": "wrote",
+    "particípio": "written"
+  },
+  {
+    "id": 6,
+    "pt": "quebrar",
+    "presente": "break",
+    "passado": "broke",
+    "particípio": "broken"
+  },
+  {
+    "id": 7,
+    "pt": "trazer",
+    "presente": "bring",
+    "passado": "brought",
+    "particípio": "brought"
+  },
+  {
+    "id": 8,
+    "pt": "manter",
+    "presente": "keep",
+    "passado": "kept",
+    "particípio": "kept"
+  },
+  {
+    "id": 9,
+    "pt": "significar",
+    "presente": "mean",
+    "passado": "meant",
+    "particípio": "meant"
+  },
+  {
+    "id": 10,
+    "pt": "obter/conseguir",
+    "presente": "get",
+    "passado": "got",
+    "particípio": "gotten"
+  },
+  {
+    "id": 11,
+    "pt": "correr",
+    "presente": "run",
+    "passado": "ran",
+    "particípio": "run"
+  },
+  {
+    "id": 12,
+    "pt": "dizer",
+    "presente": "say",
+    "passado": "said",
+    "particípio": "said"
+  },
+  {
+    "id": 13,
+    "pt": "falar",
+    "presente": "speak",
+    "passado": "spoke",
+    "particípio": "spoken"
+  },
+  {
+    "id": 14,
+    "pt": "colocar",
+    "presente": "put",
+    "passado": "put",
+    "particípio": "put"
+  },
+  {
+    "id": 15,
+    "pt": "pegar/levar",
+    "presente": "take",
+    "passado": "took",
+    "particípio": "taken"
+  },
+  {
+    "id": 16,
+    "pt": "começar",
+    "presente": "begin",
+    "passado": "began",
+    "particípio": "begun"
+  },
+  {
+    "id": 17,
+    "pt": "escolher",
+    "presente": "choose",
+    "passado": "chose",
+    "particípio": "chosen"
+  },
+  {
+    "id": 18,
+    "pt": "vir",
+    "presente": "come",
+    "passado": "came",
+    "particípio": "come"
+  },
+  {
+    "id": 19,
+    "pt": "fazer",
+    "presente": "do",
+    "passado": "did",
+    "particípio": "done"
+  },
+  {
+    "id": 20,
+    "pt": "cair",
+    "presente": "fall",
+    "passado": "fell",
+    "particípio": "fallen"
+  },
+  {
+    "id": 21,
+    "pt": "sentir",
+    "presente": "feel",
+    "passado": "felt",
+    "particípio": "felt"
+  },
+  {
+    "id": 22,
+    "pt": "voar",
+    "presente": "fly",
+    "passado": "flew",
+    "particípio": "flown"
+  },
+  {
+    "id": 23,
+    "pt": "esquecer",
+    "presente": "forget",
+    "passado": "forgot",
+    "particípio": "forgotten"
+  },
+  {
+    "id": 24,
+    "pt": "dar",
+    "presente": "give",
+    "passado": "gave",
+    "particípio": "given"
+  },
+  {
+    "id": 25,
+    "pt": "ouvir",
+    "presente": "hear",
+    "passado": "heard",
+    "particípio": "heard"
+  },
+  {
+    "id": 26,
+    "pt": "saber",
+    "presente": "know",
+    "passado": "knew",
+    "particípio": "known"
+  },
+  {
+    "id": 27,
+    "pt": "sair/deixar",
+    "presente": "leave",
+    "passado": "left",
+    "particípio": "left"
+  },
+  {
+    "id": 28,
+    "pt": "perder",
+    "presente": "lose",
+    "passado": "lost",
+    "particípio": "lost"
+  },
+  {
+    "id": 29,
+    "pt": "fazer (criar)",
+    "presente": "make",
+    "passado": "made",
+    "particípio": "made"
+  },
+  {
+    "id": 30,
+    "pt": "conhecer/encontrar",
+    "presente": "meet",
+    "passado": "met",
+    "particípio": "met"
+  },
+  {
+    "id": 31,
+    "pt": "pagar",
+    "presente": "pay",
+    "passado": "paid",
+    "particípio": "paid"
+  },
+  {
+    "id": 32,
+    "pt": "comprar",
+    "presente": "buy",
+    "passado": "bought",
+    "particípio": "bought"
+  },
+  {
+    "id": 33,
+    "pt": "vender",
+    "presente": "sell",
+    "passado": "sold",
+    "particípio": "sold"
+  },
+  {
+    "id": 34,
+    "pt": "enviar",
+    "presente": "send",
+    "passado": "sent",
+    "particípio": "sent"
+  },
+  {
+    "id": 35,
+    "pt": "gastar",
+    "presente": "spend",
+    "passado": "spent",
+    "particípio": "spent"
+  },
+  {
+    "id": 36,
+    "pt": "emprestar",
+    "presente": "lend",
+    "passado": "lent",
+    "particípio": "lent"
+  },
+  {
+    "id": 37,
+    "pt": "custar",
+    "presente": "cost",
+    "passado": "cost",
+    "particípio": "cost"
+  },
+  {
+    "id": 38,
+    "pt": "construir",
+    "presente": "build",
+    "passado": "built",
+    "particípio": "built"
+  },
+  {
+    "id": 39,
+    "pt": "cortar",
+    "presente": "cut",
+    "passado": "cut",
+    "particípio": "cut"
+  },
+  {
+    "id": 40,
+    "pt": "ter",
+    "presente": "have",
+    "passado": "had",
+    "particípio": "had"
+  },
+  {
+    "id": 41,
+    "pt": "ler",
+    "presente": "read",
+    "passado": "read",
+    "particípio": "read"
+  },
+  {
+    "id": 42,
+    "pt": "pensar",
+    "presente": "think",
+    "passado": "thought",
+    "particípio": "thought"
+  },
+  {
+    "id": 43,
+    "pt": "entender",
+    "presente": "understand",
+    "passado": "understood",
+    "particípio": "understood"
+  },
+  {
+    "id": 44,
+    "pt": "ensinar",
+    "presente": "teach",
+    "passado": "taught",
+    "particípio": "taught"
+  },
+  {
+    "id": 45,
+    "pt": "contar (história)",
+    "presente": "tell",
+    "passado": "told",
+    "particípio": "told"
+  },
+  {
+    "id": 46,
+    "pt": "dormir",
+    "presente": "sleep",
+    "passado": "slept",
+    "particípio": "slept"
+  },
+  {
+    "id": 47,
+    "pt": "acordar",
+    "presente": "wake",
+    "passado": "woke",
+    "particípio": "woken"
+  },
+  {
+    "id": 48,
+    "pt": "sonhar",
+    "presente": "dream",
+    "passado": "dreamt",
+    "particípio": "dreamt"
+  },
+  {
+    "id": 49,
+    "pt": "vestir",
+    "presente": "wear",
+    "passado": "wore",
+    "particípio": "worn"
+  },
+  {
+    "id": 50,
+    "pt": "cantar",
+    "presente": "sing",
+    "passado": "sang",
+    "particípio": "sung"
+  },
+  {
+    "id": 51,
+    "pt": "crescer",
+    "presente": "grow",
+    "passado": "grew",
+    "particípio": "grown"
+  },
+  {
+    "id": 52,
+    "pt": "tornar-se",
+    "presente": "become",
+    "passado": "became",
+    "particípio": "become"
+  },
+  {
+    "id": 53,
+    "pt": "morder",
+    "presente": "bite",
+    "passado": "bit",
+    "particípio": "bitten"
+  },
+  {
+    "id": 54,
+    "pt": "soprar",
+    "presente": "blow",
+    "passado": "blew",
+    "particípio": "blown"
+  },
+  {
+    "id": 55,
+    "pt": "congelar",
+    "presente": "freeze",
+    "passado": "froze",
+    "particípio": "frozen"
+  },
+  {
+    "id": 56,
+    "pt": "brilhar",
+    "presente": "shine",
+    "passado": "shone",
+    "particípio": "shone"
+  },
+  {
+    "id": 57,
+    "pt": "queimar",
+    "presente": "burn",
+    "passado": "burnt",
+    "particípio": "burnt"
+  },
+  {
+    "id": 58,
+    "pt": "esconder",
+    "presente": "hide",
+    "passado": "hid",
+    "particípio": "hidden"
+  },
+  {
+    "id": 59,
+    "pt": "segurar",
+    "presente": "hold",
+    "passado": "held",
+    "particípio": "held"
+  },
+  {
+    "id": 60,
+    "pt": "alimentar",
+    "presente": "feed",
+    "passado": "fed",
+    "particípio": "fed"
+  },
+  {
+    "id": 61,
+    "pt": "pegar/agarrar",
+    "presente": "catch",
+    "passado": "caught",
+    "particípio": "caught"
+  },
+  {
+    "id": 62,
+    "pt": "lutar",
+    "presente": "fight",
+    "passado": "fought",
+    "particípio": "fought"
+  },
+  {
+    "id": 63,
+    "pt": "bater",
+    "presente": "hit",
+    "passado": "hit",
+    "particípio": "hit"
+  },
+  {
+    "id": 64,
+    "pt": "machucar",
+    "presente": "hurt",
+    "passado": "hurt",
+    "particípio": "hurt"
+  },
+  {
+    "id": 65,
+    "pt": "disparar/atirar",
+    "presente": "shoot",
+    "passado": "shot",
+    "particípio": "shot"
+  },
+  {
+    "id": 66,
+    "pt": "lançar",
+    "presente": "throw",
+    "passado": "threw",
+    "particípio": "thrown"
+  },
+  {
+    "id": 67,
+    "pt": "vencer",
+    "presente": "win",
+    "passado": "won",
+    "particípio": "won"
+  },
+  {
+    "id": 68,
+    "pt": "roubar",
+    "presente": "steal",
+    "passado": "stole",
+    "particípio": "stolen"
+  },
+  {
+    "id": 69,
+    "pt": "andar (veículo)",
+    "presente": "ride",
+    "passado": "rode",
+    "particípio": "ridden"
+  },
+  {
+    "id": 70,
+    "pt": "nadar",
+    "presente": "swim",
+    "passado": "swam",
+    "particípio": "swum"
+  },
+  {
+    "id": 71,
+    "pt": "sentar",
+    "presente": "sit",
+    "passado": "sat",
+    "particípio": "sat"
+  },
+  {
+    "id": 72,
+    "pt": "ficar de pé",
+    "presente": "stand",
+    "passado": "stood",
+    "particípio": "stood"
+  },
+  {
+    "id": 73,
+    "pt": "deitar (posição)",
+    "presente": "lie",
+    "passado": "lay",
+    "particípio": "lain"
+  },
+  {
+    "id": 74,
+    "pt": "colocar/pôr",
+    "presente": "set",
+    "passado": "set",
+    "particípio": "set"
+  },
+  {
+    "id": 75,
+    "pt": "deixar/permitir",
+    "presente": "let",
+    "passado": "let",
+    "particípio": "let"
+  },
+  {
+    "id": 76,
+    "pt": "liderar",
+    "presente": "lead",
+    "passado": "led",
+    "particípio": "led"
+  },
+  {
+    "id": 77,
+    "pt": "encontrar/achar",
+    "presente": "find",
+    "passado": "found",
+    "particípio": "found"
+  },
+  {
+    "id": 78,
+    "pt": "pendurar",
+    "presente": "hang",
+    "passado": "hung",
+    "particípio": "hung"
+  },
+  {
+    "id": 79,
+    "pt": "fechar",
+    "presente": "shut",
+    "passado": "shut",
+    "particípio": "shut"
+  },
+  {
+    "id": 80,
+    "pt": "tocar (som)",
+    "presente": "ring",
+    "passado": "rang",
+    "particípio": "rung"
+  },
+  {
+    "id": 81,
+    "pt": "desenhar",
+    "presente": "draw",
+    "passado": "drew",
+    "particípio": "drawn"
+  },
+  {
+    "id": 82,
+    "pt": "mostrar",
+    "presente": "show",
+    "passado": "showed",
+    "particípio": "shown"
+  },
+  {
+    "id": 83,
+    "pt": "lidar",
+    "presente": "deal",
+    "passado": "dealt",
+    "particípio": "dealt"
+  },
+  {
+    "id": 84,
+    "pt": "cavar",
+    "presente": "dig",
+    "passado": "dug",
+    "particípio": "dug"
+  },
+  {
+    "id": 85,
+    "pt": "acender/iluminar",
+    "presente": "light",
+    "passado": "lit",
+    "particípio": "lit"
+  },
+  {
+    "id": 86,
+    "pt": "provar",
+    "presente": "prove",
+    "passado": "proved",
+    "particípio": "proven"
+  },
+  {
+    "id": 87,
+    "pt": "costurar",
+    "presente": "sew",
+    "passado": "sewed",
+    "particípio": "sewn"
+  },
+  {
+    "id": 88,
+    "pt": "afundar",
+    "presente": "sink",
+    "passado": "sank",
+    "particípio": "sunk"
+  },
+  {
+    "id": 89,
+    "pt": "espalhar",
+    "presente": "spread",
+    "passado": "spread",
+    "particípio": "spread"
+  },
+  {
+    "id": 90,
+    "pt": "colar/grudar",
+    "presente": "stick",
+    "passado": "stuck",
+    "particípio": "stuck"
+  },
+  {
+    "id": 91,
+    "pt": "surgir",
+    "presente": "arise",
+    "passado": "arose",
+    "particípio": "arisen"
+  },
+  {
+    "id": 92,
+    "pt": "suportar",
+    "presente": "bear",
+    "passado": "bore",
+    "particípio": "born"
+  },
+  {
+    "id": 93,
+    "pt": "apostar",
+    "presente": "bet",
+    "passado": "bet",
+    "particípio": "bet"
+  },
+  {
+    "id": 94,
+    "pt": "proibir",
+    "presente": "forbid",
+    "passado": "forbade",
+    "particípio": "forbidden"
+  },
+  {
+    "id": 95,
+    "pt": "perdoar",
+    "presente": "forgive",
+    "passado": "forgave",
+    "particípio": "forgiven"
+  },
+  {
+    "id": 96,
+    "pt": "sacudir",
+    "presente": "shake",
+    "passado": "shook",
+    "particípio": "shaken"
+  },
+  {
+    "id": 97,
+    "pt": "deslizar",
+    "presente": "slide",
+    "passado": "slid",
+    "particípio": "slid"
+  },
+  {
+    "id": 98,
+    "pt": "girar",
+    "presente": "spin",
+    "passado": "spun",
+    "particípio": "spun"
+  },
+  {
+    "id": 99,
+    "pt": "rasgar",
+    "presente": "tear",
+    "passado": "tore",
+    "particípio": "torn"
+  },
+  {
+    "id": 100,
+    "pt": "vestir/usar",
+    "presente": "wear",
+    "passado": "wore",
+    "particípio": "worn"
+  }
+]
