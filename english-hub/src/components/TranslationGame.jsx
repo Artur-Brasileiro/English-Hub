@@ -3,11 +3,8 @@ import { useNavigate, useParams } from "react-router-dom";
 import { Helmet } from 'react-helmet-async';
 import { 
   Languages, ArrowLeft, CheckCircle, XCircle, Mic, 
-  Clock, GitBranch, Shield, ArrowLeftRight, Flame, Target, Scale, Heart, Lock, Lightbulb, Sparkles, HelpCircle, Trophy
-} from 'lucide-react';
-
-// --- REMOVIDO: Import direto ---
-// import { TRANSLATION_DATA } from '../../public/data/gameData';
+  Clock, GitBranch, Shield, ArrowLeftRight, Flame, Target, Scale, Heart, Lock, Lightbulb, Sparkles, HelpCircle, Trophy, BookOpen 
+} from 'lucide-react'; // Adicionado BookOpen
 
 // --- NOVO: Import do Loader ---
 import { loadGameData } from '../utils/dataLoader';
@@ -17,6 +14,7 @@ import { useH5Ads } from '../hooks/useH5Ads';
 import PageShell from './layout/PageShell';
 import ResultScreen from './shared/ResultScreen';
 import TranslationEducation from '../content/TranslationEducation';
+import StructureExplanation from '../content/StructureExplanation'; // <--- NOVO IMPORT
 import { normalizeSentence } from '../utils/textUtils';
 import { shuffleArray, ensureArray } from '../utils/arrayUtils';
 
@@ -30,14 +28,15 @@ const TranslationGame = ({ onBack }) => {
   // Refs
   const recognitionRef = useRef(null);
   const inputRef = useRef(null);
+  const structureRef = useRef(null); // <--- NOVA REF PARA SCROLL
 
   // States de Dados Assíncronos
-  const [data, setData] = useState(null); // Agora inicia null até carregar
+  const [data, setData] = useState(null); 
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
   // States do Jogo
-  const [view, setView] = useState('loading'); // Começa carregando
+  const [view, setView] = useState('loading'); 
   const [score, setScore] = useState(0);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [shuffledQuestions, setShuffledQuestions] = useState([]);
@@ -86,11 +85,11 @@ const TranslationGame = ({ onBack }) => {
       });
   }, []);
 
-  // Helpers derivados dos dados (Memoizados)
+  // Helpers derivados dos dados
   const taggedItems = useMemo(() => data ? ensureArray(data.tagged) : [], [data]);
   const allTranslationItems = useMemo(() => data ? Object.values(data).flatMap(ensureArray) : [], [data]);
   
-  // --- HELPERS (Áudio e Navegação) ---
+  // --- HELPERS ---
   const stopAllAudio = () => {
     if (recognitionRef.current) recognitionRef.current.abort();
     setIsListening(false);
@@ -105,7 +104,14 @@ const TranslationGame = ({ onBack }) => {
     }, stopAllAudio);
   };
 
-  // --- LOGICA DE ROTA (Só roda quando 'data' existe e 'loading' acabou) ---
+  // --- NOVA FUNÇÃO DE SCROLL ---
+  const scrollToStructure = () => {
+    if (structureRef.current) {
+      structureRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  };
+
+  // --- LOGICA DE ROTA ---
   useLayoutEffect(() => {
     if (!loading && data) {
       if (levelId) {
@@ -116,7 +122,7 @@ const TranslationGame = ({ onBack }) => {
         stopAllAudio();
       }
     }
-  }, [levelId, loading, data]); // Adicionei dependências cruciais
+  }, [levelId, loading, data]);
 
   useEffect(() => {
     if (view === 'game' && !answerStatus && window.innerWidth >= 768) {
@@ -124,7 +130,7 @@ const TranslationGame = ({ onBack }) => {
     }
   }, [currentQuestionIndex, view, answerStatus]);
 
-  // Lógica de Regex Flexível
+  // Regex e CheckAnswer
   const createFlexibleRegex = (correctAnswer) => {
     const clean = correctAnswer.toLowerCase().replace(/[.,!?;:]/g, '').trim();
     const tokens = clean.split(/\s+/);
@@ -150,7 +156,6 @@ const TranslationGame = ({ onBack }) => {
     if (answerStatus) return; 
     const currentItem = shuffledQuestions[currentQuestionIndex];
     const possibleAnswers = ensureArray(currentItem.en);
-    
     const normalizedUser = normalizeSentence(userAnswer);
 
     const isCorrect = possibleAnswers.some((correctAnswer) => {
@@ -166,7 +171,7 @@ const TranslationGame = ({ onBack }) => {
   };
 
   const startGame = (modeOrLevel) => {
-    if (!data) return; // Segurança extra
+    if (!data) return; 
 
     setCurrentMode(modeOrLevel);
     let dataToUse = [];
@@ -179,7 +184,7 @@ const TranslationGame = ({ onBack }) => {
         const mode = modeOrLevel;
         if (tagMeta[mode]) {
             dataToUse = taggedItems.filter(item => item.tags && item.tags.includes(mode));
-        } else if (data[mode]) { // Usa 'data' aqui em vez de TRANSLATION_DATA
+        } else if (data[mode]) {
             dataToUse = ensureArray(data[mode]);
         } else if (mode === 'all_tenses') {
              dataToUse = allTranslationItems;
@@ -337,7 +342,6 @@ const TranslationGame = ({ onBack }) => {
   const currentItem = shuffledQuestions[currentQuestionIndex];
   if (!currentItem) return <div className="min-h-screen flex items-center justify-center animate-pulse text-slate-400 font-bold">Carregando nível...</div>;
 
-  // Lógica Visual do Header
   const primaryTag = getPrimaryTag(currentItem.tags);
   const shouldResolveGrammar = ['mix', 'present_perfect', 'past_perfect'].includes(currentMode) || typeof currentMode === 'number';
   const questionType = shouldResolveGrammar && !primaryTag ? getGrammarType(currentItem.en) : (typeof currentMode === 'string' ? currentMode : 'mix');
@@ -384,6 +388,18 @@ const TranslationGame = ({ onBack }) => {
                <button onClick={handleBackToMenu} className="text-slate-400 hover:text-slate-600 flex items-center gap-1">
                  <ArrowLeft className="w-5 h-5" /> <span className="text-sm font-bold uppercase tracking-wide">Menu</span>
                </button>
+
+               {/* --- NOVO BOTÃO: APRENDER ESTRUTURA --- */}
+               <button 
+                  onClick={scrollToStructure}
+                  className="flex items-center gap-2 text-emerald-600 hover:text-emerald-700 font-bold bg-emerald-50 hover:bg-emerald-100 px-3 py-1.5 rounded-lg transition-colors text-sm"
+               >
+                  <BookOpen className="w-4 h-4" /> 
+                  <span className="hidden sm:inline">Aprender Estrutura</span>
+                  <span className="sm:hidden">Aprender</span>
+               </button>
+               {/* -------------------------------------- */}
+
                <span className="text-slate-400 text-sm font-bold uppercase tracking-widest">
                  {currentQuestionIndex + 1} / {shuffledQuestions.length}
                </span>
@@ -456,9 +472,18 @@ const TranslationGame = ({ onBack }) => {
 
             <TranslationEducation />
             
-            <div className="mt-40 pointer-events-auto">
+            <div className="w-full my-16 flex flex-col items-center justify-center pointer-events-auto relative">
+              <div className="w-full border-t border-slate-100 mb-8"></div>
               <AdUnit slotId="4391086704" width="336px" height="280px" label="Publicidade"/>
+              <div className="w-full border-t border-slate-100 mt-8"></div>
             </div>
+
+            {/* --- NOVO: CARD DA ESTRUTURA (COM REF PARA SCROLL) --- */}
+            <div ref={structureRef}>
+                <StructureExplanation mode={questionType} />
+            </div>
+            {/* ----------------------------------------------------- */}
+            
           </div>
 
           {/* SIDEBAR DIREITA */}
