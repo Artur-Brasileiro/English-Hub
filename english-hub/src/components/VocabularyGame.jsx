@@ -1,4 +1,4 @@
-import React, { useState, useMemo, useRef, useEffect } from 'react';
+import React, { useState, useMemo, useRef, useEffect, useLayoutEffect } from 'react';
 import { useNavigate, useParams } from "react-router-dom";
 import { Helmet } from 'react-helmet-async';
 import {
@@ -119,22 +119,20 @@ const VocabularyGame = ({ onBack }) => {
   };
 
   // --- LOGICA DE ROTA (Segura) ---
-  useEffect(() => {
-    // Só executa se já carregou os dados
-    if (!loading && data.length > 0) {
-      if (urlLevel) {
-        // Garante que o nível é válido
-        const safeLevel = Math.min(Math.max(urlLevel, 1), totalLevels || 1);
-        setCurrentLevelId(safeLevel);
-        setView('game');
-        restartInternalState();
-        window.scrollTo(0, 0);
-      } else {
-        setView('menu');
-        stopAllAudio();
-      }
+  useLayoutEffect(() => {
+  if (!loading && data.length > 0) {
+    if (urlLevel) {
+      const safeLevel = Math.min(Math.max(urlLevel, 1), totalLevels || 1);
+      setCurrentLevelId(safeLevel);
+      setView('game');
+      restartInternalState();
+      window.scrollTo(0, 0);
+    } else {
+      setView('menu');
+      stopAllAudio();
     }
-  }, [urlLevel, loading, totalLevels]); // Dependências atualizadas
+  }
+}, [urlLevel, loading, totalLevels]);
 
   const restartInternalState = () => {
     stopAllAudio();

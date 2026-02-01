@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect, useMemo } from 'react';
+import React, { useState, useRef, useEffect, useMemo, useLayoutEffect } from 'react';
 import { useNavigate, useParams } from "react-router-dom";
 import { Helmet } from 'react-helmet-async';
 import { 
@@ -106,7 +106,7 @@ const TranslationGame = ({ onBack }) => {
   };
 
   // --- LOGICA DE ROTA (Só roda quando 'data' existe e 'loading' acabou) ---
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (!loading && data) {
       if (levelId) {
         const isNumeric = /^\d+$/.test(levelId);

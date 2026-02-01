@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useLayoutEffect } from 'react';
 import { useNavigate, useParams } from "react-router-dom";
 import { Helmet } from 'react-helmet-async';
 import {
@@ -89,7 +89,7 @@ const IrregularVerbsGame = ({ onBack }) => {
   };
 
   // --- LOGICA DE ROTA ---
-  useEffect(() => {
+  useLayoutEffect(() => {
     // Só processa a rota se os dados já chegaram
     if (!loading && data.length > 0) {
       if (levelId) {

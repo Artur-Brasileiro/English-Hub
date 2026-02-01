@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useLayoutEffect } from 'react';
 import { useNavigate, useParams } from "react-router-dom";
 import { Helmet } from 'react-helmet-async';
 import { 
@@ -77,7 +77,7 @@ const PhrasalVerbsGame = ({ onBack }) => {
   };
 
   // --- LOGICA DE ROTA (Segura) ---
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (!loading && data.length > 0) {
       if (levelId) {
         const phaseNum = parseInt(levelId, 10);
