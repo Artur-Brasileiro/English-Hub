@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useMemo } from "react";
 import { useNavigate } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import {
@@ -70,9 +70,11 @@ const HubPage = () => {
     }
   ];
 
-  const filteredGames = games.filter((game) => {
-    return game.title.toLowerCase().includes(searchTerm.toLowerCase());
-  });
+  const filteredGames = useMemo(() => {
+    return games.filter((game) => {
+      return game.title.toLowerCase().includes(searchTerm.toLowerCase());
+    });
+  }, [searchTerm]);
 
   const difficultyDot = (difficulty) => {
     switch (difficulty) {
@@ -213,6 +215,13 @@ const HubPage = () => {
               <div
                 key={game.id}
                 onClick={() => game.isReady ? navigate(game.path) : null}
+                onMouseEnter={() => {
+                  // Isso inicia o download do chunk JS antes do clique
+                  if (game.id === 'vocabulary') import('../components/VocabularyGame');
+                  if (game.id === 'irregular') import('../components/IrregularVerbsGame');
+                  if (game.id === 'phrasal') import('../components/PhrasalVerbsGame');
+                  if (game.id === 'translation') import('../components/TranslationGame');
+                }}
                 className={`group bg-white/80 backdrop-blur rounded-3xl border border-slate-200 overflow-hidden transition-all duration-300 flex flex-col cursor-pointer hover:-translate-y-1 hover:shadow-xl ${
                   !game.isReady ? "opacity-60 grayscale-[0.5]" : ""
                 }`}
