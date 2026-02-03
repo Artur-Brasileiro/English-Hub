@@ -20,45 +20,39 @@ const IrregularVerbsEducation = () => (
     
     <div className="prose prose-slate max-w-none grid md:grid-cols-2 gap-10 text-left">
       
-      {/* Coluna 1: A Lógica */}
-      <div className="space-y-6">
+      {/* Coluna 1: O Hack dos 70% + Tríade */}
+      <div className="space-y-6 flex flex-col justify-between h-full">
         <div>
           <h3 className="text-lg font-bold text-slate-800 mb-3 flex items-center gap-2">
             <Zap className="w-5 h-5 text-amber-500" /> 
-            Pare de decorar em ordem alfabética!
+            O "Hack" dos 70%
           </h3>
+          {/* TEXTO EXPANDIDO AQUI 👇 */}
           <p className="text-sm leading-relaxed text-slate-600">
-            O maior erro dos estudantes é tentar memorizar a lista de A a Z. O segredo para a fluência é agrupar os verbos por <strong>padrões sonoros</strong>. Nosso cérebro aprende por associação, não por listas frias.
+            Existe uma assimetria enorme no inglês: embora existam milhares de verbos regulares (aqueles terminados em <em>-ed</em>), os <strong>verbos irregulares dominam cerca de 70% das conversas reais</strong>. Isso ocorre porque as ações mais antigas e essenciais da humanidade (como <em>ser, ir, comer, ter</em>) resistiram à padronização gramatical ao longo dos séculos. 
+            <br /><br />
+            Dominar essa lista restrita não é apenas estudo, é <strong>inteligência estratégica</strong>: você resolve a maior parte dos problemas de comunicação cotidiana investindo uma fração do esforço necessário para decorar todo o resto.
           </p>
         </div>
 
         <div className="bg-slate-50 p-5 rounded-2xl border border-slate-200">
-          <h4 className="text-sm font-bold text-slate-700 uppercase tracking-wider mb-3">Os 3 Grupos de Ouro</h4>
+          <h4 className="text-sm font-bold text-slate-700 uppercase tracking-wider mb-3">O Poder da Tríade</h4>
+          <p className="text-sm leading-relaxed text-slate-600 mb-3">
+            Por que o jogo pede as 3 formas juntas?
+          </p>
           <ul className="text-sm space-y-3">
             <li className="flex gap-3">
-              <span className="font-bold text-orange-500 bg-orange-50 px-2 py-0.5 rounded text-xs h-fit">1</span>
+              <span className="font-bold text-orange-500 bg-orange-50 px-2 py-0.5 rounded text-xs h-fit">Fluxo</span>
               <span>
-                <strong>Os Invariáveis:</strong> Verbos que nunca mudam. Ex: <em>Cut / Cut / Cut</em> ou <em>Cost / Cost / Cost</em>. Se você errar, ninguém percebe!
-              </span>
-            </li>
-            <li className="flex gap-3">
-              <span className="font-bold text-indigo-500 bg-indigo-50 px-2 py-0.5 rounded text-xs h-fit">2</span>
-              <span>
-                <strong>O som do "T":</strong> Verbos que terminam com som seco de T no passado. Ex: <em>Sleep / Slept / Slept</em>.
-              </span>
-            </li>
-            <li className="flex gap-3">
-              <span className="font-bold text-rose-500 bg-rose-50 px-2 py-0.5 rounded text-xs h-fit">3</span>
-              <span>
-                <strong>O padrão "N":</strong> Comuns no Particípio. Ex: <em>Speak / Spoke / Spoken</em>.
+                Ao memorizar a sequência rítmica (ex: <em>Drink-Drank-Drunk</em>), você cria um "trilho sonoro". Quando precisar do passado, seu cérebro puxa a sequência inteira automaticamente, evitando travamentos.
               </span>
             </li>
           </ul>
         </div>
       </div>
       
-      {/* Coluna 2: A Aplicação */}
-      <div className="space-y-6">
+      {/* Coluna 2: A Aplicação (Mantida) */}
+      <div className="space-y-6 flex flex-col justify-between h-full">
         <div>
           <h3 className="text-lg font-bold text-slate-800 mb-3 flex items-center gap-2">
             <Target className="w-5 h-5 text-rose-500" /> 
@@ -82,12 +76,12 @@ const IrregularVerbsEducation = () => (
           </ul>
         </div>
 
-        <div className="bg-amber-50 p-4 rounded-xl border border-amber-100">
-          <h3 className="text-amber-800 font-bold text-sm mb-2 flex items-center gap-2">
-            <Trophy className="w-4 h-4" /> Dica de Estudo: Active Recall
+        <div className="bg-indigo-50 p-4 rounded-xl border border-indigo-100">
+          <h3 className="text-indigo-900 font-bold text-sm mb-2 flex items-center gap-2">
+            <Trophy className="w-4 h-4" /> Macete: As Palavras-Gatilho
           </h3>
-          <p className="text-xs text-amber-700/80 leading-relaxed">
-            Este jogo usa o método de "Active Recall". Ao digitar a resposta em vez de apenas ler, você força seu cérebro a recuperar a informação, criando conexões neurais 50% mais fortes do que apenas leitura passiva.
+          <p className="text-xs text-indigo-800/80 leading-relaxed">
+            Na dúvida de qual usar? Procure pistas na frase. Se tiver data definida ("Yesterday", "Last night", "In 1999"), use a <strong>2ª Coluna</strong>. Se tiver "Have/Has" ou falar de experiência de vida ("Ever", "Never"), vá direto para a <strong>3ª Coluna</strong>.
           </p>
         </div>
       </div>

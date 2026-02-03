@@ -260,5 +260,5 @@ const StructureExplanation = ({ mode }) => {
     </section>
   );
 };
-
+ 
 export default StructureExplanation;
