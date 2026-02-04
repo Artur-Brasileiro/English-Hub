@@ -167,6 +167,7 @@ const VocabularyGame = ({ onBack }) => {
   };
 
   const restartLevelInternal = () => {
+    setView('game'); // <--- ADICIONE ESTA LINHA
     restartInternalState();
     window.scrollTo(0, 0);
   };

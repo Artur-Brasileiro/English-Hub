@@ -464,8 +464,18 @@ const TranslationGame = ({ onBack }) => {
                           <div className="mb-4 bg-red-50 p-4 rounded-xl border border-red-100">
                             <span className="block text-red-400 text-xs font-bold uppercase tracking-wider mb-1">Resposta Correta:</span>
                             <p className="text-red-700 font-bold text-lg">
-                                "{ensureArray(currentItem.en)[0].replace(/[()]/g, '')}"
-                            </p>            
+                              "{(() => {
+                                  const val = currentItem.en;
+                                  const text = Array.isArray(val) ? val[0] : val;
+                                  
+                                  if (!text) return '';
+
+                                  return text
+                                    // 1. Transforma "palavra1/palavra2" em "palavra1 (palavra2)"
+                                    // Pega qualquer coisa que não seja espaço antes e depois da barra
+                                    .replace(/([^\s]+)\/([^\s]+)/g, '$1 ($2)')
+                              })()}"
+                            </p>     
                           </div>
                        )}
                        <button onClick={nextQuestion} className={`w-full text-white py-4 rounded-xl font-bold text-lg transition-colors shadow-lg ${answerStatus === 'correct' ? 'bg-emerald-500' : 'bg-slate-800'}`}>
