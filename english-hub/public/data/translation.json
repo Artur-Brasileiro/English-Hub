@@ -3,252 +3,468 @@
     {
       "id": 1,
       "pt": "Eu perdi minha carteira.",
-      "en": "I have lost my wallet."
+      "en": [
+        "I have lost my wallet",
+        "I've lost my wallet"
+      ]
     },
     {
       "id": 2,
       "pt": "Ela ainda não chegou.",
-      "en": "She has not arrived yet."
+      "en": [
+        "She has not arrived yet",
+        "She hasn't arrived yet",
+        "She's not arrived yet",
+        "She has not come yet",
+        "She hasn't come yet"
+      ]
     },
     {
       "id": 3,
       "pt": "Nós já estivemos lá antes.",
-      "en": "We have been there before."
+      "en": [
+        "We have been there before",
+        "We've been there before"
+      ]
     },
     {
       "id": 4,
       "pt": "Você já viu esse filme?",
-      "en": "Have you seen this movie?"
+      "en": [
+        "Have you seen this movie?",
+        "Have you seen this film?",
+        "Have you watched this movie?",
+        "Have you watched this film?"
+      ]
     },
     {
       "id": 5,
       "pt": "Eles compraram um carro novo.",
-      "en": "They have bought a new car."
+      "en": [
+        "They have bought a new car",
+        "They've bought a new car",
+        "They have purchased a new car",
+        "They've purchased a new car"
+      ]
     },
     {
       "id": 6,
       "pt": "Eu nunca comi sushi.",
-      "en": "I have never eaten sushi."
+      "en": [
+        "I have never eaten sushi",
+        "I've never eaten sushi",
+        "I have never had sushi",
+        "I've never had sushi",
+        "I have never tried sushi",
+        "I've never tried sushi"
+      ]
     },
     {
       "id": 7,
       "pt": "Ele acabou de sair.",
-      "en": "He has just left."
+      "en": [
+        "He has just left",
+        "He's just left",
+        "He has just gone out",
+        "He's just gone out"
+      ]
     },
     {
       "id": 8,
       "pt": "Nós perdemos nossas chaves.",
-      "en": "We have lost our keys."
+      "en": [
+        "We have lost our keys",
+        "We've lost our keys"
+      ]
     },
     {
       "id": 9,
       "pt": "Ela morou aqui por dois anos.",
-      "en": "She has lived here for two years."
+      "en": [
+        "She has lived here for two years",
+        "She's lived here for two years",
+        "She has lived here for 2 years",
+        "She's lived here for 2 years"
+      ]
     },
     {
       "id": 10,
       "pt": "Eu já terminei meu dever de casa.",
-      "en": "I have already finished my homework."
+      "en": [
+        "I have already finished my homework",
+        "I've already finished my homework",
+        "I have already done my homework",
+        "I've already done my homework"
+      ]
     },
     {
       "id": 11,
       "pt": "Você já esteve no Brasil?",
-      "en": "Have you ever been to Brazil?"
+      "en": [
+        "Have you ever been to Brazil?",
+        "Have you been to Brazil?",
+        "Have you ever visited Brazil?",
+        "Have you visited Brazil?"
+      ]
     },
     {
       "id": 12,
       "pt": "O trem ainda não partiu.",
-      "en": "The train has not left yet."
+      "en": [
+        "The train has not left yet",
+        "The train hasn't left yet",
+        "The train has not departed yet",
+        "The train hasn't departed yet",
+        "The train's not left yet"
+      ]
     },
     {
       "id": 13,
       "pt": "Eu conheço ele desde 2010.",
-      "en": "I have known him since 2010."
+      "en": [
+        "I have known him since 2010",
+        "I've known him since 2010"
+      ]
     },
     {
       "id": 14,
       "pt": "Ela quebrou a perna.",
-      "en": "She has broken her leg."
+      "en": [
+        "She has broken her leg",
+        "She's broken her leg"
+      ]
     },
     {
       "id": 15,
       "pt": "Nós vendemos nossa casa.",
-      "en": "We have sold our house."
+      "en": [
+        "We have sold our house",
+        "We've sold our house",
+        "We have sold our home",
+        "We've sold our home"
+      ]
     },
     {
       "id": 16,
       "pt": "Onde você esteve?",
-      "en": "Where have you been?"
+      "en": [
+        "Where have you been?",
+        "Where've you been?"
+      ]
     },
     {
       "id": 17,
       "pt": "Eu cortei meu dedo.",
-      "en": "I have cut my finger."
+      "en": [
+        "I have cut my finger",
+        "I've cut my finger"
+      ]
     },
     {
       "id": 18,
       "pt": "Eles não me contaram a verdade.",
-      "en": "They have not told me the truth."
+      "en": [
+        "They have not told me the truth",
+        "They haven't told me the truth",
+        "They've not told me the truth"
+      ]
     },
     {
       "id": 19,
       "pt": "Ela esqueceu seu nome?",
-      "en": "Has she forgotten your name?"
+      "en": [
+        "Has she forgotten your name?",
+        "Has she forgotten his name?"
+      ]
     },
     {
       "id": 20,
       "pt": "Eu li três livros essa semana.",
-      "en": "I have read three books this week."
+      "en": [
+        "I have read three books this week",
+        "I've read three books this week",
+        "I have read 3 books this week",
+        "I've read 3 books this week"
+      ]
     },
     {
       "id": 21,
       "pt": "Nós bebemos muita água hoje.",
-      "en": "We have drunk a lot of water today."
+      "en": [
+        "We have drunk a lot of water today",
+        "We've drunk a lot of water today",
+        "We have drunk lots of water today",
+        "We've drunk lots of water today",
+        "We have had a lot of water today",
+        "We've had a lot of water today"
+      ]
     },
     {
       "id": 22,
       "pt": "Você trancou a porta?",
-      "en": "Have you locked the door?"
+      "en": [
+        "Have you locked the door?"
+      ]
     },
     {
       "id": 23,
       "pt": "O tempo mudou de repente.",
-      "en": "The weather has changed suddenly."
+      "en": [
+        "The weather has changed suddenly",
+        "The weather's changed suddenly",
+        "The weather has suddenly changed",
+        "The weather's suddenly changed"
+      ]
     },
     {
       "id": 24,
       "pt": "Eu sempre amei música.",
-      "en": "I have always loved music."
+      "en": [
+        "I have always loved music",
+        "I've always loved music"
+      ]
     },
     {
       "id": 25,
       "pt": "Ela não fez a cama dela.",
-      "en": "She has not made her bed."
+      "en": [
+        "She has not made her bed",
+        "She hasn't made her bed",
+        "She's not made her bed"
+      ]
     },
     {
       "id": 26,
       "pt": "Eu tenho trabalhado muito ultimamente.",
-      "en": "I have been working hard lately."
+      "en": [
+        "I have been working hard lately",
+        "I've been working hard lately",
+        "I have been working a lot lately",
+        "I've been working a lot lately",
+        "I have been working hard recently",
+        "I've been working hard recently"
+      ]
     },
     {
       "id": 27,
       "pt": "Ela tem esperado por horas.",
-      "en": "She has been waiting for hours."
+      "en": [
+        "She has been waiting for hours",
+        "She's been waiting for hours"
+      ]
     },
     {
       "id": 28,
       "pt": "O que você tem feito?",
-      "en": "What have you been doing?"
+      "en": [
+        "What have you been doing?",
+        "What've you been doing?"
+      ]
     },
     {
       "id": 29,
       "pt": "Nós temos estudado inglês o dia todo.",
-      "en": "We have been studying English all day."
+      "en": [
+        "We have been studying English all day",
+        "We've been studying English all day",
+        "We have been studying English the whole day",
+        "We've been studying English the whole day"
+      ]
     },
     {
       "id": 30,
       "pt": "Tem chovido desde ontem.",
-      "en": "It has been raining since yesterday."
+      "en": [
+        "It has been raining since yesterday",
+        "It's been raining since yesterday"
+      ]
     },
     {
       "id": 31,
       "pt": "Eu tenho tentado te ligar.",
-      "en": "I have been trying to call you."
+      "en": [
+        "I have been trying to call you",
+        "I've been trying to call you",
+        "I have been trying to phone you",
+        "I've been trying to phone you"
+      ]
     },
     {
       "id": 32,
       "pt": "Eles têm jogado futebol a tarde toda.",
-      "en": "They have been playing soccer all afternoon."
+      "en": [
+        "They have been playing soccer all afternoon",
+        "They've been playing soccer all afternoon",
+        "They have been playing football all afternoon",
+        "They've been playing football all afternoon"
+      ]
     },
     {
       "id": 33,
       "pt": "Você tem dormido bem?",
-      "en": "Have you been sleeping well?"
+      "en": [
+        "Have you been sleeping well?"
+      ]
     },
     {
       "id": 34,
       "pt": "Ela tem aprendido a tocar piano.",
-      "en": "She has been learning to play the piano."
+      "en": [
+        "She has been learning to play the piano",
+        "She's been learning to play the piano",
+        "She has been learning how to play the piano",
+        "She's been learning how to play the piano"
+      ]
     },
     {
       "id": 35,
       "pt": "Eu tenho pensado em você.",
-      "en": "I have been thinking about you."
+      "en": [
+        "I have been thinking about you",
+        "I've been thinking about you",
+        "I have been thinking of you",
+        "I've been thinking of you"
+      ]
     },
     {
       "id": 36,
       "pt": "Nós temos morado aqui há dez anos.",
-      "en": "We have been living here for ten years."
+      "en": [
+        "We have been living here for ten years",
+        "We've been living here for ten years",
+        "We have been living here for 10 years",
+        "We've been living here for 10 years"
+      ]
     },
     {
       "id": 37,
       "pt": "Por que você tem chorado?",
-      "en": "Why have you been crying?"
+      "en": [
+        "Why have you been crying?"
+      ]
     },
     {
       "id": 38,
       "pt": "Ele tem consertado o carro.",
-      "en": "He has been fixing the car."
+      "en": [
+        "He has been fixing the car",
+        "He's been fixing the car",
+        "He has been repairing the car",
+        "He's been repairing the car"
+      ]
     },
     {
       "id": 39,
       "pt": "Eu não tenho me sentido bem.",
-      "en": "I have not been feeling well."
+      "en": [
+        "I have not been feeling well",
+        "I haven't been feeling well",
+        "I've not been feeling well"
+      ]
     },
     {
       "id": 40,
       "pt": "Eles têm conversado por horas.",
-      "en": "They have been talking for hours."
+      "en": [
+        "They have been talking for hours",
+        "They've been talking for hours",
+        "They have been chatting for hours",
+        "They've been chatting for hours"
+      ]
     },
     {
       "id": 41,
       "pt": "Você tem assistido TV demais.",
-      "en": "You have been watching too much TV."
+      "en": [
+        "You have been watching too much TV",
+        "You've been watching too much TV",
+        "You have been watching too much television",
+        "You've been watching too much television"
+      ]
     },
     {
       "id": 42,
       "pt": "Ela tem corrido no parque?",
-      "en": "Has she been running in the park?"
+      "en": [
+        "Has she been running in the park?",
+        "Has she been jogging in the park?"
+      ]
     },
     {
       "id": 43,
       "pt": "Eu tenho procurado minhas chaves.",
-      "en": "I have been looking for my keys."
+      "en": [
+        "I have been looking for my keys",
+        "I've been looking for my keys",
+        "I have been searching for my keys",
+        "I've been searching for my keys"
+      ]
     },
     {
       "id": 44,
       "pt": "Nós temos economizado dinheiro.",
-      "en": "We have been saving money."
+      "en": [
+        "We have been saving money",
+        "We've been saving money"
+      ]
     },
     {
       "id": 45,
       "pt": "O cachorro tem latido a noite toda.",
-      "en": "The dog has been barking all night."
+      "en": [
+        "The dog has been barking all night",
+        "The dog's been barking all night",
+        "The dog has been barking the whole night",
+        "The dog's been barking the whole night"
+      ]
     },
     {
       "id": 46,
       "pt": "Eu tenho lido aquele livro.",
-      "en": "I have been reading that book."
+      "en": [
+        "I have been reading that book",
+        "I've been reading that book"
+      ]
     },
     {
       "id": 47,
       "pt": "Eles têm viajado pela Europa.",
-      "en": "They have been traveling around Europe."
+      "en": [
+        "They have been traveling around Europe",
+        "They've been traveling around Europe",
+        "They have been travelling around Europe",
+        "They've been travelling around Europe",
+        "They have been traveling through Europe",
+        "They've been traveling through Europe"
+      ]
     },
     {
       "id": 48,
       "pt": "Você tem comido saudável?",
-      "en": "Have you been eating healthy?"
+      "en": [
+        "Have you been eating healthy?",
+        "Have you been eating healthily?"
+      ]
     },
     {
       "id": 49,
       "pt": "Ela tem ensinado nesta escola desde 2015.",
-      "en": "She has been teaching at this school since 2015."
+      "en": [
+        "She has been teaching at this school since 2015",
+        "She's been teaching at this school since 2015",
+        "She has been teaching in this school since 2015",
+        "She's been teaching in this school since 2015"
+      ]
     },
     {
       "id": 50,
       "pt": "Eu tenho cozinhado o jantar.",
-      "en": "I have been cooking dinner."
+      "en": [
+        "I have been cooking dinner",
+        "I've been cooking dinner",
+        "I have been making dinner",
+        "I've been making dinner"
+      ]
     }
   ],
   "past_perfect": [

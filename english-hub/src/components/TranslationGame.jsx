@@ -15,6 +15,7 @@ import PageShell from './layout/PageShell';
 import ResultScreen from './shared/ResultScreen';
 import TranslationEducation from '../content/TranslationEducation';
 import StructureExplanation from '../content/StructureExplanation'; 
+import { normalizeSentence } from '../utils/textUtils';
 
 const ITEMS_PER_LEVEL = 10; 
 
@@ -37,6 +38,16 @@ const normalizeStrict = (text) => {
     .trim()
     .replace(/\s+/g, ' ') // Previne erro por espaço duplo acidental
     .toLowerCase();
+};
+
+const normalizeFlexible = (text) => {
+  return String(text || '')
+    .toLowerCase()
+    .normalize('NFD').replace(/[\u0300-\u036f]/g, '') // Remove acentos (ex: é -> e)
+    .replace(/[.,!?;:()"]/g, '') // Remove pontuação, parênteses e aspas
+    .replace(/-/g, ' ')          // Troca hífen por espaço (opcional, ajuda em 'well-known')
+    .replace(/\s+/g, ' ')        // Remove espaços duplos acidentais
+    .trim();
 };
 
 const TranslationGame = ({ onBack }) => {
@@ -153,15 +164,18 @@ const TranslationGame = ({ onBack }) => {
     if (answerStatus) return;
     
     const currentItem = shuffledQuestions[currentQuestionIndex];
-    // Usa helper interno para garantir que temos as respostas
+    // Garante que temos um array de respostas (ex: ["I have...", "I've..."])
     const possibleAnswers = getAnswers(currentItem?.en);
     
-    const userClean = normalizeStrict(userAnswer);
+    // Normaliza a resposta do usuário (tira pontos, vira minúscula)
+    const userClean = normalizeFlexible(userAnswer);
     
-    // Verifica se a resposta do usuário (normalizada) bate com ALGUMA das opções do JSON (normalizadas)
-    const isExactMatch = possibleAnswers.some(correctOption => normalizeStrict(correctOption) === userClean);
+    // Verifica se a resposta do usuário bate com ALGUMA das opções do JSON
+    const isCorrect = possibleAnswers.some(correctOption => {
+      return normalizeFlexible(correctOption) === userClean;
+    });
 
-    if (isExactMatch) {
+    if (isCorrect) {
       setAnswerStatus('correct');
       setScore(s => s + 1);
     } else {
@@ -446,7 +460,7 @@ const TranslationGame = ({ onBack }) => {
               </div>
 
               <div className="p-6 md:p-10">
-                <label className="block text-xs font-bold text-slate-400 uppercase tracking-widest mb-2 ml-1">Sua Tradução (Exata)</label>
+                <label className="block text-xs font-bold text-slate-400 uppercase tracking-widest mb-2 ml-1">Sua Tradução</label>
                 <div className="flex gap-2 mb-6">
                   <div className="relative grow" key={currentQuestionIndex}>
                     <textarea 
@@ -457,9 +471,9 @@ const TranslationGame = ({ onBack }) => {
                       placeholder="Digite exatamente como no inglês..."
                       rows={2}
                       className={`w-full p-4 rounded-xl border-2 outline-none font-medium text-lg resize-none transition-all ${
-                          answerStatus === 'correct' ? "border-green-500 bg-green-50 text-green-700" :
+                          answerStatus === 'correct' ? "border-green-500 bg-green-50 text-green-700" : // Verde SÓ quando acerta
                           answerStatus === 'incorrect' ? "border-red-500 bg-red-50 text-red-700" :
-                          "border-slate-300 focus:border-emerald-500 focus:ring-4 focus:ring-emerald-50"
+                          "border-slate-300 focus:border-blue-500 focus:ring-4 focus:ring-blue-50" // Azul quando está digitando
                       }`}
                       onKeyDown={(e) => { if (e.key === 'Enter' && !e.shiftKey && !answerStatus) { e.preventDefault(); checkAnswer(); } }}
                     />
@@ -517,12 +531,14 @@ const TranslationGame = ({ onBack }) => {
           {/* SIDEBAR DIREITA */}
           <div className="hidden xl:flex w-80 shrink-0 flex-col gap-4 sticky top-36">
              <AdUnit key={`desk-right`} slotId="3805162724" width="300px" height="250px" label="Patrocinado"/>
-             <div className="bg-amber-50 rounded-xl p-6 border border-amber-100 shadow-sm">
-                <h3 className="font-bold text-amber-800 mb-2 flex items-center gap-2">
-                   <Trophy className="w-4 h-4" /> Modo Hardcore
+             
+             {/* Bloco de Dica Atualizado */}
+             <div className="bg-blue-50 rounded-xl p-6 border border-blue-100 shadow-sm">
+                <h3 className="font-bold text-blue-800 mb-2 flex items-center gap-2">
+                   <Lightbulb className="w-4 h-4" /> Dica de Mestre
                 </h3>
-                <p className="text-sm text-amber-700/80 leading-relaxed">
-                   Atenção: A validação agora é exata. Respeite pontuação e contrações (ex: I'm, don't).
+                <p className="text-sm text-blue-700/80 leading-relaxed">
+                   Se tiver dúvidas sobre a regra gramatical, consulte a seção <strong>"Aprender Estrutura"</strong> logo abaixo do jogo.
                 </p>
              </div>
           </div>
