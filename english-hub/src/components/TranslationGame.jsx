@@ -4,9 +4,8 @@ import { Helmet } from 'react-helmet-async';
 import { 
   Languages, ArrowLeft, CheckCircle, XCircle, Mic, 
   Clock, GitBranch, Shield, ArrowLeftRight, Flame, Target, Scale, Heart, Lock, Lightbulb, Sparkles, HelpCircle, Trophy, BookOpen 
-} from 'lucide-react'; // Adicionado BookOpen
+} from 'lucide-react'; 
 
-// --- NOVO: Import do Loader ---
 import { loadGameData } from '../utils/dataLoader';
 
 import AdUnit from './ads/AdUnit'; 
@@ -14,7 +13,7 @@ import { useH5Ads } from '../hooks/useH5Ads';
 import PageShell from './layout/PageShell';
 import ResultScreen from './shared/ResultScreen';
 import TranslationEducation from '../content/TranslationEducation';
-import StructureExplanation from '../content/StructureExplanation'; // <--- NOVO IMPORT
+import StructureExplanation from '../content/StructureExplanation'; 
 import { normalizeSentence } from '../utils/textUtils';
 import { shuffleArray, ensureArray } from '../utils/arrayUtils';
 
@@ -28,7 +27,8 @@ const TranslationGame = ({ onBack }) => {
   // Refs
   const recognitionRef = useRef(null);
   const inputRef = useRef(null);
-  const structureRef = useRef(null); // <--- NOVA REF PARA SCROLL
+  const structureRef = useRef(null); // Ref para a explicação de estrutura (dentro do jogo)
+  const educationRef = useRef(null); // 1. Ref para a metodologia (menu)
 
   // States de Dados Assíncronos
   const [data, setData] = useState(null); 
@@ -45,7 +45,7 @@ const TranslationGame = ({ onBack }) => {
   const [answerStatus, setAnswerStatus] = useState(null); 
   const [isListening, setIsListening] = useState(false);
 
-  // --- CONFIGURAÇÃO VISUAL (Mantida) ---
+  // --- CONFIGURAÇÃO VISUAL ---
   const tagMeta = useMemo(() => ({
     conditional: { label: 'Condicionais', sub: 'If/Se', color: 'bg-amber-500', icon: GitBranch },
     concessive: { label: 'Concessivas', sub: 'Even/Embora', color: 'bg-teal-600', icon: Shield },
@@ -104,10 +104,16 @@ const TranslationGame = ({ onBack }) => {
     }, stopAllAudio);
   };
 
-  // --- NOVA FUNÇÃO DE SCROLL ---
   const scrollToStructure = () => {
     if (structureRef.current) {
       structureRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  };
+
+  // 2. Função de Scroll para Metodologia
+  const scrollToEducation = () => {
+    if (educationRef.current) {
+      educationRef.current.scrollIntoView({ behavior: 'smooth' });
     }
   };
 
@@ -291,12 +297,12 @@ const TranslationGame = ({ onBack }) => {
         description="O treino definitivo para você parar de travar. Aprenda a pensar em inglês traduzindo frases reais do dia a dia."
         icon={Languages}
         iconColorClass="bg-emerald-100 text-emerald-600"
+        onMethodologyClick={scrollToEducation} // 3. Passando a função
       >
         <h3 className="text-slate-500 font-bold uppercase tracking-wider text-sm mb-4 text-left pl-2 border-l-4 border-emerald-500">
            Modos de Treino
         </h3>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-12">
-             {/* Tag Modes */}
              {Object.entries(tagMeta).map(([key, meta]) => (
                  <div key={key} onClick={() => navigate(`/translation/level/${key}`)} className="bg-white border border-slate-200 p-5 rounded-xl cursor-pointer hover:shadow-lg hover:border-emerald-400 transition-all flex items-center gap-4 group">
                     <div className={`p-3 rounded-lg text-white ${meta.color} group-hover:scale-110 transition-transform`}>
@@ -308,7 +314,6 @@ const TranslationGame = ({ onBack }) => {
                     </div>
                 </div>
              ))}
-             {/* Extra Modes */}
              <div onClick={() => navigate(`/translation/level/present_perfect`)} className="bg-white border border-slate-200 p-5 rounded-xl cursor-pointer hover:shadow-lg hover:border-blue-400 transition-all flex items-center gap-4 group">
                   <div className="p-3 rounded-lg text-white bg-blue-500 group-hover:scale-110 transition-transform"><CheckCircle className="w-6 h-6" /></div>
                   <div className="text-left"><h4 className="font-bold text-slate-800">Present Perfect</h4></div>
@@ -318,7 +323,11 @@ const TranslationGame = ({ onBack }) => {
                   <div className="text-left"><h4 className="font-bold text-slate-800">All Tenses</h4></div>
              </div>
         </div>
-        <TranslationEducation />
+
+        {/* 4. Wrapper da Metodologia */}
+        <div ref={educationRef}>
+            <TranslationEducation />
+        </div>
       </PageShell>
     );
   }
@@ -389,7 +398,6 @@ const TranslationGame = ({ onBack }) => {
                  <ArrowLeft className="w-5 h-5" /> <span className="text-sm font-bold uppercase tracking-wide">Menu</span>
                </button>
 
-               {/* --- NOVO BOTÃO: APRENDER ESTRUTURA --- */}
                <button 
                   onClick={scrollToStructure}
                   className="flex items-center gap-2 text-emerald-600 hover:text-emerald-700 font-bold bg-emerald-50 hover:bg-emerald-100 px-3 py-1.5 rounded-lg transition-colors text-sm"
@@ -398,7 +406,6 @@ const TranslationGame = ({ onBack }) => {
                   <span className="hidden sm:inline">Aprender Estrutura</span>
                   <span className="sm:hidden">Aprender</span>
                </button>
-               {/* -------------------------------------- */}
 
                <span className="text-slate-400 text-sm font-bold uppercase tracking-widest">
                  {currentQuestionIndex + 1} / {shuffledQuestions.length}
@@ -470,7 +477,8 @@ const TranslationGame = ({ onBack }) => {
               </div>
             </div>
 
-            <TranslationEducation />
+            {/* AQUI ESTÁ A MUDANÇA: passamos a prop para forçar layout mobile */}
+            <TranslationEducation forceSingleColumn={true} />
             
             <div className="w-full my-16 flex flex-col items-center justify-center pointer-events-auto relative">
               <div className="w-full border-t border-slate-100 mb-8"></div>
@@ -478,11 +486,9 @@ const TranslationGame = ({ onBack }) => {
               <div className="w-full border-t border-slate-100 mt-8"></div>
             </div>
 
-            {/* --- NOVO: CARD DA ESTRUTURA (COM REF PARA SCROLL) --- */}
             <div ref={structureRef}>
                 <StructureExplanation mode={questionType} />
             </div>
-            {/* ----------------------------------------------------- */}
             
           </div>
 

@@ -1,7 +1,8 @@
 import React from 'react';
 import { Puzzle, BrainCircuit, BookOpen, Layers } from 'lucide-react';
 
-const PhrasalVerbsEducation = () => (
+// 1. Recebe a prop
+const PhrasalVerbsEducation = ({ forceSingleColumn = false }) => (
   <section className="w-full mt-12 px-6 py-10 bg-white rounded-3xl border border-slate-200 shadow-sm text-slate-600 animate-fadeIn">
     {/* Cabeçalho */}
     <div className="flex items-start gap-4 mb-8 border-b border-slate-100 pb-6">
@@ -18,7 +19,8 @@ const PhrasalVerbsEducation = () => (
       </div>
     </div>
     
-    <div className="prose prose-slate max-w-none grid md:grid-cols-2 gap-10 text-left">
+    {/* 2. Aplica a lógica condicional */}
+    <div className={`prose prose-slate max-w-none grid gap-10 text-left ${forceSingleColumn ? '' : 'md:grid-cols-2'}`}>
       
       {/* Coluna 1: A Lógica das Partículas */}
       <div className="space-y-6 flex flex-col justify-between h-full">
@@ -37,7 +39,6 @@ const PhrasalVerbsEducation = () => (
           <h4 className="text-sm font-bold text-slate-700 uppercase tracking-wider mb-3">Exemplos de Lógica</h4>
           <ul className="text-sm space-y-3">
              <li className="flex gap-3">
-              {/* ALTERAÇÃO AQUI: Adicionado 'w-12 text-center shrink-0' para fixar largura */}
               <span className="font-bold text-rose-500 bg-rose-50 px-2 py-0.5 rounded text-xs h-fit w-12 text-center shrink-0">UP</span>
               <span>
                  Geralmente indica <strong>conclusão</strong> ou <strong>aumento</strong>. <br/>
@@ -45,7 +46,6 @@ const PhrasalVerbsEducation = () => (
               </span>
             </li>
             <li className="flex gap-3">
-              {/* ALTERAÇÃO AQUI: Mesma largura fixa (w-12) para alinhar perfeitamente */}
               <span className="font-bold text-indigo-500 bg-indigo-50 px-2 py-0.5 rounded text-xs h-fit w-12 text-center shrink-0">OFF</span>
               <span>
                  Indica <strong>separação</strong> ou <strong>saída</strong>. <br/>

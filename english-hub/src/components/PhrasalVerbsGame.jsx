@@ -6,10 +6,6 @@ import {
   CheckCircle, XCircle, HelpCircle, Lightbulb
 } from 'lucide-react';
 
-// --- REMOVIDO: Import direto ---
-// import { PHRASAL_VERBS_DATA } from '../../public/data/gameData';
-
-// --- NOVO: Import do Loader ---
 import { loadGameData } from '../utils/dataLoader';
 
 import AdUnit from './ads/AdUnit';
@@ -29,13 +25,14 @@ const PhrasalVerbsGame = ({ onBack }) => {
 
   // --- REFS & STATES ---
   const firstInputRef = useRef(null);
+  const educationRef = useRef(null); // 1. Ref para a metodologia
   
   // States de Dados Assíncronos
-  const [data, setData] = useState([]); // Inicia vazio
+  const [data, setData] = useState([]); 
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  const [view, setView] = useState('menu'); // 'menu', 'game', 'result'
+  const [view, setView] = useState('menu'); 
   const [activePhase, setActivePhase] = useState(1);
   const [score, setScore] = useState(0); 
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
@@ -44,7 +41,6 @@ const PhrasalVerbsGame = ({ onBack }) => {
   const [userAnswers, setUserAnswers] = useState([]);
   const [feedback, setFeedback] = useState(null); 
   
-  // Total Phases agora depende de 'data'
   const totalPhases = data.length > 0 ? Math.ceil(data.length / ITEMS_PER_PHASE) : 0;
 
   // --- EFFECT: Carregar Dados ---
@@ -76,7 +72,7 @@ const PhrasalVerbsGame = ({ onBack }) => {
     }, stopAllAudio);
   };
 
-  // --- LOGICA DE ROTA (Segura) ---
+  // --- LOGICA DE ROTA ---
   useLayoutEffect(() => {
     if (!loading && data.length > 0) {
       if (levelId) {
@@ -91,13 +87,20 @@ const PhrasalVerbsGame = ({ onBack }) => {
         stopAllAudio();
       }
     }
-  }, [levelId, loading, totalPhases]); // Dependências atualizadas
+  }, [levelId, loading, totalPhases]); 
 
   useEffect(() => {
     if (view === 'game' && !feedback && firstInputRef.current && window.innerWidth >= 768) {
       setTimeout(() => firstInputRef.current?.focus(), 50);
     }
   }, [currentQuestionIndex, view, feedback]);
+
+  // 2. Função de Scroll
+  const scrollToEducation = () => {
+    if (educationRef.current) {
+      educationRef.current.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
 
   // --- GAME LOGIC ---
   const startGame = (phaseNumber) => {
@@ -106,7 +109,7 @@ const PhrasalVerbsGame = ({ onBack }) => {
     setActivePhase(phaseNumber);
     const startIndex = (phaseNumber - 1) * ITEMS_PER_PHASE;
     const endIndex = startIndex + ITEMS_PER_PHASE;
-    const originalQuestions = data.slice(startIndex, endIndex); // Usa 'data' aqui
+    const originalQuestions = data.slice(startIndex, endIndex); 
     
     if (originalQuestions.length === 0) {
       navigate('/phrasal', { replace: true });
@@ -195,6 +198,7 @@ const PhrasalVerbsGame = ({ onBack }) => {
         description="Pare de traduzir ao pé da letra. Aprenda os phrasal verbs essenciais para entender filmes, séries e conversas reais em inglês."
         icon={BrainCircuit}
         iconColorClass="bg-indigo-100 text-indigo-600"
+        onMethodologyClick={scrollToEducation} // 3. Passando a função
       >
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mb-12">
             {totalPhases > 0 ? (
@@ -228,7 +232,11 @@ const PhrasalVerbsGame = ({ onBack }) => {
               </div>
             )}
         </div>
-        <PhrasalVerbsEducation />
+        
+        {/* 4. Wrapper com Ref */}
+        <div ref={educationRef}>
+            <PhrasalVerbsEducation />
+        </div>
       </PageShell>
     );
   }
@@ -371,8 +379,10 @@ const PhrasalVerbsGame = ({ onBack }) => {
                   </form>
                 </div>
              </div>
+             
+             {/* MUDANÇA AQUI: forçar 1 coluna dentro do jogo */}
+             <PhrasalVerbsEducation forceSingleColumn={true} />
 
-             <PhrasalVerbsEducation />
              <div className="mt-12 pointer-events-auto">
                   <AdUnit slotId="4391086704" width="336px" height="280px" label="Publicidade"/>
              </div>

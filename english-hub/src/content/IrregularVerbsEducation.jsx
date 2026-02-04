@@ -1,9 +1,10 @@
 import React from 'react';
 import { BookOpen, Zap, Trophy, Target } from 'lucide-react';
 
-const IrregularVerbsEducation = () => (
+// 1. Recebe a prop
+const IrregularVerbsEducation = ({ forceSingleColumn = false }) => (
   <section className="w-full mt-12 px-6 py-10 bg-white rounded-3xl border border-slate-200 shadow-sm text-slate-600 animate-fadeIn">
-    {/* Cabeçalho do Artigo */}
+    {/* Cabeçalho */}
     <div className="flex items-center gap-4 mb-8 border-b border-slate-100 pb-6">
       <div className="bg-orange-100 p-3 rounded-xl text-orange-600 shadow-sm">
         <BookOpen className="w-8 h-8" />
@@ -18,7 +19,8 @@ const IrregularVerbsEducation = () => (
       </div>
     </div>
     
-    <div className="prose prose-slate max-w-none grid md:grid-cols-2 gap-10 text-left">
+    {/* 2. Aplica a lógica condicional do Grid */}
+    <div className={`prose prose-slate max-w-none grid gap-10 text-left ${forceSingleColumn ? '' : 'md:grid-cols-2'}`}>
       
       {/* Coluna 1: O Hack dos 70% + Tríade */}
       <div className="space-y-6 flex flex-col justify-between h-full">
@@ -27,7 +29,6 @@ const IrregularVerbsEducation = () => (
             <Zap className="w-5 h-5 text-amber-500" /> 
             O "Hack" dos 70%
           </h3>
-          {/* TEXTO EXPANDIDO AQUI 👇 */}
           <p className="text-sm leading-relaxed text-slate-600">
             Existe uma assimetria enorme no inglês: embora existam milhares de verbos regulares (aqueles terminados em <em>-ed</em>), os <strong>verbos irregulares dominam cerca de 70% das conversas reais</strong>. Isso ocorre porque as ações mais antigas e essenciais da humanidade (como <em>ser, ir, comer, ter</em>) resistiram à padronização gramatical ao longo dos séculos. 
             <br /><br />

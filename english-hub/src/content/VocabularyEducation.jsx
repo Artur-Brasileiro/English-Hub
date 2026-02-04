@@ -1,7 +1,8 @@
 import React from 'react';
 import { ShieldCheck, Info, BrainCircuit, BookOpen } from 'lucide-react';
 
-const VocabularyEducation = () => (
+// 1. Recebe a prop
+const VocabularyEducation = ({ forceSingleColumn = false }) => (
   <section className="w-full mt-12 px-6 py-10 bg-white rounded-3xl border border-slate-200 shadow-sm text-slate-600 animate-fadeIn">
     {/* Cabeçalho */}
     <div className="flex items-start gap-4 mb-8 border-b border-slate-100 pb-6">
@@ -18,7 +19,9 @@ const VocabularyEducation = () => (
       </div>
     </div>
     
-    <div className="prose prose-slate max-w-none grid md:grid-cols-2 gap-10 text-left">
+    {/* 2. Aplica a lógica condicional */}
+    <div className={`prose prose-slate max-w-none grid gap-10 text-left ${forceSingleColumn ? '' : 'md:grid-cols-2'}`}>
+      
       {/* Coluna Esquerda */}
       <div className="space-y-6 flex flex-col justify-between h-full">
         <div>
@@ -31,7 +34,6 @@ const VocabularyEducation = () => (
           </p>
         </div>
 
-        {/* ALTERAÇÃO AQUI 👇: Trocado por "O Poder da Constância" */}
         <div className="bg-slate-50 p-5 rounded-2xl border border-slate-200">
           <h4 className="text-sm font-bold text-slate-700 uppercase tracking-wider mb-3">O Poder da Constância</h4>
           <p className="text-sm leading-relaxed text-slate-600 mb-3">
@@ -48,7 +50,7 @@ const VocabularyEducation = () => (
         </div>
       </div>
       
-      {/* Coluna Direita (Mantida) */}
+      {/* Coluna Direita */}
       <div className="space-y-6 flex flex-col justify-between h-full">
         <div>
           <h3 className="text-lg font-bold text-slate-800 mb-3 flex items-center gap-2">

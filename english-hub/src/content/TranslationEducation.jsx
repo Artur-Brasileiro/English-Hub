@@ -1,9 +1,10 @@
 import React from 'react';
 import { PenTool, BrainCircuit, ShieldCheck } from 'lucide-react';
 
-const TranslationEducation = () => (
+// 1. Recebemos a prop 'forceSingleColumn' com valor padrão false
+const TranslationEducation = ({ forceSingleColumn = false }) => (
   <section className="w-full mt-12 px-6 py-10 bg-white rounded-3xl border border-slate-200 shadow-sm text-slate-600 animate-fadeIn">
-    {/* Cabeçalho com alinhamento ajustado (items-start) para manter o padrão */}
+    {/* Cabeçalho */}
     <div className="flex items-start gap-4 mb-8 border-b border-slate-100 pb-6">
       <div className="bg-emerald-100 p-3 rounded-xl text-emerald-600 shadow-sm mt-1">
         <PenTool className="w-8 h-8" />
@@ -18,11 +19,10 @@ const TranslationEducation = () => (
       </div>
     </div>
     
-    <div className="prose prose-slate max-w-none grid md:grid-cols-2 gap-10 text-left">
+    {/* 2. Lógica Condicional: Se forceSingleColumn for true, removemos 'md:grid-cols-2' */}
+    <div className={`prose prose-slate max-w-none grid gap-10 text-left ${forceSingleColumn ? '' : 'md:grid-cols-2'}`}>
       
-      {/* Coluna 1: Sintaxe e Chunking 
-          ALTERAÇÃO: Flexbox para alinhar altura
-      */}
+      {/* Coluna 1 */}
       <div className="space-y-6 flex flex-col justify-between h-full">
         <div>
           <h3 className="text-lg font-bold text-slate-800 mb-3 flex items-center gap-2">
@@ -44,14 +44,12 @@ const TranslationEducation = () => (
           </p>
           <ul className="text-sm space-y-3">
             <li className="flex gap-3">
-              {/* ALTERAÇÃO: Largura fixa (w-16) e texto centralizado */}
               <span className="font-bold text-rose-500 bg-rose-50 px-2 py-0.5 rounded text-xs h-fit w-16 text-center shrink-0">Erro</span>
               <span className="text-slate-500 line-through decoration-rose-500">
                 How (como) + old (velho) + are (é) + you (você)?
               </span>
             </li>
             <li className="flex gap-3">
-              {/* ALTERAÇÃO: Largura fixa (w-16) e texto centralizado */}
               <span className="font-bold text-emerald-500 bg-emerald-50 px-2 py-0.5 rounded text-xs h-fit w-16 text-center shrink-0">Acerto</span>
               <span className="font-medium text-slate-700">
                 [How old are you] = [Qual sua idade]
@@ -61,16 +59,13 @@ const TranslationEducation = () => (
         </div>
       </div>
       
-      {/* Coluna 2: Laboratório e Dicas 
-          ALTERAÇÃO: Flexbox para alinhar altura
-      */}
+      {/* Coluna 2 */}
       <div className="space-y-6 flex flex-col justify-between h-full">
         <div>
           <h3 className="text-lg font-bold text-slate-800 mb-3 flex items-center gap-2">
             <ShieldCheck className="w-5 h-5 text-rose-500" /> 
             O Laboratório de Erros
           </h3>
-          {/* TEXTO EXPANDIDO AQUI 👇 */}
           <p className="text-sm leading-relaxed text-slate-600">
             Na vida real, o medo de ser julgado bloqueia sua fala antes mesmo dela sair. Aqui, o erro é seu maior aliado e ferramenta de calibração. <br/><br/>
             Ao tentar montar a frase e receber a correção imediata, seu cérebro realiza um <strong>ajuste fino instantâneo</strong> (feedback loop), corrigindo a lógica gramatical muito mais rápido do que estudando regras abstratas em livros. Use este espaço seguro para errar quantas vezes for necessário até que a estrutura correta se torne natural.

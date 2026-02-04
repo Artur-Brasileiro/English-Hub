@@ -6,10 +6,6 @@ import {
   ArrowRight as ArrowRightIcon, CheckCircle, XCircle, Trophy
 } from 'lucide-react';
 
-// --- REMOVIDO: Import direto ---
-// import { IRREGULAR_VERBS_DATA } from '../../public/data/gameData';
-
-// --- NOVO: Import do Loader ---
 import { loadGameData } from '../utils/dataLoader';
 
 import AdUnit from './ads/AdUnit';
@@ -29,6 +25,7 @@ const IrregularVerbsGame = ({ onBack }) => {
   
   // --- STATE ---
   const firstInputRef = useRef(null);
+  const educationRef = useRef(null); // 1. Ref para a metodologia
 
   // States de Dados Assíncronos
   const [data, setData] = useState([]); 
@@ -103,13 +100,20 @@ const IrregularVerbsGame = ({ onBack }) => {
         setView('menu');
       }
     }
-  }, [levelId, loading, totalPhases]); // Dependências atualizadas
+  }, [levelId, loading, totalPhases]); 
 
   useEffect(() => {
     if (view === 'game' && !feedback && firstInputRef.current && window.innerWidth >= 768) {
       setTimeout(() => firstInputRef.current?.focus(), 50);
     }
   }, [currentQuestionIndex, view, feedback]);
+
+  // 2. Função de Scroll
+  const scrollToEducation = () => {
+    if (educationRef.current) {
+      educationRef.current.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
 
   // --- GAME LOGIC ---
   const toggleMode = (mode) => {
@@ -122,7 +126,7 @@ const IrregularVerbsGame = ({ onBack }) => {
     setActivePhase(phaseNumber);
     const startIndex = (phaseNumber - 1) * ITEMS_PER_PHASE;
     const endIndex = startIndex + ITEMS_PER_PHASE;
-    const originalQuestions = data.slice(startIndex, endIndex); // Usa 'data' aqui
+    const originalQuestions = data.slice(startIndex, endIndex); 
     
     if (originalQuestions.length === 0) {
         navigate('/irregular', { replace: true });
@@ -260,6 +264,7 @@ const IrregularVerbsGame = ({ onBack }) => {
         description="Decore a tabela de verbos irregulares de uma vez por todas. Treine Past Simple e Participle e pare de travar na hora de falar."
         icon={Gamepad2}
         iconColorClass="bg-orange-100 text-orange-600"
+        onMethodologyClick={scrollToEducation} // 3. Passando a função
       >
           {/* Seletor de Modos */}
           <div className="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm max-w-lg mx-auto mb-12">
@@ -318,7 +323,10 @@ const IrregularVerbsGame = ({ onBack }) => {
             )}
           </div>
           
-          <IrregularVerbsEducation />
+          {/* 4. Wrapper da Ref */}
+          <div ref={educationRef}>
+             <IrregularVerbsEducation />
+          </div>
       </PageShell>
     );
   }
@@ -421,7 +429,8 @@ const IrregularVerbsGame = ({ onBack }) => {
                 </div>
               </div>
 
-             <IrregularVerbsEducation />
+             {/* MUDANÇA AQUI: Força 1 coluna dentro do jogo */}
+             <IrregularVerbsEducation forceSingleColumn={true} />
 
              <div className="mt-12 pointer-events-auto">
                 <AdUnit slotId="4391086704" width="336px" height="280px" label="Publicidade"/>

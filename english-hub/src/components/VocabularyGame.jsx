@@ -3,17 +3,14 @@ import { useNavigate, useParams } from "react-router-dom";
 import { Helmet } from 'react-helmet-async';
 import {
   ArrowRight, Check, X, Trophy, ArrowLeft, PlayCircle,
-  CornerDownLeft, BookOpen
+  CornerDownLeft, BookOpen, ArrowDown
 } from 'lucide-react';
 
-// --- NOVO: Import do Loader ---
 import { loadGameData } from '../utils/dataLoader';
 
-// --- IMPORTS AD & HOOK ---
 import AdUnit from './ads/AdUnit'; 
 import { useH5Ads } from '../hooks/useH5Ads'; 
 
-// --- NOVOS IMPORTS REFATORADOS ---
 import PageShell from './layout/PageShell';
 import ResultScreen from './shared/ResultScreen';
 import VocabularyEducation from '../content/VocabularyEducation';
@@ -22,7 +19,6 @@ import { shuffleArray } from '../utils/arrayUtils';
 
 const WORDS_PER_LEVEL = 30;
 
-// --- HELPERS (Usando utils) ---
 const buildAcceptedAnswers = (ptArray) => {
   const accepted = new Set();
   const list = Array.isArray(ptArray) ? ptArray : [];
@@ -40,31 +36,28 @@ const isPronunciationMatch = (heardRaw, targetRaw) => {
   if (heard === target) return true;
   if (heard.includes(target)) return true;
   
-  // Usando a função de similaridade centralizada
   const score = calculateSimilarity(heard, target);
   
   if (target.length <= 4) return score >= 0.8;
   return score >= 0.85;
 };
 
-// --- COMPONENTE PRINCIPAL ---
 const VocabularyGame = ({ onBack }) => {
   const navigate = useNavigate();
   const { levelId } = useParams();
   const { triggerAdBreak } = useH5Ads();
 
   // --- STATES DE DADOS (Assíncrono) ---
-  const [data, setData] = useState([]); // Começa vazio
+  const [data, setData] = useState([]); 
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
   const urlLevel = levelId ? parseInt(levelId) : null;
   
-  // Total levels agora depende de 'data'
   const totalLevels = data.length > 0 ? Math.ceil(data.length / WORDS_PER_LEVEL) : 0;
 
   // States
-  const [view, setView] = useState('loading'); // Começa carregando
+  const [view, setView] = useState('loading'); 
   const [currentLevelId, setCurrentLevelId] = useState(urlLevel || 1);
   const [currentWordIndex, setCurrentWordIndex] = useState(0);
   const [tags, setTags] = useState([]); 
@@ -86,6 +79,9 @@ const VocabularyGame = ({ onBack }) => {
   const [isFocused, setIsFocused] = useState(false);
   const inputRef = useRef(null);
   const recognitionRef = useRef(null);
+  
+  // Ref para a seção de metodologia
+  const educationRef = useRef(null);
 
   // --- CARREGAMENTO DE DADOS ---
   useEffect(() => {
@@ -118,7 +114,7 @@ const VocabularyGame = ({ onBack }) => {
     }, stopAllAudio);
   };
 
-  // --- LOGICA DE ROTA (Segura) ---
+  // --- LOGICA DE ROTA ---
   useLayoutEffect(() => {
   if (!loading && data.length > 0) {
     if (urlLevel) {
@@ -144,11 +140,10 @@ const VocabularyGame = ({ onBack }) => {
   };
 
   const currentLevelWords = useMemo(() => {
-    if (data.length === 0) return []; // Proteção
+    if (data.length === 0) return []; 
     const startIndex = (currentLevelId - 1) * WORDS_PER_LEVEL;
     const endIndex = startIndex + WORDS_PER_LEVEL;
-    const levelWords = data.slice(startIndex, endIndex); // Usa 'data' aqui
-    // Usando shuffleArray do utils
+    const levelWords = data.slice(startIndex, endIndex); 
     return shuffleArray(levelWords);
   }, [currentLevelId, levelShuffleKey, data]);
 
@@ -284,7 +279,6 @@ const VocabularyGame = ({ onBack }) => {
     recognition.interimResults = false;
     recognition.maxAlternatives = 5;
 
-    // Tenta adicionar gramática (opcional)
     const SpeechGrammarList = window.SpeechGrammarList || window.webkitSpeechGrammarList;
     if (SpeechGrammarList) {
       try {
@@ -318,6 +312,13 @@ const VocabularyGame = ({ onBack }) => {
     recognitionRef.current = recognition;
     recognition.start();
   };
+  
+  // Função de scroll para a metodologia
+  const scrollToEducation = () => {
+      if (educationRef.current) {
+          educationRef.current.scrollIntoView({ behavior: 'smooth' });
+      }
+  };
 
   // ================= RENDER =================
 
@@ -337,7 +338,7 @@ const VocabularyGame = ({ onBack }) => {
      return <div className="p-10 text-center text-red-600 font-bold">{error}</div>;
   }
 
-  // 1. MENU
+  // 1. MENU (Atualizado com headerActions)
   if (view === 'menu') {
     const levelsArray = Array.from({ length: totalLevels }, (_, i) => i + 1);
 
@@ -347,7 +348,9 @@ const VocabularyGame = ({ onBack }) => {
         description={`O jogo ideal para treinar seu vocabulário e aprender as palavras mais usadas do inglês. São ${data.length} termos essenciais divididos em ${totalLevels} níveis.`}
         icon={BookOpen}
         iconColorClass="bg-rose-100 text-rose-600"
+        onMethodologyClick={scrollToEducation} // <--- SÓ PASSAR A FUNÇÃO AQUI
       >
+
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 mb-12">
             {levelsArray.map((levelId) => (
               <div
@@ -372,7 +375,10 @@ const VocabularyGame = ({ onBack }) => {
               </div>
             ))}
         </div>
-        <VocabularyEducation />
+        
+        <div ref={educationRef}>
+            <VocabularyEducation />
+        </div>
       </PageShell>
     );
   }
@@ -389,7 +395,6 @@ const VocabularyGame = ({ onBack }) => {
         colorClass="text-rose-500"
         btnColorClass="bg-slate-800 hover:bg-slate-900 shadow-slate-300"
       >
-        {/* Slot para Conteúdo Extra: Stats Detalhados */}
         <div className="grid grid-cols-2 gap-4 mb-4">
             <div className="bg-green-50 p-4 rounded-2xl border border-green-100">
               <p className="text-4xl font-black text-green-600">{stats.correct}</p>
@@ -401,7 +406,6 @@ const VocabularyGame = ({ onBack }) => {
             </div>
         </div>
         
-        {/* Botão Próximo Nível (Condicional) */}
         {currentLevelId < totalLevels && (
              <button
                 onClick={() => triggerAdBreak('next', `level_complete_${currentLevelId}`, () => navigate(`/vocabulary/level/${currentLevelId + 1}`), stopAllAudio)}
@@ -418,7 +422,6 @@ const VocabularyGame = ({ onBack }) => {
   const progressPercentage = (currentWordIndex / currentLevelWords.length) * 100;
   
   if (!currentWord) {
-      // Pequeno loading interno se o array estiver vazio momentaneamente
       return (
           <div className="min-h-screen flex items-center justify-center text-slate-400 font-bold gap-2">
             <div className="w-4 h-4 rounded-full bg-slate-400 animate-pulse"></div> Carregando nível...
@@ -564,7 +567,8 @@ const VocabularyGame = ({ onBack }) => {
               </div>
             </div>
 
-            <VocabularyEducation />
+            {/* MUDANÇA AQUI: Força 1 coluna dentro do jogo */}
+            <VocabularyEducation forceSingleColumn={true} />
 
             <div className="mt-40 pointer-events-auto">
               <AdUnit slotId="4391086704" width="336px" height="280px" label="Publicidade"/>
