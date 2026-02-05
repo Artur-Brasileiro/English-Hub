@@ -432,7 +432,7 @@ const IrregularVerbsGame = ({ onBack }) => {
              {/* MUDANÇA AQUI: Força 1 coluna dentro do jogo */}
              <IrregularVerbsEducation forceSingleColumn={true} />
 
-             <div className="mt-12 pointer-events-auto">
+             <div className="mt-12 pointer-events-auto flex flex-col items-center">
                 <AdUnit slotId="4391086704" width="336px" height="280px" label="Publicidade"/>
              </div>
           </div>

@@ -383,8 +383,8 @@ const PhrasalVerbsGame = ({ onBack }) => {
              {/* MUDANÇA AQUI: forçar 1 coluna dentro do jogo */}
              <PhrasalVerbsEducation forceSingleColumn={true} />
 
-             <div className="mt-12 pointer-events-auto">
-                  <AdUnit slotId="4391086704" width="336px" height="280px" label="Publicidade"/>
+             <div className="mt-12 pointer-events-auto flex flex-col items-center">
+                <AdUnit slotId="4391086704" width="336px" height="280px" label="Publicidade"/>
              </div>
           </div>
 
