@@ -271,6 +271,22 @@ const StructureExplanation = ({ mode }) => {
         { pt: "Ela terá saído quando você chegar. (Conclusão prévia)", en: "She will have left by the time you arrive." },
         { pt: "Nós teremos vivido aqui por 10 anos. (Duração futura)", en: "We will have lived here for ten years." }
       ]
+    },
+    questions: {
+      title: "Questions & Complex Structures",
+      description: "Dominar a arte de fazer perguntas vai além do básico. Aqui praticamos estruturas com condicionais ('If'), modais ('Should', 'Must'), sugestões e conectivos de contraste. O foco é a inversão correta e o uso de auxiliares em contextos avançados.",
+      structure: "(Wh-Word) + Auxiliar/Modal + Sujeito + Verbo... ?",
+      tips: [
+        "A Regra de Ouro: Em perguntas, o auxiliar (Do, Did, Will) ou Modal (Can, Should, Would) quase sempre vem ANTES do sujeito.",
+        "Condicionais (If): Ao perguntar 'O que você faria se...', usamos 'What WOULD you do if...' (Would + Sujeito).",
+        "Preposições no Final: Em inglês, é comum a preposição ir para o final da frase. Ex: 'Para que serve?' vira 'What is it FOR?'.",
+        "Modais: Verbos como Can, Could, Should e Must não precisam de 'Do/Does'. Eles mesmos fazem a pergunta (Ex: Should I go?)."
+      ],
+      examples: [
+        { pt: "O que você faria se ganhasse na loteria? (Condicional)", en: "What would you do if you won the lottery?" },
+        { pt: "Para que você está economizando dinheiro? (Preposição no final)", en: "What are you saving money for?" },
+        { pt: "Você sairia mesmo se estivesse chovendo? (Conectivo 'Even if')", en: "Would you go out even if it was raining?" }
+      ]
     }
   };
 
