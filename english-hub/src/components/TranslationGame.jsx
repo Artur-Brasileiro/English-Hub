@@ -272,11 +272,55 @@ const TranslationGame = ({ onBack }) => {
   };
 
   const getPrimaryTag = (tags = []) => tags.find((tag) => Object.keys(tagMeta).includes(tag));
+
+  const detectGrammarCategory = (item) => {
+    if (!data) return null;
+    
+    // Chaves no JSON que representam categorias gramaticais sem tags
+    const grammarKeys = ['future_perfect', 'past_perfect', 'present_perfect', 'questions'];
+    
+    for (const key of grammarKeys) {
+        // Verifica se o ID do item atual existe na lista dessa categoria
+        if (data[key] && Array.isArray(data[key])) {
+            if (data[key].some(i => i.id === item.id)) {
+                return key;
+            }
+        }
+    }
+    return null;
+  };
   
   const getGrammarType = (englishSentence) => {
      // Lógica simplificada de fallback para detectar gramática
      // Usada apenas quando estamos no modo "mix" ou numérico e queremos mostrar a cor certa
      return 'present_perfect'; 
+  };
+
+  // Helper para mapear cores de fundo para cores de borda/focus dinâmicas
+  const getFocusStyle = (bgClass) => {
+    const map = {
+        // Tag Meta Colors
+        'bg-amber-500': 'focus:border-amber-500 focus:ring-amber-50',
+        'bg-teal-600': 'focus:border-teal-600 focus:ring-teal-50',
+        'bg-cyan-600': 'focus:border-cyan-600 focus:ring-cyan-50',
+        'bg-rose-500': 'focus:border-rose-500 focus:ring-rose-50',
+        'bg-lime-600': 'focus:border-lime-600 focus:ring-lime-50',
+        'bg-emerald-600': 'focus:border-emerald-600 focus:ring-emerald-50',
+        'bg-blue-600': 'focus:border-blue-600 focus:ring-blue-50',
+        'bg-violet-600': 'focus:border-violet-600 focus:ring-violet-50',
+        'bg-fuchsia-500': 'focus:border-fuchsia-500 focus:ring-fuchsia-50',
+        'bg-orange-600': 'focus:border-orange-600 focus:ring-orange-50',
+        'bg-sky-600': 'focus:border-sky-600 focus:ring-sky-50',
+        'bg-indigo-600': 'focus:border-indigo-600 focus:ring-indigo-50',
+        'bg-slate-600': 'focus:border-slate-600 focus:ring-slate-50',
+
+        // Grammar Meta Colors
+        'bg-blue-500': 'focus:border-blue-500 focus:ring-blue-50',
+        'bg-purple-500': 'focus:border-purple-500 focus:ring-purple-50',
+        'bg-slate-800': 'focus:border-slate-800 focus:ring-slate-200',
+        'bg-emerald-500': 'focus:border-emerald-500 focus:ring-emerald-50', // Default Fallback
+    };
+    return map[bgClass] || 'focus:border-blue-500 focus:ring-blue-50';
   };
 
   if (loading) {
@@ -383,11 +427,19 @@ const TranslationGame = ({ onBack }) => {
 
   if (primaryTag) {
     questionType = primaryTag;
-  } else if (typeof currentMode === 'string' && grammarMeta[currentMode]) {
-    questionType = currentMode;
-  } else {
-    // Se for modo numérico ou não tiver tag, tenta inferir (ou usa default)
-    questionType = getGrammarType(currentItem.en);
+  } 
+  // 2. Prioridade Secundária: Gramática Específica (Detectada pelo ID)
+  // Isso garante que mesmo no modo "All Tenses", ele saiba que é um "Past Perfect"
+  else {
+    const detectedGrammar = detectGrammarCategory(currentItem);
+    
+    if (detectedGrammar) {
+        questionType = detectedGrammar;
+    } 
+    // 3. Fallback: Se não detectou nada específico, usa o rótulo do modo atual (ex: All Tenses)
+    else if (typeof currentMode === 'string' && grammarMeta[currentMode]) {
+        questionType = currentMode;
+    }
   }
 
   let headerColor = 'bg-emerald-500';
@@ -407,6 +459,9 @@ const TranslationGame = ({ onBack }) => {
       else if (questionType === 'all_tenses') HeaderIcon = Flame;
       else HeaderIcon = CheckCircle;
   }
+
+  // Resolve a cor do foco baseado na cor do header
+  const focusStyle = getFocusStyle(headerColor);
 
   return (
     <div className="min-h-screen bg-slate-50 font-sans text-slate-800 flex flex-col items-center">
@@ -473,7 +528,7 @@ const TranslationGame = ({ onBack }) => {
                       className={`w-full p-4 rounded-xl border-2 outline-none font-medium text-lg resize-none transition-all ${
                           answerStatus === 'correct' ? "border-green-500 bg-green-50 text-green-700" : // Verde SÓ quando acerta
                           answerStatus === 'incorrect' ? "border-red-500 bg-red-50 text-red-700" :
-                          "border-slate-300 focus:border-blue-500 focus:ring-4 focus:ring-blue-50" // Azul quando está digitando
+                          `border-slate-300 focus:ring-4 ${focusStyle}` // Dinâmico baseado no modo
                       }`}
                       onKeyDown={(e) => { if (e.key === 'Enter' && !e.shiftKey && !answerStatus) { e.preventDefault(); checkAnswer(); } }}
                     />
