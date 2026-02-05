@@ -1126,252 +1126,557 @@
     {
       "id": 101,
       "pt": "Eu terei terminado até amanhã.",
-      "en": "I will have finished by tomorrow."
+      "en": [
+        "I will have finished by tomorrow",
+        "I'll have finished by tomorrow",
+        "I will have finished it by tomorrow",
+        "I'll have finished it by tomorrow",
+        "I will have completed it by tomorrow",
+        "I'll have completed it by tomorrow",
+        "I will have done it by tomorrow",
+        "I'll have done it by tomorrow"
+      ]
     },
     {
       "id": 102,
       "pt": "Ela terá saído quando você chegar.",
-      "en": "She will have left by the time you arrive."
+      "en": [
+        "She will have left by the time you arrive",
+        "She'll have left by the time you arrive",
+        "She will have gone by the time you arrive",
+        "She'll have gone by the time you arrive",
+        "She will have left by the time you get here",
+        "She'll have left by the time you get here",
+        "She will have left when you arrive",
+        "She'll have left when you arrive"
+      ]
     },
     {
       "id": 103,
       "pt": "Nós teremos feito o trabalho até as 5.",
-      "en": "We will have done the work by 5."
+      "en": [
+        "We will have done the work by 5",
+        "We'll have done the work by 5",
+        "We will have finished the work by 5",
+        "We'll have finished the work by 5",
+        "We will have completed the work by 5",
+        "We'll have completed the work by 5",
+        "We will have done the work by 5 o'clock",
+        "We'll have done the work by 5 o'clock"
+      ]
     },
     {
       "id": 104,
       "pt": "Eles terão chegado em casa?",
-      "en": "Will they have arrived home?"
+      "en": [
+        "Will they have arrived home?",
+        "Will they have gotten home?",
+        "Will they have reached home?",
+        "Will they have come home?"
+      ]
     },
     {
       "id": 105,
       "pt": "Eu não terei esquecido isso.",
-      "en": "I will not have forgotten this."
+      "en": [
+        "I will not have forgotten this",
+        "I won't have forgotten this",
+        "I will not have forgotten about this",
+        "I won't have forgotten about this",
+        "I will not have forgotten it",
+        "I won't have forgotten it"
+      ]
     },
     {
       "id": 106,
       "pt": "O filme já terá terminado.",
-      "en": "The movie will have already finished."
+      "en": [
+        "The movie will have already finished",
+        "The movie will have finished already",
+        "The film will have already finished",
+        "The film will have finished already",
+        "The movie will have already ended",
+        "The film will have already ended"
+      ]
     },
     {
       "id": 107,
       "pt": "Você terá lido o livro até a aula?",
-      "en": "Will you have read the book by class?"
+      "en": [
+        "Will you have read the book by class?",
+        "Will you have read the book before class?",
+        "Will you have finished the book by class?",
+        "Will you have finished reading the book by class?"
+      ]
     },
     {
       "id": 108,
       "pt": "Ela terá se formado no ano que vem.",
-      "en": "She will have graduated next year."
+      "en": [
+        "She will have graduated next year",
+        "She'll have graduated next year",
+        "She will have graduated by next year",
+        "She'll have graduated by next year"
+      ]
     },
     {
       "id": 109,
       "pt": "Nós teremos vivido aqui por dez anos em breve.",
-      "en": "We will have lived here for ten years soon."
+      "en": [
+        "We will have lived here for ten years soon",
+        "We'll have lived here for ten years soon",
+        "We will have lived here for 10 years soon",
+        "We'll have lived here for 10 years soon",
+        "Soon we will have lived here for ten years",
+        "Soon we'll have lived here for ten years"
+      ]
     },
     {
       "id": 110,
       "pt": "Ele terá consertado o carro até sexta?",
-      "en": "Will he have fixed the car by Friday?"
+      "en": [
+        "Will he have fixed the car by Friday?",
+        "Will he have repaired the car by Friday?",
+        "Will he have finished fixing the car by Friday?"
+      ]
     },
     {
       "id": 111,
       "pt": "Eu terei economizado dinheiro suficiente.",
-      "en": "I will have saved enough money."
+      "en": [
+        "I will have saved enough money",
+        "I'll have saved enough money",
+        "I will have saved up enough money",
+        "I'll have saved up enough money",
+        "I will have saved sufficient money",
+        "I'll have saved sufficient money"
+      ]
     },
     {
       "id": 112,
       "pt": "Tudo terá mudado até lá.",
-      "en": "Everything will have changed by then."
+      "en": [
+        "Everything will have changed by then",
+        "Everything will have changed by that time"
+      ]
     },
     {
       "id": 113,
       "pt": "Ela terá preparado o jantar.",
-      "en": "She will have cooked dinner."
+      "en": [
+        "She will have cooked dinner",
+        "She'll have cooked dinner",
+        "She will have prepared dinner",
+        "She'll have prepared dinner",
+        "She will have made dinner",
+        "She'll have made dinner",
+        "She will have cooked the dinner",
+        "She'll have cooked the dinner"
+      ]
     },
     {
       "id": 114,
       "pt": "Nós não teremos ido ainda.",
-      "en": "We will not have gone yet."
+      "en": [
+        "We will not have gone yet",
+        "We won't have gone yet",
+        "We will not have left yet",
+        "We won't have left yet",
+        "We will not have departed yet",
+        "We won't have departed yet"
+      ]
     },
     {
       "id": 115,
       "pt": "O sol terá se posto.",
-      "en": "The sun will have set."
+      "en": [
+        "The sun will have set",
+        "The sun will have gone down"
+      ]
     },
     {
       "id": 116,
       "pt": "Eu terei escrito o relatório.",
-      "en": "I will have written the report."
+      "en": [
+        "I will have written the report",
+        "I'll have written the report"
+      ]
     },
     {
       "id": 117,
       "pt": "Eles terão construído a ponte.",
-      "en": "They will have built the bridge."
+      "en": [
+        "They will have built the bridge",
+        "They'll have built the bridge",
+        "They will have constructed the bridge",
+        "They'll have constructed the bridge"
+      ]
     },
     {
       "id": 118,
       "pt": "Você terá limpado seu quarto?",
-      "en": "Will you have cleaned your room?"
+      "en": [
+        "Will you have cleaned your room?",
+        "Will you have cleaned up your room?",
+        "Will you have tidied your room?",
+        "Will you have tidied up your room?"
+      ]
     },
     {
       "id": 119,
       "pt": "Ela terá aprendido inglês.",
-      "en": "She will have learned English."
+      "en": [
+        "She will have learned English",
+        "She'll have learned English",
+        "She will have learnt English",
+        "She'll have learnt English"
+      ]
     },
     {
       "id": 120,
       "pt": "Eu terei visto tudo.",
-      "en": "I will have seen everything."
+      "en": [
+        "I will have seen everything",
+        "I'll have seen everything",
+        "I will have seen it all",
+        "I'll have seen it all"
+      ]
     },
     {
       "id": 121,
       "pt": "O avião terá pousado.",
-      "en": "The plane will have landed."
+      "en": [
+        "The plane will have landed",
+        "The airplane will have landed",
+        "The plane will have arrived",
+        "The airplane will have arrived"
+      ]
     },
     {
       "id": 122,
       "pt": "Nós teremos pago a dívida.",
-      "en": "We will have paid the debt."
+      "en": [
+        "We will have paid the debt",
+        "We'll have paid the debt",
+        "We will have paid off the debt",
+        "We'll have paid off the debt"
+      ]
     },
     {
       "id": 123,
       "pt": "Ele terá encontrado um emprego.",
-      "en": "He will have found a job."
+      "en": [
+        "He will have found a job",
+        "He'll have found a job",
+        "He will have gotten a job",
+        "He'll have gotten a job",
+        "He will have found work",
+        "He'll have found work"
+      ]
     },
     {
       "id": 124,
       "pt": "Eu terei acordado antes de você.",
-      "en": "I will have woken up before you."
+      "en": [
+        "I will have woken up before you",
+        "I'll have woken up before you",
+        "I will have woken up before you do",
+        "I'll have woken up before you do",
+        "I will have awoken before you",
+        "I'll have awoken before you"
+      ]
     },
     {
       "id": 125,
       "pt": "A neve terá derretido.",
-      "en": "The snow will have melted."
+      "en": [
+        "The snow will have melted",
+        "The snow will have melted away",
+        "The snow will have thawed"
+      ]
     },
     {
       "id": 126,
       "pt": "Eu terei enviado o e-mail até o almoço.",
-      "en": "I will have sent the email by lunch."
+      "en": [
+        "I will have sent the email by lunch",
+        "I'll have sent the email by lunch",
+        "I will have sent the email by lunchtime",
+        "I'll have sent the email by lunchtime"
+      ]
     },
     {
       "id": 127,
       "pt": "Ela terá terminado a prova antes do tempo.",
-      "en": "She will have finished the test ahead of time."
+      "en": [
+        "She will have finished the test ahead of time",
+        "She'll have finished the test ahead of time",
+        "She will have finished the exam ahead of time",
+        "She'll have finished the exam ahead of time",
+        "She will have completed the test ahead of time",
+        "She'll have completed the test ahead of time"
+      ]
     },
     {
       "id": 128,
       "pt": "Nós teremos comprado os ingressos até hoje à noite.",
-      "en": "We will have bought the tickets by tonight."
+      "en": [
+        "We will have bought the tickets by tonight",
+        "We'll have bought the tickets by tonight",
+        "We will have purchased the tickets by tonight",
+        "We'll have purchased the tickets by tonight",
+        "We will have gotten the tickets by tonight",
+        "We'll have gotten the tickets by tonight"
+      ]
     },
     {
       "id": 129,
       "pt": "Eles terão resolvido o problema até segunda-feira.",
-      "en": "They will have solved the problem by Monday."
+      "en": [
+        "They will have solved the problem by Monday",
+        "They'll have solved the problem by Monday",
+        "They will have fixed the problem by Monday",
+        "They'll have fixed the problem by Monday",
+        "They will have resolved the issue by Monday",
+        "They'll have resolved the issue by Monday"
+      ]
     },
     {
       "id": 130,
       "pt": "Você terá feito a lição antes da aula?",
-      "en": "Will you have done the homework before class?"
+      "en": [
+        "Will you have done the homework before class?",
+        "Will you have finished the homework before class?",
+        "Will you have done your homework before class?",
+        "Will you have finished your homework before class?"
+      ]
     },
     {
       "id": 131,
       "pt": "Eu não terei perdido meu tempo.",
-      "en": "I will not have wasted my time."
+      "en": [
+        "I will not have wasted my time",
+        "I won't have wasted my time"
+      ]
     },
     {
       "id": 132,
       "pt": "Ele terá aprendido a dirigir até o fim do mês.",
-      "en": "He will have learned to drive by the end of the month."
+      "en": [
+        "He will have learned to drive by the end of the month",
+        "He'll have learned to drive by the end of the month",
+        "He will have learned how to drive by the end of the month",
+        "He'll have learned how to drive by the end of the month",
+        "He will have learnt to drive by the end of the month",
+        "He'll have learnt to drive by the end of the month"
+      ]
     },
     {
       "id": 133,
       "pt": "Nós teremos assistido ao episódio novo.",
-      "en": "We will have watched the new episode."
+      "en": [
+        "We will have watched the new episode",
+        "We'll have watched the new episode",
+        "We will have seen the new episode",
+        "We'll have seen the new episode"
+      ]
     },
     {
       "id": 134,
       "pt": "Ela terá limpado toda a casa.",
-      "en": "She will have cleaned the whole house."
+      "en": [
+        "She will have cleaned the whole house",
+        "She'll have cleaned the whole house",
+        "She will have cleaned the entire house",
+        "She'll have cleaned the entire house",
+        "She will have cleaned up the whole house",
+        "She'll have cleaned up the whole house"
+      ]
     },
     {
       "id": 135,
       "pt": "O trem terá partido quando chegarmos.",
-      "en": "The train will have left when we arrive."
+      "en": [
+        "The train will have left when we arrive",
+        "The train will have left by the time we arrive",
+        "The train will have departed when we arrive",
+        "The train will have departed by the time we arrive",
+        "The train will have left when we get there",
+        "The train will have left by the time we get there"
+      ]
     },
     {
       "id": 136,
       "pt": "Eu terei terminado meu curso até dezembro.",
-      "en": "I will have finished my course by December."
+      "en": [
+        "I will have finished my course by December",
+        "I'll have finished my course by December",
+        "I will have completed my course by December",
+        "I'll have completed my course by December",
+        "I will have done my course by December",
+        "I'll have done my course by December"
+      ]
     },
     {
       "id": 137,
       "pt": "Eles não terão esquecido a reunião.",
-      "en": "They will not have forgotten the meeting."
+      "en": [
+        "They will not have forgotten the meeting",
+        "They won't have forgotten the meeting",
+        "They will not have forgotten about the meeting",
+        "They won't have forgotten about the meeting"
+      ]
     },
     {
       "id": 138,
       "pt": "Você terá preparado tudo até amanhã?",
-      "en": "Will you have prepared everything by tomorrow?"
+      "en": [
+        "Will you have prepared everything by tomorrow?",
+        "Will you have gotten everything ready by tomorrow?",
+        "Will you have got everything ready by tomorrow?",
+        "Will you have set everything up by tomorrow?"
+      ]
     },
     {
       "id": 139,
       "pt": "Nós teremos viajado para três cidades até lá.",
-      "en": "We will have traveled to three cities by then."
+      "en": [
+        "We will have traveled to three cities by then",
+        "We'll have traveled to three cities by then",
+        "We will have travelled to three cities by then",
+        "We'll have travelled to three cities by then",
+        "We will have visited three cities by then",
+        "We'll have visited three cities by then"
+      ]
     },
     {
       "id": 140,
       "pt": "Ela terá feito novos amigos.",
-      "en": "She will have made new friends."
+      "en": [
+        "She will have made new friends",
+        "She'll have made new friends",
+        "She will have made some new friends",
+        "She'll have made some new friends"
+      ]
     },
     {
       "id": 141,
       "pt": "Eu terei trocado de celular até o fim do ano.",
-      "en": "I will have changed my phone by the end of the year."
+      "en": [
+        "I will have changed my phone by the end of the year",
+        "I'll have changed my phone by the end of the year",
+        "I will have gotten a new phone by the end of the year",
+        "I'll have gotten a new phone by the end of the year",
+        "I will have switched phones by the end of the year",
+        "I'll have switched phones by the end of the year"
+      ]
     },
     {
       "id": 142,
       "pt": "Ele terá consertado o computador até amanhã.",
-      "en": "He will have fixed the computer by tomorrow."
+      "en": [
+        "He will have fixed the computer by tomorrow",
+        "He'll have fixed the computer by tomorrow",
+        "He will have repaired the computer by tomorrow",
+        "He'll have repaired the computer by tomorrow"
+      ]
     },
     {
       "id": 143,
       "pt": "Nós não teremos terminado ainda.",
-      "en": "We will not have finished yet."
+      "en": [
+        "We will not have finished yet",
+        "We won't have finished yet",
+        "We will not have done yet",
+        "We won't have done yet",
+        "We will not have finished it yet",
+        "We won't have finished it yet"
+      ]
     },
     {
       "id": 144,
       "pt": "Você terá entendido a explicação?",
-      "en": "Will you have understood the explanation?"
+      "en": [
+        "Will you have understood the explanation?",
+        "Will you have gotten the explanation?",
+        "Will you have grasped the explanation?"
+      ]
     },
     {
       "id": 145,
       "pt": "Eles terão fechado o contrato até sexta.",
-      "en": "They will have signed the contract by Friday."
+      "en": [
+        "They will have signed the contract by Friday",
+        "They'll have signed the contract by Friday",
+        "They will have closed the contract by Friday",
+        "They'll have closed the contract by Friday",
+        "They will have finalized the contract by Friday",
+        "They'll have finalized the contract by Friday",
+        "They will have closed the deal by Friday",
+        "They'll have closed the deal by Friday"
+      ]
     },
     {
       "id": 146,
       "pt": "Eu terei estudado bastante para a prova.",
-      "en": "I will have studied enough for the test."
+      "en": [
+        "I will have studied enough for the test",
+        "I'll have studied enough for the test",
+        "I will have studied hard for the test",
+        "I'll have studied hard for the test",
+        "I will have studied a lot for the test",
+        "I'll have studied a lot for the test",
+        "I will have studied hard for the exam",
+        "I'll have studied hard for the exam"
+      ]
     },
     {
       "id": 147,
       "pt": "Ela terá alcançado o objetivo.",
-      "en": "She will have achieved the goal."
+      "en": [
+        "She will have achieved the goal",
+        "She'll have achieved the goal",
+        "She will have reached the goal",
+        "She'll have reached the goal",
+        "She will have met the goal",
+        "She'll have met the goal",
+        "She will have achieved her goal",
+        "She'll have achieved her goal"
+      ]
     },
     {
       "id": 148,
       "pt": "Nós teremos terminado o projeto até o prazo.",
-      "en": "We will have finished the project by the deadline."
+      "en": [
+        "We will have finished the project by the deadline",
+        "We'll have finished the project by the deadline",
+        "We will have completed the project by the deadline",
+        "We'll have completed the project by the deadline",
+        "We will have done the project by the deadline",
+        "We'll have done the project by the deadline"
+      ]
     },
     {
       "id": 149,
       "pt": "Ele não terá chegado a tempo.",
-      "en": "He will not have arrived on time."
+      "en": [
+        "He will not have arrived on time",
+        "He won't have arrived on time",
+        "He will not have made it on time",
+        "He won't have made it on time",
+        "He will not have gotten there on time",
+        "He won't have gotten there on time"
+      ]
     },
     {
       "id": 150,
       "pt": "O sistema terá sido atualizado até amanhã.",
-      "en": "The system will have been updated by tomorrow."
+      "en": [
+        "The system will have been updated by tomorrow",
+        "The system will have updated by tomorrow",
+        "The system will have been upgraded by tomorrow",
+        "The system will have upgraded by tomorrow"
+      ]
     }
   ],
   "tagged": [
