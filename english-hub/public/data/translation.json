@@ -574,252 +574,552 @@
     {
       "id": 51,
       "pt": "Quando cheguei, ela já tinha saído.",
-      "en": "When I arrived, she had already left."
+      "en": [
+        "When I arrived, she had already left",
+        "When I arrived, she'd already left",
+        "She had already left when I arrived",
+        "She'd already left when I arrived",
+        "When I arrived, she had already gone",
+        "When I arrived, she'd already gone"
+      ]
     },
     {
       "id": 52,
       "pt": "Eu nunca tinha visto aquilo antes.",
-      "en": "I had never seen that before."
+      "en": [
+        "I had never seen that before",
+        "I'd never seen that before",
+        "I had never seen it before",
+        "I'd never seen it before"
+      ]
     },
     {
       "id": 53,
       "pt": "Eles tinham acabado de terminar o jantar.",
-      "en": "They had just finished dinner."
+      "en": [
+        "They had just finished dinner",
+        "They'd just finished dinner",
+        "They had just finished eating dinner",
+        "They'd just finished eating dinner",
+        "They had just had dinner",
+        "They'd just had dinner"
+      ]
     },
     {
       "id": 54,
       "pt": "O filme já tinha começado?",
-      "en": "Had the movie already started?"
+      "en": [
+        "Had the movie already started?",
+        "Had the movie started already?",
+        "Had the film already started?",
+        "Had the film started already?",
+        "Had the movie already begun?",
+        "Had the film already begun?"
+      ]
     },
     {
       "id": 55,
       "pt": "Eu perdi a chave que ele tinha me dado.",
-      "en": "I lost the key he had given me."
+      "en": [
+        "I lost the key he had given me",
+        "I lost the key he'd given me",
+        "I lost the key that he had given me",
+        "I lost the key that he'd given me",
+        "I lost the key he had given to me",
+        "I lost the key he'd given to me"
+      ]
     },
     {
       "id": 56,
       "pt": "Ela disse que não tinha estudado.",
-      "en": "She said she had not studied."
+      "en": [
+        "She said she had not studied",
+        "She said she hadn't studied",
+        "She said that she had not studied",
+        "She said that she hadn't studied",
+        "She told me she had not studied",
+        "She told me she hadn't studied"
+      ]
     },
     {
       "id": 57,
       "pt": "Nós ficamos felizes porque tínhamos vencido.",
-      "en": "We were happy because we had won."
+      "en": [
+        "We were happy because we had won",
+        "We were happy because we'd won",
+        "We were glad because we had won",
+        "We were glad because we'd won",
+        "We felt happy because we had won",
+        "We felt happy because we'd won"
+      ]
     },
     {
       "id": 58,
       "pt": "Ele tinha esquecido seu passaporte.",
-      "en": "He had forgotten his passport."
+      "en": [
+        "He had forgotten his passport",
+        "He'd forgotten his passport",
+        "He had forgotten his own passport",
+        "He'd forgotten his own passport"
+      ]
     },
     {
       "id": 59,
       "pt": "Você já tinha estado lá antes?",
-      "en": "Had you been there before?"
+      "en": [
+        "Had you been there before?",
+        "Had you ever been there before?",
+        "Had you already been there?",
+        "Had you been there already?",
+        "Had you visited there before?"
+      ]
     },
     {
       "id": 60,
       "pt": "A chuva tinha parado quando saímos.",
-      "en": "The rain had stopped when we went out."
+      "en": [
+        "The rain had stopped when we went out",
+        "The rain had stopped when we left",
+        "It had stopped raining when we went out",
+        "It had stopped raining when we left",
+        "The rain had ceased when we went out",
+        "The rain had ceased when we left"
+      ]
     },
     {
       "id": 61,
       "pt": "Eu percebi que tinha cometido um erro.",
-      "en": "I realized I had made a mistake."
+      "en": [
+        "I realized I had made a mistake",
+        "I realized I'd made a mistake",
+        "I realized that I had made a mistake",
+        "I realized that I'd made a mistake",
+        "I realized I had made an error",
+        "I realized I'd made an error"
+      ]
     },
     {
       "id": 62,
       "pt": "Ela estava cansada porque tinha trabalhado muito.",
-      "en": "She was tired because she had worked hard."
+      "en": [
+        "She was tired because she had worked hard",
+        "She was tired because she'd worked hard",
+        "She was tired because she had worked a lot",
+        "She was tired because she'd worked a lot",
+        "She was tired because she had worked so hard",
+        "She was tired because she'd worked so hard"
+      ]
     },
     {
       "id": 63,
       "pt": "Eles não tinham comido nada o dia todo.",
-      "en": "They had not eaten anything all day."
+      "en": [
+        "They had not eaten anything all day",
+        "They hadn't eaten anything all day",
+        "They had eaten nothing all day",
+        "They'd eaten nothing all day",
+        "They had not eaten anything the whole day",
+        "They hadn't eaten anything the whole day"
+      ]
     },
     {
       "id": 64,
       "pt": "Eu pensei que você tinha ligado.",
-      "en": "I thought you had called."
+      "en": [
+        "I thought you had called",
+        "I thought you'd called",
+        "I thought that you had called",
+        "I thought that you'd called",
+        "I thought you had phoned",
+        "I thought you'd phoned",
+        "I thought you had rung",
+        "I thought you'd rung"
+      ]
     },
     {
       "id": 65,
       "pt": "A casa estava quieta, as crianças tinham dormido.",
-      "en": "The house was quiet, the children had slept."
+      "en": [
+        "The house was quiet, the children had slept",
+        "The house was quiet, the children had gone to sleep",
+        "The house was quiet, the children had fallen asleep",
+        "The house was quiet, the children had gone to bed",
+        "The house was quiet, the kids had gone to sleep",
+        "The house was quiet, the kids had fallen asleep"
+      ]
     },
     {
       "id": 66,
       "pt": "Ele me disse que tinha comprado um carro.",
-      "en": "He told me he had bought a car."
+      "en": [
+        "He told me he had bought a car",
+        "He told me he'd bought a car",
+        "He told me that he had bought a car",
+        "He told me that he'd bought a car",
+        "He said that he had bought a car",
+        "He said that he'd bought a car",
+        "He told me he had purchased a car",
+        "He told me he'd purchased a car"
+      ]
     },
     {
       "id": 67,
       "pt": "Eu não sabia quem tinha enviado a carta.",
-      "en": "I did not know who had sent the letter."
+      "en": [
+        "I did not know who had sent the letter",
+        "I didn't know who had sent the letter",
+        "I didn't know who'd sent the letter",
+        "I did not know who had mailed the letter",
+        "I didn't know who had mailed the letter"
+      ]
     },
     {
       "id": 68,
       "pt": "Ela tinha vivido em Londres antes de mudar.",
-      "en": "She had lived in London before moving."
+      "en": [
+        "She had lived in London before moving",
+        "She'd lived in London before moving",
+        "She had lived in London before she moved",
+        "She'd lived in London before she moved",
+        "She had resided in London before moving",
+        "She'd resided in London before moving"
+      ]
     },
     {
       "id": 69,
       "pt": "Nós tínhamos reservado uma mesa.",
-      "en": "We had reserved a table."
+      "en": [
+        "We had reserved a table",
+        "We'd reserved a table",
+        "We had booked a table",
+        "We'd booked a table"
+      ]
     },
     {
       "id": 70,
       "pt": "O ladrão já tinha escapado.",
-      "en": "The thief had already escaped."
+      "en": [
+        "The thief had already escaped",
+        "The thief had escaped already",
+        "The thief had already gotten away",
+        "The thief had already fled",
+        "The thief had already run away"
+      ]
     },
     {
       "id": 71,
       "pt": "Você tinha terminado o relatório?",
-      "en": "Had you finished the report?"
+      "en": [
+        "Had you finished the report?",
+        "Had you completed the report?",
+        "Had you done the report?"
+      ]
     },
     {
       "id": 72,
       "pt": "Eu nunca tinha conhecido alguém tão famoso.",
-      "en": "I had never met someone so famous."
+      "en": [
+        "I had never met someone so famous",
+        "I'd never met someone so famous",
+        "I had never met anyone so famous",
+        "I'd never met anyone so famous",
+        "I had never met anybody so famous",
+        "I'd never met anybody so famous"
+      ]
     },
     {
       "id": 73,
       "pt": "O avião já tinha decolado.",
-      "en": "The plane had already taken off."
+      "en": [
+        "The plane had already taken off",
+        "The plane had taken off already",
+        "The airplane had already taken off",
+        "The plane had already departed",
+        "The plane had already left"
+      ]
     },
     {
       "id": 74,
       "pt": "Ela sentiu que já tinha visto ele.",
-      "en": "She felt she had seen him before."
+      "en": [
+        "She felt she had seen him before",
+        "She felt she'd seen him before",
+        "She felt that she had seen him before",
+        "She felt that she'd seen him before",
+        "She felt she had already seen him",
+        "She felt she'd already seen him"
+      ]
     },
     {
       "id": 75,
       "pt": "Eles tinham vendido tudo.",
-      "en": "They had sold everything."
+      "en": [
+        "They had sold everything",
+        "They'd sold everything",
+        "They had sold it all",
+        "They'd sold it all"
+      ]
     },
     {
       "id": 76,
       "pt": "Eu estava esperando há uma hora quando ele chegou.",
-      "en": "I had been waiting for an hour when he arrived."
+      "en": [
+        "I had been waiting for an hour when he arrived",
+        "I'd been waiting for an hour when he arrived",
+        "I had been waiting for an hour when he came",
+        "I'd been waiting for an hour when he came",
+        "I had been waiting for an hour when he got here",
+        "I'd been waiting for an hour when he got here"
+      ]
     },
     {
       "id": 77,
       "pt": "Ela estava chorando antes de você entrar?",
-      "en": "Had she been crying before you came in?"
+      "en": [
+        "Had she been crying before you came in?",
+        "Had she been crying before you entered?",
+        "Had she been crying before you walked in?"
+      ]
     },
     {
       "id": 78,
       "pt": "Nós estávamos andando o dia todo.",
-      "en": "We had been walking all day."
+      "en": [
+        "We had been walking all day",
+        "We'd been walking all day",
+        "We had been walking the whole day",
+        "We'd been walking the whole day",
+        "We had been walking all day long",
+        "We'd been walking all day long"
+      ]
     },
     {
       "id": 79,
       "pt": "Ele estava bebendo?",
-      "en": "Had he been drinking?"
+      "en": [
+        "Had he been drinking?"
+      ]
     },
     {
       "id": 80,
       "pt": "A estrada estava molhada porque tinha estado chovendo.",
-      "en": "The road was wet because it had been raining."
+      "en": [
+        "The road was wet because it had been raining",
+        "The road was wet because it'd been raining",
+        "The street was wet because it had been raining",
+        "The street was wet because it'd been raining"
+      ]
     },
     {
       "id": 81,
       "pt": "Eu estava trabalhando naquela empresa há anos.",
-      "en": "I had been working at that company for years."
+      "en": [
+        "I had been working at that company for years",
+        "I'd been working at that company for years",
+        "I had been working for that company for years",
+        "I'd been working for that company for years"
+      ]
     },
     {
       "id": 82,
       "pt": "Eles estavam tentando consertar o computador.",
-      "en": "They had been trying to fix the computer."
+      "en": [
+        "They had been trying to fix the computer",
+        "They'd been trying to fix the computer",
+        "They had been trying to repair the computer",
+        "They'd been trying to repair the computer"
+      ]
     },
     {
       "id": 83,
       "pt": "Ela estava dormindo mal ultimamente.",
-      "en": "She had been sleeping badly lately."
+      "en": [
+        "She had been sleeping badly lately",
+        "She'd been sleeping badly lately",
+        "She had been sleeping poorly lately",
+        "She'd been sleeping poorly lately",
+        "She had been sleeping badly recently",
+        "She'd been sleeping badly recently",
+        "She had been sleeping poorly recently",
+        "She'd been sleeping poorly recently"
+      ]
     },
     {
       "id": 84,
       "pt": "O que você estava fazendo antes disso?",
-      "en": "What had you been doing before that?"
+      "en": [
+        "What had you been doing before that?",
+        "What had you been up to before that?"
+      ]
     },
     {
       "id": 85,
       "pt": "Nós estávamos viajando por três meses.",
-      "en": "We had been traveling for three months."
+      "en": [
+        "We had been traveling for three months",
+        "We'd been traveling for three months",
+        "We had been travelling for three months",
+        "We'd been travelling for three months",
+        "We had been traveling for 3 months",
+        "We'd been traveling for 3 months"
+      ]
     },
     {
       "id": 86,
       "pt": "Ele estava correndo, por isso estava suado.",
-      "en": "He had been running, that's why he was sweaty."
+      "en": [
+        "He had been running, that's why he was sweaty",
+        "He'd been running, that's why he was sweaty",
+        "He had been running, so he was sweaty",
+        "He'd been running, so he was sweaty",
+        "He had been running, that's why he was sweating",
+        "He'd been running, that's why he was sweating"
+      ]
     },
     {
       "id": 87,
       "pt": "Eu estava estudando espanhol antes de ir para a Espanha.",
-      "en": "I had been studying Spanish before going to Spain."
+      "en": [
+        "I had been studying Spanish before going to Spain",
+        "I'd been studying Spanish before going to Spain",
+        "I had been studying Spanish before I went to Spain",
+        "I'd been studying Spanish before I went to Spain",
+        "I had been learning Spanish before going to Spain",
+        "I'd been learning Spanish before going to Spain"
+      ]
     },
     {
       "id": 88,
       "pt": "Eles não estavam prestando atenção.",
-      "en": "They had not been paying attention."
+      "en": [
+        "They had not been paying attention",
+        "They hadn't been paying attention",
+        "They'd not been paying attention"
+      ]
     },
     {
       "id": 89,
       "pt": "Você estava esperando muito tempo?",
-      "en": "Had you been waiting long?"
+      "en": [
+        "Had you been waiting long?",
+        "Had you been waiting for a long time?",
+        "Had you been waiting for long?"
+      ]
     },
     {
       "id": 90,
       "pt": "Ela estava ensinando lá desde 1990.",
-      "en": "She had been teaching there since 1990."
+      "en": [
+        "She had been teaching there since 1990",
+        "She'd been teaching there since 1990",
+        "She had been teaching there since nineteen ninety",
+        "She'd been teaching there since nineteen ninety"
+      ]
     },
     {
       "id": 91,
       "pt": "O motor estava quente, ele estava dirigindo.",
-      "en": "The engine was hot, he had been driving."
+      "en": [
+        "The engine was hot, he had been driving",
+        "The engine was hot, he'd been driving",
+        "The car was hot, he had been driving",
+        "The car was hot, he'd been driving"
+      ]
     },
     {
       "id": 92,
       "pt": "Nós estávamos procurando a casa certa.",
-      "en": "We had been looking for the right house."
+      "en": [
+        "We had been looking for the right house",
+        "We'd been looking for the right house",
+        "We had been searching for the right house",
+        "We'd been searching for the right house",
+        "We had been looking for the perfect house",
+        "We'd been looking for the perfect house"
+      ]
     },
     {
       "id": 93,
       "pt": "Eu estava sonhando com isso.",
-      "en": "I had been dreaming about this."
+      "en": [
+        "I had been dreaming about this",
+        "I'd been dreaming about this",
+        "I had been dreaming of this",
+        "I'd been dreaming of this",
+        "I had been dreaming about it",
+        "I'd been dreaming about it"
+      ]
     },
     {
       "id": 94,
       "pt": "Eles estavam discutindo antes da festa.",
-      "en": "They had been arguing before the party."
+      "en": [
+        "They had been arguing before the party",
+        "They'd been arguing before the party",
+        "They had been fighting before the party",
+        "They'd been fighting before the party"
+      ]
     },
     {
       "id": 95,
       "pt": "Ela estava cozinhando o dia inteiro.",
-      "en": "She had been cooking all day."
+      "en": [
+        "She had been cooking all day",
+        "She'd been cooking all day",
+        "She had been cooking the whole day",
+        "She'd been cooking the whole day",
+        "She had been cooking all day long",
+        "She'd been cooking all day long"
+      ]
     },
     {
       "id": 96,
       "pt": "Eu não estava me sentindo bem naquela semana.",
-      "en": "I had not been feeling well that week."
+      "en": [
+        "I had not been feeling well that week",
+        "I hadn't been feeling well that week",
+        "I'd not been feeling well that week",
+        "I had not been feeling good that week",
+        "I hadn't been feeling good that week"
+      ]
     },
     {
       "id": 97,
       "pt": "O cachorro estava latindo há horas.",
-      "en": "The dog had been barking for hours."
+      "en": [
+        "The dog had been barking for hours",
+        "The dog had been barking for many hours"
+      ]
     },
     {
       "id": 98,
       "pt": "Eles estavam jogando tênis quando choveu.",
-      "en": "They had been playing tennis when it rained."
+      "en": [
+        "They had been playing tennis when it rained",
+        "They'd been playing tennis when it rained",
+        "They had been playing tennis when it started raining",
+        "They'd been playing tennis when it started raining",
+        "They had been playing tennis when it started to rain",
+        "They'd been playing tennis when it started to rain"
+      ]
     },
     {
       "id": 99,
       "pt": "Eu estava lendo até dormir.",
-      "en": "I had been reading until I fell asleep."
+      "en": [
+        "I had been reading until I fell asleep",
+        "I'd been reading until I fell asleep",
+        "I had been reading until I went to sleep",
+        "I'd been reading until I went to sleep"
+      ]
     },
     {
       "id": 100,
       "pt": "Você estava assistindo TV?",
-      "en": "Had you been watching TV?"
+      "en": [
+        "Had you been watching TV?",
+        "Had you been watching television?"
+      ]
     }
   ],
   "future_perfect": [
