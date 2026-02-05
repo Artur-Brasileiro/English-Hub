@@ -5,7 +5,11 @@
       "pt": "Eu perdi minha carteira.",
       "en": [
         "I have lost my wallet",
-        "I've lost my wallet"
+        "I've lost my wallet",
+        "I have lost my purse",
+        "I've lost my purse",
+        "I have misplaced my wallet", 
+        "I've misplaced my wallet"
       ]
     },
     {
@@ -14,9 +18,12 @@
       "en": [
         "She has not arrived yet",
         "She hasn't arrived yet",
-        "She's not arrived yet",
+        "She still has not arrived",
+        "She still hasn't arrived",
         "She has not come yet",
-        "She hasn't come yet"
+        "She hasn't come yet",
+        "She has not gotten here yet",
+        "She hasn't gotten here yet"
       ]
     },
     {
@@ -24,7 +31,11 @@
       "pt": "Nós já estivemos lá antes.",
       "en": [
         "We have been there before",
-        "We've been there before"
+        "We've been there before",
+        "We have already been there",
+        "We've already been there",
+        "We have been there",
+        "We've been there"
       ]
     },
     {
@@ -34,7 +45,11 @@
         "Have you seen this movie?",
         "Have you seen this film?",
         "Have you watched this movie?",
-        "Have you watched this film?"
+        "Have you watched this film?",
+        "Have you already seen this movie?",
+        "Have you seen this movie yet?",
+        "Have you ever seen this movie?",
+        "Have you seen that movie?" 
       ]
     },
     {
@@ -44,7 +59,9 @@
         "They have bought a new car",
         "They've bought a new car",
         "They have purchased a new car",
-        "They've purchased a new car"
+        "They've purchased a new car",
+        "They have bought a new vehicle",
+        "They've bought a new vehicle"
       ]
     },
     {
@@ -56,7 +73,9 @@
         "I have never had sushi",
         "I've never had sushi",
         "I have never tried sushi",
-        "I've never tried sushi"
+        "I've never tried sushi",
+        "I have never eaten sushi before", 
+        "I've never eaten sushi before"
       ]
     },
     {
@@ -66,7 +85,11 @@
         "He has just left",
         "He's just left",
         "He has just gone out",
-        "He's just gone out"
+        "He's just gone out",
+        "He has just gone",
+        "He's just gone",
+        "He has just stepped out",
+        "He's just stepped out"
       ]
     },
     {
@@ -74,12 +97,14 @@
       "pt": "Nós perdemos nossas chaves.",
       "en": [
         "We have lost our keys",
-        "We've lost our keys"
+        "We've lost our keys",
+        "We have misplaced our keys",
+        "We've misplaced our keys"
       ]
     },
     {
       "id": 9,
-      "pt": "Ela morou aqui por dois anos.",
+      "pt": "Ela mora aqui há dois anos.",
       "en": [
         "She has lived here for two years",
         "She's lived here for two years",
@@ -93,8 +118,12 @@
       "en": [
         "I have already finished my homework",
         "I've already finished my homework",
+        "I have finished my homework already",
+        "I've finished my homework already",
         "I have already done my homework",
-        "I've already done my homework"
+        "I've already done my homework",
+        "I have already completed my homework",
+        "I've already completed my homework"
       ]
     },
     {
@@ -104,7 +133,13 @@
         "Have you ever been to Brazil?",
         "Have you been to Brazil?",
         "Have you ever visited Brazil?",
-        "Have you visited Brazil?"
+        "Have you visited Brazil?",
+        "Have you ever been in Brazil?",
+        "Have you been in Brazil?",
+        "Have you ever traveled to Brazil?",
+        "Have you traveled to Brazil?",
+        "Have you ever been to Brazil before?",
+        "Have you been to Brazil before?"
       ]
     },
     {
@@ -115,7 +150,13 @@
         "The train hasn't left yet",
         "The train has not departed yet",
         "The train hasn't departed yet",
-        "The train's not left yet"
+        "The train's not left yet",
+        "The train still has not left",
+        "The train still hasn't left",
+        "The train still has not departed",
+        "The train still hasn't departed",
+        "The train has not gone yet",
+        "The train hasn't gone yet"
       ]
     },
     {
@@ -123,7 +164,9 @@
       "pt": "Eu conheço ele desde 2010.",
       "en": [
         "I have known him since 2010",
-        "I've known him since 2010"
+        "I've known him since 2010",
+        "I have known him since twenty ten",
+        "I've known him since twenty ten"
       ]
     },
     {
@@ -131,7 +174,11 @@
       "pt": "Ela quebrou a perna.",
       "en": [
         "She has broken her leg",
-        "She's broken her leg"
+        "She's broken her leg",
+        "She has fractured her leg",
+        "She's fractured her leg",
+        "She has broken her own leg",
+        "She's broken her own leg"
       ]
     },
     {
@@ -141,7 +188,9 @@
         "We have sold our house",
         "We've sold our house",
         "We have sold our home",
-        "We've sold our home"
+        "We've sold our home",
+        "We have sold our place",
+        "We've sold our place"
       ]
     },
     {
@@ -149,7 +198,9 @@
       "pt": "Onde você esteve?",
       "en": [
         "Where have you been?",
-        "Where've you been?"
+        "Where've you been?",
+        "Where have you been to?", 
+        "Where've you been to?"
       ]
     },
     {
@@ -157,7 +208,9 @@
       "pt": "Eu cortei meu dedo.",
       "en": [
         "I have cut my finger",
-        "I've cut my finger"
+        "I've cut my finger",
+        "I have cut my own finger",
+        "I've cut my own finger"
       ]
     },
     {
@@ -166,7 +219,9 @@
       "en": [
         "They have not told me the truth",
         "They haven't told me the truth",
-        "They've not told me the truth"
+        "They've not told me the truth",
+        "They have not told the truth to me",
+        "They haven't told the truth to me"
       ]
     },
     {
@@ -174,7 +229,9 @@
       "pt": "Ela esqueceu seu nome?",
       "en": [
         "Has she forgotten your name?",
-        "Has she forgotten his name?"
+        "Has she forgotten his name?",
+        "Has she forgotten her name?",
+        "Has she forgotten their name?"
       ]
     },
     {
@@ -184,7 +241,11 @@
         "I have read three books this week",
         "I've read three books this week",
         "I have read 3 books this week",
-        "I've read 3 books this week"
+        "I've read 3 books this week",
+        "This week I have read three books",
+        "This week I've read three books",
+        "This week I have read 3 books",
+        "This week I've read 3 books"
       ]
     },
     {
@@ -195,15 +256,20 @@
         "We've drunk a lot of water today",
         "We have drunk lots of water today",
         "We've drunk lots of water today",
+        "We have drunk so much water today",
+        "We've drunk so much water today",
         "We have had a lot of water today",
-        "We've had a lot of water today"
+        "We've had a lot of water today",
+        "Today we have drunk a lot of water",
+        "Today we've drunk a lot of water"
       ]
     },
     {
       "id": 22,
       "pt": "Você trancou a porta?",
       "en": [
-        "Have you locked the door?"
+        "Have you locked the door?",
+        "Have you locked the door yet?"
       ]
     },
     {
@@ -213,7 +279,9 @@
         "The weather has changed suddenly",
         "The weather's changed suddenly",
         "The weather has suddenly changed",
-        "The weather's suddenly changed"
+        "The weather's suddenly changed",
+        "The weather has changed all of a sudden",
+        "The weather's changed all of a sudden"
       ]
     },
     {
@@ -221,7 +289,9 @@
       "pt": "Eu sempre amei música.",
       "en": [
         "I have always loved music",
-        "I've always loved music"
+        "I've always loved music",
+        "I have always adored music",
+        "I've always adored music"
       ]
     },
     {
@@ -230,7 +300,10 @@
       "en": [
         "She has not made her bed",
         "She hasn't made her bed",
-        "She's not made her bed"
+        "She has not made her bed yet",
+        "She hasn't made her bed yet",
+        "She still has not made her bed",
+        "She still hasn't made her bed"
       ]
     },
     {
@@ -242,7 +315,9 @@
         "I have been working a lot lately",
         "I've been working a lot lately",
         "I have been working hard recently",
-        "I've been working hard recently"
+        "I've been working hard recently",
+        "I have been working very hard lately",
+        "I've been working very hard lately"
       ]
     },
     {
@@ -258,7 +333,9 @@
       "pt": "O que você tem feito?",
       "en": [
         "What have you been doing?",
-        "What've you been doing?"
+        "What've you been doing?",
+        "What have you been up to?",
+        "What've you been up to?"
       ]
     },
     {
@@ -268,7 +345,9 @@
         "We have been studying English all day",
         "We've been studying English all day",
         "We have been studying English the whole day",
-        "We've been studying English the whole day"
+        "We've been studying English the whole day",
+        "We have been studying English all day long",
+        "We've been studying English all day long"
       ]
     },
     {
@@ -286,7 +365,11 @@
         "I have been trying to call you",
         "I've been trying to call you",
         "I have been trying to phone you",
-        "I've been trying to phone you"
+        "I've been trying to phone you",
+        "I have been trying to reach you",
+        "I've been trying to reach you",
+        "I have been trying to contact you",
+        "I've been trying to contact you"
       ]
     },
     {
@@ -296,7 +379,11 @@
         "They have been playing soccer all afternoon",
         "They've been playing soccer all afternoon",
         "They have been playing football all afternoon",
-        "They've been playing football all afternoon"
+        "They've been playing football all afternoon",
+        "They have been playing soccer the whole afternoon",
+        "They've been playing soccer the whole afternoon",
+        "They have been playing football the whole afternoon",
+        "They've been playing football the whole afternoon"
       ]
     },
     {
@@ -313,7 +400,9 @@
         "She has been learning to play the piano",
         "She's been learning to play the piano",
         "She has been learning how to play the piano",
-        "She's been learning how to play the piano"
+        "She's been learning how to play the piano",
+        "She has been learning to play piano",
+        "She's been learning to play piano"
       ]
     },
     {
@@ -340,7 +429,8 @@
       "id": 37,
       "pt": "Por que você tem chorado?",
       "en": [
-        "Why have you been crying?"
+        "Why have you been crying?",
+        "Why've you been crying?"
       ]
     },
     {
@@ -350,7 +440,9 @@
         "He has been fixing the car",
         "He's been fixing the car",
         "He has been repairing the car",
-        "He's been repairing the car"
+        "He's been repairing the car",
+        "He has been working on the car",
+        "He's been working on the car"
       ]
     },
     {
@@ -359,7 +451,10 @@
       "en": [
         "I have not been feeling well",
         "I haven't been feeling well",
-        "I've not been feeling well"
+        "I've not been feeling well",
+        "I have not been feeling good",
+        "I haven't been feeling good",
+        "I've not been feeling good"
       ]
     },
     {
@@ -369,7 +464,9 @@
         "They have been talking for hours",
         "They've been talking for hours",
         "They have been chatting for hours",
-        "They've been chatting for hours"
+        "They've been chatting for hours",
+        "They have been speaking for hours",
+        "They've been speaking for hours"
       ]
     },
     {
@@ -387,7 +484,9 @@
       "pt": "Ela tem corrido no parque?",
       "en": [
         "Has she been running in the park?",
-        "Has she been jogging in the park?"
+        "Has she been running at the park?",
+        "Has she been jogging in the park?",
+        "Has she been jogging at the park?"
       ]
     },
     {
@@ -405,7 +504,9 @@
       "pt": "Nós temos economizado dinheiro.",
       "en": [
         "We have been saving money",
-        "We've been saving money"
+        "We've been saving money",
+        "We have been saving up money",
+        "We've been saving up money"
       ]
     },
     {
@@ -415,7 +516,9 @@
         "The dog has been barking all night",
         "The dog's been barking all night",
         "The dog has been barking the whole night",
-        "The dog's been barking the whole night"
+        "The dog's been barking the whole night",
+        "The dog has been barking all night long",
+        "The dog's been barking all night long"
       ]
     },
     {
