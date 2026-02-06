@@ -314,10 +314,10 @@ const HubPage = () => {
         </div>
         
         {/* Disclamerzinho extra que o Google gosta */}
-        <div className="max-w-6xl mx-auto px-4 mt-8 pt-6 border-t border-slate-100 text-center md:text-left">
-           <p className="text-[10px] text-slate-400 uppercase tracking-wider">
-             Feito com ❤️ em Minas Gerais, Brasil.
-           </p>
+        <div className="max-w-6xl mx-auto px-4 mt-8 pt-6 border-t border-slate-100 text-center">
+          <p className="text-[10px] text-slate-400 uppercase tracking-wider">
+            Feito com ❤️ em Minas Gerais, Brasil.
+          </p>
         </div>
       </footer>
     </div>

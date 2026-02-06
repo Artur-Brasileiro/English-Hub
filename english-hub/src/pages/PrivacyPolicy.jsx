@@ -48,14 +48,14 @@ const PrivacyPolicy = () => {
               nossos usuários com base em suas visitas aos nossos sites e/ou outros sites na Internet.
             </li>
             <li>
-              Os usuários podem optar por desativar a publicidade personalizada acessando as 
+              Os usuários podem optar por desativar a publicidade personalizada acessando as{" "}
               <a 
                 href="https://www.google.com/settings/ads" 
                 target="_blank" 
                 rel="noopener noreferrer nofollow" 
                 className="text-indigo-600 hover:underline"
               >
-                 Configurações de Anúncios
+                Configurações de Anúncios
               </a>.
             </li>
           </ul>

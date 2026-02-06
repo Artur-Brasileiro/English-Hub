@@ -1684,12 +1684,16 @@
       "id": 151,
       "pt": "Se não tivesse chovido, eu até iria.",
       "en": [
-        "If it had not rained, I would have gone",
-        "If it hadn't rained, I would have gone",
-        "If it hadn't rained, I'd have gone",
-        "I would have gone if it hadn't rained",
-        "I'd have gone if it hadn't rained",
-        "If it hadn't rained, I would even have gone"
+        "If it didn't rain, I would go",
+        "If it didn't rain, I'd go",
+        "I would go if it didn't rain",
+        "I'd go if it didn't rain",
+        "If it wasn't raining, I would go",
+        "If it wasn't raining, I'd go",
+        "I would even go if it didn't rain",
+        "I'd even go if it didn't rain",
+        "If it wasn't raining, I would even go",
+        "If it wasn't raining, I'd even go"
       ],
       "tags": [
         "conditional"
@@ -1700,11 +1704,19 @@
       "pt": "Se você puder, me avise mais tarde.",
       "en": [
         "If you can, let me know later",
+        "If you can, let me know later on",
         "If you can, tell me later",
+        "If you can, get back to me later",
+        "If you're able to, let me know later",
+        "If you are able to, let me know later",
+        "If possible, let me know later",
         "Let me know later if you can",
         "Tell me later if you can",
-        "If possible, let me know later",
-        "If possible, tell me later"
+        "Get back to me later if you can",
+        "If you can, give me a call later",
+        "If you can, call me later",
+        "If you can, text me later",
+        "If you can, message me later"
       ],
       "tags": [
         "conditional"
@@ -1716,12 +1728,23 @@
       "en": [
         "If you study, you will improve quickly",
         "If you study, you'll improve quickly",
-        "If you study, you will get better quickly",
-        "If you study, you'll get better quickly",
         "If you study, you will improve fast",
         "If you study, you'll improve fast",
+        "If you study, you will get better quickly",
+        "If you study, you'll get better quickly",
+        "If you study, you will get better fast",
         "If you study, you'll get better fast",
-        "You'll improve fast if you study"
+        "You'll improve quickly if you study",
+        "You'll improve fast if you study",
+        "You'll get better quickly if you study",
+        "You'll get better fast if you study",
+        "If you keep studying, you'll get better fast",
+        "If you keep studying, you will get better fast",
+        "If you study, you'll pick it up quickly",
+        "If you study, you'll pick it up fast",
+        "If you study, you'll get the hang of it quickly",
+        "If you study, you'll get the hang of it fast",
+        "If you study, you'll improve in no time"
       ],
       "tags": [
         "conditional"
@@ -1734,7 +1757,15 @@
         "If I had more time, I would help you",
         "If I had more time, I'd help you",
         "I would help you if I had more time",
-        "I'd help you if I had more time"
+        "I'd help you if I had more time",
+        "If I had more time, I would help you out",
+        "If I had more time, I'd help you out",
+        "I would help you out if I had more time",
+        "I'd help you out if I had more time",
+        "If I had more time, I would give you a hand",
+        "If I had more time, I'd give you a hand",
+        "I would give you a hand if I had more time",
+        "I'd give you a hand if I had more time"
       ],
       "tags": [
         "conditional"
@@ -1744,12 +1775,18 @@
       "id": 155,
       "pt": "Se ele chegar cedo, a gente pode sair.",
       "en": [
-        "If he arrives early, we can leave",
-        "If he arrives early, we can go out",
-        "If he gets here early, we can leave",
-        "If he gets here early, we can go out",
-        "If he comes early, we can leave",
-        "We can go out if he arrives early"
+        "If he arrives early, we can leave.",
+        "If he arrives early, we can go out.",
+        "If he arrives early, we can head out.",
+        "If he arrives early, we can get going.",
+        "If he gets here early, we can leave.",
+        "If he gets here early, we can go out.",
+        "If he gets here early, we can head out.",
+        "If he comes early, we can leave.",
+        "If he comes early, we can go out.",
+        "We can leave if he arrives early.",
+        "We can go out if he arrives early.",
+        "We can head out if he gets here early."
       ],
       "tags": [
         "conditional",
@@ -1762,11 +1799,16 @@
       "en": [
         "If you don't want to, it's okay",
         "If you do not want to, it is okay",
+        "If you don't want to, it is okay",
         "If you don't want to, it's fine",
+        "If you do not want to, it is fine",
         "If you don't want to, that's fine",
         "If you don't want to, that's okay",
         "It's okay if you don't want to",
-        "It's fine if you don't want to"
+        "It's fine if you don't want to",
+        "No problem if you don't want to",
+        "If you don't feel like it, that's okay",
+        "If you do not feel like it, that is okay"
       ],
       "tags": [
         "conditional"
@@ -1780,7 +1822,18 @@
         "If you come today, we'll talk",
         "If you come today, we can talk",
         "We'll talk if you come today",
-        "We can talk if you come today"
+        "We can talk if you come today",
+        "If you come today, we'll chat",
+        "If you come today, we can chat",
+        "We'll chat if you come today",
+        "We can chat if you come today",
+        "If you come today, we will talk it over",
+        "If you come today, we'll talk it over",
+        "We'll talk it over if you come today",
+        "If you come by today, we'll talk",
+        "If you come by today, we can talk",
+        "If you stop by today, we'll talk",
+        "If you stop by today, we can talk"
       ],
       "tags": [
         "conditional"
@@ -1793,7 +1846,19 @@
         "If I finish early, I will help you",
         "If I finish early, I'll help you",
         "I will help you if I finish early",
-        "I'll help you if I finish early"
+        "I'll help you if I finish early",
+        "If I finish early, I can help you",
+        "If I finish early, I can help you out",
+        "If I finish early, I'll help you out",
+        "I'll help you out if I finish early",
+        "If I get done early, I will help you",
+        "If I get done early, I'll help you",
+        "If I get done early, I can help you",
+        "If I get done early, I'll help you out",
+        "If I wrap up early, I'll help you",
+        "If I wrap up early, I'll help you out",
+        "I'll give you a hand if I finish early",
+        "If I finish early, I'll give you a hand"
       ],
       "tags": [
         "conditional"
@@ -1807,7 +1872,17 @@
         "If she calls, tell me",
         "Let me know if she calls",
         "Tell me if she calls",
-        "If she rings, let me know"
+        "If she rings, let me know",
+        "If she rings, tell me",
+        "Let me know if she rings",
+        "Tell me if she rings",
+        "If she calls, give me a heads-up",
+        "If she calls, let me know right away",
+        "If she calls, tell me right away",
+        "If she calls, message me",
+        "If she calls, text me",
+        "Text me if she calls",
+        "Message me if she calls"
       ],
       "tags": [
         "conditional"
@@ -1822,7 +1897,19 @@
         "If you are tired, you can take a rest",
         "If you're tired, you can take a rest",
         "You can rest if you are tired",
-        "You can rest if you're tired"
+        "You can rest if you're tired",
+        "If you are tired, you can relax",
+        "If you're tired, you can relax",
+        "You can relax if you're tired",
+        "If you feel tired, you can rest",
+        "If you feel tired, you can relax",
+        "If you're worn out, you can rest",
+        "If you are worn out, you can rest",
+        "If you're exhausted, you can rest",
+        "If you are exhausted, you can rest",
+        "If you're tired, feel free to rest",
+        "If you're tired, feel free to take a break",
+        "If you're tired, you can take a break"
       ],
       "tags": [
         "conditional"
@@ -1837,7 +1924,18 @@
         "If he does not show up, we will go without him",
         "If he doesn't come, we'll go without him",
         "If he does not come, we will go without him",
-        "We'll go without him if he doesn't show up"
+        "We'll go without him if he doesn't show up",
+        "If he doesn't show up, we can go without him",
+        "If he doesn't show up, we'll leave without him",
+        "If he does not show up, we will leave without him",
+        "We'll leave without him if he doesn't show up",
+        "If he doesn't come, we'll leave without him",
+        "We'll go on without him if he doesn't show up",
+        "We'll go on without him if he doesn't come",
+        "If he doesn't turn up, we'll go without him",
+        "If he doesn't turn up, we'll leave without him",
+        "If he doesn't show, we'll go without him",
+        "If he doesn't show, we'll leave without him"
       ],
       "tags": [
         "conditional"
@@ -1852,7 +1950,16 @@
         "If it rains, we will stay at home",
         "If it rains, we'll stay at home",
         "We'll stay home if it rains",
-        "We will stay home if it rains"
+        "We will stay home if it rains",
+        "If it rains, we can stay home",
+        "If it rains, we can stay at home",
+        "If it starts raining, we'll stay home",
+        "If it starts raining, we'll stay at home",
+        "If it starts raining, we can stay home",
+        "If it pours, we'll stay home",
+        "If it pours, we'll stay at home",
+        "If it rains, we'll just stay home",
+        "If it rains, we will just stay home"
       ],
       "tags": [
         "conditional"
@@ -1866,7 +1973,18 @@
         "If you study every day, you'll learn faster",
         "If you study every day, you will learn more quickly",
         "If you study every day, you'll learn more quickly",
-        "You'll learn faster if you study every day"
+        "You'll learn faster if you study every day",
+        "You'll learn more quickly if you study every day",
+        "If you study every day, you will learn quicker",
+        "If you study every day, you'll learn quicker",
+        "If you study every day, you will pick it up faster",
+        "If you study every day, you'll pick it up faster",
+        "If you study every day, you will pick it up quickly",
+        "If you study every day, you'll pick it up quickly",
+        "If you study every day, you will learn in no time",
+        "If you study every day, you'll learn in no time",
+        "You'll pick it up faster if you study every day",
+        "You'll pick it up quickly if you study every day"
       ],
       "tags": [
         "conditional"
@@ -1878,10 +1996,21 @@
       "en": [
         "If you practice, you will gain confidence",
         "If you practice, you'll gain confidence",
-        "If you practice, you will get confidence",
-        "If you practice, you'll get confidence",
         "If you practice, you will build confidence",
-        "If you practice, you'll build confidence"
+        "If you practice, you'll build confidence",
+        "If you practice, you will get more confident",
+        "If you practice, you'll get more confident",
+        "You'll gain confidence if you practice",
+        "You'll build confidence if you practice",
+        "You'll get more confident if you practice",
+        "If you practice more, you'll gain confidence",
+        "If you keep practicing, you'll gain confidence",
+        "If you keep practicing, you will gain confidence",
+        "If you keep practicing, you'll build confidence",
+        "If you keep practicing, you will build confidence",
+        "If you practice, you'll feel more confident",
+        "If you practice, you will feel more confident",
+        "If you practice, you'll get the confidence you need"
       ],
       "tags": [
         "conditional"
@@ -1893,10 +2022,22 @@
       "en": [
         "If I have questions, I will ask you",
         "If I have questions, I'll ask you",
+        "If I have any questions, I will ask you",
         "If I have any questions, I'll ask you",
+        "I'll ask you if I have questions",
+        "I will ask you if I have questions",
         "If I have doubts, I will ask you",
         "If I have doubts, I'll ask you",
-        "I'll ask you if I have questions"
+        "If I have any doubts, I will ask you",
+        "If I have any doubts, I'll ask you",
+        "If I'm not sure, I'll ask you",
+        "If I am not sure, I will ask you",
+        "I'll ask you if I'm not sure",
+        "I will ask you if I'm not sure",
+        "If I get stuck, I'll ask you",
+        "If I get stuck, I will ask you",
+        "If I need help, I'll ask you",
+        "If I need help, I will ask you"
       ],
       "tags": [
         "conditional"
@@ -1910,8 +2051,20 @@
         "If I remember, I'll send you a message",
         "If I remember, I will text you",
         "If I remember, I'll text you",
+        "If I remember, I will message you",
         "If I remember, I'll message you",
-        "I'll text you if I remember"
+        "I'll text you if I remember",
+        "I will text you if I remember",
+        "I'll message you if I remember",
+        "I will message you if I remember",
+        "If I remember, I'll send you a text",
+        "If I remember, I will send you a text",
+        "If I remember, I'll shoot you a message",
+        "If I remember, I will shoot you a message",
+        "I'll send you a message if I remember",
+        "I will send you a message if I remember",
+        "If I remember, I'll let you know",
+        "If I remember, I will let you know"
       ],
       "tags": [
         "conditional"
@@ -1925,7 +2078,17 @@
         "If he arrives early, we'll have dinner together",
         "If he gets here early, we will have dinner together",
         "If he gets here early, we'll have dinner together",
-        "We'll have dinner together if he arrives early"
+        "We'll have dinner together if he arrives early",
+        "We will have dinner together if he arrives early",
+        "We'll have dinner together if he gets here early",
+        "If he comes early, we'll have dinner together",
+        "If he comes early, we will have dinner together",
+        "If he shows up early, we'll have dinner together",
+        "If he shows up early, we will have dinner together",
+        "If he gets here early, we can have dinner together",
+        "If he arrives early, we can have dinner together",
+        "If he gets here early, we'll eat dinner together",
+        "If he arrives early, we'll eat dinner together"
       ],
       "tags": [
         "conditional"
@@ -1937,10 +2100,19 @@
       "en": [
         "If you want, I will wait a little longer",
         "If you want, I'll wait a little longer",
+        "If you want to, I will wait a little longer",
         "If you want to, I'll wait a little longer",
         "If you want, I'll wait a bit longer",
-        "If you want, I'll wait a little bit",
-        "I'll wait a little longer if you want"
+        "If you want, I will wait a bit longer",
+        "I'll wait a little longer if you want",
+        "I will wait a little longer if you want",
+        "If you'd like, I'll wait a little longer",
+        "If you would like, I will wait a little longer",
+        "If you'd like, I'll wait a bit longer",
+        "If you want, I'll hang around a little longer",
+        "If you want, I will hang around a little longer",
+        "I'll hang around a bit longer if you want",
+        "I will stick around a little longer if you want"
       ],
       "tags": [
         "conditional"
@@ -1954,7 +2126,17 @@
         "If you don't understand, I will explain it again",
         "If you don't understand, I'll explain it again",
         "If you don't understand, I'll explain again",
-        "If you don't get it, I'll explain it again"
+        "If you don't get it, I'll explain it again",
+        "If you do not get it, I will explain it again",
+        "If you don't get it, I'll explain again",
+        "If you don't understand, I'll explain it one more time",
+        "If you do not understand, I will explain it one more time",
+        "If you don't get it, I'll go over it again",
+        "If you do not get it, I will go over it again",
+        "If you don't understand, I'll walk you through it again",
+        "If you do not understand, I will walk you through it again",
+        "I'll explain it again if you don't understand",
+        "I'll go over it again if you don't get it"
       ],
       "tags": [
         "conditional"
@@ -1967,8 +2149,18 @@
         "If I cannot do it today, I will do it tomorrow",
         "If I can't do it today, I will do it tomorrow",
         "If I can't do it today, I'll do it tomorrow",
-        "If I cannot make it today, I'll do it tomorrow",
-        "I'll do it tomorrow if I can't do it today"
+        "If I cannot do it today, I'll do it tomorrow",
+        "I'll do it tomorrow if I can't do it today",
+        "I will do it tomorrow if I can't do it today",
+        "If I can't make it today, I'll do it tomorrow",
+        "If I cannot make it today, I will do it tomorrow",
+        "If I can't get it done today, I'll do it tomorrow",
+        "If I can't get it done today, I will do it tomorrow",
+        "If I can't manage it today, I'll do it tomorrow",
+        "If I cannot manage it today, I will do it tomorrow",
+        "If I can't do it today, I can do it tomorrow",
+        "If I can't do it today, I'll take care of it tomorrow",
+        "If I cannot do it today, I will take care of it tomorrow"
       ],
       "tags": [
         "conditional"
@@ -1981,9 +2173,18 @@
         "If you don't have time, it's okay",
         "If you do not have time, it is okay",
         "If you don't have time, it's fine",
+        "If you do not have time, it is fine",
         "If you don't have time, that's fine",
         "If you don't have time, that's okay",
-        "It's okay if you don't have time"
+        "It's okay if you don't have time",
+        "It's fine if you don't have time",
+        "No problem if you don't have time",
+        "If you don't have time, no worries",
+        "If you do not have time, no worries",
+        "If you don't have time, it's no problem",
+        "If you do not have time, it's no problem",
+        "That's okay if you don't have time",
+        "That's fine if you don't have time"
       ],
       "tags": [
         "conditional"
@@ -1997,7 +2198,17 @@
         "If she doesn't reply, we'll try later",
         "If she doesn't answer, we will try later",
         "If she doesn't answer, we'll try later",
-        "We'll try later if she doesn't answer"
+        "We'll try later if she doesn't answer",
+        "We will try later if she doesn't answer",
+        "If she doesn't get back to us, we'll try later",
+        "If she doesn't get back to us, we will try later",
+        "We'll try again later if she doesn't reply",
+        "We will try again later if she doesn't reply",
+        "If she doesn't reply, we'll try again later",
+        "If she doesn't answer, we'll try again later",
+        "If she doesn't respond, we'll try later",
+        "If she does not respond, we will try later",
+        "We'll give it another try later if she doesn't respond"
       ],
       "tags": [
         "conditional"
@@ -2010,7 +2221,19 @@
         "If I had more money, I would travel",
         "If I had more money, I'd travel",
         "I would travel if I had more money",
-        "I'd travel if I had more money"
+        "I'd travel if I had more money",
+        "If I had more money, I would travel more",
+        "If I had more money, I'd travel more",
+        "I would travel more if I had more money",
+        "I'd travel more if I had more money",
+        "If I had more money, I'd go traveling",
+        "If I had more money, I would go traveling",
+        "I would go traveling if I had more money",
+        "I'd go traveling if I had more money",
+        "If I had more money, I'd take a trip",
+        "If I had more money, I would take a trip",
+        "I'd take a trip if I had more money",
+        "I would take a trip if I had more money"
       ],
       "tags": [
         "conditional",
@@ -2024,7 +2247,17 @@
         "If I had more time, I would study more",
         "If I had more time, I'd study more",
         "I would study more if I had more time",
-        "I'd study more if I had more time"
+        "I'd study more if I had more time",
+        "If I had more time, I would study a lot more",
+        "If I had more time, I'd study a lot more",
+        "I would study a lot more if I had more time",
+        "I'd study a lot more if I had more time",
+        "If I had more time, I'd spend more time studying",
+        "If I had more time, I would spend more time studying",
+        "I'd spend more time studying if I had more time",
+        "I would spend more time studying if I had more time",
+        "If I had more time, I'd hit the books more",
+        "If I had more time, I would hit the books more"
       ],
       "tags": [
         "conditional"
@@ -2038,7 +2271,17 @@
         "If he had patience, he'd learn quickly",
         "If he had patience, he would learn fast",
         "If he had patience, he'd learn fast",
-        "He'd learn fast if he had patience"
+        "He'd learn fast if he had patience",
+        "He would learn fast if he had patience",
+        "If he had more patience, he'd learn fast",
+        "If he had more patience, he would learn fast",
+        "If he was patient, he'd learn fast",
+        "If he was patient, he would learn fast",
+        "He'd learn quickly if he had patience",
+        "He would learn quickly if he had patience",
+        "If he had patience, he'd pick it up quickly",
+        "If he had patience, he would pick it up quickly",
+        "He'd pick it up quickly if he had patience"
       ],
       "tags": [
         "conditional"
@@ -2049,7 +2292,17 @@
       "pt": "Se você pudesse, me ajudaria hoje?",
       "en": [
         "If you could, would you help me today?",
-        "Would you help me today if you could?"
+        "Would you help me today if you could?",
+        "If you could, would you help me out today?",
+        "Would you help me out today if you could?",
+        "If you could, could you help me today?",
+        "If you could, could you help me out today?",
+        "Could you help me today if you could?",
+        "Could you help me out today if you could?",
+        "If you were able to, would you help me today?",
+        "If you are able to, would you help me today?",
+        "If you could, would you give me a hand today?",
+        "Would you give me a hand today if you could?"
       ],
       "tags": [
         "conditional"
@@ -2062,7 +2315,19 @@
         "If we had a car, it would be easier",
         "If we had a car, it'd be easier",
         "It would be easier if we had a car",
-        "It'd be easier if we had a car"
+        "It'd be easier if we had a car",
+        "If we had a car, it would be much easier",
+        "If we had a car, it'd be much easier",
+        "If we had a car, it would be a lot easier",
+        "If we had a car, it'd be a lot easier",
+        "If we had a car, things would be easier",
+        "If we had a car, things would be a lot easier",
+        "If we had a car, it would make things easier",
+        "If we had a car, it'd make things easier",
+        "It would be easier with a car",
+        "It'd be easier with a car",
+        "If we had a car, we could get around more easily",
+        "If we had a car, we'd get around more easily"
       ],
       "tags": [
         "conditional"
@@ -2072,11 +2337,21 @@
       "id": 178,
       "pt": "Se eu tivesse estudado mais, eu teria passado.",
       "en": [
-        "If I had studied more, I would have passed",
-        "If I had studied more, I'd have passed",
-        "If I'd studied more, I would have passed",
-        "If I'd studied more, I'd have passed",
-        "I would have passed if I had studied more"
+        "If I studied more, I would pass",
+        "If I studied more, I'd pass",
+        "I would pass if I studied more",
+        "I'd pass if I studied more",
+        "If I studied harder, I'd pass",
+        "If I studied harder, I would pass",
+        "If I studied more, I could pass",
+        "If I studied more, I'd be able to pass",
+        "If I studied more, I would get through",
+        "If I studied more, I'd get through",
+        "If I studied more, I would make it",
+        "If I studied more, I'd make it",
+        "If I studied more, I'd pass the exam",
+        "If I studied more, I would pass the test",
+        "I'd pass the test if I studied more"
       ],
       "tags": [
         "conditional"
@@ -2086,12 +2361,21 @@
       "id": 179,
       "pt": "Se você tivesse me avisado, eu teria ido.",
       "en": [
-        "If you had told me, I would have gone",
-        "If you had told me, I'd have gone",
-        "If you'd told me, I would have gone",
-        "If you had let me know, I would have gone",
-        "If you'd let me know, I would have gone",
-        "If you had warned me, I would have gone"
+        "If you told me, I would go",
+        "If you told me, I'd go",
+        "I would go if you told me",
+        "I'd go if you told me",
+        "If you let me know, I would go",
+        "If you let me know, I'd go",
+        "I would go if you let me know",
+        "I'd go if you let me know",
+        "If you warned me, I'd go",
+        "If you warned me, I would go",
+        "If you gave me a heads-up, I'd go",
+        "If you gave me a heads-up, I would go",
+        "If you messaged me, I'd go",
+        "If you texted me, I'd go",
+        "I'd go if you texted me"
       ],
       "tags": [
         "conditional"
@@ -2101,11 +2385,20 @@
       "id": 180,
       "pt": "Se ele não tivesse saído cedo, ele teria visto a gente.",
       "en": [
-        "If he had not left early, he would have seen us",
-        "If he hadn't left early, he would have seen us",
-        "If he hadn't left early, he'd have seen us",
-        "If he'd not left early, he would have seen us",
-        "He would have seen us if he hadn't left early"
+        "If he didn't leave early, he would see us",
+        "If he didn't leave early, he'd see us",
+        "He would see us if he didn't leave early",
+        "He'd see us if he didn't leave early",
+        "If he didn't leave so early, he would see us",
+        "If he didn't leave so early, he'd see us",
+        "If he stayed longer, he'd see us",
+        "If he stayed longer, he would see us",
+        "If he didn't head out early, he'd see us",
+        "If he didn't head out early, he would see us",
+        "If he didn't take off early, he'd see us",
+        "If he didn't take off early, he would see us",
+        "If he didn't go out early, he'd see us",
+        "He'd see us if he stayed longer"
       ],
       "tags": [
         "conditional"
@@ -2115,10 +2408,21 @@
       "id": 181,
       "pt": "Se a gente tivesse saído mais cedo, não teria se atrasado.",
       "en": [
-        "If we had left earlier, we would not have been late",
-        "If we had left earlier, we wouldn't have been late",
-        "If we'd left earlier, we wouldn't have been late",
-        "We wouldn't have been late if we had left earlier"
+        "If we left earlier, we would not be late",
+        "If we left earlier, we wouldn't be late",
+        "We wouldn't be late if we left earlier",
+        "We would not be late if we left earlier",
+        "If we left sooner, we wouldn't be late",
+        "If we left sooner, we would not be late",
+        "We wouldn't be late if we left sooner",
+        "If we headed out earlier, we wouldn't be late",
+        "If we headed out earlier, we would not be late",
+        "If we set off earlier, we wouldn't be late",
+        "If we set off earlier, we would not be late",
+        "If we left earlier, we wouldn't run late",
+        "If we left earlier, we would not run late",
+        "We wouldn't run late if we left earlier",
+        "We wouldn't be running late if we left earlier"
       ],
       "tags": [
         "conditional"
@@ -2128,11 +2432,21 @@
       "id": 182,
       "pt": "Se ela tivesse descansado, teria se sentido melhor.",
       "en": [
-        "If she had rested, she would have felt better",
-        "If she had rested, she'd have felt better",
-        "If she'd rested, she would have felt better",
-        "If she'd rested, she'd have felt better",
-        "She would have felt better if she had rested"
+        "If she rested, she would feel better",
+        "If she rested, she'd feel better",
+        "She would feel better if she rested",
+        "She'd feel better if she rested",
+        "If she got some rest, she would feel better",
+        "If she got some rest, she'd feel better",
+        "If she took a break, she'd feel better",
+        "If she took a break, she would feel better",
+        "If she took it easy, she'd feel better",
+        "If she took it easy, she would feel better",
+        "If she rested up, she'd feel better",
+        "If she rested up, she would feel better",
+        "If she got some sleep, she'd feel better",
+        "If she got some sleep, she would feel better",
+        "She'd feel a lot better if she rested"
       ],
       "tags": [
         "conditional"
@@ -2146,7 +2460,20 @@
         "If you can, send that to me today",
         "Send me that today if you can",
         "Send that to me today if you can",
-        "If possible, send me that today"
+        "If possible, send me that today",
+        "If possible, send that to me today",
+        "If you can, please send me that today",
+        "Please send me that today if you can",
+        "If you can, get that to me today",
+        "Get that to me today if you can",
+        "If you're able to, send me that today",
+        "If you are able to, send me that today",
+        "If you can, send it over today",
+        "Send it over today if you can",
+        "If you can, forward that to me today",
+        "Forward that to me today if you can",
+        "If you can, shoot me that today",
+        "Shoot me that today if you can"
       ],
       "tags": [
         "conditional"
@@ -2159,7 +2486,19 @@
         "If you want, I can help you now",
         "If you want to, I can help you now",
         "I can help you now if you want",
-        "I can help you now if you want to"
+        "I can help you now if you want to",
+        "If you want, I can help you out now",
+        "If you want to, I can help you out now",
+        "I can help you out now if you want",
+        "If you'd like, I can help you now",
+        "If you would like, I can help you now",
+        "If you want me to, I can help you now",
+        "If you want, I can give you a hand right now",
+        "If you want, I can help you right now",
+        "If you'd like, I can give you a hand right now",
+        "If you want, I can walk you through it now",
+        "If you want, I can go over it with you now",
+        "If you want, I can talk you through it now"
       ],
       "tags": [
         "conditional"
@@ -2169,12 +2508,17 @@
       "id": 185,
       "pt": "Se for possível, a gente se encontra mais tarde.",
       "en": [
-        "If possible, we will meet later",
-        "If possible, we'll meet later",
-        "If possible, we'll meet up later",
-        "If it's possible, we'll meet later",
-        "If it is possible, we will meet later",
-        "We'll meet up later if possible"
+        "If possible, we will meet later.",
+        "If possible, we'll meet later.",
+        "If possible, we'll meet up later.",
+        "If it's possible, we'll meet later.",
+        "If it is possible, we will meet later.",
+        "If it's possible, we will meet later.",
+        "If it is possible, we'll meet later.",
+        "We'll meet later if possible.",
+        "We'll meet up later if possible.",
+        "We can meet later if possible.",
+        "If possible, we can meet later."
       ],
       "tags": [
         "conditional",
@@ -2185,11 +2529,19 @@
       "id": 186,
       "pt": "Se ele estiver livre, ele pode vir com a gente.",
       "en": [
-        "If he is free, he can come with us",
-        "If he's free, he can come with us",
-        "If he is free, he can join us",
-        "If he's free, he can join us",
-        "He can come with us if he's free"
+        "If he is free, he can come with us.",
+        "If he's free, he can come with us.",
+        "If he is free, he can join us.",
+        "If he's free, he can join us.",
+        "If he is free, he can come along with us.",
+        "If he's free, he can come along with us.",
+        "If he is free, he can come with us too.",
+        "If he's free, he can come with us too.",
+        "He can come with us if he is free.",
+        "He can come with us if he's free.",
+        "He can join us if he is free.",
+        "He can join us if he's free.",
+        "He can come along if he's free."
       ],
       "tags": [
         "conditional",
@@ -2203,7 +2555,18 @@
         "If you finish this today, tomorrow will be easier",
         "If you finish this today, tomorrow will be lighter",
         "Tomorrow will be easier if you finish this today",
-        "If you get this done today, tomorrow will be easier"
+        "If you get this done today, tomorrow will be easier",
+        "If you get this done today, tomorrow will feel easier",
+        "If you finish it today, tomorrow will be easier",
+        "If you finish it today, tomorrow will feel lighter",
+        "If you wrap this up today, tomorrow will be easier",
+        "If you wrap it up today, tomorrow will be easier",
+        "If you knock this out today, tomorrow will be easier",
+        "If you knock it out today, tomorrow will be easier",
+        "If you get it done today, tomorrow will be easier",
+        "Tomorrow will feel lighter if you finish this today",
+        "If you finish this today, tomorrow is easier",
+        "If you get this done today, tomorrow is easier"
       ],
       "tags": [
         "conditional"
@@ -3609,9 +3972,36 @@
       "en": [
         "Even if I make mistakes, I will keep going",
         "Even if I make mistakes, I'll keep going",
-        "Even if I make mistakes, I'll continue",
+        "Even if I make a mistake, I will keep going",
+        "Even if I make a mistake, I'll keep going",
+        "Even if I mess up, I will keep going",
         "Even if I mess up, I'll keep going",
-        "Even if I get it wrong, I'll keep going"
+        "Even if I get it wrong, I will keep going",
+        "Even if I get it wrong, I'll keep going",
+        "Even if I slip up, I will keep going",
+        "Even if I slip up, I'll keep going",
+        "Even if I fail, I will keep going",
+        "Even if I fail, I'll keep going",
+        "Even if I make mistakes, I will keep trying",
+        "Even if I make mistakes, I'll keep trying",
+        "Even if I mess up, I'll keep trying",
+        "Even if I mess up, I will keep trying",
+        "Even if I make mistakes, I will continue",
+        "Even if I make mistakes, I'll continue",
+        "Even if I mess up, I'll carry on",
+        "Even if I mess up, I will carry on",
+        "Even if I make mistakes, I will push on",
+        "Even if I make mistakes, I'll push on",
+        "Even if I mess up, I won't stop",
+        "Even if I mess up, I will not stop",
+        "Even if I make mistakes, I won't stop",
+        "Even if I make mistakes, I will not stop",
+        "Even if I mess up, I'm going to keep going",
+        "Even if I make mistakes, I'm going to keep going",
+        "Even if I mess up, I'll stick with it",
+        "Even if I make mistakes, I'll stick with it",
+        "Even if I mess up, I'll keep at it",
+        "Even if I make mistakes, I'll keep at it"
       ],
       "tags": [
         "concessive",
@@ -4008,10 +4398,28 @@
       "id": 323,
       "pt": "Mesmo se eu tivesse entendido antes, eu ainda teria errado.",
       "en": [
-        "Even if I had understood earlier, I still would have made mistakes",
-        "Even if I had understood before, I still would have made mistakes",
-        "Even if I'd understood earlier, I still would have gotten it wrong",
-        "Even if I had understood earlier, I still would've got it wrong"
+        "Even if I understood earlier, I would still make mistakes",
+        "Even if I understood earlier, I'd still make mistakes",
+        "Even if I understood it earlier, I would still make mistakes",
+        "Even if I understood it earlier, I'd still make mistakes",
+        "Even if I understood before, I would still make mistakes",
+        "Even if I understood before, I'd still make mistakes",
+        "Even if I got it earlier, I would still get it wrong",
+        "Even if I got it earlier, I'd still get it wrong",
+        "Even if I got it before, I would still get it wrong",
+        "Even if I got it before, I'd still get it wrong",
+        "Even if I understood earlier, I would still get it wrong",
+        "Even if I understood earlier, I'd still get it wrong",
+        "Even if I understood earlier, I would still mess up",
+        "Even if I understood earlier, I'd still mess up",
+        "Even if I understood earlier, I would still make the same mistake",
+        "Even if I understood earlier, I'd still make the same mistake",
+        "Even if I figured it out earlier, I would still get it wrong",
+        "Even if I figured it out earlier, I'd still get it wrong",
+        "Even if I figured it out sooner, I'd still mess up",
+        "Even if I worked it out earlier, I'd still get it wrong",
+        "Even if I understood earlier, I'd still slip up",
+        "Even if I understood earlier, I'd still make a mistake"
       ],
       "tags": [
         "concessive",
@@ -8247,11 +8655,21 @@
       "id": 634,
       "pt": "Se eu fosse você, eu falaria com ela.",
       "en": [
-        "If I were you, I would talk to her.",
-        "If I were you, I'd talk to her.",
-        "If I were you, I would speak with her.",
-        "If I were you, I'd speak with her.",
-        "If I were you, I'd have a word with her."
+        "If I were you, I would talk to her",
+        "If I were you, I'd talk to her",
+        "If I were you, I would speak with her",
+        "If I were you, I'd speak with her",
+        "If I were you, I'd have a word with her",
+        "If I were you, I would have a word with her",
+        "If I were you, I'd talk to her about it",
+        "If I were you, I would talk to her about it",
+        "If I were in your shoes, I'd talk to her",
+        "If I were in your shoes, I would talk to her",
+        "If I were in your shoes, I'd have a word with her",
+        "If I were in your position, I'd talk to her",
+        "If I were in your position, I would talk to her",
+        "If I were you, I'd go talk to her",
+        "If I were you, I would go talk to her"
       ],
       "tags": [
         "advice",
@@ -8275,11 +8693,21 @@
       "id": 636,
       "pt": "Se eu fosse você, eu não faria isso.",
       "en": [
-        "If I were you, I would not do that.",
-        "If I were you, I wouldn't do that.",
-        "If I were you, I wouldn't do it.",
-        "I wouldn't do that if I were you.",
-        "If I were you, I'd avoid doing that."
+        "If I were you, I would not do that",
+        "If I were you, I wouldn't do that",
+        "If I were you, I would not do it",
+        "If I were you, I wouldn't do it",
+        "I wouldn't do that if I were you",
+        "I would not do that if I were you",
+        "I wouldn't do it if I were you",
+        "I would not do it if I were you",
+        "If I were you, I'd avoid doing that",
+        "If I were you, I would avoid doing that",
+        "If I were you, I'd stay away from that",
+        "If I were you, I would stay away from that",
+        "If I were in your shoes, I wouldn't do that",
+        "If I were in your shoes, I would not do that",
+        "If I were you, I'd not do that"
       ],
       "tags": [
         "advice",
@@ -8472,11 +8900,22 @@
       "id": 650,
       "pt": "Se eu fosse você, eu estudaria mais.",
       "en": [
-        "If I were you, I'd study more.",
-        "If I were you, I would study more.",
-        "If I were you, I'd study harder.",
-        "If I were in your shoes, I'd study more.",
-        "I'd study more if I were you."
+        "If I were you, I'd study more",
+        "If I were you, I would study more",
+        "If I were you, I'd study harder",
+        "If I were you, I would study harder",
+        "If I were in your shoes, I'd study more",
+        "If I were in your shoes, I would study more",
+        "I'd study more if I were you",
+        "I would study more if I were you",
+        "If I were you, I'd hit the books more",
+        "If I were you, I would hit the books more",
+        "If I were you, I'd study a lot more",
+        "If I were you, I would study a lot more",
+        "If I were in your position, I'd study more",
+        "If I were in your position, I would study more",
+        "If I were you, I'd spend more time studying",
+        "If I were you, I would spend more time studying"
       ],
       "tags": [
         "advice",
@@ -8487,11 +8926,22 @@
       "id": 651,
       "pt": "Se eu fosse você, eu dormiria cedo hoje.",
       "en": [
-        "If I were you, I'd go to bed early today.",
-        "If I were you, I would go to bed early today.",
-        "If I were you, I'd turn in early today.",
-        "If I were you, I'd get an early night.",
-        "If I were you, I would sleep early today."
+        "If I were you, I'd go to bed early today",
+        "If I were you, I would go to bed early today",
+        "If I were you, I'd turn in early today",
+        "If I were you, I would turn in early today",
+        "If I were you, I'd get an early night",
+        "If I were you, I would get an early night",
+        "If I were you, I'd sleep early today",
+        "If I were you, I would sleep early today",
+        "If I were in your shoes, I'd go to bed early today",
+        "If I were in your shoes, I would go to bed early today",
+        "I'd go to bed early today if I were you",
+        "I would go to bed early today if I were you",
+        "If I were you, I'd hit the sack early today",
+        "If I were you, I would hit the sack early today",
+        "If I were you, I'd call it an early night",
+        "If I were you, I would call it an early night"
       ],
       "tags": [
         "advice",
@@ -8502,11 +8952,22 @@
       "id": 652,
       "pt": "Se eu fosse você, eu falaria com ele.",
       "en": [
-        "If I were you, I'd talk to him.",
-        "If I were you, I would talk to him.",
-        "If I were you, I'd speak with him.",
-        "If I were you, I'd have a word with him.",
-        "If I were in your shoes, I'd talk to him."
+        "If I were you, I'd talk to him",
+        "If I were you, I would talk to him",
+        "If I were you, I'd speak with him",
+        "If I were you, I would speak with him",
+        "If I were you, I'd have a word with him",
+        "If I were you, I would have a word with him",
+        "If I were in your shoes, I'd talk to him",
+        "If I were in your shoes, I would talk to him",
+        "I'd talk to him if I were you",
+        "I would talk to him if I were you",
+        "If I were in your position, I'd talk to him",
+        "If I were in your position, I would talk to him",
+        "If I were you, I'd go talk to him",
+        "If I were you, I would go talk to him",
+        "If I were you, I'd talk to him about it",
+        "If I were you, I would talk to him about it"
       ],
       "tags": [
         "advice",
@@ -8517,10 +8978,24 @@
       "id": 653,
       "pt": "Se eu fosse você, eu não desistiria agora.",
       "en": [
-        "If I were you, I wouldn't give up now.",
-        "If I were you, I would not give up now.",
-        "If I were you, I wouldn't quit now.",
-        "If I were you, I wouldn't throw in the towel now."
+        "If I were you, I would not give up now",
+        "If I were you, I wouldn't give up now",
+        "If I were you, I would not quit now",
+        "If I were you, I wouldn't quit now",
+        "If I were you, I would not stop now",
+        "If I were you, I wouldn't stop now",
+        "If I were you, I would not give up right now",
+        "If I were you, I wouldn't give up right now",
+        "I wouldn't give up now if I were you",
+        "I would not give up now if I were you",
+        "If I were in your shoes, I wouldn't give up now",
+        "If I were in your shoes, I would not give up now",
+        "If I were you, I wouldn't throw in the towel now",
+        "If I were you, I would not throw in the towel now",
+        "If I were you, I wouldn't back down now",
+        "If I were you, I would not back down now",
+        "If I were you, I wouldn't call it quits now",
+        "If I were you, I would not call it quits now"
       ],
       "tags": [
         "advice",
@@ -8531,10 +9006,22 @@
       "id": 654,
       "pt": "Se eu fosse você, eu pediria desculpa.",
       "en": [
-        "If I were you, I'd apologize.",
-        "If I were you, I would apologize.",
-        "If I were you, I'd say sorry.",
-        "If I were in your shoes, I'd apologize."
+        "If I were you, I'd apologize",
+        "If I were you, I would apologize",
+        "If I were you, I'd say sorry",
+        "If I were you, I would say sorry",
+        "If I were you, I'd apologize to them",
+        "If I were you, I would apologize to them",
+        "If I were you, I'd apologize to her",
+        "If I were you, I'd apologize to him",
+        "If I were you, I'd make an apology",
+        "If I were you, I would make an apology",
+        "If I were you, I'd offer an apology",
+        "If I were you, I would offer an apology",
+        "If I were in your shoes, I'd apologize",
+        "If I were in your shoes, I would apologize",
+        "I'd apologize if I were you",
+        "I would apologize if I were you"
       ],
       "tags": [
         "advice",
@@ -8545,10 +9032,22 @@
       "id": 655,
       "pt": "Se eu fosse você, eu não falaria isso.",
       "en": [
-        "If I were you, I wouldn't say that.",
-        "If I were you, I would not say that.",
-        "If I were you, I wouldn't say such a thing.",
-        "I wouldn't say that if I were you."
+        "If I were you, I would not say that",
+        "If I were you, I wouldn't say that",
+        "If I were you, I would not say it",
+        "If I were you, I wouldn't say it",
+        "I wouldn't say that if I were you",
+        "I would not say that if I were you",
+        "I wouldn't say it if I were you",
+        "I would not say it if I were you",
+        "If I were you, I wouldn't say something like that",
+        "If I were you, I would not say something like that",
+        "If I were you, I wouldn't say such a thing",
+        "If I were you, I would not say such a thing",
+        "If I were in your shoes, I wouldn't say that",
+        "If I were in your shoes, I would not say that",
+        "If I were you, I'd avoid saying that",
+        "If I were you, I would avoid saying that"
       ],
       "tags": [
         "advice",
@@ -8679,11 +9178,24 @@
       "id": 665,
       "pt": "Se eu fosse você, eu faria isso com calma.",
       "en": [
-        "If I were you, I'd do this calmly.",
-        "If I were you, I would do this calmly.",
-        "If I were you, I'd take my time.",
-        "If I were you, I wouldn't rush.",
-        "If I were you, I'd take it easy."
+        "If I were you, I'd do this calmly",
+        "If I were you, I would do this calmly",
+        "If I were you, I'd do it calmly",
+        "If I were you, I would do it calmly",
+        "If I were you, I'd do this slowly",
+        "If I were you, I would do this slowly",
+        "If I were you, I'd take my time",
+        "If I were you, I would take my time",
+        "If I were you, I wouldn't rush",
+        "If I were you, I would not rush",
+        "If I were you, I'd take it easy",
+        "If I were you, I would take it easy",
+        "If I were you, I'd go step by step",
+        "If I were you, I would go step by step",
+        "If I were you, I'd not hurry",
+        "If I were you, I would not hurry",
+        "If I were you, I'd do it at my own pace",
+        "If I were you, I would do it at my own pace"
       ],
       "tags": [
         "advice",
@@ -8694,10 +9206,24 @@
       "id": 666,
       "pt": "Se eu fosse você, eu não iria agora.",
       "en": [
-        "If I were you, I wouldn't go now.",
-        "If I were you, I would not go now.",
-        "If I were you, I wouldn't leave now.",
-        "If I were you, I wouldn't go right now."
+        "If I were you, I would not go now",
+        "If I were you, I wouldn't go now",
+        "If I were you, I would not go right now",
+        "If I were you, I wouldn't go right now",
+        "If I were you, I would not leave now",
+        "If I were you, I wouldn't leave now",
+        "If I were you, I would not head out now",
+        "If I were you, I wouldn't head out now",
+        "I wouldn't go now if I were you",
+        "I would not go now if I were you",
+        "If I were in your shoes, I wouldn't go now",
+        "If I were in your shoes, I would not go now",
+        "If I were you, I'd wait a bit before going",
+        "If I were you, I would wait a bit before going",
+        "If I were you, I wouldn't go just yet",
+        "If I were you, I would not go just yet",
+        "If I were you, I'd hold off for now",
+        "If I were you, I would hold off for now"
       ],
       "tags": [
         "advice",
@@ -8708,11 +9234,24 @@
       "id": 667,
       "pt": "Se eu fosse você, eu tentaria de outro jeito.",
       "en": [
-        "If I were you, I'd try a different way.",
-        "If I were you, I would try another way.",
-        "If I were you, I'd try a different approach.",
-        "If I were you, I'd try a different angle.",
-        "If I were you, I'd do it differently."
+        "If I were you, I'd try a different way",
+        "If I were you, I would try a different way",
+        "If I were you, I'd try another way",
+        "If I were you, I would try another way",
+        "If I were you, I'd try a different approach",
+        "If I were you, I would try a different approach",
+        "If I were you, I'd try a different angle",
+        "If I were you, I would try a different angle",
+        "If I were you, I'd do it differently",
+        "If I were you, I would do it differently",
+        "If I were you, I'd try it another way",
+        "If I were you, I would try it another way",
+        "If I were you, I'd switch it up",
+        "If I were you, I would switch it up",
+        "If I were you, I'd go about it differently",
+        "If I were you, I would go about it differently",
+        "If I were you, I'd try something else",
+        "If I were you, I would try something else"
       ],
       "tags": [
         "advice",
@@ -9682,9 +10221,19 @@
       "pt": "Talvez ele chegue tarde.",
       "en": [
         "Maybe he arrives late.",
+        "Maybe he arrives late today.",
         "Maybe he gets here late.",
+        "Maybe he gets here late today.",
+        "Maybe he'll arrive late.",
+        "Maybe he will arrive late.",
+        "Maybe he'll get here late.",
+        "Maybe he will get here late.",
         "He might arrive late.",
-        "He might get here late."
+        "He may arrive late.",
+        "He might get here late.",
+        "He may get here late.",
+        "He might show up late.",
+        "He may show up late."
       ],
       "tags": [
         "possibility"
@@ -9695,7 +10244,17 @@
       "pt": "Pode ser que eu me atrase.",
       "en": [
         "I might be late.",
-        "I may be late."
+        "I may be late.",
+        "Maybe I'll be late.",
+        "Maybe I will be late.",
+        "Maybe I'm going to be late.",
+        "Maybe I am going to be late.",
+        "I might run late.",
+        "I may run late.",
+        "I might be running late.",
+        "I may be running late.",
+        "I might not make it on time.",
+        "I may not make it on time."
       ],
       "tags": [
         "possibility"
@@ -9707,10 +10266,18 @@
       "en": [
         "I do not think he is coming today.",
         "I don't think he is coming today.",
-        "I do not think he is coming today.",
-        "I don't think he is coming today.",
+        "I do not think he's coming today.",
+        "I don't think he's coming today.",
         "I think he is not coming today.",
-        "I think he isn't coming today."
+        "I think he's not coming today.",
+        "I think he isn't coming today.",
+        "I think he will not come today.",
+        "I think he won't come today.",
+        "Maybe he is not coming today.",
+        "Maybe he's not coming today.",
+        "Maybe he isn't coming today.",
+        "He might not come today.",
+        "He may not come today."
       ],
       "tags": [
         "possibility"
@@ -9724,7 +10291,14 @@
         "Maybe I'll go later.",
         "Perhaps I will go later.",
         "Perhaps I'll go later.",
-        "I might go later."
+        "I might go later.",
+        "I may go later.",
+        "Maybe I'm going later.",
+        "Maybe I am going later.",
+        "I might head out later.",
+        "I may head out later.",
+        "Maybe I'll head out later.",
+        "Maybe I will head out later."
       ],
       "tags": [
         "possibility",
@@ -9738,7 +10312,12 @@
         "It might rain at night.",
         "It may rain at night.",
         "It might rain tonight.",
-        "It may rain tonight."
+        "It may rain tonight.",
+        "Maybe it will rain at night.",
+        "Maybe it'll rain at night.",
+        "Maybe it will rain tonight.",
+        "Maybe it'll rain tonight.",
+        "It could rain tonight."
       ],
       "tags": [
         "possibility"
@@ -9750,7 +10329,14 @@
       "en": [
         "Maybe he is busy.",
         "Maybe he's busy.",
-        "He might be busy."
+        "He might be busy.",
+        "He may be busy.",
+        "Maybe he's tied up.",
+        "Maybe he is tied up.",
+        "He might be tied up.",
+        "He may be tied up.",
+        "Maybe he is in the middle of something.",
+        "Maybe he's in the middle of something."
       ],
       "tags": [
         "possibility"
@@ -9761,7 +10347,18 @@
       "pt": "Pode ser que ela chegue mais cedo.",
       "en": [
         "She might arrive earlier.",
-        "She may arrive earlier."
+        "She may arrive earlier.",
+        "She could arrive earlier.",
+        "Maybe she will arrive earlier.",
+        "Maybe she'll arrive earlier.",
+        "Maybe she is going to arrive earlier.",
+        "Maybe she's going to arrive earlier.",
+        "She might get here earlier.",
+        "She may get here earlier.",
+        "Maybe she'll get here earlier.",
+        "Maybe she will get here earlier.",
+        "She might show up earlier.",
+        "She may show up earlier."
       ],
       "tags": [
         "possibility"
@@ -9774,7 +10371,13 @@
         "I think it is going to rain today.",
         "I think it's going to rain today.",
         "I think it will rain today.",
-        "I think it'll rain today."
+        "I think it'll rain today.",
+        "I think it might rain today.",
+        "I think it may rain today.",
+        "Maybe it is going to rain today.",
+        "Maybe it's going to rain today.",
+        "It might rain today.",
+        "It may rain today."
       ],
       "tags": [
         "possibility"
@@ -9786,10 +10389,16 @@
       "en": [
         "Maybe I will not be able to go.",
         "Maybe I won't be able to go.",
+        "Maybe I am not going to be able to go.",
+        "Maybe I'm not going to be able to go.",
         "Maybe I cannot go.",
         "Maybe I can't go.",
         "I might not be able to go.",
-        "I may not be able to go."
+        "I may not be able to go.",
+        "I might not be able to make it.",
+        "I may not be able to make it.",
+        "Maybe I won't be able to make it.",
+        "Maybe I will not be able to make it."
       ],
       "tags": [
         "possibility"
@@ -9800,7 +10409,13 @@
       "pt": "Pode ser que ele esteja dormindo.",
       "en": [
         "He might be sleeping.",
-        "He may be sleeping."
+        "He may be sleeping.",
+        "Maybe he is sleeping.",
+        "Maybe he's sleeping.",
+        "He might be asleep.",
+        "He may be asleep.",
+        "Maybe he is asleep.",
+        "Maybe he's asleep."
       ],
       "tags": [
         "possibility"
@@ -9812,10 +10427,16 @@
       "en": [
         "Maybe we will go out later.",
         "Maybe we'll go out later.",
+        "Maybe we are going to go out later.",
+        "Maybe we're going to go out later.",
         "Perhaps we will go out later.",
         "Perhaps we'll go out later.",
         "We might go out later.",
-        "We may go out later."
+        "We may go out later.",
+        "We might head out later.",
+        "We may head out later.",
+        "Maybe we'll head out later.",
+        "Maybe we will head out later."
       ],
       "tags": [
         "possibility"
@@ -9826,7 +10447,14 @@
       "pt": "Pode ser que eu esqueça.",
       "en": [
         "I might forget.",
-        "I may forget."
+        "I may forget.",
+        "Maybe I forget.",
+        "Maybe I will forget.",
+        "Maybe I'll forget.",
+        "Maybe I do not remember.",
+        "Maybe I don't remember.",
+        "I might forget about it.",
+        "I may forget about it."
       ],
       "tags": [
         "possibility"
@@ -9838,8 +10466,15 @@
       "en": [
         "Maybe she does not like it.",
         "Maybe she doesn't like it.",
+        "Maybe she will not like it.",
+        "Maybe she won't like it.",
         "She might not like it.",
-        "She may not like it."
+        "She may not like it.",
+        "She might not like it at all.",
+        "Maybe she is not into it.",
+        "Maybe she isn't into it.",
+        "She might not be into it.",
+        "She may not be into it."
       ],
       "tags": [
         "possibility"
@@ -9851,8 +10486,17 @@
       "en": [
         "I think he already left.",
         "I think he left already.",
+        "I think he is already gone.",
+        "I think he's already gone.",
         "Maybe he already left.",
-        "He might have left already."
+        "Maybe he left already.",
+        "Maybe he is already gone.",
+        "Maybe he's already gone.",
+        "He might already be gone.",
+        "He may already be gone.",
+        "I think he already took off.",
+        "I think he took off already.",
+        "Maybe he already took off."
       ],
       "tags": [
         "possibility"
@@ -9864,7 +10508,18 @@
       "en": [
         "This might take a while.",
         "This may take a while.",
-        "Maybe this takes a while."
+        "This could take a while.",
+        "Maybe this takes a while.",
+        "Maybe this will take a while.",
+        "Maybe it'll take a while.",
+        "This might take some time.",
+        "This may take some time.",
+        "This could take some time.",
+        "This might take longer than we think.",
+        "This may take longer than we think.",
+        "This might drag on.",
+        "This may drag on.",
+        "Maybe this drags on."
       ],
       "tags": [
         "possibility"
@@ -9878,8 +10533,24 @@
         "Maybe he won't reply now.",
         "Maybe he will not answer now.",
         "Maybe he won't answer now.",
+        "Maybe he will not respond now.",
+        "Maybe he won't respond now.",
         "He might not reply now.",
-        "He may not reply now."
+        "He may not reply now.",
+        "He might not answer now.",
+        "He may not answer now.",
+        "He might not respond now.",
+        "He may not respond now.",
+        "Maybe he is not replying right now.",
+        "Maybe he's not replying right now.",
+        "Maybe he is not answering right now.",
+        "Maybe he's not answering right now.",
+        "Maybe he is not responding right now.",
+        "Maybe he's not responding right now.",
+        "He might not get back right away.",
+        "He may not get back right away.",
+        "Maybe he won't get back right away.",
+        "Maybe he will not get back right away."
       ],
       "tags": [
         "possibility"
@@ -9891,7 +10562,20 @@
       "en": [
         "I might be wrong.",
         "I may be wrong.",
-        "Maybe I am wrong."
+        "Maybe I am wrong.",
+        "Maybe I'm wrong.",
+        "I might be mistaken.",
+        "I may be mistaken.",
+        "Maybe I am mistaken.",
+        "Maybe I'm mistaken.",
+        "I might be off.",
+        "I may be off.",
+        "Maybe I am off.",
+        "Maybe I'm off.",
+        "I might not be right.",
+        "I may not be right.",
+        "Maybe I am not right.",
+        "Maybe I'm not right."
       ],
       "tags": [
         "possibility"
@@ -9902,9 +10586,18 @@
       "pt": "Talvez a internet caia de novo.",
       "en": [
         "Maybe the internet will go down again.",
-        "Maybe the internet won't work again.",
+        "Maybe the internet goes down again.",
+        "Maybe the internet is going to go down again.",
+        "Maybe the internet's going to go down again.",
         "The internet might go down again.",
-        "The internet may go down again."
+        "The internet may go down again.",
+        "The internet could go down again.",
+        "Maybe the internet cuts out again.",
+        "The internet might cut out again.",
+        "Maybe the internet drops again.",
+        "The internet might drop again.",
+        "Maybe the internet stops working again.",
+        "The internet might stop working again."
       ],
       "tags": [
         "possibility"
@@ -9916,8 +10609,15 @@
       "en": [
         "She might be busy.",
         "She may be busy.",
+        "She could be busy.",
         "Maybe she is busy.",
-        "Maybe she's busy."
+        "Maybe she's busy.",
+        "Maybe she's tied up.",
+        "She might be tied up.",
+        "She may be tied up.",
+        "Maybe she's occupied.",
+        "She might be in the middle of something.",
+        "She may be in the middle of something."
       ],
       "tags": [
         "possibility"
@@ -9929,8 +10629,15 @@
       "en": [
         "I think he did not understand.",
         "I think he didn't understand.",
+        "I think he did not get it.",
+        "I think he didn't get it.",
+        "I don't think he understood.",
+        "I do not think he understood.",
+        "I think he didn't catch that.",
+        "I think he didn't quite understand.",
         "Maybe he did not understand.",
-        "Maybe he didn't understand."
+        "Maybe he didn't understand.",
+        "Maybe he didn't get it."
       ],
       "tags": [
         "possibility"
@@ -9943,8 +10650,16 @@
         "Maybe I need help.",
         "I might need help.",
         "I may need help.",
+        "I could need help.",
+        "Maybe I'll need help.",
         "Maybe I will need help.",
-        "Maybe I'll need help."
+        "Maybe I'm going to need help.",
+        "Maybe I'm gonna need help.",
+        "I might need a hand.",
+        "I may need a hand.",
+        "Maybe I need a hand.",
+        "I might need some help.",
+        "I may need some help."
       ],
       "tags": [
         "possibility"
@@ -9956,8 +10671,21 @@
       "en": [
         "We might be late.",
         "We may be late.",
+        "We could be late.",
         "Maybe we will be late.",
-        "Maybe we'll be late."
+        "Maybe we'll be late.",
+        "Maybe we're going to be late.",
+        "Maybe we're gonna be late.",
+        "We might run late.",
+        "We may run late.",
+        "We might be running late.",
+        "We may be running late.",
+        "We might end up late.",
+        "We may end up late.",
+        "We might get held up.",
+        "We may get held up.",
+        "We might be delayed.",
+        "We may be delayed."
       ],
       "tags": [
         "possibility"
@@ -9969,8 +10697,14 @@
       "en": [
         "Maybe that is true.",
         "Maybe that's true.",
+        "Maybe it is true.",
+        "Maybe it's true.",
         "That might be true.",
-        "That may be true."
+        "That may be true.",
+        "That could be true.",
+        "It might be true.",
+        "It may be true.",
+        "Maybe that's actually true."
       ],
       "tags": [
         "possibility"
@@ -9982,8 +10716,16 @@
       "en": [
         "He might be at work.",
         "He may be at work.",
+        "He could be at work.",
         "Maybe he is at work.",
-        "Maybe he's at work."
+        "Maybe he's at work.",
+        "Maybe he is at the office.",
+        "Maybe he's at the office.",
+        "He might be at the office.",
+        "He may be at the office.",
+        "He might be working.",
+        "He may be working.",
+        "Maybe he's working."
       ],
       "tags": [
         "possibility"
@@ -9999,8 +10741,15 @@
         "Maybe she's ill.",
         "She might be sick.",
         "She may be sick.",
+        "She could be sick.",
         "She might be ill.",
-        "She may be ill."
+        "She may be ill.",
+        "Maybe she doesn't feel well.",
+        "Maybe she does not feel well.",
+        "She might not feel well.",
+        "She may not feel well.",
+        "Maybe she's under the weather.",
+        "She might be under the weather."
       ],
       "tags": [
         "possibility"
@@ -10014,8 +10763,20 @@
         "I think the shop is already closed.",
         "I think the store closed already.",
         "I think the shop closed already.",
+        "I think the store is closed already.",
+        "I think the shop is closed already.",
+        "I think the store is already shut.",
+        "I think the shop is already shut.",
+        "I think the store is shut already.",
+        "I think the shop is shut already.",
+        "I think the store is closed now.",
+        "I think the shop is closed now.",
         "Maybe the store is already closed.",
-        "Maybe the shop is already closed."
+        "Maybe the shop is already closed.",
+        "Maybe the store is already shut.",
+        "Maybe the shop is already shut.",
+        "The store might already be closed.",
+        "The shop may already be closed."
       ],
       "tags": [
         "possibility"
@@ -10027,8 +10788,15 @@
       "en": [
         "He might be hungry.",
         "He may be hungry.",
+        "He could be hungry.",
         "Maybe he is hungry.",
-        "Maybe he's hungry."
+        "Maybe he's hungry.",
+        "He might be getting hungry.",
+        "He may be getting hungry.",
+        "Maybe he's getting hungry.",
+        "He might be starving.",
+        "He may be starving.",
+        "Maybe he's starving."
       ],
       "tags": [
         "possibility"
@@ -10041,7 +10809,11 @@
         "Maybe I will go tomorrow.",
         "Maybe I'll go tomorrow.",
         "I might go tomorrow.",
-        "I may go tomorrow."
+        "I may go tomorrow.",
+        "Maybe I'm going tomorrow.",
+        "Maybe I am going tomorrow.",
+        "I might go tomorrow morning.",
+        "I may go tomorrow morning."
       ],
       "tags": [
         "possibility"
@@ -10054,7 +10826,13 @@
         "She might not come today.",
         "She may not come today.",
         "Maybe she does not come today.",
-        "Maybe she doesn't come today."
+        "Maybe she doesn't come today.",
+        "Maybe she isn't coming today.",
+        "Maybe she is not coming today.",
+        "She might not show up today.",
+        "She may not show up today.",
+        "Maybe she won't come today.",
+        "Maybe she will not come today."
       ],
       "tags": [
         "possibility"
@@ -10071,7 +10849,13 @@
         "We might solve this today.",
         "We may solve this today.",
         "We might fix this today.",
-        "We may fix this today."
+        "We may fix this today.",
+        "Maybe we can figure it out today.",
+        "We might be able to figure it out today.",
+        "Maybe we can work it out today.",
+        "We might be able to work it out today.",
+        "Maybe we can sort it out today.",
+        "We might be able to sort it out today."
       ],
       "tags": [
         "possibility"
@@ -10084,7 +10868,11 @@
         "I might not have time.",
         "I may not have time.",
         "Maybe I do not have time.",
-        "Maybe I don't have time."
+        "Maybe I don't have time.",
+        "Maybe I won't have time.",
+        "Maybe I will not have time.",
+        "I might not have enough time.",
+        "I may not have enough time."
       ],
       "tags": [
         "possibility"
@@ -10098,8 +10886,21 @@
         "I think he's going to arrive late.",
         "I think he will arrive late.",
         "I think he'll arrive late.",
+        "I think he is going to be late.",
+        "I think he's going to be late.",
+        "I think he will be late.",
+        "I think he'll be late.",
+        "I think he might be late.",
+        "I think he may be late.",
         "Maybe he is going to arrive late.",
-        "Maybe he will arrive late."
+        "Maybe he's going to arrive late.",
+        "Maybe he will arrive late.",
+        "Maybe he'll arrive late.",
+        "Maybe he'll be late.",
+        "He might show up late.",
+        "He may show up late.",
+        "He might turn up late.",
+        "He may turn up late."
       ],
       "tags": [
         "possibility"
@@ -10112,7 +10913,10 @@
         "Maybe I am too tired.",
         "Maybe I'm too tired.",
         "I might be too tired.",
-        "I may be too tired."
+        "I may be too tired.",
+        "Maybe I'm just too tired.",
+        "I might be way too tired.",
+        "I may be way too tired."
       ],
       "tags": [
         "possibility"
@@ -10124,10 +10928,16 @@
       "en": [
         "This might work.",
         "This may work.",
+        "This could work.",
         "This might work out.",
         "This may work out.",
+        "This could work out.",
         "Maybe this works.",
-        "Maybe this works out."
+        "Maybe this works out.",
+        "Maybe this will work.",
+        "Maybe it'll work.",
+        "It might work.",
+        "It may work."
       ],
       "tags": [
         "possibility"
@@ -10138,8 +10948,13 @@
       "pt": "Talvez a gente precise tentar de novo.",
       "en": [
         "Maybe we need to try again.",
+        "Maybe we have to try again.",
         "We might need to try again.",
-        "We may need to try again."
+        "We may need to try again.",
+        "We might have to try again.",
+        "We may have to try again.",
+        "Maybe we need to give it another try.",
+        "We might need to give it another try."
       ],
       "tags": [
         "possibility"
@@ -10151,10 +10966,18 @@
       "en": [
         "Maybe I will arrive a little later.",
         "Maybe I'll arrive a little later.",
+        "Maybe I'm going to arrive a little later.",
+        "Maybe I'm gonna arrive a little later.",
+        "I might arrive a little later.",
+        "I may arrive a little later.",
         "Maybe I will be a little late.",
         "Maybe I'll be a little late.",
-        "I might arrive a little later.",
-        "I may arrive a little later."
+        "Maybe I'm going to be a little late.",
+        "Maybe I'm gonna be a little late.",
+        "I might be a little late.",
+        "I may be a little late.",
+        "Maybe I'll show up a little later.",
+        "I might show up a little later."
       ],
       "tags": [
         "possibility",
@@ -10167,8 +10990,15 @@
       "en": [
         "Maybe he did not see the message.",
         "Maybe he didn't see the message.",
+        "He might not have seen the message.",
+        "He may not have seen the message.",
+        "Maybe he didn't read the message.",
+        "He might not have read the message.",
+        "He may not have read the message.",
         "I think he did not see the message.",
-        "I think he didn't see the message."
+        "I think he didn't see the message.",
+        "I think he might not have seen the message.",
+        "I think he may not have seen the message."
       ],
       "tags": [
         "possibility"

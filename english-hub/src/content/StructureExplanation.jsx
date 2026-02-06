@@ -37,7 +37,6 @@ const StructureExplanation = ({ mode }) => {
       title: "Condicionais (If)",
       description: "A lógica de Causa e Consequência hipotética. Elas podem expressar verdades absolutas, possibilidades reais ou sonhos distantes.",
       structure: "If + [Condição] , [Resultado Provável]",
-      // 'tips' removido conforme solicitado para este modo
       examples: [
         { pt: "Se chover, eu fico em casa. (Real)", en: "If it rains, I stay home." },
         { pt: "Se eu tivesse tempo, eu iria. (Imaginário)", en: "If I had time, I would go." },
