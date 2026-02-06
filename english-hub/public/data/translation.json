@@ -9255,98 +9255,155 @@
       ]
     },
     {
-      "id": 543,
+      "id": 706,
       "pt": "Que tal a gente caminhar um pouco?",
       "en": [
         "How about we go for a walk?",
-        "Why don't we go for a walk?"
+        "How about going for a walk?",
+        "Why do we not go for a walk?",
+        "Why don't we go for a walk?",
+        "Why do we not take a walk?",
+        "Why don't we take a walk?",
+        "Let us go for a walk.",
+        "Let's go for a walk.",
+        "Let us take a walk.",
+        "Let's take a walk.",
+        "How about we walk a bit?",
+        "How about walking a bit?",
+        "Why do we not walk a little?",
+        "Why don't we walk a little?",
+        "Let us walk around a bit.",
+        "Let's walk around a bit."
       ],
       "tags": [
         "suggestion"
       ]
     },
     {
-      "id": 544,
+      "id": 707,
       "pt": "Vamos conversar depois?",
       "en": [
         "Shall we talk later?",
-        "Let's talk later"
+        "Shall we chat later?",
+        "Why do we not talk later?",
+        "Why don't we talk later?",
+        "Why do we not chat later?",
+        "Why don't we chat later?",
+        "Let us talk later.",
+        "Let's talk later.",
+        "Let us chat later.",
+        "Let's chat later.",
+        "Let us catch up later.",
+        "Let's catch up later."
       ],
       "tags": [
         "suggestion"
       ]
     },
     {
-      "id": 545,
+      "id": 708,
       "pt": "Que tal você mandar uma mensagem pra ele?",
       "en": [
         "How about you text him?",
-        "Why don't you text him?"
+        "How about texting him?",
+        "Why do you not text him?",
+        "Why don't you text him?",
+        "Why do you not send him a message?",
+        "Why don't you send him a message?"
       ],
       "tags": [
         "suggestion"
       ]
     },
     {
-      "id": 546,
+      "id": 709,
       "pt": "Vamos fazer isso de outro jeito?",
       "en": [
         "Shall we do it another way?",
-        "Let's do it another way"
+        "Shall we try another way?",
+        "Why do we not do it a different way?",
+        "Why don't we do it a different way?",
+        "Why do we not try a different way?",
+        "Why don't we try a different way?",
+        "Let us do it another way.",
+        "Let's do it another way.",
+        "Let us try another way.",
+        "Let's try another way."
       ],
       "tags": [
         "suggestion"
       ]
     },
     {
-      "id": 547,
+      "id": 710,
       "pt": "Que tal assistir uma aula curta?",
       "en": [
         "How about watching a short lesson?",
-        "Why don't you watch a short lesson?"
+        "How about taking a short lesson?",
+        "Why do you not watch a short lesson?",
+        "Why don't you watch a short lesson?",
+        "Why do you not take a short class?",
+        "Why don't you take a short class?"
       ],
       "tags": [
         "suggestion"
       ]
     },
     {
-      "id": 548,
+      "id": 711,
       "pt": "Vamos tentar mais uma vez?",
       "en": [
         "Shall we try one more time?",
-        "Let's try one more time"
+        "Let us try one more time.",
+        "Let's try one more time.",
+        "Why do we not try one more time?",
+        "Why don't we try one more time?",
+        "How about trying one more time?",
+        "How about we try one more time?"
       ],
       "tags": [
         "suggestion"
       ]
     },
     {
-      "id": 549,
+      "id": 712,
       "pt": "Que tal a gente ir de ônibus?",
       "en": [
         "How about we take the bus?",
-        "Why don't we take the bus?"
+        "How about taking the bus?",
+        "Why do we not take the bus?",
+        "Why don't we take the bus?",
+        "Shall we take the bus?",
+        "Let us take the bus.",
+        "Let's take the bus."
       ],
       "tags": [
         "suggestion"
       ]
     },
     {
-      "id": 550,
+      "id": 713,
       "pt": "Vamos comprar isso depois?",
       "en": [
         "Shall we buy it later?",
-        "Let's buy it later"
+        "Let us buy it later.",
+        "Let's buy it later.",
+        "Why do we not buy it later?",
+        "Why don't we buy it later?",
+        "How about buying it later?",
+        "How about we buy it later?"
       ],
       "tags": [
         "suggestion"
       ]
     },
     {
-      "id": 551,
+      "id": 714,
       "pt": "Que tal você falar com calma?",
       "en": [
         "How about speaking calmly?",
+        "How about you speak calmly?",
+        "Why do you not speak calmly?",
         "Why don't you speak calmly?"
       ],
       "tags": [
@@ -9354,66 +9411,95 @@
       ]
     },
     {
-      "id": 552,
+      "id": 715,
       "pt": "Vamos focar no mais importante primeiro?",
       "en": [
         "Shall we focus on the most important thing first?",
-        "Let's focus on the most important thing first"
+        "Let us focus on the most important thing first.",
+        "Let's focus on the most important thing first.",
+        "Why do we not focus on the most important thing first?",
+        "Why don't we focus on the most important thing first?",
+        "How about focusing on the most important thing first?",
+        "How about we focus on the most important thing first?"
       ],
       "tags": [
         "suggestion"
       ]
     },
     {
-      "id": 553,
+      "id": 716,
       "pt": "Que tal a gente revisar isso juntos?",
       "en": [
         "How about we review this together?",
-        "Why don't we review this together?"
+        "How about reviewing this together?",
+        "Why do we not review this together?",
+        "Why don't we review this together?",
+        "Shall we review this together?",
+        "Let us review this together.",
+        "Let's review this together."
       ],
       "tags": [
         "suggestion"
       ]
     },
     {
-      "id": 554,
+      "id": 717,
       "pt": "Vamos resolver isso agora?",
       "en": [
         "Shall we solve this now?",
-        "Let's solve this now",
-        "Let's fix this now"
+        "Let us solve this now.",
+        "Let's solve this now.",
+        "Shall we fix this now?",
+        "Let us fix this now.",
+        "Let's fix this now.",
+        "Why do we not solve this now?",
+        "Why don't we solve this now?",
+        "Why do we not fix this now?",
+        "Why don't we fix this now?"
       ],
       "tags": [
         "suggestion"
       ]
     },
     {
-      "id": 555,
+      "id": 718,
       "pt": "Que tal a gente descansar um pouco agora?",
       "en": [
         "How about we rest a little now?",
-        "Why don't we rest a little now?"
+        "How about resting a little now?",
+        "Why do we not rest a little now?",
+        "Why don't we rest a little now?",
+        "Shall we rest a little now?",
+        "Let us rest a little now.",
+        "Let's rest a little now."
       ],
       "tags": [
         "suggestion"
       ]
     },
     {
-      "id": 556,
+      "id": 719,
       "pt": "Vamos começar por uma parte mais fácil?",
       "en": [
         "Shall we start with an easier part?",
-        "Let's start with an easier part"
+        "Let us start with an easier part.",
+        "Let's start with an easier part.",
+        "Why do we not start with an easier part?",
+        "Why don't we start with an easier part?",
+        "How about starting with an easier part?",
+        "How about we start with an easier part?"
       ],
       "tags": [
         "suggestion"
       ]
     },
     {
-      "id": 557,
+      "id": 720,
       "pt": "Que tal você revisar isso rapidinho?",
       "en": [
         "How about you review this quickly?",
+        "How about reviewing this quickly?",
+        "Why do you not review this quickly?",
         "Why don't you review this quickly?"
       ],
       "tags": [
@@ -9421,82 +9507,111 @@
       ]
     },
     {
-      "id": 558,
+      "id": 721,
       "pt": "Vamos fazer um plano antes de começar?",
       "en": [
         "Shall we make a plan before we start?",
-        "Let's make a plan before we start"
+        "Let us make a plan before we start.",
+        "Let's make a plan before we start.",
+        "Why do we not make a plan before we start?",
+        "Why don't we make a plan before we start?",
+        "How about making a plan before we start?",
+        "How about we make a plan before we start?"
       ],
       "tags": [
         "suggestion"
       ]
     },
     {
-      "id": 559,
+      "id": 722,
       "pt": "Podemos tentar de novo amanhã.",
-      "en": "We could try again tomorrow",
+      "en": [
+        "We could try again tomorrow.",
+        "We can try again tomorrow.",
+        "We could try tomorrow again."
+      ],
       "tags": [
         "suggestion"
       ]
     },
     {
-      "id": 560,
+      "id": 723,
       "pt": "Que tal a gente estudar só mais 10 minutos?",
       "en": [
         "How about we study for just 10 more minutes?",
-        "Why don't we study for just 10 more minutes?"
+        "How about studying for just 10 more minutes?",
+        "Why do we not study for just 10 more minutes?",
+        "Why don't we study for just 10 more minutes?",
+        "Shall we study for just 10 more minutes?",
+        "Let us study for just 10 more minutes.",
+        "Let's study for just 10 more minutes."
       ],
       "tags": [
         "suggestion"
       ]
     },
     {
-      "id": 561,
+      "id": 724,
       "pt": "Vamos deixar isso pra depois?",
       "en": [
         "Shall we leave this for later?",
-        "Let's leave this for later"
+        "Let us leave this for later.",
+        "Let's leave this for later.",
+        "Why do we not leave this for later?",
+        "Why don't we leave this for later?",
+        "How about leaving this for later?",
+        "How about we leave this for later?"
       ],
       "tags": [
         "suggestion"
       ]
     },
     {
-      "id": 562,
+      "id": 725,
       "pt": "Que tal você beber um chá?",
       "en": [
         "How about you have some tea?",
-        "Why don't you drink some tea?",
-        "How about having some tea?"
+        "How about having some tea?",
+        "Why do you not drink some tea?",
+        "Why don't you drink some tea?"
       ],
       "tags": [
         "suggestion"
       ]
     },
     {
-      "id": 563,
+      "id": 726,
       "pt": "Vamos caminhar um pouco pra relaxar?",
       "en": [
         "Shall we go for a walk to relax?",
-        "Let's go for a walk to relax"
+        "Let us go for a walk to relax.",
+        "Let's go for a walk to relax.",
+        "Why do we not go for a walk to relax?",
+        "Why don't we go for a walk to relax?",
+        "How about going for a walk to relax?",
+        "How about we go for a walk to relax?"
       ],
       "tags": [
         "suggestion"
       ]
     },
     {
-      "id": 564,
+      "id": 727,
       "pt": "Podemos assistir outro episódio.",
-      "en": "We could watch another episode",
+      "en": [
+        "We could watch another episode.",
+        "We can watch another episode."
+      ],
       "tags": [
         "suggestion"
       ]
     },
     {
-      "id": 565,
+      "id": 728,
       "pt": "Que tal você desligar o celular por um tempo?",
       "en": [
         "How about turning off your phone for a while?",
+        "Why do you not turn off your phone for a while?",
         "Why don't you turn off your phone for a while?"
       ],
       "tags": [
@@ -9504,82 +9619,112 @@
       ]
     },
     {
-      "id": 566,
+      "id": 729,
       "pt": "Vamos organizar isso antes de continuar?",
       "en": [
         "Shall we organize this before we continue?",
-        "Let's organize this before we continue"
+        "Let us organize this before we continue.",
+        "Let's organize this before we continue.",
+        "Why do we not organize this before we continue?",
+        "Why don't we organize this before we continue?",
+        "How about organizing this before we continue?",
+        "How about we organize this before we continue?"
       ],
       "tags": [
         "suggestion"
       ]
     },
     {
-      "id": 567,
+      "id": 730,
       "pt": "Que tal a gente fazer uma pausa rápida?",
       "en": [
         "How about we take a quick break?",
-        "Why don't we take a quick break?"
+        "How about taking a quick break?",
+        "Why do we not take a quick break?",
+        "Why don't we take a quick break?",
+        "Shall we take a quick break?",
+        "Let us take a quick break.",
+        "Let's take a quick break."
       ],
       "tags": [
         "suggestion"
       ]
     },
     {
-      "id": 568,
+      "id": 731,
       "pt": "Vamos tentar explicar de um jeito diferente?",
       "en": [
         "Shall we try to explain it in a different way?",
-        "Let's try to explain it in a different way"
+        "Let us try to explain it in a different way.",
+        "Let's try to explain it in a different way.",
+        "Why do we not try to explain it in a different way?",
+        "Why don't we try to explain it in a different way?",
+        "How about trying to explain it in a different way?",
+        "How about we try to explain it in a different way?"
       ],
       "tags": [
         "suggestion"
       ]
     },
     {
-      "id": 569,
+      "id": 732,
       "pt": "Podemos marcar isso para amanhã.",
-      "en": "We could schedule this for tomorrow",
+      "en": [
+        "We could schedule this for tomorrow.",
+        "We can schedule this for tomorrow."
+      ],
       "tags": [
         "suggestion"
       ]
     },
     {
-      "id": 151,
+      "id": 733,
       "pt": "Talvez ele chegue tarde.",
-      "en": "Maybe he arrives late",
+      "en": [
+        "Maybe he arrives late.",
+        "Maybe he gets here late.",
+        "He might arrive late.",
+        "He might get here late."
+      ],
       "tags": [
         "possibility"
       ]
     },
     {
-      "id": 152,
+      "id": 734,
       "pt": "Pode ser que eu me atrase.",
       "en": [
-        "I might be late",
-        "I may be late"
+        "I might be late.",
+        "I may be late."
       ],
       "tags": [
         "possibility"
       ]
     },
     {
-      "id": 192,
+      "id": 735,
       "pt": "Acho que ele não vem hoje.",
       "en": [
-        "I do not/don't think he is/he's coming today",
-        "I think he is not/isn't coming today"
+        "I do not think he is coming today.",
+        "I don't think he is coming today.",
+        "I do not think he is coming today.",
+        "I don't think he is coming today.",
+        "I think he is not coming today.",
+        "I think he isn't coming today."
       ],
       "tags": [
         "possibility"
       ]
     },
     {
-      "id": 193,
+      "id": 736,
       "pt": "Talvez eu vá mais tarde.",
       "en": [
-        "Maybe I will/I'll go later",
-        "Perhaps I will/I'll go later"
+        "Maybe I will go later.",
+        "Maybe I'll go later.",
+        "Perhaps I will go later.",
+        "Perhaps I'll go later.",
+        "I might go later."
       ],
       "tags": [
         "possibility",
@@ -9587,330 +9732,429 @@
       ]
     },
     {
-      "id": 194,
+      "id": 737,
       "pt": "Pode ser que chova à noite.",
       "en": [
-        "It might rain at night",
-        "It may rain tonight",
-        "It might rain tonight"
+        "It might rain at night.",
+        "It may rain at night.",
+        "It might rain tonight.",
+        "It may rain tonight."
       ],
       "tags": [
         "possibility"
       ]
     },
     {
-      "id": 555,
+      "id": 738,
       "pt": "Talvez ele esteja ocupado.",
-      "en": "Maybe he is/he's busy",
+      "en": [
+        "Maybe he is busy.",
+        "Maybe he's busy.",
+        "He might be busy."
+      ],
       "tags": [
         "possibility"
       ]
     },
     {
-      "id": 556,
+      "id": 739,
       "pt": "Pode ser que ela chegue mais cedo.",
       "en": [
-        "She might arrive earlier",
-        "She may arrive earlier"
+        "She might arrive earlier.",
+        "She may arrive earlier."
       ],
       "tags": [
         "possibility"
       ]
     },
     {
-      "id": 557,
+      "id": 740,
       "pt": "Acho que vai chover hoje.",
       "en": [
-        "I think it is/it's going to rain today",
-        "I think it will/it'll rain today"
+        "I think it is going to rain today.",
+        "I think it's going to rain today.",
+        "I think it will rain today.",
+        "I think it'll rain today."
       ],
       "tags": [
         "possibility"
       ]
     },
     {
-      "id": 558,
+      "id": 741,
       "pt": "Talvez eu não consiga ir.",
       "en": [
-        "Maybe I will not/won't be able to go",
-        "Maybe I cannot/can't go"
+        "Maybe I will not be able to go.",
+        "Maybe I won't be able to go.",
+        "Maybe I cannot go.",
+        "Maybe I can't go.",
+        "I might not be able to go.",
+        "I may not be able to go."
       ],
       "tags": [
         "possibility"
       ]
     },
     {
-      "id": 559,
+      "id": 742,
       "pt": "Pode ser que ele esteja dormindo.",
       "en": [
-        "He might be sleeping",
-        "He may be sleeping"
+        "He might be sleeping.",
+        "He may be sleeping."
       ],
       "tags": [
         "possibility"
       ]
     },
     {
-      "id": 560,
+      "id": 743,
       "pt": "Talvez a gente saia mais tarde.",
       "en": [
-        "Maybe we will/we'll go out later",
-        "Perhaps we will/we'll go out later"
+        "Maybe we will go out later.",
+        "Maybe we'll go out later.",
+        "Perhaps we will go out later.",
+        "Perhaps we'll go out later.",
+        "We might go out later.",
+        "We may go out later."
       ],
       "tags": [
         "possibility"
       ]
     },
     {
-      "id": 561,
+      "id": 744,
       "pt": "Pode ser que eu esqueça.",
       "en": [
-        "I might forget",
-        "I may forget"
+        "I might forget.",
+        "I may forget."
       ],
       "tags": [
         "possibility"
       ]
     },
     {
-      "id": 562,
+      "id": 745,
       "pt": "Talvez ela não goste.",
-      "en": "Maybe she does not/doesn't like it",
+      "en": [
+        "Maybe she does not like it.",
+        "Maybe she doesn't like it.",
+        "She might not like it.",
+        "She may not like it."
+      ],
       "tags": [
         "possibility"
       ]
     },
     {
-      "id": 563,
+      "id": 746,
       "pt": "Acho que ele já foi embora.",
       "en": [
-        "I think he already left",
-        "I think he has/he's already left"
+        "I think he already left.",
+        "I think he left already.",
+        "Maybe he already left.",
+        "He might have left already."
       ],
       "tags": [
         "possibility"
       ]
     },
     {
-      "id": 564,
+      "id": 747,
       "pt": "Pode ser que isso demore.",
       "en": [
-        "This might take a while",
-        "This may take a while"
+        "This might take a while.",
+        "This may take a while.",
+        "Maybe this takes a while."
       ],
       "tags": [
         "possibility"
       ]
     },
     {
-      "id": 565,
+      "id": 748,
       "pt": "Talvez ele não responda agora.",
       "en": [
-        "Maybe he will not/won't reply now",
-        "Maybe he will not/won't answer now"
+        "Maybe he will not reply now.",
+        "Maybe he won't reply now.",
+        "Maybe he will not answer now.",
+        "Maybe he won't answer now.",
+        "He might not reply now.",
+        "He may not reply now."
       ],
       "tags": [
         "possibility"
       ]
     },
     {
-      "id": 566,
+      "id": 749,
       "pt": "Pode ser que eu esteja errado.",
       "en": [
-        "I might be wrong",
-        "I may be wrong"
+        "I might be wrong.",
+        "I may be wrong.",
+        "Maybe I am wrong."
       ],
       "tags": [
         "possibility"
       ]
     },
     {
-      "id": 567,
+      "id": 750,
       "pt": "Talvez a internet caia de novo.",
       "en": [
-        "Maybe the internet will go down again",
-        "Maybe the internet goes down again"
+        "Maybe the internet will go down again.",
+        "Maybe the internet won't work again.",
+        "The internet might go down again.",
+        "The internet may go down again."
       ],
       "tags": [
         "possibility"
       ]
     },
     {
-      "id": 568,
+      "id": 751,
       "pt": "Pode ser que ela esteja ocupada.",
       "en": [
-        "She might be busy",
-        "She may be busy"
+        "She might be busy.",
+        "She may be busy.",
+        "Maybe she is busy.",
+        "Maybe she's busy."
       ],
       "tags": [
         "possibility"
       ]
     },
     {
-      "id": 569,
+      "id": 752,
       "pt": "Acho que ele não entendeu.",
-      "en": "I think he did not/didn't understand",
+      "en": [
+        "I think he did not understand.",
+        "I think he didn't understand.",
+        "Maybe he did not understand.",
+        "Maybe he didn't understand."
+      ],
       "tags": [
         "possibility"
       ]
     },
     {
-      "id": 570,
+      "id": 753,
       "pt": "Talvez eu precise de ajuda.",
       "en": [
-        "Maybe I will/I'll need help",
-        "Maybe I need help"
+        "Maybe I need help.",
+        "I might need help.",
+        "I may need help.",
+        "Maybe I will need help.",
+        "Maybe I'll need help."
       ],
       "tags": [
         "possibility"
       ]
     },
     {
-      "id": 571,
+      "id": 754,
       "pt": "Pode ser que a gente se atrase.",
       "en": [
-        "We might be late",
-        "We may be late",
-        "We might get late"
+        "We might be late.",
+        "We may be late.",
+        "Maybe we will be late.",
+        "Maybe we'll be late."
       ],
       "tags": [
         "possibility"
       ]
     },
     {
-      "id": 572,
+      "id": 755,
       "pt": "Talvez isso seja verdade.",
-      "en": "Maybe that is/that's true",
+      "en": [
+        "Maybe that is true.",
+        "Maybe that's true.",
+        "That might be true.",
+        "That may be true."
+      ],
       "tags": [
         "possibility"
       ]
     },
     {
-      "id": 573,
+      "id": 756,
       "pt": "Pode ser que ele esteja no trabalho.",
       "en": [
-        "He might be at work",
-        "He may be at work"
+        "He might be at work.",
+        "He may be at work.",
+        "Maybe he is at work.",
+        "Maybe he's at work."
       ],
       "tags": [
         "possibility"
       ]
     },
     {
-      "id": 574,
+      "id": 757,
       "pt": "Talvez ela esteja doente.",
-      "en": "Maybe she is/she's sick/ill",
+      "en": [
+        "Maybe she is sick.",
+        "Maybe she's sick.",
+        "Maybe she is ill.",
+        "Maybe she's ill.",
+        "She might be sick.",
+        "She may be sick.",
+        "She might be ill.",
+        "She may be ill."
+      ],
       "tags": [
         "possibility"
       ]
     },
     {
-      "id": 575,
+      "id": 758,
       "pt": "Acho que a loja já fechou.",
       "en": [
-        "I think the store/shop is already closed",
-        "I think the store/shop has/shop's already closed"
+        "I think the store is already closed.",
+        "I think the shop is already closed.",
+        "I think the store closed already.",
+        "I think the shop closed already.",
+        "Maybe the store is already closed.",
+        "Maybe the shop is already closed."
       ],
       "tags": [
         "possibility"
       ]
     },
     {
-      "id": 576,
+      "id": 759,
       "pt": "Pode ser que ele esteja com fome.",
       "en": [
-        "He might be hungry",
-        "He may be hungry"
+        "He might be hungry.",
+        "He may be hungry.",
+        "Maybe he is hungry.",
+        "Maybe he's hungry."
       ],
       "tags": [
         "possibility"
       ]
     },
     {
-      "id": 577,
+      "id": 760,
       "pt": "Talvez eu vá amanhã.",
-      "en": "Maybe I will/I'll go tomorrow",
+      "en": [
+        "Maybe I will go tomorrow.",
+        "Maybe I'll go tomorrow.",
+        "I might go tomorrow.",
+        "I may go tomorrow."
+      ],
       "tags": [
         "possibility"
       ]
     },
     {
-      "id": 578,
+      "id": 761,
       "pt": "Pode ser que ela não venha hoje.",
       "en": [
-        "She might not come today",
-        "She may not come today"
+        "She might not come today.",
+        "She may not come today.",
+        "Maybe she does not come today.",
+        "Maybe she doesn't come today."
       ],
       "tags": [
         "possibility"
       ]
     },
     {
-      "id": 579,
+      "id": 762,
       "pt": "Talvez a gente consiga resolver hoje.",
       "en": [
-        "Maybe we can solve (it/this) today",
-        "Maybe we can fix (it/this) today"
+        "Maybe we can solve this today.",
+        "Maybe we can solve it today.",
+        "Maybe we can fix this today.",
+        "Maybe we can fix it today.",
+        "We might solve this today.",
+        "We may solve this today.",
+        "We might fix this today.",
+        "We may fix this today."
       ],
       "tags": [
         "possibility"
       ]
     },
     {
-      "id": 580,
+      "id": 763,
       "pt": "Pode ser que eu não tenha tempo.",
       "en": [
-        "I might not have time",
-        "I may not have time"
+        "I might not have time.",
+        "I may not have time.",
+        "Maybe I do not have time.",
+        "Maybe I don't have time."
       ],
       "tags": [
         "possibility"
       ]
     },
     {
-      "id": 581,
+      "id": 764,
       "pt": "Acho que ele vai chegar atrasado.",
       "en": [
-        "I think he is/he's going to arrive late",
-        "I think he will/he'll arrive late"
+        "I think he is going to arrive late.",
+        "I think he's going to arrive late.",
+        "I think he will arrive late.",
+        "I think he'll arrive late.",
+        "Maybe he is going to arrive late.",
+        "Maybe he will arrive late."
       ],
       "tags": [
         "possibility"
       ]
     },
     {
-      "id": 582,
+      "id": 765,
       "pt": "Talvez eu esteja cansado demais.",
-      "en": "Maybe I am/I'm too tired",
+      "en": [
+        "Maybe I am too tired.",
+        "Maybe I'm too tired.",
+        "I might be too tired.",
+        "I may be too tired."
+      ],
       "tags": [
         "possibility"
       ]
     },
     {
-      "id": 583,
+      "id": 766,
       "pt": "Pode ser que isso dê certo.",
       "en": [
-        "This might work (out)",
-        "This may work (out)"
+        "This might work.",
+        "This may work.",
+        "This might work out.",
+        "This may work out.",
+        "Maybe this works.",
+        "Maybe this works out."
       ],
       "tags": [
         "possibility"
       ]
     },
     {
-      "id": 584,
+      "id": 767,
       "pt": "Talvez a gente precise tentar de novo.",
-      "en": "Maybe we need to try again",
+      "en": [
+        "Maybe we need to try again.",
+        "We might need to try again.",
+        "We may need to try again."
+      ],
       "tags": [
         "possibility"
       ]
     },
     {
-      "id": 585,
+      "id": 768,
       "pt": "Talvez eu chegue um pouco mais tarde.",
       "en": [
-        "Maybe I will/I'll arrive a little later",
-        "Maybe I will/I'll be a little late"
+        "Maybe I will arrive a little later.",
+        "Maybe I'll arrive a little later.",
+        "Maybe I will be a little late.",
+        "Maybe I'll be a little late.",
+        "I might arrive a little later.",
+        "I may arrive a little later."
       ],
       "tags": [
         "possibility",
@@ -9918,73 +10162,132 @@
       ]
     },
     {
-      "id": 586,
+      "id": 769,
       "pt": "Pode ser que ele não tenha visto a mensagem.",
       "en": [
-        "He might not have seen the message",
-        "He may not have seen the message"
+        "Maybe he did not see the message.",
+        "Maybe he didn't see the message.",
+        "I think he did not see the message.",
+        "I think he didn't see the message."
       ],
       "tags": [
         "possibility"
       ]
     },
     {
-      "id": 587,
+      "id": 770,
       "pt": "Acho que a gente vai precisar de mais tempo.",
       "en": [
-        "I think we will/we'll need more time",
-        "I think we are/we're going to need more time"
+        "I think we will need more time.",
+        "I think we'll need more time.",
+        "I think we are going to need more time.",
+        "I think we're going to need more time.",
+        "I think we might need more time.",
+        "I think we may need more time.",
+        "We might need more time.",
+        "We may need more time.",
+        "Maybe we will need more time.",
+        "Maybe we'll need more time.",
+        "Maybe we are going to need more time.",
+        "Maybe we're going to need more time.",
+        "Maybe we need more time."
       ],
       "tags": [
         "possibility"
       ]
     },
     {
-      "id": 588,
+      "id": 771,
       "pt": "Talvez ela esteja no caminho agora.",
-      "en": "Maybe she is/she's on the way now",
+      "en": [
+        "Maybe she is on the way now.",
+        "Maybe she's on the way now.",
+        "Maybe she is on her way now.",
+        "Maybe she's on her way now.",
+        "She might be on the way now.",
+        "She may be on the way now.",
+        "She might be on her way now.",
+        "She may be on her way now.",
+        "Maybe she's on the way right now.",
+        "She might be on her way right now."
+      ],
       "tags": [
         "possibility"
       ]
     },
     {
-      "id": 589,
+      "id": 772,
       "pt": "Pode ser que eu tenha entendido errado.",
       "en": [
-        "I might have understood (it) wrong",
-        "I may have understood (it) wrong",
-        "I might have misunderstood"
+        "Maybe I understood it wrong.",
+        "Maybe I understood it incorrectly.",
+        "Maybe I understood wrong.",
+        "Maybe I got it wrong.",
+        "Maybe I misunderstood.",
+        "I might be wrong.",
+        "I may be wrong.",
+        "I might be mistaken.",
+        "I may be mistaken."
       ],
       "tags": [
         "possibility"
       ]
     },
     {
-      "id": 590,
+      "id": 773,
       "pt": "Talvez o problema seja mais simples do que parece.",
-      "en": "Maybe the problem is simpler than it looks/seems",
+      "en": [
+        "Maybe the problem is simpler than it looks.",
+        "Maybe the problem is simpler than it seems.",
+        "Maybe the issue is simpler than it looks.",
+        "Maybe the issue is simpler than it seems.",
+        "The problem might be simpler than it looks.",
+        "The problem may be simpler than it seems.",
+        "The problem could be simpler than it looks.",
+        "The issue might be simpler than it seems."
+      ],
       "tags": [
         "possibility"
       ]
     },
     {
-      "id": 591,
+      "id": 774,
       "pt": "Pode ser que ele esteja sem internet.",
       "en": [
-        "He might be without internet",
-        "He may be without internet",
-        "He might not have internet"
+        "He might be without internet.",
+        "He may be without internet.",
+        "Maybe he is without internet.",
+        "Maybe he's without internet.",
+        "He might not have internet.",
+        "He may not have internet.",
+        "Maybe he doesn't have internet.",
+        "Maybe he does not have internet.",
+        "He might be offline.",
+        "He may be offline.",
+        "Maybe he's offline.",
+        "He might not have an internet connection.",
+        "He may not have an internet connection."
       ],
       "tags": [
         "possibility"
       ]
     },
     {
-      "id": 592,
+      "id": 775,
       "pt": "Acho que ela vai gostar da ideia.",
       "en": [
-        "I think she will/she'll like the idea",
-        "I think she is/she's going to like the idea"
+        "I think she will like the idea.",
+        "I think she'll like the idea.",
+        "I think she is going to like the idea.",
+        "I think she's going to like the idea.",
+        "I think she might like the idea.",
+        "I think she may like the idea.",
+        "Maybe she will like the idea.",
+        "Maybe she'll like the idea.",
+        "Maybe she is going to like the idea.",
+        "Maybe she's going to like the idea.",
+        "She might like the idea.",
+        "She may like the idea."
       ],
       "tags": [
         "possibility",
@@ -9992,39 +10295,77 @@
       ]
     },
     {
-      "id": 593,
+      "id": 776,
       "pt": "Talvez eu precise sair mais cedo hoje.",
-      "en": "Maybe I need to leave earlier today",
-      "tags": [
-        "possibility"
-      ]
-    },
-    {
-      "id": 594,
-      "pt": "Pode ser que a gente não consiga hoje.",
       "en": [
-        "We might not be able to do it today",
-        "We may not be able to do it today",
-        "We might not make it today"
+        "Maybe I need to leave earlier today.",
+        "Maybe I need to leave early today.",
+        "Maybe I have to leave earlier today.",
+        "Maybe I have to leave early today.",
+        "I might need to leave earlier today.",
+        "I might need to leave early today.",
+        "I might have to leave earlier today.",
+        "I might have to leave early today.",
+        "I may need to leave earlier today.",
+        "I may need to leave early today.",
+        "I may have to leave earlier today.",
+        "I may have to leave early today."
       ],
       "tags": [
         "possibility"
       ]
     },
     {
-      "id": 595,
-      "pt": "Talvez ele esteja de mau humor.",
-      "en": "Maybe he is/he's in a bad mood",
+      "id": 777,
+      "pt": "Pode ser que a gente não consiga hoje.",
+      "en": [
+        "We might not be able to do it today.",
+        "We may not be able to do it today.",
+        "We might not be able to make it today.",
+        "We may not be able to make it today.",
+        "We might not make it today.",
+        "We may not make it today.",
+        "Maybe we are not able to do it today.",
+        "Maybe we aren't able to do it today.",
+        "Maybe we can't do it today.",
+        "Maybe we cannot do it today.",
+        "Maybe we won't be able to do it today."
+      ],
       "tags": [
         "possibility"
       ]
     },
     {
-      "id": 596,
+      "id": 778,
+      "pt": "Talvez ele esteja de mau humor.",
+      "en": [
+        "Maybe he is in a bad mood.",
+        "Maybe he's in a bad mood.",
+        "He might be in a bad mood.",
+        "He may be in a bad mood.",
+        "Maybe he is grumpy.",
+        "Maybe he's grumpy.",
+        "He might be grumpy.",
+        "He may be grumpy.",
+        "Maybe he's in a bad mood today.",
+        "He might be in a bad mood today."
+      ],
+      "tags": [
+        "possibility"
+      ]
+    },
+    {
+      "id": 779,
       "pt": "Pode ser que isso aconteça de novo.",
       "en": [
-        "This might happen again",
-        "This may happen again"
+        "This might happen again.",
+        "This may happen again.",
+        "Maybe this happens again.",
+        "Maybe this will happen again.",
+        "Maybe it'll happen again.",
+        "This might happen again someday.",
+        "This may happen again someday.",
+        "This could happen again."
       ],
       "tags": [
         "possibility"
