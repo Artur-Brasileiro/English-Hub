@@ -419,26 +419,29 @@ const TranslationGame = ({ onBack }) => {
   const currentItem = shuffledQuestions[currentQuestionIndex];
   if (!currentItem) return <div className="min-h-screen flex items-center justify-center animate-pulse text-slate-400 font-bold">Carregando nível...</div>;
 
-  const primaryTag = getPrimaryTag(currentItem.tags);
-  
   // Determina o tipo de questão para definir cores e ícones do header
-  // Prioridade: Tag Específica > Modo Específico (Gramática) > Gramática Detectada
   let questionType = 'mix';
 
-  if (primaryTag) {
-    questionType = primaryTag;
-  } 
-  // 2. Prioridade Secundária: Gramática Específica (Detectada pelo ID)
-  // Isso garante que mesmo no modo "All Tenses", ele saiba que é um "Past Perfect"
+  // CORREÇÃO: Prioridade total para o modo selecionado se ele for uma categoria (tag)
+  if (currentMode && tagMeta[currentMode]) {
+    questionType = currentMode;
+  }
+  // Se não for um modo específico de tag (ex: é numérico ou 'mix' ou 'all_tenses'),
+  // tenta detectar dinamicamente.
   else {
-    const detectedGrammar = detectGrammarCategory(currentItem);
+    const primaryTag = getPrimaryTag(currentItem.tags);
     
-    if (detectedGrammar) {
-        questionType = detectedGrammar;
+    if (primaryTag) {
+      questionType = primaryTag;
     } 
-    // 3. Fallback: Se não detectou nada específico, usa o rótulo do modo atual (ex: All Tenses)
-    else if (typeof currentMode === 'string' && grammarMeta[currentMode]) {
-        questionType = currentMode;
+    else {
+      const detectedGrammar = detectGrammarCategory(currentItem);
+      if (detectedGrammar) {
+          questionType = detectedGrammar;
+      } 
+      else if (typeof currentMode === 'string' && grammarMeta[currentMode]) {
+          questionType = currentMode;
+      }
     }
   }
 
